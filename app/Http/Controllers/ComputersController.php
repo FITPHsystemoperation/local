@@ -15,7 +15,7 @@ class ComputersController extends Controller
      */
     public function index()
     {
-        $computers = Computer::all();
+        $computers = Computer::orderBy('compName')->get();
 
         return view('computers.index', compact('computers'));
     }
@@ -63,7 +63,11 @@ class ComputersController extends Controller
      */
     public function show($id)
     {
-        //
+        $computer = Computer::whereId($id)->firstOrFail();
+
+        $mouse = $computer->mouse()->get()->first();
+
+        return view('computers.show', compact('computer', 'mouse'));
     }
 
     /**
@@ -74,7 +78,9 @@ class ComputersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $computer = Computer::whereId($id)->firstOrFail();
+
+        return view('computers.edit', compact('computer'));
     }
 
     /**
@@ -84,9 +90,23 @@ class ComputersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ComputerFormRequest $request, $id)
     {
-        //
+        $computer = Computer::whereId($id)->firstOrFail();
+
+        $computer->compName = $request->get('compName');
+        $computer->userName = $request->get('userName');
+        $computer->userPass = $request->get('userPass');
+        $computer->userPass = $request->get('userPass');
+        $computer->adminPass = $request->get('adminPass');
+        $computer->specs = $request->get('specs');
+        $computer->withWbuster = $request->has('withWbuster') ? 1 : 0;
+        $computer->withSkysea = $request->has('withSkysea') ? 1 : 0;
+
+        $computer->save();
+
+        return redirect(action('ComputersController@show', $computer->id))
+            ->with('status', 'Computer record successfully updated.');
     }
 
     /**
@@ -99,4 +119,5 @@ class ComputersController extends Controller
     {
         //
     }
+    
 }

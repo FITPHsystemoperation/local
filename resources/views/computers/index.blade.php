@@ -13,15 +13,14 @@
 	<div class="card m-3">
 	    	<div class="card-body">
 			    <h1 class="card-title">Computer Inventory</h1>
-			    <a class="btn btn-primary" href="/computers/create" role="button">Add New</a>
+			    <a class="btn btn-primary" href="{{ action('ComputersController@create') }}" role="button">Add New</a>
 			    
 			    <table class="table mt-2 border-bottom">
 			    	<thead>
 			    		<tr class="text-center">
+			    			<th>CompName</th>
 			    			<th>UserName</th>
 			    			<th>UserPass</th>
-			    			<th>CompName</th>
-			    			<th>AdminPass</th>
 			    			<th>WillsBuster</th>
 			    			<th>SkySea</th>
 			    		</tr>
@@ -30,12 +29,15 @@
 			    		@foreach ($computers as $computer)
 			    			<tr class="text-center">
 			    				
-			    				<td>{{$computer->compName}}</td>
-			    				<td>{{$computer->adminPass}}</td>
+			    				<td>
+			    					<a href="{{ action('ComputersController@show', $computer->id) }}">
+				    					{{$computer->compName}}
+			    					</a>
+			    				</td>
 			    				<td>{{$computer->userName}}</td>
 			    				<td>{{$computer->userPass}}</td>
-			    				<td>{!!$computer->withWbuster ? '&#9989;' : ''!!}</td>
-			    				<td>{!!$computer->withSkysea ? '&#9989;' : ''!!}</td>
+			    				<td>{!! $computer->withWbuster ? '&#10004;' : '&#10060;' !!}</td>
+			    				<td>{!! $computer->withSkysea ? '&#10004;' : '&#10060;' !!}</td>
 
 			    			</tr>
 			    		@endforeach

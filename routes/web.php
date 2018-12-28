@@ -16,3 +16,12 @@ Route::get('/welcome', 'PagesController@welcome');
 Route::get('/computers', 'ComputersController@index');
 Route::get('/computers/create', 'ComputersController@create');
 Route::post('/computers/create', 'ComputersController@store');
+Route::get('/computer/{id}', 'ComputersController@show');
+Route::get('/computer/{id}/edit', 'ComputersController@edit');
+Route::post('/computer/{id}', 'ComputersController@update');
+
+Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
+Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
+Route::post('/computer/{id}/mouse/remove', 'ComputerMouseController@destroy');
+
+Route::post('/mouses/create', 'MousesController@store');

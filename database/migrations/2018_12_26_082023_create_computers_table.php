@@ -19,7 +19,7 @@ class CreateComputersTable extends Migration
             $table->string('adminPass', 50);
             $table->string('userName', 50)->unique();
             $table->string('userPass', 50);
-            $table->text('specs');
+            $table->text('specs')->nullable();
             $table->boolean('withWbuster')->default(0);
             $table->boolean('withSkysea')->default(0);
             $table->timestamps();

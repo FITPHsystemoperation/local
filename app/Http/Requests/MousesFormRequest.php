@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ComputerFormRequest extends FormRequest
+class MousesFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class ComputerFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'compName' => 'required|min:5',
-            'adminPass' => 'required|min:5',
-            'userName' => 'required|min:5',
-            'userPass' => 'required|min:5',
+            'mouseName' => 'required|min:5',
         ];
     }
 }
