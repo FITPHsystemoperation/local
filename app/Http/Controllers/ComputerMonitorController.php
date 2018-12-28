@@ -38,12 +38,16 @@ class ComputerMonitorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($computer_id)
+    public function destroy($computer_id, $id)
     {
-        Monitor::where('computer_id', $computer_id)
-            ->update(array('computer_id' => null));
+        $monitor = Monitor::whereId($id)->firstOrFail();
 
-        return redirect(action('ComputersController@show', $computer_id)) 
+        $monitor->computer_id = null;
+
+        $monitor->save();
+
+        return redirect()
+            ->back() 
             ->with('status', 'Monitor has been removed from this computer');
     }
 }

@@ -10,21 +10,21 @@ class Computer extends Model
 
     public function mouse()
     {
-    	return $this->hasOne('App\Mouse', 'computer_id');
+    	return $this->hasMany('App\Mouse', 'computer_id');
     }
 
     public function keyboard()
     {
-    	return $this->hasOne('App\Keyboard', 'computer_id');
+    	return $this->hasMany('App\Keyboard', 'computer_id');
     }
 
     public function monitor()
     {
-    	return $this->hasOne('App\Monitor', 'computer_id');
+    	return $this->hasMany('App\Monitor', 'computer_id');
     }
 
     public function charger()
     {
-        return $this->hasOne('App\Charger', 'computer_id');
+        return $this->hasMany('App\Charger', 'computer_id');
     }
 }

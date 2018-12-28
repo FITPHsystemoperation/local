@@ -44,12 +44,16 @@ class ComputerKeyboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($computer_id)
+    public function destroy($computer_id, $id)
     {
-        Keyboard::where('computer_id', $computer_id)
-            ->update(array('computer_id' => null));
+        $keyboard = Keyboard::whereId($id)->firstOrFail();
 
-        return redirect(action('ComputersController@show', $computer_id)) 
+        $keyboard->computer_id = null;
+
+        $keyboard->save();
+
+        return redirect()
+            ->back() 
             ->with('status', 'Keyboard has been removed from this computer');
     }
 }

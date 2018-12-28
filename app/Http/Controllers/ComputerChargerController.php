@@ -44,12 +44,16 @@ class ComputerChargerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($computer_id)
+    public function destroy($computer_id, $id)
     {
-        Charger::where('computer_id', $computer_id)
-            ->update(array('computer_id' => null));
+        $charger = Charger::whereId($id)->firstOrFail();
 
-        return redirect(action('ComputersController@show', $computer_id)) 
+        $charger->computer_id = null;
+
+        $charger->save();
+
+        return redirect()
+            ->back() 
             ->with('status', 'Charger has been removed from this computer');
     }
 }

@@ -8,7 +8,7 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-5">
+		    <div class="card mt-3">
 
 		    	<div class="card-body">
 				    
@@ -69,9 +69,137 @@
 				    
 				    <h1 class="card-title">Accessories</h1>
 
-				    <hr>
-		    	
-		    		<h4 class="p-2">
+				    <div class="row mt-3">
+				    	<div class="col-sm-6">
+				    		<div class="card">
+				    			<div class="card-body">
+				    				<h4 class="card-title">
+				    					Mouse
+										<a class="btn btn-primary float-right"
+											href="{{ action('ComputerMouseController@index', $computer->id) }}"
+											role="button"
+										>Add</a>
+				    				</h4>
+				    				<hr>
+				    				<ul>
+										@foreach ($mouses as $mouse)
+											<li class="pt-2">
+												<h5>
+													{{ $mouse->mouseName }}
+													<form
+														method="post"
+														action="/computer/{{ $computer->id }}/mouse/{{ $mouse->id }}/remove"
+														class="float-right"
+													>
+														@csrf
+														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+													</form>
+												</h5>
+											</li>
+										@endforeach
+									</ul>
+				    			</div>
+				    		</div>
+				    	</div>
+				    	<div class="col-sm-6">
+				    		<div class="card">
+				    			<div class="card-body">
+				    				<h4 class="card-title">
+				    					Keyboard
+										<a class="btn btn-primary float-right"
+											href="{{ action('ComputerKeyboardController@index', $computer->id) }}"
+											role="button"
+										>Add</a>
+				    				</h4>
+				    				<hr>
+				    				<ul>
+										@foreach ($keyboards as $keyboard)
+											<li class="pt-2">
+												<h5>
+													{{ $keyboard->keyboardName }}
+													<form
+														method="post"
+														action="/computer/{{ $computer->id }}/keyboard/{{ $keyboard->id }}/remove"
+														class="float-right"
+													>
+														@csrf
+														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+													</form>
+												</h5>
+											</li>
+										@endforeach
+									</ul>
+				    			</div>
+				    		</div>
+				    	</div>
+				    </div>
+
+					
+		    		<div class="row mt-3">
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">
+										Monitor
+										<a class="btn btn-primary float-right"
+											href="{{ action('ComputerMonitorController@index', $computer->id) }}"
+											role="button"
+										>Add</a>
+									</h4>
+									<hr>
+									<ul>
+										@foreach ($monitors as $monitor)
+											<li class="pt-2">
+												<h5>
+													{{ $monitor->monitorName }}
+													<form
+														method="post"
+														action="/computer/{{ $computer->id }}/monitor/{{ $monitor->id }}/remove"
+														class="float-right"
+													>
+														@csrf
+														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+													</form>
+												</h5>
+											</li>
+										@endforeach
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+				    		<div class="card">
+				    			<div class="card-body">
+				    				<h4 class="card-title">
+				    					Charger
+										<a class="btn btn-primary float-right"
+											href="{{ action('ComputerChargerController@index', $computer->id) }}"
+											role="button"
+										>Add</a>
+				    				</h4>
+				    				<hr>
+				    				<ul>
+										@foreach ($chargers as $charger)
+											<li class="pt-2">
+												<h5>
+													{{ $charger->chargerName }}
+													<form
+														method="post"
+														action="/computer/{{ $computer->id }}/charger/{{ $charger->id }}/remove"
+														class="float-right"
+													>
+														@csrf
+														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+													</form>
+												</h5>
+											</li>
+										@endforeach
+									</ul>
+				    			</div>
+				    		</div>
+					</div>
+
+		    		{{-- <h4 class="p-2">
 						<span class="lead">Mouse:</span>
 						@if ($mouse)
 							{{$mouse->mouseName}}
@@ -87,10 +215,6 @@
 							</form>
 						@else
 							&#10060;
-							<a class="btn btn-primary float-right"
-								href="{{ action('ComputerMouseController@index', $computer->id) }}"
-								role="button"
-							>Add</a>
 						@endif
 					</h4>
 
@@ -118,32 +242,8 @@
 							>Add</a>
 						@endif
 					</h4>
+
 				    
-				    <hr>
-
-					<h4 class="p-2">
-						<span class="lead">Monitor:</span>
-						@if ($monitor)
-							{{$monitor->monitorName}}
-							<form
-								method="post"
-								action="{{ action('ComputerMonitorController@destroy' ,$computer->id) }}"
-								class="float-right"
-							>
-
-								@csrf
-
-								<button type="submit" class="btn btn-danger">Remove</button>
-							</form>
-						@else
-							&#10060;
-							<a class="btn btn-primary float-right"
-								href="{{ action('ComputerMonitorController@index', $computer->id) }}"
-								role="button"
-							>Add</a>
-						@endif
-					</h4>
-
 					<hr>
 
 					<h4 class="p-2">
@@ -167,7 +267,7 @@
 								role="button"
 							>Add</a>
 						@endif
-					</h4>
+					</h4> --}}
 
 		    	</div>
 
