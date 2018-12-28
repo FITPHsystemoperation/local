@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Mouse;
+use App\Charger;
 
-class ComputerMouseController extends Controller
+class ComputerChargerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class ComputerMouseController extends Controller
      */
     public function index($id)
     {
-        $mouses = Mouse::all();
+        $chargers = Charger::all();
 
-        return view('computers.mouse', compact('mouses', 'id'));
+        return view('computers.charger', compact('chargers', 'id'));
     }
 
     /**
@@ -25,35 +25,31 @@ class ComputerMouseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     public function store(Request $request, $computer_id)
     {
-        $mouse = Mouse::whereId($request->get('mouse_id'))
+        $charger = Charger::whereId($request->get('charger_id'))
             ->firstOrFail();
 
-        $mouse->computer_id = $computer_id;
+        $charger->computer_id = $computer_id;
 
-        $mouse->save();
+        $charger->save();
 
         return redirect(action('ComputersController@show', $computer_id))
-            ->with('status', 'Mouse has been added to this computer');
+            ->with('status', 'Charger has been added to this computer');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
- 
     public function destroy($computer_id)
     {
-        Mouse::where('computer_id', $computer_id)
+        Charger::where('computer_id', $computer_id)
             ->update(array('computer_id' => null));
 
         return redirect(action('ComputersController@show', $computer_id)) 
-            ->with('status', 'Mouse has been removed from this computer');
+            ->with('status', 'Charger has been removed from this computer');
     }
-
 }

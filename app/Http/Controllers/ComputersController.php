@@ -66,8 +66,16 @@ class ComputersController extends Controller
         $computer = Computer::whereId($id)->firstOrFail();
 
         $mouse = $computer->mouse()->get()->first();
+        
+        $keyboard = $computer->keyboard()->get()->first();
 
-        return view('computers.show', compact('computer', 'mouse'));
+        $monitor = $computer->monitor()->get()->first();
+
+        $charger = $computer->charger()->get()->first();
+
+        return view('computers.show',
+            compact('computer', 'mouse' , 'keyboard', 'monitor', 'charger')
+        );
     }
 
     /**

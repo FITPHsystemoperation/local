@@ -74,7 +74,7 @@
 		    		<h4 class="p-2">
 						<span class="lead">Mouse:</span>
 						@if ($mouse)
-							{!! $mouse->mouseName !!}
+							{{$mouse->mouseName}}
 							<form
 								method="post"
 								action="{{ action('ComputerMouseController@destroy' ,$computer->id) }}"
@@ -98,8 +98,75 @@
 
 			    	<h4 class="p-2">
 						<span class="lead">Keyboard:</span>
-						Under Development
-						{{-- <button type="button" class="btn btn-primary float-right">Add</button> --}}
+						@if ($keyboard)
+							{{$keyboard->keyboardName}}
+							<form
+								method="post"
+								action="{{ action('ComputerKeyboardController@destroy' ,$computer->id) }}"
+								class="float-right"
+							>
+
+								@csrf
+
+								<button type="submit" class="btn btn-danger">Remove</button>
+							</form>
+						@else
+							&#10060;
+							<a class="btn btn-primary float-right"
+								href="{{ action('ComputerKeyboardController@index', $computer->id) }}"
+								role="button"
+							>Add</a>
+						@endif
+					</h4>
+				    
+				    <hr>
+
+					<h4 class="p-2">
+						<span class="lead">Monitor:</span>
+						@if ($monitor)
+							{{$monitor->monitorName}}
+							<form
+								method="post"
+								action="{{ action('ComputerMonitorController@destroy' ,$computer->id) }}"
+								class="float-right"
+							>
+
+								@csrf
+
+								<button type="submit" class="btn btn-danger">Remove</button>
+							</form>
+						@else
+							&#10060;
+							<a class="btn btn-primary float-right"
+								href="{{ action('ComputerMonitorController@index', $computer->id) }}"
+								role="button"
+							>Add</a>
+						@endif
+					</h4>
+
+					<hr>
+
+					<h4 class="p-2">
+						<span class="lead">Charger:</span>
+						@if ($charger)
+							{{$charger->chargerName}}
+							<form
+								method="post"
+								action="{{ action('ComputerChargerController@destroy' ,$computer->id) }}"
+								class="float-right"
+							>
+
+								@csrf
+
+								<button type="submit" class="btn btn-danger">Remove</button>
+							</form>
+						@else
+							&#10060;
+							<a class="btn btn-primary float-right"
+								href="{{ action('ComputerChargerController@index', $computer->id) }}"
+								role="button"
+							>Add</a>
+						@endif
 					</h4>
 
 		    	</div>

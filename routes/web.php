@@ -24,4 +24,19 @@ Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
 Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
 Route::post('/computer/{id}/mouse/remove', 'ComputerMouseController@destroy');
 
+Route::get('/computer/{id}/keyboard', 'ComputerKeyboardController@index');
+Route::post('/computer/{id}/keyboard/add', 'ComputerKeyboardController@store');
+Route::post('/computer/{id}/keyboard/remove', 'ComputerKeyboardController@destroy');
+
+Route::get('/computer/{id}/monitor', 'ComputerMonitorController@index');
+Route::post('/computer/{id}/monitor/add', 'ComputerMonitorController@store');
+Route::post('/computer/{id}/monitor/remove', 'ComputerMonitorController@destroy');
+
+Route::get('/computer/{id}/charger', 'ComputerChargerController@index');
+Route::post('/computer/{id}/charger/add', 'ComputerChargerController@store');
+Route::post('/computer/{id}/charger/remove', 'ComputerChargerController@destroy');
+
 Route::post('/mouses/create', 'MousesController@store');
+Route::post('/keyboards/create', 'KeyboardsController@store');
+Route::post('/monitors/create', 'MonitorsController@store');
+Route::post('/chargers/create', 'ChargersController@store');
