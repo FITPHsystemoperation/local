@@ -70,17 +70,24 @@
 				    <h1 class="card-title">Accessories</h1>
 
 				    <div class="row mt-3">
+
 				    	<div class="col-sm-6">
+				    	
 				    		<div class="card">
+				    	
 				    			<div class="card-body">
+				    	
 				    				<h4 class="card-title">
 				    					Mouse
 										<a class="btn btn-primary float-right"
 											href="{{ action('ComputerMouseController@index', $computer->id) }}"
 											role="button"
 										>Add</a>
+				    			
 				    				</h4>
+				    			
 				    				<hr>
+				    			
 				    				<ul>
 										@foreach ($mouses as $mouse)
 											<li class="pt-2">
@@ -97,10 +104,15 @@
 												</h5>
 											</li>
 										@endforeach
+									
 									</ul>
+				    			
 				    			</div>
+				    		
 				    		</div>
+				    	
 				    	</div>
+				    	
 				    	<div class="col-sm-6">
 				    		<div class="card">
 				    			<div class="card-body">
@@ -198,76 +210,6 @@
 				    			</div>
 				    		</div>
 					</div>
-
-		    		{{-- <h4 class="p-2">
-						<span class="lead">Mouse:</span>
-						@if ($mouse)
-							{{$mouse->mouseName}}
-							<form
-								method="post"
-								action="{{ action('ComputerMouseController@destroy' ,$computer->id) }}"
-								class="float-right"
-							>
-
-								@csrf
-
-								<button type="submit" class="btn btn-danger">Remove</button>
-							</form>
-						@else
-							&#10060;
-						@endif
-					</h4>
-
-				    <hr>
-
-			    	<h4 class="p-2">
-						<span class="lead">Keyboard:</span>
-						@if ($keyboard)
-							{{$keyboard->keyboardName}}
-							<form
-								method="post"
-								action="{{ action('ComputerKeyboardController@destroy' ,$computer->id) }}"
-								class="float-right"
-							>
-
-								@csrf
-
-								<button type="submit" class="btn btn-danger">Remove</button>
-							</form>
-						@else
-							&#10060;
-							<a class="btn btn-primary float-right"
-								href="{{ action('ComputerKeyboardController@index', $computer->id) }}"
-								role="button"
-							>Add</a>
-						@endif
-					</h4>
-
-				    
-					<hr>
-
-					<h4 class="p-2">
-						<span class="lead">Charger:</span>
-						@if ($charger)
-							{{$charger->chargerName}}
-							<form
-								method="post"
-								action="{{ action('ComputerChargerController@destroy' ,$computer->id) }}"
-								class="float-right"
-							>
-
-								@csrf
-
-								<button type="submit" class="btn btn-danger">Remove</button>
-							</form>
-						@else
-							&#10060;
-							<a class="btn btn-primary float-right"
-								href="{{ action('ComputerChargerController@index', $computer->id) }}"
-								role="button"
-							>Add</a>
-						@endif
-					</h4> --}}
 
 		    	</div>
 
