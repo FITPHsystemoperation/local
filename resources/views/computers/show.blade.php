@@ -154,7 +154,7 @@
 									<h4 class="card-title">
 										Monitor
 										<a class="btn btn-primary float-right"
-											href="{{ action('ComputerMonitorController@index', $computer->id) }}"
+											href="/computer/{{ $computer->id }}/keyboard"
 											role="button"
 										>Add</a>
 									</h4>
@@ -166,7 +166,7 @@
 													{{ $monitor->monitorName }}
 													<form
 														method="post"
-														action="/computer/{{ $computer->id }}/monitor/{{ $monitor->id }}/remove"
+														action="/computer/monitor/{{ $monitor->id }}/remove"
 														class="float-right"
 													>
 														@csrf

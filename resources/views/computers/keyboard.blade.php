@@ -12,7 +12,7 @@
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title mt-2">Select Existing Record</h1>
+				    <h1 class="card-title mt-2">Select Existing Keyboard</h1>
 
 				    <hr>
 
@@ -45,7 +45,7 @@
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title mt-2">Add New Record</h1>
+				    <h1 class="card-title mt-2">Add New Keyboard</h1>
 
 				    <hr>
 
