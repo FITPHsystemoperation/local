@@ -10,10 +10,10 @@
 	    </div>
 	@endif
 
-	<div class="card m-3">
+	<div class="card mt-3">
 	    	<div class="card-body">
 			    <h1 class="card-title">Computer Inventory</h1>
-			    <a class="btn btn-primary" href="{{ action('ComputersController@create') }}" role="button">Add New</a>
+			    <a class="btn btn-primary" href="computers/create" role="button">Add New</a>
 			    
 			    <table class="table mt-2 border-bottom">
 			    	<thead>
@@ -30,7 +30,7 @@
 			    			<tr class="text-center">
 			    				
 			    				<td>
-			    					<a href="{{ action('ComputersController@show', $computer->id) }}">
+			    					<a href="computer/{{ $computer->id }}">
 				    					{{$computer->compName}}
 			    					</a>
 			    				</td>

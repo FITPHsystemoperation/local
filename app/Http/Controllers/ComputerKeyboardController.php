@@ -27,12 +27,8 @@ class ComputerKeyboardController extends Controller
      */
     public function store(Request $request, $computer_id)
     {
-        $keyboard = Keyboard::whereId($request->get('keyboard_id'))
-            ->firstOrFail();
-
-        $keyboard->computer_id = $computer_id;
-
-        $keyboard->save();
+        Keyboard::whereId($request->get('keyboard_id'))->firstOrFail()
+            ->update(['computer_id' => $computer_id]);
 
         return redirect(action('ComputersController@show', $computer_id))
             ->with('status', 'Keyboard has been added to this computer');
@@ -44,16 +40,12 @@ class ComputerKeyboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($computer_id, $id)
+    public function destroy($id)
     {
-        $keyboard = Keyboard::whereId($id)->firstOrFail();
+        Keyboard::whereId($id)->firstOrFail()
+            ->update(['computer_id' => null]);
 
-        $keyboard->computer_id = null;
-
-        $keyboard->save();
-
-        return redirect()
-            ->back() 
+        return redirect()->back() 
             ->with('status', 'Keyboard has been removed from this computer');
     }
 }

@@ -56,8 +56,8 @@
 
 					<hr>
 
-					<a href="{{ action('ComputersController@edit', $computer->id) }}" class="btn btn-info">Edit</a>
-					<a href="{{ action('ComputersController@index') }}" class="btn btn-secondary">Back</a>
+					<a href="/computer/{{ $computer->id }}/edit" class="btn btn-info">Edit</a>
+					<a href="/computers" class="btn btn-secondary">Back</a>
 
 		    	</div>
 
@@ -80,7 +80,7 @@
 				    				<h4 class="card-title">
 				    					Mouse
 										<a class="btn btn-primary float-right"
-											href="{{ action('ComputerMouseController@index', $computer->id) }}"
+											href="/computer/{{ $computer->id }}/mouse"
 											role="button"
 										>Add</a>
 				    			
@@ -89,13 +89,13 @@
 				    				<hr>
 				    			
 				    				<ul>
-										@foreach ($computer->mouse as $mouse)
+										@foreach ($computer->mouses as $mouse)
 											<li class="pt-2">
 												<h5>
 													{{ $mouse->mouseName }}
 													<form
 														method="post"
-														action="/computer/{{ $computer->id }}/mouse/{{ $mouse->id }}/remove"
+														action="/computer/mouse/{{ $mouse->id }}/remove"
 														class="float-right"
 													>
 														@csrf
@@ -119,19 +119,19 @@
 				    				<h4 class="card-title">
 				    					Keyboard
 										<a class="btn btn-primary float-right"
-											href="{{ action('ComputerKeyboardController@index', $computer->id) }}"
+											href="/computer/{{ $computer->id }}/keyboard"
 											role="button"
 										>Add</a>
 				    				</h4>
 				    				<hr>
 				    				<ul>
-										@foreach ($computer->keyboard as $keyboard)
+										@foreach ($computer->keyboards as $keyboard)
 											<li class="pt-2">
 												<h5>
 													{{ $keyboard->keyboardName }}
 													<form
 														method="post"
-														action="/computer/{{ $computer->id }}/keyboard/{{ $keyboard->id }}/remove"
+														action="/computer/keyboard/{{ $keyboard->id }}/remove"
 														class="float-right"
 													>
 														@csrf
@@ -160,7 +160,7 @@
 									</h4>
 									<hr>
 									<ul>
-										@foreach ($computer->monitor as $monitor)
+										@foreach ($computer->monitors as $monitor)
 											<li class="pt-2">
 												<h5>
 													{{ $monitor->monitorName }}
@@ -191,7 +191,7 @@
 				    				</h4>
 				    				<hr>
 				    				<ul>
-										@foreach ($computer->charger as $charger)
+										@foreach ($computer->chargers as $charger)
 											<li class="pt-2">
 												<h5>
 													{{ $charger->chargerName }}

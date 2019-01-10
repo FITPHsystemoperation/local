@@ -28,12 +28,8 @@ class ComputerMouseController extends Controller
 
     public function store(Request $request, $computer_id)
     {
-        $mouse = Mouse::whereId($request->get('mouse_id'))
-            ->firstOrFail();
-
-        $mouse->computer_id = $computer_id;
-
-        $mouse->save();
+        Mouse::whereId($request->get('mouse_id'))->firstOrFail()
+            ->update(['computer_id' => $computer_id]);
 
         return redirect(action('ComputersController@show', $computer_id))
             ->with('status', 'Mouse has been added to this computer');
@@ -47,16 +43,12 @@ class ComputerMouseController extends Controller
      * @return \Illuminate\Http\Response
      */
  
-    public function destroy($computer_id, $id)
+    public function destroy($id)
     {
-        $mouse = Mouse::whereId($id)->firstOrFail();
+        $mouse = Mouse::whereId($id)->firstOrFail()
+            ->update(['computer_id' => null]);
 
-        $mouse->computer_id = null;
-
-        $mouse->save();
-
-        return redirect()
-            ->back() 
+        return redirect()->back() 
             ->with('status', 'Mouse has been removed from this computer');
     }
 

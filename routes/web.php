@@ -22,11 +22,11 @@ Route::post('/computer/{computer}', 'ComputersController@update');
 
 Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
 Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
-Route::post('/computer/{computer_id}/mouse/{mouse_id}/remove', 'ComputerMouseController@destroy');
+Route::post('/computer/mouse/{mouse_id}/remove', 'ComputerMouseController@destroy');
 
 Route::get('/computer/{id}/keyboard', 'ComputerKeyboardController@index');
 Route::post('/computer/{id}/keyboard/add', 'ComputerKeyboardController@store');
-Route::post('/computer/{computer_id}/keyboard/{keyboard_id}/remove', 'ComputerKeyboardController@destroy');
+Route::post('/computer/keyboard/{keyboard_id}/remove', 'ComputerKeyboardController@destroy');
 
 Route::get('/computer/{id}/monitor', 'ComputerMonitorController@index');
 Route::post('/computer/{id}/monitor/add', 'ComputerMonitorController@store');

@@ -8,7 +8,7 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-5">
+		    <div class="card mt-3">
 
 		    	<div class="card-body">
 				    
@@ -65,7 +65,7 @@
 
 				    	<fieldset class="form-group">
 				    		<label for="mouseName">Mouse Name</label>
-				    		<input type="text" class="form-control" name="mouseName" placeholder="Mouse name" required>
+				    		<input type="text" class="form-control" name="mouseName" placeholder="Mouse name" value="{{ old('mouseName') }}" required>
 				    	</fieldset>
 
 			    		<button type="submit" class="btn btn-primary">Add</button>

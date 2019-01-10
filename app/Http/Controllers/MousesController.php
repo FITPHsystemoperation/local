@@ -36,11 +36,7 @@ class MousesController extends Controller
      */
     public function store(MousesFormRequest $request)
     {
-        $mouse = new Mouse([
-            'mouseName' => $request->get('mouseName'),
-        ]);
-
-        $mouse->save();
+        Mouse::create(['mouseName' => $request->get('mouseName')]);
 
         return redirect()->back()
             ->with('status', 'Mouse successfully recorded'); 

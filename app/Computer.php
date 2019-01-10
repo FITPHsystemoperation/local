@@ -8,23 +8,23 @@ class Computer extends Model
 {
     protected $guarded = [];
 
-    public function mouse()
+    public function mouses()
     {
-    	return $this->hasMany('App\Mouse', 'computer_id');
+    	return $this->hasMany(Mouse::class);
     }
 
-    public function keyboard()
+    public function keyboards()
     {
-    	return $this->hasMany('App\Keyboard', 'computer_id');
+    	return $this->hasMany(Keyboard::class);
     }
 
-    public function monitor()
+    public function monitors()
     {
-    	return $this->hasMany('App\Monitor', 'computer_id');
+    	return $this->hasMany(Monitor::class);
     }
 
-    public function charger()
+    public function chargers()
     {
-        return $this->hasMany('App\Charger', 'computer_id');
+        return $this->hasMany(Charger::class);
     }
 }

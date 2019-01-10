@@ -10,6 +10,6 @@ class Keyboard extends Model
 
     public function computer()
     {
-    	return $this->belongsTo('App\Computer');
+    	return $this->belongsTo(Computer::class);
     }
 }

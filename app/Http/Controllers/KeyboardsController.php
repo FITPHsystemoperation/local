@@ -36,11 +36,7 @@ class KeyboardsController extends Controller
      */
     public function store(KeyboardsFormRequest $request)
     {
-        $keyboard = new Keyboard([
-            'keyboardName' => $request->get('keyboardName'),
-        ]);
-
-        $keyboard->save();
+        Keyboard::create(['keyboardName' => $request->get('keyboardName')]);
 
         return redirect()->back()
             ->with('status', 'Keyboard successfully recorded'); 
