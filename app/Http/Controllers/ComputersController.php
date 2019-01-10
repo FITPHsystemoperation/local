@@ -38,8 +38,7 @@ class ComputersController extends Controller
      */
     public function store(ComputerFormRequest $request)
     {
-
-        $computer = new Computer([
+        Computer::create([
             'compName' => $request->get('compName'),
             'adminPass' => $request->get('adminPass'),
             'userName' => $request->get('userName'),
@@ -49,10 +48,7 @@ class ComputersController extends Controller
             'withSkysea' => $request->has('withSkysea') ? 1 : 0,
         ]);
 
-        $computer->save();
-
         return redirect('/computers')->with('status', 'Computer record successfully added.');
-
     }
 
     /**
@@ -61,21 +57,9 @@ class ComputersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Computer $computer)
     {
-        $computer = Computer::whereId($id)->firstOrFail();
-
-        $mouses = $computer->mouse()->get();
-        
-        $keyboards = $computer->keyboard()->get();
-
-        $monitors = $computer->monitor()->get();
-
-        $chargers = $computer->charger()->get();
-
-        return view('computers.show',
-            compact('computer', 'mouses' , 'keyboards', 'monitors', 'chargers')
-        );
+        return view('computers.show', compact('computer'));
     }
 
     /**
@@ -84,10 +68,8 @@ class ComputersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Computer $computer)
     {
-        $computer = Computer::whereId($id)->firstOrFail();
-
         return view('computers.edit', compact('computer'));
     }
 
@@ -98,20 +80,17 @@ class ComputersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ComputerFormRequest $request, $id)
+    public function update(ComputerFormRequest $request, Computer $computer)
     {
-        $computer = Computer::whereId($id)->firstOrFail();
-
-        $computer->compName = $request->get('compName');
-        $computer->userName = $request->get('userName');
-        $computer->userPass = $request->get('userPass');
-        $computer->userPass = $request->get('userPass');
-        $computer->adminPass = $request->get('adminPass');
-        $computer->specs = $request->get('specs');
-        $computer->withWbuster = $request->has('withWbuster') ? 1 : 0;
-        $computer->withSkysea = $request->has('withSkysea') ? 1 : 0;
-
-        $computer->save();
+        $computer->update([
+            'compName' => $request->get('compName'),
+            'adminPass' => $request->get('adminPass'),
+            'userName' => $request->get('userName'),
+            'userPass' => $request->get('userPass'),
+            'specs' => $request->get('specs'),
+            'withWbuster' => $request->has('withWbuster') ? 1 : 0,
+            'withSkysea' => $request->has('withSkysea') ? 1 : 0,
+        ]);
 
         return redirect(action('ComputersController@show', $computer->id))
             ->with('status', 'Computer record successfully updated.');

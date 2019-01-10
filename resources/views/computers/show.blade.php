@@ -89,7 +89,7 @@
 				    				<hr>
 				    			
 				    				<ul>
-										@foreach ($mouses as $mouse)
+										@foreach ($computer->mouse as $mouse)
 											<li class="pt-2">
 												<h5>
 													{{ $mouse->mouseName }}
@@ -125,7 +125,7 @@
 				    				</h4>
 				    				<hr>
 				    				<ul>
-										@foreach ($keyboards as $keyboard)
+										@foreach ($computer->keyboard as $keyboard)
 											<li class="pt-2">
 												<h5>
 													{{ $keyboard->keyboardName }}
@@ -160,7 +160,7 @@
 									</h4>
 									<hr>
 									<ul>
-										@foreach ($monitors as $monitor)
+										@foreach ($computer->monitor as $monitor)
 											<li class="pt-2">
 												<h5>
 													{{ $monitor->monitorName }}
@@ -191,7 +191,7 @@
 				    				</h4>
 				    				<hr>
 				    				<ul>
-										@foreach ($chargers as $charger)
+										@foreach ($computer->charger as $charger)
 											<li class="pt-2">
 												<h5>
 													{{ $charger->chargerName }}
