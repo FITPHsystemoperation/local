@@ -57,7 +57,7 @@
 					<hr>
 
 					<a href="/computer/{{ $computer->id }}/edit" class="btn btn-info">Edit</a>
-					<a href="/computers" class="btn btn-secondary">Back</a>
+					<a href="/computers" class="btn btn-outline-secondary">Back</a>
 
 		    	</div>
 
@@ -99,7 +99,7 @@
 														class="float-right"
 													>
 														@csrf
-														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+														<button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
 													</form>
 												</h5>
 											</li>
@@ -135,7 +135,7 @@
 														class="float-right"
 													>
 														@csrf
-														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+														<button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
 													</form>
 												</h5>
 											</li>
@@ -170,7 +170,7 @@
 														class="float-right"
 													>
 														@csrf
-														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+														<button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
 													</form>
 												</h5>
 											</li>
@@ -201,7 +201,7 @@
 														class="float-right"
 													>
 														@csrf
-														<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+														<button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
 													</form>
 												</h5>
 											</li>

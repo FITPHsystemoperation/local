@@ -63,7 +63,7 @@
 		    		
 		    			<button type="submit" class="btn btn-primary">Save</button>
 		    			
-		    			<button type="reset" class="btn btn-secondary">Clear</button>
+		    			<button type="reset" class="btn btn-outline-secondary">Clear</button>
 		    		
 		    		</form>
 
