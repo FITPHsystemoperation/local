@@ -30,7 +30,7 @@ class ComputerChargerController extends Controller
         Charger::whereId($request->get('charger_id'))->firstOrFail()
             ->update(['computer_id' => $computer_id]);
 
-        return redirect(action('ComputersController@show', $computer_id))
+        return redirect("/computer/$computer_id")
             ->with('status', 'Charger has been added to this computer');
     }
 

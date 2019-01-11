@@ -30,7 +30,7 @@ class ComputerKeyboardController extends Controller
         Keyboard::whereId($request->get('keyboard_id'))->firstOrFail()
             ->update(['computer_id' => $computer_id]);
 
-        return redirect(action('ComputersController@show', $computer_id))
+        return redirect("/computer/$computer_id")
             ->with('status', 'Keyboard has been added to this computer');
     }
 

@@ -92,7 +92,7 @@ class ComputersController extends Controller
             'withSkysea' => $request->has('withSkysea') ? 1 : 0,
         ]);
 
-        return redirect(action('ComputersController@show', $computer->id))
+        return redirect("/computer/$computer->id")
             ->with('status', 'Computer record successfully updated.');
     }
 

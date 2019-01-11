@@ -31,7 +31,7 @@ class ComputerMouseController extends Controller
         Mouse::whereId($request->get('mouse_id'))->firstOrFail()
             ->update(['computer_id' => $computer_id]);
 
-        return redirect(action('ComputersController@show', $computer_id))
+        return redirect("/computer/$computer_id")
             ->with('status', 'Mouse has been added to this computer');
     }
 

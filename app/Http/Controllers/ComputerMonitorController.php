@@ -24,7 +24,7 @@ class ComputerMonitorController extends Controller
         Monitor::whereId($request->get('monitor_id'))->firstOrFail()
             ->update(['computer_id' => $computer_id]);
 
-        return redirect(action('ComputersController@show', $computer_id))
+        return redirect("/computer/$computer_id")
             ->with('status', 'Monitor has been added to this computer');
     }
 
