@@ -36,11 +36,7 @@ class MonitorsController extends Controller
      */
     public function store(MonitorsFormRequest $request)
     {
-        $monitor = new Monitor([
-            'monitorName' => $request->get('monitorName'),
-        ]);
-
-        $monitor->save();
+        Monitor::create(['monitorName' => $request->get('monitorName')]);
 
         return redirect()->back()
             ->with('status', 'Monitor successfully recorded'); 

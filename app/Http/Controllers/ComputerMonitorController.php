@@ -21,12 +21,8 @@ class ComputerMonitorController extends Controller
 
     public function store(Request $request, $computer_id)
     {
-        $monitor = Monitor::whereId($request->get('monitor_id'))
-            ->firstOrFail();
-
-        $monitor->computer_id = $computer_id;
-
-        $monitor->save();
+        Monitor::whereId($request->get('monitor_id'))->firstOrFail()
+            ->update(['computer_id' => $computer_id]);
 
         return redirect(action('ComputersController@show', $computer_id))
             ->with('status', 'Monitor has been added to this computer');
@@ -38,16 +34,12 @@ class ComputerMonitorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($computer_id, $id)
+    public function destroy($id)
     {
-        $monitor = Monitor::whereId($id)->firstOrFail();
+        Monitor::whereId($id)->firstOrFail()
+            ->update(['computer_id' => null]);
 
-        $monitor->computer_id = null;
-
-        $monitor->save();
-
-        return redirect()
-            ->back() 
+        return redirect()->back() 
             ->with('status', 'Monitor has been removed from this computer');
     }
 }

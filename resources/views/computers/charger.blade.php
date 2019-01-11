@@ -8,11 +8,11 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-5">
+		    <div class="card mt-3">
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title mt-2">Select Existing Record</h1>
+				    <h1 class="card-title mt-2">Select Existing Charger</h1>
 
 				    <hr>
 
@@ -21,7 +21,7 @@
 				    	@csrf
 
 				    	<fieldset class="form-group">
-				    		<label for="charger_id">Select Monitor</label>
+				    		<label for="charger_id">Select Charger</label>
 				    		<select class="c-select form-control" id="charger_id" name="charger_id" required>
 				    			@foreach ($chargers as $charger)
 				    				<option
@@ -45,7 +45,7 @@
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title mt-2">Add New Record</h1>
+				    <h1 class="card-title mt-2">Add New Charger</h1>
 
 				    <hr>
 
@@ -65,7 +65,7 @@
 
 				    	<fieldset class="form-group">
 				    		<label for="chargerName">Charger Name</label>
-				    		<input type="text" class="form-control" name="chargerName" placeholder="Charger name" required>
+				    		<input type="text" class="form-control" name="chargerName" placeholder="Charger name" value="{{ old('chargerName') }}" required>
 				    	</fieldset>
 
 			    		<button type="submit" class="btn btn-primary">Add</button>

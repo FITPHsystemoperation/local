@@ -27,12 +27,8 @@ class ComputerChargerController extends Controller
      */
     public function store(Request $request, $computer_id)
     {
-        $charger = Charger::whereId($request->get('charger_id'))
-            ->firstOrFail();
-
-        $charger->computer_id = $computer_id;
-
-        $charger->save();
+        Charger::whereId($request->get('charger_id'))->firstOrFail()
+            ->update(['computer_id' => $computer_id]);
 
         return redirect(action('ComputersController@show', $computer_id))
             ->with('status', 'Charger has been added to this computer');
@@ -44,16 +40,12 @@ class ComputerChargerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($computer_id, $id)
+    public function destroy($id)
     {
-        $charger = Charger::whereId($id)->firstOrFail();
+        Charger::whereId($id)->firstOrFail()
+            ->update(['computer_id' => null]);
 
-        $charger->computer_id = null;
-
-        $charger->save();
-
-        return redirect()
-            ->back() 
+        return redirect()->back() 
             ->with('status', 'Charger has been removed from this computer');
     }
 }

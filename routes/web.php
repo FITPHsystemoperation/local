@@ -30,11 +30,11 @@ Route::post('/computer/keyboard/{keyboard_id}/remove', 'ComputerKeyboardControll
 
 Route::get('/computer/{id}/monitor', 'ComputerMonitorController@index');
 Route::post('/computer/{id}/monitor/add', 'ComputerMonitorController@store');
-Route::post('/computer/{computer_id}/monitor/{monitor_id}/remove', 'ComputerMonitorController@destroy');
+Route::post('/computer/monitor/{monitor_id}/remove', 'ComputerMonitorController@destroy');
 
 Route::get('/computer/{id}/charger', 'ComputerChargerController@index');
 Route::post('/computer/{id}/charger/add', 'ComputerChargerController@store');
-Route::post('/computer/{computer_id}/charger/{charger_id}/remove', 'ComputerChargerController@destroy');
+Route::post('/computer/charger/{charger_id}/remove', 'ComputerChargerController@destroy');
 
 Route::post('/mouses/create', 'MousesController@store');
 Route::post('/keyboards/create', 'KeyboardsController@store');

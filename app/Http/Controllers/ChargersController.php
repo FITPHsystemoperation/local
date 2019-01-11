@@ -36,11 +36,7 @@ class ChargersController extends Controller
      */
     public function store(ChargersFormRequest $request)
     {
-        $charger = new Charger([
-            'chargerName' => $request->get('chargerName'),
-        ]);
-
-        $charger->save();
+        Charger::create(['chargerName' => $request->get('chargerName')]);
 
         return redirect()->back()
             ->with('status', 'Charger successfully recorded');

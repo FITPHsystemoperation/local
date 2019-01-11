@@ -8,11 +8,11 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-5">
+		    <div class="card mt-3">
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title mt-2">Select Existing Record</h1>
+				    <h1 class="card-title mt-2">Select Existing Monitor</h1>
 
 				    <hr>
 
@@ -45,7 +45,7 @@
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title mt-2">Add New Record</h1>
+				    <h1 class="card-title mt-2">Add New Monitor</h1>
 
 				    <hr>
 
@@ -65,7 +65,7 @@
 
 				    	<fieldset class="form-group">
 				    		<label for="monitorName">Monitor Name</label>
-				    		<input type="text" class="form-control" name="monitorName" placeholder="Monitor name" required>
+				    		<input type="text" class="form-control" name="monitorName" placeholder="Monitor name" value="{{ old('monitorName') }}" required>
 				    	</fieldset>
 
 			    		<button type="submit" class="btn btn-primary">Add</button>

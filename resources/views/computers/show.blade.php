@@ -154,7 +154,7 @@
 									<h4 class="card-title">
 										Monitor
 										<a class="btn btn-primary float-right"
-											href="/computer/{{ $computer->id }}/keyboard"
+											href="/computer/{{ $computer->id }}/monitor"
 											role="button"
 										>Add</a>
 									</h4>
@@ -185,7 +185,7 @@
 				    				<h4 class="card-title">
 				    					Charger
 										<a class="btn btn-primary float-right"
-											href="{{ action('ComputerChargerController@index', $computer->id) }}"
+											href="/computer/{{ $computer->id }}/charger"
 											role="button"
 										>Add</a>
 				    				</h4>
@@ -197,7 +197,7 @@
 													{{ $charger->chargerName }}
 													<form
 														method="post"
-														action="/computer/{{ $computer->id }}/charger/{{ $charger->id }}/remove"
+														action="/computer/charger/{{ $charger->id }}/remove"
 														class="float-right"
 													>
 														@csrf
