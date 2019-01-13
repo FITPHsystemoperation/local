@@ -40,3 +40,5 @@ Route::post('/mouses/create', 'MousesController@store');
 Route::post('/keyboards/create', 'KeyboardsController@store');
 Route::post('/monitors/create', 'MonitorsController@store');
 Route::post('/chargers/create', 'ChargersController@store');
+
+Route::get('/staffs', 'StaffsController@index');
