@@ -58,9 +58,9 @@ class StaffsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Staff $staff)
     {
-        //
+        return view('staffs.show', compact('staff'));
     }
 
     /**
@@ -69,9 +69,9 @@ class StaffsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Staff $staff)
     {
-        //
+        return view('staffs.edit', compact('staff'));
     }
 
     /**
@@ -81,9 +81,21 @@ class StaffsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StaffFormRequest $request, Staff $staff)
     {
-        //
+        $staff->update([
+            'idNumber' => $request->get('idNumber'),
+            'firstName' => $request->get('firstName'),
+            'middleName' => $request->get('middleName'),
+            'lastName' => $request->get('lastName'),
+            'nickName' => $request->get('nickName'),
+            'birthday' => $request->get('birthday'),
+            'gender' => $request->get('gender'),
+            'image' => $request->get('gender') === 'm' ? 'male.jpg' : 'female.jpg',
+        ]);
+
+        return redirect("/staff/$staff->id")
+            ->with('status', 'Staff record successfully updated.');
     }
 
     /**
@@ -92,8 +104,10 @@ class StaffsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Staff $staff)
     {
-        //
+        $staff->delete();
+
+        return redirect('/staffs')->with('status', "$staff->idNumber successfully removed from the record");
     }
 }

@@ -30,7 +30,9 @@
 			    		@foreach ($staffs as $staff)
 			    			<tr class="text-center">
 			    				
-			    				<td>{{ $staff->idNumber }}</td>
+			    				<td>
+			    					<a href="/staff/{{ $staff->id }}">{{ $staff->idNumber }}</a>
+			    				</td>
 			    				<td>{{ $staff->firstName }}</td>
 			    				<td>{{ $staff->middleName }}</td>
 			    				<td>{{ $staff->lastName }}</td>

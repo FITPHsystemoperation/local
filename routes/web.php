@@ -44,3 +44,7 @@ Route::post('/chargers/create', 'ChargersController@store');
 Route::get('/staffs', 'StaffsController@index');
 Route::get('/staffs/create', 'StaffsController@create');
 Route::post('/staffs/create', 'StaffsController@store');
+Route::get('/staff/{staff}', 'StaffsController@show');
+Route::get('/staff/{staff}/edit', 'StaffsController@edit');
+Route::post('/staff/{staff}/edit', 'StaffsController@update');
+Route::post('/staff/{staff}/delete', 'StaffsController@destroy');
