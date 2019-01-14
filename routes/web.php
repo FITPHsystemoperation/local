@@ -48,3 +48,10 @@ Route::get('/staff/{staff}', 'StaffsController@show');
 Route::get('/staff/{staff}/edit', 'StaffsController@edit');
 Route::post('/staff/{staff}/edit', 'StaffsController@update');
 Route::post('/staff/{staff}/delete', 'StaffsController@destroy');
+
+Route::get('departments', 'DepartmentsController@index');
+Route::get('departments/create', 'DepartmentsController@create');
+Route::post('departments/create', 'DepartmentsController@store');
+Route::get('department/{department}', 'DepartmentsController@show');
+Route::get('department/{department}/edit', 'DepartmentsController@edit');
+Route::post('department/{department}/edit', 'DepartmentsController@update');

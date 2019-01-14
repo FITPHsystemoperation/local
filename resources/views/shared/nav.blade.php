@@ -9,8 +9,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
-             <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="/staffs">Staff</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/departments">Department</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/computers">Computer</a>
