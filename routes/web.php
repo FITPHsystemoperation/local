@@ -42,3 +42,5 @@ Route::post('/monitors/create', 'MonitorsController@store');
 Route::post('/chargers/create', 'ChargersController@store');
 
 Route::get('/staffs', 'StaffsController@index');
+Route::get('/staffs/create', 'StaffsController@create');
+Route::post('/staffs/create', 'StaffsController@store');

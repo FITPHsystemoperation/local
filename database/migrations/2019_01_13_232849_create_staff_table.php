@@ -21,6 +21,8 @@ class CreateStaffTable extends Migration
             $table->string('lastName', 50);
             $table->string('nickName', 50);
             $table->date('birthday');
+            $table->string('gender', 1);
+            $table->string('image', 15)->nullable();
             $table->timestamps();
         });
     }

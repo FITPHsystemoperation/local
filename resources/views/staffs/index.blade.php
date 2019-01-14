@@ -13,7 +13,7 @@
 	<div class="card mt-3">
 	    	<div class="card-body">
 			    <h1 class="card-title">Master List</h1>
-			    <a class="btn btn-primary" href="computers/create" role="button">Add New</a>
+			    <a class="btn btn-primary" href="staffs/create" role="button">Add New</a>
 			    
 			    <table class="table mt-2 border-bottom">
 			    	<thead>

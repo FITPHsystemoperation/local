@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Staff;
+use App\Http\Requests\StaffFormRequest;
 
 class StaffsController extends Controller
 {
@@ -26,7 +27,7 @@ class StaffsController extends Controller
      */
     public function create()
     {
-        //
+        return view('staffs.create');
     }
 
     /**
@@ -35,9 +36,20 @@ class StaffsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StaffFormRequest $request)
     {
-        //
+        Staff::create([
+            'idNumber' => $request->get('idNumber'),
+            'firstName' => $request->get('firstName'),
+            'middleName' => $request->get('middleName'),
+            'lastName' => $request->get('lastName'),
+            'nickName' => $request->get('nickName'),
+            'birthday' => $request->get('birthday'),
+            'gender' => $request->get('gender'),
+            'image' => $request->get('gender') === 'm' ? 'male.jpg' : 'female.jpg',
+        ]);
+
+        return redirect('/staffs')->with('status', 'Staff successfully recorded.');
     }
 
     /**
