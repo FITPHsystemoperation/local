@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Staff;
+use App\Department;
 use App\Http\Requests\StaffFormRequest;
 
 class StaffsController extends Controller
@@ -27,7 +28,9 @@ class StaffsController extends Controller
      */
     public function create()
     {
-        return view('staffs.create');
+        $departments = Department::all();
+
+        return view('staffs.create', compact('departments'));
     }
 
     /**

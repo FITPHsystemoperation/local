@@ -24,11 +24,11 @@ class StaffFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'idNumber' => 'required|min:5',
-            'firstName' => 'required|min:5',
-            'middleName' => 'required|min:5',
-            'lastName' => 'required|min:5',
-            'nickName' => 'required|min:5',
+            'idNumber' => 'required|min:4',
+            'firstName' => 'required|min:2',
+            'middleName' => 'required|min:2',
+            'lastName' => 'required|min:2',
+            'nickName' => 'required|min:2',
             'birthday' => 'required|date',
         ];
     }
