@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Staff;
+use App\JobTitle;
 use App\Department;
-use App\Http\Requests\StaffFormRequest;
+use App\Http\Requests\StaffNameFormRequest;
+use App\Http\Requests\StaffWorkFormRequest;
 
 class StaffsController extends Controller
 {
@@ -28,9 +30,7 @@ class StaffsController extends Controller
      */
     public function create()
     {
-        $departments = Department::all();
-
-        return view('staffs.create', compact('departments'));
+        return view('staffs.create');
     }
 
     /**
@@ -39,7 +39,7 @@ class StaffsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StaffFormRequest $request)
+    public function store(StaffNameFormRequest $request)
     {
         Staff::create([
             'idNumber' => $request->get('idNumber'),
@@ -47,7 +47,6 @@ class StaffsController extends Controller
             'middleName' => $request->get('middleName'),
             'lastName' => $request->get('lastName'),
             'nickName' => $request->get('nickName'),
-            'birthday' => $request->get('birthday'),
             'gender' => $request->get('gender'),
             'image' => $request->get('gender') === 'm' ? 'male.jpg' : 'female.jpg',
         ]);
@@ -84,7 +83,7 @@ class StaffsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StaffFormRequest $request, Staff $staff)
+    public function update(StaffNameFormRequest $request, Staff $staff)
     {
         $staff->update([
             'idNumber' => $request->get('idNumber'),
@@ -92,7 +91,6 @@ class StaffsController extends Controller
             'middleName' => $request->get('middleName'),
             'lastName' => $request->get('lastName'),
             'nickName' => $request->get('nickName'),
-            'birthday' => $request->get('birthday'),
             'gender' => $request->get('gender'),
             'image' => $request->get('gender') === 'm' ? 'male.jpg' : 'female.jpg',
         ]);
@@ -112,5 +110,25 @@ class StaffsController extends Controller
         $staff->delete();
 
         return redirect('/staffs')->with('status', "$staff->idNumber successfully removed from the record");
+    }
+
+    public function editWorkingData(Staff $staff)
+    {
+        return view('staffs.workingData')
+            ->with('staff', $staff)
+            ->with('stats', \App\EmploymentStat::all())
+            ->with('titles', \App\JobTitle::all())
+            ->with('departments', \App\Department::all());
+    }
+
+    public function updateWorkingData(StaffWorkFormRequest $request, Staff $staff)
+    {
+        $staff->update([
+            'dateHired' => $request->get('dateHired'),
+            'employmentStat_id' => $request->get('employmentStat_id'),
+            'jobTitle_id' => $request->get('jobTitle_id'),
+            'department_id' => $request->get('department_id'),
+            'dailyRate' => $request->get('dailyRate'),
+        ]);
     }
 }

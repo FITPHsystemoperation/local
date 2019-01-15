@@ -45,11 +45,6 @@
 		    				<label for="nickName">Nick Name:</label>
 		    				<input type="text" class="form-control" id="nickName" name="nickName" placeholder="Nick Name" value="{{ $staff->nickName }}" required>
 		    			</fieldset>
-
-		    			<fieldset class="form-group">
-		    				<label for="birthday">Birth Date:</label>
-		    				<input type="date" class="form-control" id="birthday" name="birthday" value="{{ $staff->birthday }}" required>
-		    			</fieldset>
 		    
 		    			<div class="form-group row">
 

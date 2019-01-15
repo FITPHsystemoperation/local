@@ -19,11 +19,10 @@
 			    	<thead>
 			    		<tr class="text-center">
 			    			<th>ID No.</th>
-			    			<th>First Name</th>
-			    			<th>Middle Name</th>
-			    			<th>Last Name</th>
-			    			<th>Nick Name</th>
-			    			<th>Birth Date</th>
+			    			<th>Full Name</th>
+			    			<th>Job Title</th>
+			    			<th>Status</th>
+			    			<th>Department</th>
 			    		</tr>
 			    	</thead>
 			    	<tbody>
@@ -33,11 +32,10 @@
 			    				<td>
 			    					<a href="/staff/{{ $staff->id }}">{{ $staff->idNumber }}</a>
 			    				</td>
-			    				<td>{{ $staff->firstName }}</td>
-			    				<td>{{ $staff->middleName }}</td>
-			    				<td>{{ $staff->lastName }}</td>
-			    				<td>{{ $staff->nickName }}</td>
-			    				<td>{{ $staff->birthday }}</td>
+			    				<td>{{ "$staff->firstName $staff->lastName" }}</td>
+			    				<td>{{ $staff->jobTitle }}</td>
+			    				<td>{{ $staff->employmentStat }}</td>
+			    				<td>{{ $staff->department }}</td>
 
 			    			</tr>
 			    		@endforeach

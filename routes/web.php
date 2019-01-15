@@ -47,6 +47,8 @@ Route::post('/staffs/create', 'StaffsController@store');
 Route::get('/staff/{staff}', 'StaffsController@show');
 Route::get('/staff/{staff}/edit', 'StaffsController@edit');
 Route::post('/staff/{staff}/edit', 'StaffsController@update');
+Route::get('/staff/{staff}/working-data', 'StaffsController@editWorkingData');
+Route::post('/staff/{staff}/working-data', 'StaffsController@updateWorkingData');
 Route::post('/staff/{staff}/delete', 'StaffsController@destroy');
 
 Route::get('departments', 'DepartmentsController@index');

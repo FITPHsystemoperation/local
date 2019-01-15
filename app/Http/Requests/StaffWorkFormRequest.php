@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StaffFormRequest extends FormRequest
+class StaffWorkFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,11 @@ class StaffFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'idNumber' => 'required|min:4',
-            'firstName' => 'required|min:2',
-            'middleName' => 'required|min:2',
-            'lastName' => 'required|min:2',
-            'nickName' => 'required|min:2',
-            'birthday' => 'required|date',
+            'dateHired' => 'required|date',
+            'employmentStat_id' => 'required|integer',
+            'jobTitle_id' => 'required|integer',
+            'department_id' => 'required|integer',
+            'dailyRate' => 'required|numeric',
         ];
     }
 }

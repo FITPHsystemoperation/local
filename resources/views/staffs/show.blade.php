@@ -12,7 +12,7 @@
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title mt-2">{{ $staff->idNumber }}</h1>
+				    <h1 class="card-title">{{ "$staff->firstName $staff->lastName" }}</h1>
 
 				    <hr>
 
@@ -32,9 +32,14 @@
 		    			
 		    			<div class="col-sm-9">
 		    				<h4 class="p-2">
+								<span class="lead">ID No.:</span>
+								{{ $staff->idNumber }}
+							</h4>	
+
+							<h4 class="p-2">
 								<span class="lead">First Name:</span>
 								{{ $staff->firstName }}
-							</h4>				    	
+							</h4>			    	
 
 							<h4 class="p-2">
 								<span class="lead">Middle Name:</span>
@@ -51,21 +56,25 @@
 								{{ $staff->nickName }}
 							</h4>
 
-							<h4 class="p-2">
-								<span class="lead">Birth Date:</span>
-								{{ $staff->birthday }}
-							</h4>
 		    			</div>
 		    		</div>	
 				    
 					<hr>
 
-					<a href="/staff/{{ $staff->id }}/edit" class="btn btn-info float-left mr-2">Edit</a>
+					@if ($staff->isCompleted)
 
-					<form method="post" action="/staff/{{ $staff->id }}/delete" class="float-left">
-						@csrf
-						<button type="submit" class="btn btn-outline-danger">Delete</button>					
-					</form>
+						<a href="/staff/{{ $staff->id }}/edit" class="btn btn-info float-left mr-2">Edit</a>
+					
+					@else
+
+						<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-primary float-left mr-2">Add Information</a>
+						
+					@endif
+						{{-- <form method="post" action="/staff/{{ $staff->id }}/delete" class="float-left">
+							@csrf
+							<button type="submit" class="btn btn-outline-danger">Delete</button>					
+						</form> --}}
+						<a class="btn btn-outline-secondary" href="/staffs" role="button">Back</a>
 
 		    	</div>
 

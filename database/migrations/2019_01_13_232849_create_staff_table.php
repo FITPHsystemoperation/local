@@ -22,7 +22,6 @@ class CreateStaffTable extends Migration
             $table->string('lastName', 50);
             $table->string('nickName', 50);
             $table->string('gender', 1);
-            $table->date('birthday');
             $table->string('image', 25);
             // work related data
             $table->date('dateHired')->nullable();
@@ -45,7 +44,11 @@ class CreateStaffTable extends Migration
             $table->string('pagibigNo', 20)->nullable();
             $table->string('philhealthNo', 20)->nullable();
             $table->string('bankNo', 20)->nullable();
-
+            // personal
+            $table->date('birthday')->nullable();
+            $table->string('civilStatus', 20)->nullable();
+            // completed
+            $table->boolean('isCompleted')->default(0);
             $table->timestamps();
         });
     }

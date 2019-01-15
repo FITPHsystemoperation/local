@@ -13,6 +13,9 @@
 		    	<div class="card-body">
 				    
 				    <h2 class="card-title">New Staff Record</h2>
+
+				    <hr>
+
 				    @foreach ($errors->all() as $error)
 					    <p class="alert alert-danger">{{ $error }}</p>
 					@endforeach
@@ -46,31 +49,28 @@
 		    				<input type="text" class="form-control" id="nickName" name="nickName" placeholder="Nick Name" value="{{ old('nickName') }}" required>
 		    			</fieldset>
 
-		    			<fieldset class="form-group">
-		    				<label for="birthday">Birth Date:</label>
-		    				<input type="date" class="form-control" id="birthday" name="birthday" value="{{ old('birthday') }}" required>
-		    			</fieldset>
-		    
 		    			<div class="form-group row">
 
-			    			<div class="radio col-sm-4">
+			    			<div class="radio col-sm-1">
 			    				<label>
 			    					<input type="radio" name="gender" value="m" checked>Male
 			    				</label>
 			    			</div>
 			    			
-			    			<div class="radio col-sm-4">
+			    			<div class="radio col-sm-1">
 			    				<label>
 			    					<input type="radio" name="gender" value="f">Female
 			    				</label>
 			    			</div>
 			    			
 						</div>
+
+						<hr>
 		    		
 		    			<button type="submit" class="btn btn-primary">Save</button>
+
+		    			<a class="btn btn-outline-secondary" href="/staffs" role="button">Back</a>
 		    			
-		    			<button type="reset" class="btn btn-outline-secondary">Clear</button>
-		    		
 		    		</form>
 
 		    	</div>
