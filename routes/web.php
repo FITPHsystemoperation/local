@@ -49,6 +49,14 @@ Route::get('/staff/{staff}/edit', 'StaffsController@edit');
 Route::post('/staff/{staff}/edit', 'StaffsController@update');
 Route::get('/staff/{staff}/working-data', 'StaffsController@editWorkingData');
 Route::post('/staff/{staff}/working-data', 'StaffsController@updateWorkingData');
+Route::get('/staff/{staff}/contact-information', 'StaffsController@editContactInfo');
+Route::post('/staff/{staff}/contact-information', 'StaffsController@updateContactInfo');
+Route::get('/staff/{staff}/emergency', 'StaffsController@editEmergency');
+Route::post('/staff/{staff}/emergency', 'StaffsController@updateEmergency');
+Route::get('/staff/{staff}/account', 'StaffsController@editAccount');
+Route::post('/staff/{staff}/account', 'StaffsController@updateAccount');
+Route::get('/staff/{staff}/personal', 'StaffsController@editPersonal');
+Route::post('/staff/{staff}/personal', 'StaffsController@updatePersonal');
 Route::post('/staff/{staff}/delete', 'StaffsController@destroy');
 
 Route::get('departments', 'DepartmentsController@index');

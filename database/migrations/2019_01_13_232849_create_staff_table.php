@@ -25,14 +25,14 @@ class CreateStaffTable extends Migration
             $table->string('image', 25);
             // work related data
             $table->date('dateHired')->nullable();
-            $table->integer('employmentStat_id')->nullable();
-            $table->integer('jobTitle_id')->nullable();
+            $table->integer('employment_stat_id')->nullable();
+            $table->integer('job_title_id')->nullable();
             $table->integer('department_id')->nullable();
             $table->decimal('dailyRate', 8, 2)->default(0.00);
             // contact information data
             $table->string('contactNo', 20)->nullable();
             $table->string('emailAddress', 50)->nullable();
-            $table->string('currentAddress', 100)->nullable();
+            $table->string('permanentAddress', 100)->nullable();
             $table->string('presentAddress', 100)->nullable();
             // emergency contact data
             $table->string('emergencyPerson', 50)->nullable();

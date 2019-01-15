@@ -33,9 +33,9 @@
 			    					<a href="/staff/{{ $staff->id }}">{{ $staff->idNumber }}</a>
 			    				</td>
 			    				<td>{{ "$staff->firstName $staff->lastName" }}</td>
-			    				<td>{{ $staff->jobTitle }}</td>
-			    				<td>{{ $staff->employmentStat }}</td>
-			    				<td>{{ $staff->department }}</td>
+			    				<td>{{ $staff->jobTitle['titleName'] }}</td>
+			    				<td>{{ $staff->employmentStat['statDesc'] }}</td>
+			    				<td>{{ $staff->department['departmentName'] }}</td>
 
 			    			</tr>
 			    		@endforeach

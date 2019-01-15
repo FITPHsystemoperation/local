@@ -10,12 +10,12 @@ class Staff extends Model
 
     public function employmentStat()
     {
-    	return $this->belongsTo(EmploymentStat::class, 'employmentStat_id');
+    	return $this->belongsTo(EmploymentStat::class);
     }
 
     public function jobTitle()
     {
-    	return $this->belongsTo(JobTitle::class, 'jobTitle_id');
+    	return $this->belongsTo(JobTitle::class);
     }
 
     public function department()

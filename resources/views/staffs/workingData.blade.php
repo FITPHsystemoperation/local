@@ -32,24 +32,24 @@
 		    			</fieldset>
 
 		    			<fieldset class="form-group">
-				    		<label for="employmentStat_id">Employment Status:</label>
-				    		<select class="c-select form-control" id="employmentStat_id" name="employmentStat_id" required>
+				    		<label for="employment_stat_id">Employment Status:</label>
+				    		<select class="c-select form-control" id="employment_stat_id" name="employment_stat_id" required>
 				    			@foreach ($stats as $stat)
 				    				<option
 				    					value="{{ $stat->id }}"
-				    					{{ $staff->employmentStat_id === $stat->id ? 'selected' : '' }}
+				    					{{ $staff->employment_stat_id === $stat->id ? 'selected' : '' }}
 				    				>{{ $stat->statDesc }}</option>
 				    			@endforeach
 				    		</select>
 				    	</fieldset>
 
 				    	<fieldset class="form-group">
-				    		<label for="jobTitle_id">Job Title:</label>
-				    		<select class="c-select form-control" id="jobTitle_id" name="jobTitle_id" required>
+				    		<label for="job_title_id">Job Title:</label>
+				    		<select class="c-select form-control" id="job_title_id" name="job_title_id" required>
 				    			@foreach ($titles as $title)
 				    				<option
 				    					value="{{ $title->id }}"
-				    					{{ $staff->jobTitle_id === $title->id ? 'selected' : '' }}
+				    					{{ $staff->job_title_id === $title->id ? 'selected' : '' }}
 				    				>{{ $title->titleName }}</option>
 				    			@endforeach
 				    		</select>
@@ -74,7 +74,9 @@
 		    
 						<hr>
 		    		
-		    			<button type="submit" class="btn btn-primary">Next</button>
+		    			<button type="submit" class="btn btn-primary">
+		    				{{ $staff->isCompleted ? 'Save' : 'Next' }}
+		    			</button>
 		    			
 						<a class="btn btn-outline-secondary" href="/staff/{{ $staff->id }}" role="button">Back</a>
 

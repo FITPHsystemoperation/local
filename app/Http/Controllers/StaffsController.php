@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Staff;
-use App\JobTitle;
-use App\Department;
-use App\Http\Requests\StaffNameFormRequest;
-use App\Http\Requests\StaffWorkFormRequest;
+use App\{Staff, JobTitle, Department};
+use App\Http\Requests\{
+    StaffNameFormRequest,
+    StaffWorkFormRequest,
+    StaffContactFormRequest,
+    StaffEmergencyFormRequest,
+    StaffAccountFormRequest,
+    StaffPersonalFormRequest,
+};
 
 class StaffsController extends Controller
 {
@@ -61,7 +65,7 @@ class StaffsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Staff $staff)
-    {
+    {   
         return view('staffs.show', compact('staff'));
     }
 
@@ -125,10 +129,101 @@ class StaffsController extends Controller
     {
         $staff->update([
             'dateHired' => $request->get('dateHired'),
-            'employmentStat_id' => $request->get('employmentStat_id'),
-            'jobTitle_id' => $request->get('jobTitle_id'),
+            'employment_stat_id' => $request->get('employment_stat_id'),
+            'job_title_id' => $request->get('job_title_id'),
             'department_id' => $request->get('department_id'),
             'dailyRate' => $request->get('dailyRate'),
         ]);
+
+        return $staff->isCompleted ? 
+            redirect("/staff/$staff->id")
+                ->with('status', "Working data successfully updated"):
+            redirect("/staff/$staff->id/contact-information");
+    }
+
+    public function editContactInfo(Staff $staff)
+    {
+        return view('staffs.contactInfo')->with('staff', $staff);
+    }
+
+    public function updateContactInfo(StaffContactFormRequest $request, Staff $staff)
+    {
+        $staff->update([
+            'contactNo' => $request->get('contactNo'),
+            'emailAddress' => $request->get('emailAddress'),
+            'permanentAddress' => $request->get('permanentAddress'),
+            'presentAddress' => $request->get('presentAddress'),
+        ]);
+
+        return $staff->isCompleted ? 
+            redirect("/staff/$staff->id")
+                ->with('status', "Contact Information successfully updated"):
+            redirect("/staff/$staff->id/emergency");
+    }
+
+    public function editEmergency(Staff $staff)
+    {
+        return view('staffs.emergency')->with('staff', $staff);
+    }
+
+    public function updateEmergency(StaffEmergencyFormRequest $request, Staff $staff)
+    {   
+        $staff->update([
+            'emergencyPerson' => $request->get('emergencyPerson'),
+            'emergencyNo' => $request->get('emergencyNo'),
+            'emergencyRelation' => $request->get('emergencyRelation'),
+        ]);
+
+        return $staff->isCompleted ? 
+            redirect("/staff/$staff->id")
+                ->with('status', "Emergency Contact Information successfully updated"):
+            redirect("/staff/$staff->id/account");
+    }
+
+    public function editAccount(Staff $staff)
+    {
+        return view('staffs.account')->with('staff', $staff);
+    }
+
+    public function updateAccount(StaffAccountFormRequest $request, Staff $staff)
+    {   
+        $staff->update([
+            'birNo' => $request->get('birNo'),
+            'sssNo' => $request->get('sssNo'),
+            'pagibigNo' => $request->get('pagibigNo'),
+            'philhealthNo' => $request->get('philhealthNo'),
+            'bankNo' => $request->get('bankNo'),
+        ]);
+
+        return $staff->isCompleted ? 
+            redirect("/staff/$staff->id")
+                ->with('status', "Account Information successfully updated"):
+            redirect("/staff/$staff->id/personal");
+    }
+
+    public function editPersonal(Staff $staff)
+    {
+        return view('staffs.personal')->with('staff', $staff);
+    }
+
+    public function updatePersonal(StaffPersonalFormRequest $request, Staff $staff)
+    {   
+        $staff->update([
+            'birthday' => $request->get('birthday'),
+            'civilStatus' => $request->get('civilStatus'),
+            'isCompleted' => 1  
+        ]);
+
+        if ( $staff->isCompleted )
+        {
+            return redirect("/staff/$staff->id")
+                ->with('status', "Personal Information successfully updated");
+        }
+        else
+        {
+            $staff->update(['isCompleted' => 1]);
+            return redirect("/staff/$staff->id")
+                ->with('status', "Information successfully updated");
+        }
     }
 }
