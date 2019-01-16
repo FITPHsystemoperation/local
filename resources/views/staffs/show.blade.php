@@ -12,7 +12,11 @@
 
 		    	<div class="card-body">
 				    
-				    <h1 class="card-title">{{ "$staff->firstName $staff->lastName" }}</h1>
+				    <h1 class="card-title">
+				    	{{ "$staff->firstName $staff->lastName" }}
+						<a class="btn btn-outline-secondary float-right" href="/staffs" role="button">Back</a>
+						<a href="/staff/{{ $staff->id }}/edit" class="btn btn-outline-info float-right mr-2">Edit</a>
+				    </h1>
 
 				    <hr>
 
@@ -59,19 +63,14 @@
 		    			</div>
 		    		</div>	
 				    
-					<hr>
+					@if ( !$staff->isCompleted )
 
-					@if ($staff->isCompleted)
-
-						<a href="/staff/{{ $staff->id }}/edit" class="btn btn-info">Edit</a>
-					
-					@else
+						<hr>
 
 						<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-primary">Add Information</a>
 						
 					@endif
 						
-					<a class="btn btn-outline-secondary" href="/staffs" role="button">Back</a>
 
 		    	</div>
 	

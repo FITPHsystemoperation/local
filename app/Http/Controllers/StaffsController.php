@@ -55,7 +55,8 @@ class StaffsController extends Controller
             'image' => $request->get('gender') === 'm' ? 'male.jpg' : 'female.jpg',
         ]);
 
-        return redirect('/staffs')->with('status', 'Staff successfully recorded.');
+        return redirect('/staffs')
+            ->with('status', 'Staff successfully recorded.');
     }
 
     /**
@@ -96,7 +97,6 @@ class StaffsController extends Controller
             'lastName' => $request->get('lastName'),
             'nickName' => $request->get('nickName'),
             'gender' => $request->get('gender'),
-            'image' => $request->get('gender') === 'm' ? 'male.jpg' : 'female.jpg',
         ]);
 
         return redirect("/staff/$staff->id")
@@ -113,7 +113,8 @@ class StaffsController extends Controller
     {
         $staff->delete();
 
-        return redirect('/staffs')->with('status', "$staff->idNumber successfully removed from the record");
+        return redirect('/staffs')
+            ->with('status', "$staff->idNumber successfully removed from the record");
     }
 
     public function editWorkingData(Staff $staff)
