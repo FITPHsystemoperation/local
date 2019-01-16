@@ -10,7 +10,7 @@ use App\Http\Requests\{
     StaffContactFormRequest,
     StaffEmergencyFormRequest,
     StaffAccountFormRequest,
-    StaffPersonalFormRequest,
+    StaffPersonalFormRequest
 };
 
 class StaffsController extends Controller
