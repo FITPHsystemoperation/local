@@ -89,7 +89,7 @@ class StaffsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(StaffNameFormRequest $request, Staff $staff)
-    {
+    {   
         $staff->update([
             'idNumber' => $request->get('idNumber'),
             'firstName' => $request->get('firstName'),
@@ -98,6 +98,17 @@ class StaffsController extends Controller
             'nickName' => $request->get('nickName'),
             'gender' => $request->get('gender'),
         ]);
+
+        if ($request->hasFile('image'))
+        {
+            $filename = $staff->idNumber . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+
+            $request->file('image')->storeAs('public/staffs', $filename);
+
+            $staff->update([
+                'image' => $filename,
+            ]);
+        }
 
         return redirect("/staff/$staff->id")
             ->with('status', 'Staff record successfully updated.');

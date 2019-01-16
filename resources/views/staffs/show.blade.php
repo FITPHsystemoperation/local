@@ -30,7 +30,7 @@
 
 		    			<div class="col-sm-3">
 		    				<div class="card">
-								<img src="/images/staffs/{{ $staff->image }}" class="card-img-top" alt="...">
+								<img src="/storage/staffs/{{ $staff->image }}" alt="{{ $staff->idNumber }}_img" class="card-img-top" alt="...">
 							</div>
 		    			</div>
 		    			

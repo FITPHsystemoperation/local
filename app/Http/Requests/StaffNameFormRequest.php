@@ -29,6 +29,7 @@ class StaffNameFormRequest extends FormRequest
             'middleName' => 'required|min:2',
             'lastName' => 'required|min:2',
             'nickName' => 'required|min:2',
+            'image' => 'image|nullable|max:1999',
         ];
     }
 }

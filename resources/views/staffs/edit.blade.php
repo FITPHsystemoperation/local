@@ -17,7 +17,7 @@
 					    <p class="alert alert-danger">{{ $error }}</p>
 					@endforeach
 		    		
-		    		<form method="post" action="/staff/{{ $staff->id }}/edit">
+		    		<form method="post" action="/staff/{{ $staff->id }}/edit" enctype="multipart/form-data">
 
 		    			@csrf
 
@@ -45,19 +45,29 @@
 		    				<label for="nickName">Nick Name:</label>
 		    				<input type="text" class="form-control" id="nickName" name="nickName" placeholder="Nick Name" value="{{ $staff->nickName }}" required>
 		    			</fieldset>
+
+		    			<fieldset class="form-group">
+		    			</fieldset>
 		    
 		    			<div class="form-group row">
 
-			    			<div class="radio col-sm-4">
+			    			<div class="radio col-sm-1">
 			    				<label>
 			    					<input type="radio" name="gender" value="m" {{ $staff->gender === 'm' ? 'checked' : '' }}>Male
 			    				</label>
 			    			</div>
 			    			
-			    			<div class="radio col-sm-4">
+			    			<div class="radio col-sm-7">
 			    				<label>
 			    					<input type="radio" name="gender" value="f" {{ $staff->gender === 'f' ? 'checked' : '' }}>Female
 			    				</label>
+			    			</div>
+
+			    			<div class="col-sm-1">
+			    				<label for="image">Image:</label>
+			    			</div>
+			    			<div class="col-sm-3">
+			    				<input type="file" class="form-control-file" id="image" name="image">
 			    			</div>
 			    			
 						</div>

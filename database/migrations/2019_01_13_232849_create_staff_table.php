@@ -22,7 +22,7 @@ class CreateStaffTable extends Migration
             $table->string('lastName', 50);
             $table->string('nickName', 50);
             $table->string('gender', 1);
-            $table->string('image', 25);
+            $table->string('image', 100);
             // work related data
             $table->date('dateHired')->nullable();
             $table->integer('employment_stat_id')->nullable();
@@ -39,11 +39,11 @@ class CreateStaffTable extends Migration
             $table->string('emergencyNo', 20)->nullable();
             $table->string('emergencyRelation', 20)->nullable();
             // accounts data
-            $table->string('birNo', 20)->nullable();
-            $table->string('sssNo', 20)->nullable();
-            $table->string('pagibigNo', 20)->nullable();
-            $table->string('philhealthNo', 20)->nullable();
-            $table->string('bankNo', 20)->nullable();
+            $table->string('birNo', 50)->nullable();
+            $table->string('sssNo', 50)->nullable();
+            $table->string('pagibigNo', 50)->nullable();
+            $table->string('philhealthNo', 50)->nullable();
+            $table->string('bankNo', 50)->nullable();
             // personal
             $table->date('birthday')->nullable();
             $table->string('civilStatus', 20)->nullable();
