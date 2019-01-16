@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="card mt-3 border-secondary">
+	<div class="card mt-3 mb-3 border-secondary">
 
 		<div class="card-header">
 			
