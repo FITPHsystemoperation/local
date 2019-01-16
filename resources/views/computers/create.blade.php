@@ -8,11 +8,16 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-3">
+		    <div class="card mt-3 border-secondary">
+
+	    		<div class="card-header">
+	    			
+				    <h3>New Computer Record</h3>
+	    			
+	    		</div>
 
 		    	<div class="card-body">
-				    
-				    <h2 class="card-title">New Computer Record</h2>
+
 				    @foreach ($errors->all() as $error)
 					    <p class="alert alert-danger">{{ $error }}</p>
 					@endforeach
@@ -60,10 +65,12 @@
 			    				</label>
 			    			</div>
 						</div>
+
+						<hr>
 		    		
 		    			<button type="submit" class="btn btn-primary">Save</button>
-		    			
-		    			<button type="reset" class="btn btn-outline-secondary">Clear</button>
+
+		    			<a class="btn btn-outline-secondary" href="/computers" role="button">Back</a>
 		    		
 		    		</form>
 
