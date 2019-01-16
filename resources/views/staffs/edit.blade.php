@@ -8,11 +8,14 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-3">
+		    <div class="card mt-3 border-secondary">
+
+		    	<div class="card-header">
+				    <h3>Update Staff Record</h3>
+		    	</div>
 
 		    	<div class="card-body">
 				    
-				    <h2 class="card-title">Update Staff Record</h2>
 				    @foreach ($errors->all() as $error)
 					    <p class="alert alert-danger">{{ $error }}</p>
 					@endforeach
@@ -71,7 +74,9 @@
 			    			</div>
 			    			
 						</div>
-		    		
+
+						<hr>
+							
 		    			<button type="submit" class="btn btn-primary">Update</button>
 		    			
 						<a class="btn btn-outline-secondary" href="/staff/{{ $staff->id }}" role="button">Back</a>

@@ -8,13 +8,13 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-3">
+		    <div class="card mt-3 border-secondary">
+
+	    		<div class="card-header">
+				    <h2>New Staff Record</h2>
+	    		</div>
 
 		    	<div class="card-body">
-				    
-				    <h2 class="card-title">New Staff Record</h2>
-
-				    <hr>
 
 				    @foreach ($errors->all() as $error)
 					    <p class="alert alert-danger">{{ $error }}</p>

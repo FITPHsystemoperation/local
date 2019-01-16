@@ -8,17 +8,17 @@
 	
 		<div class="col-sm-8">
 			
-		    <div class="card mt-3">
+		    <div class="card mt-3 border-secondary">
 
-		    	<div class="card-body">
-				    
-				    <h1 class="card-title">
+		    	<div class="card-header">
+				    <h2>
 				    	{{ "$staff->firstName $staff->lastName" }}
 						<a class="btn btn-outline-secondary float-right" href="/staffs" role="button">Back</a>
 						<a href="/staff/{{ $staff->id }}/edit" class="btn btn-outline-info float-right mr-2">Edit</a>
-				    </h1>
+				    </h2>
+		    	</div>
 
-				    <hr>
+		    	<div class="card-body">
 
 					@if (session('status'))
 					    <div class="alert alert-success">
@@ -61,11 +61,14 @@
 							</h4>
 
 		    			</div>
-		    		</div>	
-				    
-					@if ( !$staff->isCompleted )
 
-						<hr>
+		    		</div>	
+
+		    	</div>
+				    
+				@if ( !$staff->isCompleted )
+
+					<div class="card-footer">
 
 						<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-primary float-left mr-2">Add Information</a>
 
@@ -74,10 +77,9 @@
 							<button type="Submit" class="btn btn-outline-danger">Delete</button>
 						</form>
 						
-					@endif
-						
+					</div>
 
-		    	</div>
+				@endif
 	
 	    	</div>
 
@@ -91,16 +93,16 @@
 		
 			<div class="col-sm-8">
 				
-			    <div class="card mt-3">
+			    <div class="card mt-3 border-secondary">
 
-			    	<div class="card-body">
-					    
-					    <h3 class="card-title">
+		    		<div class="card-header">
+					    <h3>
 					    	Employment Information
 					    	<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-outline-info float-right">Edit</a>
 					    </h3>
+		    		</div>
 
-					    <hr>
+			    	<div class="card-body">
 
 			    		<div class="row">
 
@@ -147,16 +149,18 @@
 		
 			<div class="col-sm-8">
 				
-			    <div class="card mt-3">
+			    <div class="card mt-3 border-secondary">
 
-			    	<div class="card-body">
-					    
-					    <h3 class="card-title">
+			    	<div class="card-header">
+			    		
+					    <h3>
 					    	Contact Information
 					    	<a href="/staff/{{ $staff->id }}/contact-information" class="btn btn-outline-info float-right">Edit</a>
 					    </h3>
 
-					    <hr>
+			    	</div>
+			    	
+			    	<div class="card-body">
 
 			    		<div class="row">
 
@@ -198,16 +202,18 @@
 		
 			<div class="col-sm-8">
 				
-			    <div class="card mt-3">
+			    <div class="card mt-3 border-secondary">
 
-			    	<div class="card-body">
-					    
-					    <h3 class="card-title">
+			    	<div class="card-header">
+			    		
+					    <h3>
 					    	Emergency Contact Information
 					    	<a href="/staff/{{ $staff->id }}/emergency" class="btn btn-outline-info float-right">Edit</a>
 					    </h3>
+			    		
+			    	</div>
 
-					    <hr>
+			    	<div class="card-body">
 
 			    		<div class="row">
 
@@ -244,16 +250,18 @@
 		
 			<div class="col-sm-8">
 				
-			    <div class="card mt-3">
+			    <div class="card mt-3 border-secondary">
 
-			    	<div class="card-body">
-					    
-					    <h3 class="card-title">
+		    		<div class="card-header">
+		    			
+					    <h3>
 					    	Account Information
 					    	<a href="/staff/{{ $staff->id }}/account" class="btn btn-outline-info float-right">Edit</a>
 					    </h3>
+		    			
+		    		</div>
 
-					    <hr>
+			    	<div class="card-body">
 
 			    		<div class="row">
 
@@ -300,17 +308,19 @@
 		
 			<div class="col-sm-8">
 				
-			    <div class="card mt-3">
+			    <div class="card mt-3 mb-3 border-secondary">
 
-			    	<div class="card-body">
-					    
-					    <h3 class="card-title">
+			    	<div class="card-header">
+			    		
+					    <h3>
 					    	Personal Information
 					    	<a href="/staff/{{ $staff->id }}/personal" class="btn btn-outline-info float-right">Edit</a>
 					    </h3>
+			    		
+			    	</div>
 
-					    <hr>
-
+			    	<div class="card-body">
+					    
 			    		<div class="row">
 
 			    			<div class="offset-md-1 col-sm-11">

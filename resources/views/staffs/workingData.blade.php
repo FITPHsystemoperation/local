@@ -8,16 +8,18 @@
 	
 		<div class="col-sm-8">
 
-		    <h1 class="card-title m-3">{{ "$staff->firstName $staff->lastName" }}</h1>
+		    <h1 class="m-3">{{ "$staff->firstName $staff->lastName" }}</h1>
 			
-		    <div class="card">
+		    <div class="card border-secondary">
+
+		    	<div class="card-header">
+		    		
+				    <h4>Update Work Related Data</h4>
+		    	
+		    	</div>
 
 		    	<div class="card-body">
 				    
-				    <h4>Update Work Related Data</h4>
-
-				    <hr>
-
 				    @foreach ($errors->all() as $error)
 					    <p class="alert alert-danger">{{ $error }}</p>
 					@endforeach

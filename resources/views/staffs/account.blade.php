@@ -10,13 +10,15 @@
 
 		    <h1 class="card-title m-3">{{ "$staff->firstName $staff->lastName" }}</h1>
 			
-		    <div class="card">
+		    <div class="card border-secondary">
 
-		    	<div class="card-body">
-				    
+		    	<div class="card-header">
+
 				    <h4>Update Accounts Information</h4>
 
-				    <hr>
+		    	</div>
+
+		    	<div class="card-body">
 
 				    @foreach ($errors->all() as $error)
 					    <p class="alert alert-danger">{{ $error }}</p>
