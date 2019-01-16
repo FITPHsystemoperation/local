@@ -27,9 +27,9 @@
 		    			</fieldset>
 
 		    			<button type="submit" class="btn btn-primary">Save</button>
+
+		    			<a class="btn btn-outline-secondary" href="/departments" role="button">Back</a>
 		    			
-		    			<button type="reset" class="btn btn-outline-secondary">Clear</button>
-		    		
 		    		</form>
 
 		    	</div>

@@ -23,7 +23,28 @@
 					    </div>
 					@endif
 
-				    <hr>
+				    <table class="table border-bottom">
+				    	<thead>
+				    		<tr class="text-center">
+				    			<th>ID No.</th>
+				    			<th>Full Name</th>
+				    			<th>Job Title</th>
+				    			<th>Status</th>
+				    		</tr>
+				    	</thead>
+				    	<tbody>
+
+				    		@foreach ($department->staffs as $staff)
+					    		<tr class="text-center">
+					    			<td>{{ $staff->idNumber }}</td>
+					    			<td>{{ $staff->firstName }}</td>
+					    			<td>{{ $staff->jobTitle['titleName'] }}</td>
+					    			<td>{{ $staff->employmentStat['statDesc'] }}</td>
+					    		</tr>
+				    		@endforeach
+
+				    	</tbody>
+				    </table>
 
 		    	</div>
 

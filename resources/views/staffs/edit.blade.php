@@ -74,7 +74,7 @@
 		    		
 		    			<button type="submit" class="btn btn-primary">Update</button>
 		    			
-		    			<button type="reset" class="btn btn-outline-secondary">Clear</button>
+						<a class="btn btn-outline-secondary" href="/staff/{{ $staff->id }}" role="button">Back</a>
 		    		
 		    		</form>
 

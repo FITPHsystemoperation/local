@@ -28,7 +28,7 @@
 
 		    			<button type="submit" class="btn btn-primary">Save</button>
 		    			
-		    			<button type="reset" class="btn btn-outline-secondary">Clear</button>
+		    			<a class="btn btn-outline-secondary" href="/department/{{ $department->id }}" role="button">Back</a>
 		    		
 		    		</form>
 

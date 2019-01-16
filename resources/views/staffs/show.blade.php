@@ -67,7 +67,12 @@
 
 						<hr>
 
-						<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-primary">Add Information</a>
+						<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-primary float-left mr-2">Add Information</a>
+
+						<form method="post" action="/staff/{{ $staff->id }}/delete" class="float-left">
+							@csrf
+							<button type="Submit" class="btn btn-outline-danger">Delete</button>
+						</form>
 						
 					@endif
 						
