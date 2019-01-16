@@ -4,12 +4,6 @@
 
 @section('content')
 
-	@if (session('status'))
-	    <div class="alert alert-success">
-	        {{ session('status') }}
-	    </div>
-	@endif
-
 	<div class="card mt-3 border-secondary">
 		<div class="card-header">
 		    <h2>Master List
@@ -17,6 +11,12 @@
 		    </h2>
 		</div>
     	<div class="card-body">
+
+			@if (session('status'))
+			    <div class="alert alert-success">
+			        {{ session('status') }}
+			    </div>
+			@endif
 		    
 		    <table class="table border-bottom">
 		    	<thead>

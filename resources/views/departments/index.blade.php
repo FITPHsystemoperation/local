@@ -6,11 +6,6 @@
 	
 	<div class="row justify-content-center">
 		<div class="col-sm-8">
-			@if (session('status'))
-			    <div class="alert alert-success">
-			        {{ session('status') }}
-			    </div>
-			@endif
 
 			<div class="card mt-3 border-secondary">
 
@@ -24,6 +19,12 @@
 
 		    	<div class="card-body">
 				    
+					@if (session('status'))
+					    <div class="alert alert-success">
+					        {{ session('status') }}
+					    </div>
+					@endif
+					
 				    <table class="table border-bottom">
 				    	<thead>
 				    		<tr>
