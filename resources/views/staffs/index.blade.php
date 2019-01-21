@@ -33,7 +33,7 @@
 		    			<tr class="text-center">
 		    				
 		    				<td>
-		    					<a href="/staff/{{ $staff->id }}">{{ $staff->idNumber }}</a>
+		    					<a href="/staff/{{ $staff->id }}">{{ $staff->user['idNumber'] }}</a>
 		    				</td>
 		    				<td>{{ "$staff->firstName $staff->lastName" }}</td>
 		    				<td>{{ $staff->jobTitle['titleName'] }}</td>
