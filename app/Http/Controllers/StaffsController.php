@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\{Staff, JobTitle, Department};
 use App\Http\Requests\{
     StaffNameFormRequest,
@@ -46,14 +47,16 @@ class StaffsController extends Controller
     public function store(StaffNameFormRequest $request)
     {
         Staff::create([
-            'idNumber' => $request->get('idNumber'),
             'firstName' => $request->get('firstName'),
             'middleName' => $request->get('middleName'),
             'lastName' => $request->get('lastName'),
             'nickName' => $request->get('nickName'),
             'gender' => $request->get('gender'),
             'image' => $request->get('gender') === 'm' ? 'male.jpg' : 'female.jpg',
-        ]);
+        ])->user()->create([
+            'idNumber' => $request->get('idNumber'),
+            'password' => Hash::make('123456'),
+        ]); 
 
         return redirect('/staffs')
             ->with('status', 'Staff successfully recorded.');

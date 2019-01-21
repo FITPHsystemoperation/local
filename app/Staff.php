@@ -8,6 +8,11 @@ class Staff extends Model
 {
     protected $guarded = ['id'];
 
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
     public function employmentStat()
     {
     	return $this->belongsTo(EmploymentStat::class);
