@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
-Route::get('/welcome', 'PagesController@welcome');
+// Route::get('/', 'PagesController@home');
+// Route::get('/welcome', 'PagesController@welcome');
+
 Route::get('/computers', 'ComputersController@index');
 Route::get('/computers/create', 'ComputersController@create');
 Route::post('/computers/create', 'ComputersController@store');
@@ -65,3 +66,11 @@ Route::post('departments/create', 'DepartmentsController@store');
 Route::get('department/{department}', 'DepartmentsController@show');
 Route::get('department/{department}/edit', 'DepartmentsController@edit');
 Route::post('department/{department}/edit', 'DepartmentsController@update');
+
+Route::get('/', function(){
+	dd(Auth::user());
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
