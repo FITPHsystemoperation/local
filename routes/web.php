@@ -12,18 +12,14 @@
 */
 
 Route::get('/', function(){
-	// dd(Auth::user());
 	return view('home');
-});
+})->name('home');
 // Auth::routes();
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-
-
-Route::get('/home', 'PagesController@home')->name('home');
 
 Route::get('/computers', 'ComputersController@index');
 Route::get('/computers/create', 'ComputersController@create');
