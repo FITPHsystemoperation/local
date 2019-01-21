@@ -10,6 +10,7 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             @auth
+       
                 <li class="nav-item">
                     <a class="nav-link" href="/staffs">Staff</a>
                 </li>
@@ -19,13 +20,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/computers">Computer</a>
                 </li>
-            @endauth
-
-            @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-            @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{-- {{ Auth::user()->staff['firstName'] }} --}}
@@ -36,7 +30,9 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item" href="#">{{ Auth::user()->staff['firstName'] . ' ' . Auth::user()->staff['lastName'] }}</a>
+                        <a class="dropdown-item"
+                            href="{{ Auth::user()->staff['firstName'] . Auth::user()->staff['lastName'] }}">
+                            {{ Auth::user()->staff['firstName'] . ' ' . Auth::user()->staff['lastName'] }}</a>
                         <div class="dropdown-divider"></div>
 
                         <a class="dropdown-item" href="{{ route('password.reset') }}">Change Password</a>
@@ -52,7 +48,14 @@
                         </form>
                     </div>
                 </li>
-            @endguest
+
+            @else
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+
+            @endauth
         </ul>
 
     </div>
