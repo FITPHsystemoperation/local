@@ -11,8 +11,19 @@
 |
 */
 
-// Route::get('/', 'PagesController@home');
-// Route::get('/welcome', 'PagesController@welcome');
+Route::get('/', function(){
+	// dd(Auth::user());
+	return view('home');
+});
+// Auth::routes();
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+
+Route::get('/home', 'PagesController@home')->name('home');
 
 Route::get('/computers', 'ComputersController@index');
 Route::get('/computers/create', 'ComputersController@create');
@@ -66,11 +77,3 @@ Route::post('departments/create', 'DepartmentsController@store');
 Route::get('department/{department}', 'DepartmentsController@show');
 Route::get('department/{department}/edit', 'DepartmentsController@edit');
 Route::post('department/{department}/edit', 'DepartmentsController@update');
-
-Route::get('/', function(){
-	dd(Auth::user()->staff);
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

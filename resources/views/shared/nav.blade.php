@@ -9,16 +9,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/staffs">Staff</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/departments">Department</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/computers">Computer</a>
-            </li>
-            
+            @auth
+                <li class="nav-item">
+                    <a class="nav-link" href="/staffs">Staff</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/departments">Department</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/computers">Computer</a>
+                </li>
+            @endauth
+
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -26,10 +28,19 @@
             @else
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->staff['firstName'] . ' ' . Auth::user()->staff['lastName'] }} <span class="caret"></span>
+                        {{-- {{ Auth::user()->staff['firstName'] }} --}}
+                        <img src="/storage/staffs/{{ Auth::user()->staff['image'] }}" alt=""
+                            style="height: 30px; width: 30px; border-radius: 15px;">
+                        <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                        <a class="dropdown-item" href="#">{{ Auth::user()->staff['firstName'] . ' ' . Auth::user()->staff['lastName'] }}</a>
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" href="{{ route('password.reset') }}">Change Password</a>
+
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
