@@ -42,6 +42,8 @@ class DepartmentsController extends Controller
      */
     public function store(DepartmentFormRequest $request)
     {
+        $request->validate(['departmentName' => 'unique:departments']);
+
         Department::create(['departmentName' => $request->get('departmentName')]);
 
         return redirect('/departments')->with('status', 'Department successfully recorded');

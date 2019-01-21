@@ -30,14 +30,14 @@
 
 		    			<div class="col-sm-3">
 		    				<div class="card">
-								<img src="/storage/staffs/{{ $staff->image }}" alt="{{ $staff->idNumber }}_img" class="card-img-top" alt="...">
+								<img src="/storage/staffs/{{ $staff->image }}" alt="{{ $staff->user['idNumber'] }}_img" class="card-img-top" alt="...">
 							</div>
 		    			</div>
 		    			
 		    			<div class="col-sm-9">
 		    				<h4 class="p-2">
 								<span class="lead">ID No.:</span>
-								{{ $staff->idNumber }}
+								{{ $staff->user['idNumber'] }}
 							</h4>	
 
 							<h4 class="p-2">
@@ -329,6 +329,11 @@
 									<span class="lead">Birth Date:</span>
 									{{ $staff->birthday }}
 								</h4>	
+
+								<h4 class="p-2">
+									<span class="lead">Gender:</span>
+									{{ $staff->gender === 'm' ? 'Male' : 'Female' }}
+								</h4>
 
 								<h4 class="p-2">
 									<span class="lead">Civil Status:</span>

@@ -26,7 +26,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="idNumber">ID No.:</label>
-		    				<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ old('idNumber') }}" required>
+		    				<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ old('idNumber') }}" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">

@@ -28,7 +28,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="departmentName">Department Name</label>
-		    				<input type="text" class="form-control" id="departmentName" name="departmentName" placeholder="Department Name" value="{{ $department->departmentName }}" required>
+		    				<input type="text" class="form-control" id="departmentName" name="departmentName" placeholder="Department Name" value="{{ $department->departmentName }}" required autofocus>
 		    			</fieldset>
 
 		    			<button type="submit" class="btn btn-primary">Save</button>

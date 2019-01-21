@@ -30,7 +30,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="emergencyPerson">Contact Person:</label>
-		    				<input type="text" class="form-control" id="emergencyPerson" name="emergencyPerson" value="{{ $staff->emergencyPerson }}" placeholder="Contact Person" required>
+		    				<input type="text" class="form-control" id="emergencyPerson" name="emergencyPerson" value="{{ $staff->emergencyPerson }}" placeholder="Contact Person" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">

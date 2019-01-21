@@ -26,7 +26,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="idNumber">ID No.:</label>
-		    				<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ $staff->idNumber }}" required>
+		    				<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ $staff->user['idNumber'] }}" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">
@@ -53,18 +53,6 @@
 		    			</fieldset>
 		    
 		    			<div class="form-group row">
-
-			    			<div class="radio col-sm-1">
-			    				<label>
-			    					<input type="radio" name="gender" value="m" {{ $staff->gender === 'm' ? 'checked' : '' }}>Male
-			    				</label>
-			    			</div>
-			    			
-			    			<div class="radio col-sm-7">
-			    				<label>
-			    					<input type="radio" name="gender" value="f" {{ $staff->gender === 'f' ? 'checked' : '' }}>Female
-			    				</label>
-			    			</div>
 
 			    			<div class="col-sm-1">
 			    				<label for="image">Image:</label>

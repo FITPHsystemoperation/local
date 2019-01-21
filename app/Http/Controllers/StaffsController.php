@@ -46,6 +46,8 @@ class StaffsController extends Controller
      */
     public function store(StaffNameFormRequest $request)
     {
+        $request->validate(['idNumber' => 'unique:users']);
+        
         Staff::create([
             'firstName' => $request->get('firstName'),
             'middleName' => $request->get('middleName'),
@@ -93,13 +95,16 @@ class StaffsController extends Controller
      */
     public function update(StaffNameFormRequest $request, Staff $staff)
     {   
+
         $staff->update([
-            'idNumber' => $request->get('idNumber'),
             'firstName' => $request->get('firstName'),
             'middleName' => $request->get('middleName'),
             'lastName' => $request->get('lastName'),
             'nickName' => $request->get('nickName'),
-            'gender' => $request->get('gender'),
+        ]);
+
+        $staff->user()->update([
+            'idNumber' => $request->get('idNumber'),
         ]);
 
         if ($request->hasFile('image'))
@@ -226,6 +231,7 @@ class StaffsController extends Controller
         $staff->update([
             'birthday' => $request->get('birthday'),
             'civilStatus' => $request->get('civilStatus'),
+            'gender' => $request->get('gender'),
             'isCompleted' => 1  
         ]);
 
