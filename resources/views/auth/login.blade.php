@@ -1,6 +1,6 @@
 @extends('shared.master')
 
-@section('title', 'New Department Record')
+@section('title', 'Log In')
 
 @section('content')
 <div class="container mt-5">
