@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('idNumber', 15)->unique();
             $table->integer('staff_id')->unsigned()->index();
             $table->string('password');
-            // $table->rememberToken();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

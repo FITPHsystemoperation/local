@@ -68,7 +68,7 @@ Route::get('department/{department}/edit', 'DepartmentsController@edit');
 Route::post('department/{department}/edit', 'DepartmentsController@update');
 
 Route::get('/', function(){
-	dd(Auth::user());
+	dd(Auth::user()->staff);
 });
 
 Auth::routes();
