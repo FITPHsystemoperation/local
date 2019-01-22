@@ -74,4 +74,4 @@ Route::get('/', function(){
 	return view('home');
 })->name('home');
 // Auth::routes();
-Route::get('/{name}', 'PagesController@profile');
+Route::get('/profile/{name}', 'PagesController@profile');

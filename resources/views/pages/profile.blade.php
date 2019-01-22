@@ -14,6 +14,7 @@
 				    <h2>
 				    	{{ "$staff->firstName $staff->lastName" }}
 						<a class="btn btn-outline-secondary float-right" href="/staffs" role="button">Back</a>
+						<a class="btn btn-info float-right mr-2" href="{{ route('password.reset') }}" role="button">Change Password</a>
 				    </h2>
 		    	</div>
 
