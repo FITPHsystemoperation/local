@@ -40,6 +40,8 @@ class MousesController extends Controller
      */
     public function store(MousesFormRequest $request)
     {
+        $request->validate([ 'mouseName' => 'unique:mouses', ]);
+
         Mouse::create(['mouseName' => $request->get('mouseName')]);
 
         return redirect()->back()

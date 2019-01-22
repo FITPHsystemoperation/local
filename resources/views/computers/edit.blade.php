@@ -28,7 +28,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="compName">Comp Name</label>
-		    				<input type="text" class="form-control" id="compName" name="compName" value="{{ $computer->compName }}" required>
+		    				<input type="text" class="form-control" id="compName" name="compName" value="{{ $computer->compName }}" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">

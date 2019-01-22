@@ -42,6 +42,11 @@ class ComputersController extends Controller
      */
     public function store(ComputerFormRequest $request)
     {
+        $request->validate([
+            'compName' => 'unique:computers',
+            'userName' => 'unique:computers',
+        ]);
+
         Computer::create([
             'compName' => $request->get('compName'),
             'adminPass' => $request->get('adminPass'),

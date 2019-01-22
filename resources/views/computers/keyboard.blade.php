@@ -24,7 +24,7 @@
 
 				    	<fieldset class="form-group">
 				    		<label for="keyboard_id">Select Keyboard</label>
-				    		<select class="c-select form-control" id="keyboard_id" name="keyboard_id" required>
+				    		<select class="c-select form-control" id="keyboard_id" name="keyboard_id" required autofocus>
 				    			@foreach ($keyboards as $keyboard)
 				    				<option
 				    					value="{{ $keyboard->id }}"

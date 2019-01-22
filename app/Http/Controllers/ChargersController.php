@@ -40,6 +40,8 @@ class ChargersController extends Controller
      */
     public function store(ChargersFormRequest $request)
     {
+        $request->validate([ 'chargerName' => 'unique:chargers', ]);
+
         Charger::create(['chargerName' => $request->get('chargerName')]);
 
         return redirect()->back()

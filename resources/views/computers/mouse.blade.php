@@ -24,7 +24,7 @@
 
 				    	<fieldset class="form-group">
 				    		<label for="mouse_id">Select Mouse</label>
-				    		<select class="c-select form-control" id="mouse_id" name="mouse_id" required>
+				    		<select class="c-select form-control" id="mouse_id" name="mouse_id" required autofocus>
 				    			@foreach ($mouses as $mouse)
 				    				<option
 				    					value="{{ $mouse->id }}"

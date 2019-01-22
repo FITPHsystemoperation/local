@@ -24,7 +24,7 @@
 
 				    	<fieldset class="form-group">
 				    		<label for="monitor_id">Select Monitor</label>
-				    		<select class="c-select form-control" id="monitor_id" name="monitor_id" required>
+				    		<select class="c-select form-control" id="monitor_id" name="monitor_id" required autofocus>
 				    			@foreach ($monitors as $monitor)
 				    				<option
 				    					value="{{ $monitor->id }}"

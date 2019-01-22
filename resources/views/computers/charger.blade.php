@@ -24,7 +24,7 @@
 
 				    	<fieldset class="form-group">
 				    		<label for="charger_id">Select Charger</label>
-				    		<select class="c-select form-control" id="charger_id" name="charger_id" required>
+				    		<select class="c-select form-control" id="charger_id" name="charger_id" required autofocus>
 				    			@foreach ($chargers as $charger)
 				    				<option
 				    					value="{{ $charger->id }}"
