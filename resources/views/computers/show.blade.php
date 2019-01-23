@@ -46,16 +46,6 @@
 						<li>{{ $computer->specs }}</li>
 					</ul>
 				    
-					<h4 class="p-2">
-						<span class="lead">With WillsBuster:</span>
-						{!! $computer->withWbuster ? '&#10004;' : '&#10060;' !!}
-					</h4>
-
-					<h4 class="p-2">
-						<span class="lead">With Skysea:</span>
-						{!! $computer->withSkysea ? '&#10004;' : '&#10060;' !!}
-					</h4>
-
 			    </div>
 
 		    	<div class="card-footer">

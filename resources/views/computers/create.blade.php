@@ -50,22 +50,7 @@
 		    				<label for="specs">Computer Specs</label>
 		    				<textarea class="form-control" id="specs" name="specs" rows="3">{{ old('specs') }}</textarea>
 		    			</fieldset>
-
-
-		    			<div class="form-group row">
-			    			<div class="checkbox col-sm-4">
-			    				<label>
-			    					<input type="checkbox" name="withWbuster"> With WillsBuster
-			    				</label>
-			    			</div>
-			    		
-			    			<div class="checkbox col-sm-4">
-			    				<label>
-			    					<input type="checkbox" name="withSkysea"> With SkySea
-			    				</label>
-			    			</div>
-						</div>
-
+		    			
 						<hr>
 		    		
 		    			<button type="submit" class="btn btn-primary">Save</button>

@@ -50,25 +50,6 @@
 		    				<label for="specs">Computer Specs</label>
 		    				<textarea class="form-control" id="specs" name="specs" rows="3">{{ $computer->specs }}</textarea>
 		    			</fieldset>
-
-
-		    			<div class="form-group row">
-			    			<div class="checkbox col-sm-4">
-			    				<label>
-			    					<input type="checkbox" name="withWbuster"
-			    					{{ $computer->withWbuster ? 'checked' : '' }}
-			    					> With WillsBuster
-			    				</label>
-			    			</div>
-			    		
-			    			<div class="checkbox col-sm-4">
-			    				<label>
-			    					<input type="checkbox" name="withSkysea"
-			    					{{ $computer->withSkysea ? 'checked' : '' }}
-			    					> With SkySea
-			    				</label>
-			    			</div>
-						</div>
 		    		
 						<hr>
 

@@ -53,8 +53,6 @@ class ComputersController extends Controller
             'userName' => $request->get('userName'),
             'userPass' => $request->get('userPass'),
             'specs' => $request->get('specs'),
-            'withWbuster' => $request->has('withWbuster') ? 1 : 0,
-            'withSkysea' => $request->has('withSkysea') ? 1 : 0,
         ]);
 
         return redirect('/computers')->with('status', 'Computer record successfully added.');
@@ -97,8 +95,6 @@ class ComputersController extends Controller
             'userName' => $request->get('userName'),
             'userPass' => $request->get('userPass'),
             'specs' => $request->get('specs'),
-            'withWbuster' => $request->has('withWbuster') ? 1 : 0,
-            'withSkysea' => $request->has('withSkysea') ? 1 : 0,
         ]);
 
         return redirect("/computer/$computer->id")
