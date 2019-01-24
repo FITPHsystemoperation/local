@@ -16,12 +16,8 @@ class CreateComputersTable extends Migration
         Schema::create('computers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('compName', 50)->unique();
-            $table->string('adminPass', 50);
-            $table->string('userName', 50)->unique();
-            $table->string('userPass', 50);
+            $table->string('os', 50)->nullable();
             $table->text('specs')->nullable();
-            $table->boolean('withWbuster')->default(0);
-            $table->boolean('withSkysea')->default(0);
             $table->timestamps();
         });
     }
