@@ -16,8 +16,9 @@ class CreateComputersTable extends Migration
         Schema::create('computers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('compName', 50)->unique();
-            $table->string('os', 50)->nullable();
-            $table->text('specs')->nullable();
+            $table->string('os', 20)->nullable();
+            $table->string('status', 20)->nullable();
+            $table->text('information')->nullable();
             $table->timestamps();
         });
     }

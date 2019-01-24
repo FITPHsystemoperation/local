@@ -28,7 +28,7 @@ class Computer extends Model
         return $this->hasMany(Charger::class);
     }
 
-    public function account()
+    public function accounts()
     {
         return $this->hasMany(ComputerAccount::class);
     }

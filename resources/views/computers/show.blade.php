@@ -25,27 +25,20 @@
 					@endif
 
 					<h4 class="p-2">
-						<span class="lead">User Name:</span>
-						{{ $computer->userName }}
+						<span class="lead">Operating System:</span>
+						{{ $computer->os }}
 					</h4>				    	
 
 					<h4 class="p-2">
-						<span class="lead">User Password:</span>
-						{{ $computer->userPass }}
+						<span class="lead">Computer Status:</span>
+						{{ $computer->status }}
 					</h4>
 
 					<h4 class="p-2">
-						<span class="lead">Admin Password:</span>
-						{{ $computer->adminPass }}
+						<span class="lead">Computer Information:</span>
+						{{ $computer->information }}
 					</h4>
 
-					<h4 class="p-2">
-						<span class="lead">Computer Specs:</span>
-					</h4>
-					<ul>
-						<li>{{ $computer->specs }}</li>
-					</ul>
-				    
 			    </div>
 
 		    	<div class="card-footer">
@@ -57,8 +50,48 @@
 
 		    </div>
 
+		    <div class="card mt-3 border-secondary">
 
-		    	
+		    	<div class="card-header">
+		    		
+				    <h2>
+				    	Accounts
+				    	<a class="btn btn-primary float-right"
+							href="/computer/{{ $computer->id }}/account/create"
+							role="button"
+						>Add</a>
+				    </h2>
+		    		
+		    	</div>
+
+		    	<div class="card-body">
+
+					<table class="table border-bottom">
+						<thead>
+							<tr class="text-center">
+								<th>User Name</th>
+								<th>User Role</th>
+								<th>Password</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($computer->accounts as $account)
+								<tr class="text-center">
+									<td>{{ $account->accountName }}</td>
+									<td>{{ $account->accountRole }}</td>
+									<td>{{ $account->password }}</td>
+									<td>
+										<a class="btn btn-sm btn-outline-info" href="" role="button">Update</a>
+									</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+
+			    </div>
+
+		    </div>
 				    
 			<h3 class="m-4">Accessories</h3>
 

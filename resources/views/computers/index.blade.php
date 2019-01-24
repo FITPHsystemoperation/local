@@ -28,8 +28,9 @@
 			    	<thead>
 			    		<tr class="text-center">
 			    			<th>CompName</th>
-			    			<th>UserName</th>
-			    			<th>UserPass</th>
+			    			<th>O.S.</th>
+			    			<th>Status</th>
+			    			{{-- <th>Department</th> --}}
 			    		</tr>
 			    	</thead>
 			    	<tbody>
@@ -41,8 +42,9 @@
 				    					{{$computer->compName}}
 			    					</a>
 			    				</td>
-			    				<td>{{$computer->userName}}</td>
-			    				<td>{{$computer->userPass}}</td>
+			    				<td>{{$computer->os}}</td>
+			    				<td>{{$computer->status}}</td>
+			    				<td></td>
 
 			    			</tr>
 			    		@endforeach
