@@ -64,9 +64,9 @@ class ComputerAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ComputerAccount $account)
     {
-        //
+        return view('computers.account.edit', compact('account'));
     }
 
     /**
@@ -76,9 +76,16 @@ class ComputerAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ComputerAccountFormRequest $request, ComputerAccount $account)
     {
-        //
+        $account->update([
+            'accountName' => $request->get('accountName'),
+            'accountRole' => $request->get('accountRole'),
+            'password' => $request->get('password'),
+        ]);
+
+        return redirect("/computer/$account->computer_id")
+            ->with('status', 'Account has been updated');
     }
 
     /**

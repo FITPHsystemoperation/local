@@ -82,7 +82,7 @@
 									<td>{{ $account->accountRole }}</td>
 									<td>{{ $account->password }}</td>
 									<td>
-										<a class="btn btn-sm btn-outline-info" href="" role="button">Update</a>
+										<a class="btn btn-sm btn-outline-info" href="/computer-account/{{ $account->id }}/edit" role="button">Update</a>
 									</td>
 								</tr>
 							@endforeach
