@@ -27,48 +27,24 @@
 		    			@csrf
 
 		    			<fieldset class="form-group">
-		    				<label for="compName">Comp Name</label>
-		    				<input type="text" class="form-control" id="compName" name="compName" value="{{ $computer->compName }}" required>
+		    				<label for="compName">Computer Name</label>
+		    				<input type="text" class="form-control" id="compName" name="compName" value="{{ $computer->compName }}" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">
-		    				<label for="userName">UserName</label>
-		    				<input type="text" class="form-control" id="userName" name="userName" value="{{ $computer->userName }}" required>
-		    			</fieldset>
-		    
-		    			<fieldset class="form-group">
-		    				<label for="userPass">User Password</label>
-		    				<input type="text" class="form-control" id="userPass" name="userPass" value="{{ $computer->userPass }}" required>
+		    				<label for="os">Operating System</label>
+		    				<input type="text" class="form-control" id="os" name="os" value="{{ $computer->os }}" >
 		    			</fieldset>
 
 		    			<fieldset class="form-group">
-		    				<label for="adminPass">Admin Password</label>
-		    				<input type="text" class="form-control" id="adminPass" name="adminPass"  value="{{ $computer->adminPass }}" required>
+		    				<label for="status">Computer Status</label>
+		    				<input type="text" class="form-control" id="status" name="status" value="{{ $computer->status }}" >
 		    			</fieldset>
-		    
+
 		    			<fieldset class="form-group">
-		    				<label for="specs">Computer Specs</label>
-		    				<textarea class="form-control" id="specs" name="specs" rows="3">{{ $computer->specs }}</textarea>
+		    				<label for="information">Computer Information</label>
+		    				<textarea class="form-control" id="information" name="information" rows="3">{{ $computer->information }}</textarea>
 		    			</fieldset>
-
-
-		    			<div class="form-group row">
-			    			<div class="checkbox col-sm-4">
-			    				<label>
-			    					<input type="checkbox" name="withWbuster"
-			    					{{ $computer->withWbuster ? 'checked' : '' }}
-			    					> With WillsBuster
-			    				</label>
-			    			</div>
-			    		
-			    			<div class="checkbox col-sm-4">
-			    				<label>
-			    					<input type="checkbox" name="withSkysea"
-			    					{{ $computer->withSkysea ? 'checked' : '' }}
-			    					> With SkySea
-			    				</label>
-			    			</div>
-						</div>
 		    		
 						<hr>
 

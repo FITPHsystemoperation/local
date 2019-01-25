@@ -30,7 +30,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="contactNo">Contact No.:</label>
-		    				<input type="text" class="form-control" id="contactNo" name="contactNo" value="{{ $staff->contactNo }}" placeholder="Contact Number" required>
+		    				<input type="text" class="form-control" id="contactNo" name="contactNo" value="{{ $staff->contactNo }}" placeholder="Contact Number" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">

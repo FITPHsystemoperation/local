@@ -30,7 +30,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="dateHired">Date Hired:</label>
-		    				<input type="date" class="form-control" id="dateHired" name="dateHired" value="{{ $staff->dateHired }}" required>
+		    				<input type="date" class="form-control" id="dateHired" name="dateHired" value="{{ $staff->dateHired }}" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">

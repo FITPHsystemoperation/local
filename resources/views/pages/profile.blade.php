@@ -14,7 +14,7 @@
 				    <h2>
 				    	{{ "$staff->firstName $staff->lastName" }}
 						<a class="btn btn-outline-secondary float-right" href="/staffs" role="button">Back</a>
-						<a href="/staff/{{ $staff->id }}/edit" class="btn btn-outline-info float-right mr-2">Edit</a>
+						<a class="btn btn-info float-right mr-2" href="{{ route('password.reset') }}" role="button">Change Password</a>
 				    </h2>
 		    	</div>
 
@@ -66,21 +66,6 @@
 
 		    	</div>
 				    
-				@if ( !$staff->isCompleted )
-
-					<div class="card-footer">
-
-						<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-primary float-left mr-2">Add Information</a>
-
-						<form method="post" action="/staff/{{ $staff->id }}/delete" class="float-left">
-							@csrf
-							<button type="Submit" class="btn btn-outline-danger">Delete</button>
-						</form>
-						
-					</div>
-
-				@endif
-	
 	    	</div>
 
 	    </div>
@@ -96,10 +81,7 @@
 			    <div class="card mt-3 border-secondary">
 
 		    		<div class="card-header">
-					    <h3>
-					    	Employment Information
-					    	<a href="/staff/{{ $staff->id }}/working-data" class="btn btn-outline-info float-right">Edit</a>
-					    </h3>
+					    <h3>Employment Information</h3>
 		    		</div>
 
 			    	<div class="card-body">
@@ -153,10 +135,7 @@
 
 			    	<div class="card-header">
 			    		
-					    <h3>
-					    	Contact Information
-					    	<a href="/staff/{{ $staff->id }}/contact-information" class="btn btn-outline-info float-right">Edit</a>
-					    </h3>
+					    <h3>Contact Information</h3>
 
 			    	</div>
 			    	
@@ -206,10 +185,7 @@
 
 			    	<div class="card-header">
 			    		
-					    <h3>
-					    	Emergency Contact Information
-					    	<a href="/staff/{{ $staff->id }}/emergency" class="btn btn-outline-info float-right">Edit</a>
-					    </h3>
+					    <h3>Emergency Contact Information</h3>
 			    		
 			    	</div>
 
@@ -254,10 +230,7 @@
 
 		    		<div class="card-header">
 		    			
-					    <h3>
-					    	Account Information
-					    	<a href="/staff/{{ $staff->id }}/account" class="btn btn-outline-info float-right">Edit</a>
-					    </h3>
+					    <h3>Account Information</h3>
 		    			
 		    		</div>
 
@@ -312,10 +285,7 @@
 
 			    	<div class="card-header">
 			    		
-					    <h3>
-					    	Personal Information
-					    	<a href="/staff/{{ $staff->id }}/personal" class="btn btn-outline-info float-right">Edit</a>
-					    </h3>
+					    <h3>Personal Information</h3>
 			    		
 			    	</div>
 

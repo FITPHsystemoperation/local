@@ -40,6 +40,8 @@ class KeyboardsController extends Controller
      */
     public function store(KeyboardsFormRequest $request)
     {
+        $request->validate([ 'keyboardName' => 'unique:keyboards', ]);
+
         Keyboard::create(['keyboardName' => $request->get('keyboardName')]);
 
         return redirect()->back()

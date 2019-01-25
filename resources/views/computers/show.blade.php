@@ -25,35 +25,18 @@
 					@endif
 
 					<h4 class="p-2">
-						<span class="lead">User Name:</span>
-						{{ $computer->userName }}
+						<span class="lead">Operating System:</span>
+						{{ $computer->os }}
 					</h4>				    	
 
 					<h4 class="p-2">
-						<span class="lead">User Password:</span>
-						{{ $computer->userPass }}
+						<span class="lead">Computer Status:</span>
+						{{ $computer->status }}
 					</h4>
 
 					<h4 class="p-2">
-						<span class="lead">Admin Password:</span>
-						{{ $computer->adminPass }}
-					</h4>
-
-					<h4 class="p-2">
-						<span class="lead">Computer Specs:</span>
-					</h4>
-					<ul>
-						<li>{{ $computer->specs }}</li>
-					</ul>
-				    
-					<h4 class="p-2">
-						<span class="lead">With WillsBuster:</span>
-						{!! $computer->withWbuster ? '&#10004;' : '&#10060;' !!}
-					</h4>
-
-					<h4 class="p-2">
-						<span class="lead">With Skysea:</span>
-						{!! $computer->withSkysea ? '&#10004;' : '&#10060;' !!}
+						<span class="lead">Computer Information:</span>
+						{{ $computer->information }}
 					</h4>
 
 			    </div>
@@ -67,8 +50,48 @@
 
 		    </div>
 
+		    <div class="card mt-3 border-secondary">
 
-		    	
+		    	<div class="card-header">
+		    		
+				    <h4>
+				    	Accounts
+				    	<a class="btn btn-primary float-right"
+							href="/computer/{{ $computer->id }}/account/create"
+							role="button"
+						>Add</a>
+				    </h4>
+		    		
+		    	</div>
+
+		    	<div class="card-body">
+
+					<table class="table border-bottom">
+						<thead>
+							<tr class="text-center">
+								<th>User Name</th>
+								<th>User Role</th>
+								<th>Password</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach ($computer->accounts as $account)
+								<tr class="text-center">
+									<td>{{ $account->accountName }}</td>
+									<td>{{ $account->accountRole }}</td>
+									<td>{{ $account->password }}</td>
+									<td>
+										<a class="btn btn-sm btn-outline-info" href="/computer-account/{{ $account->id }}/edit" role="button">Update</a>
+									</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+
+			    </div>
+
+		    </div>
 				    
 			<h3 class="m-4">Accessories</h3>
 

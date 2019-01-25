@@ -40,6 +40,8 @@ class MonitorsController extends Controller
      */
     public function store(MonitorsFormRequest $request)
     {
+        $request->validate([ 'monitorName' => 'unique:monitors' ]);
+        
         Monitor::create(['monitorName' => $request->get('monitorName')]);
 
         return redirect()->back()

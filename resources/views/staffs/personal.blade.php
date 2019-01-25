@@ -30,13 +30,29 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="birthday">Birth Date:</label>
-		    				<input type="date" class="form-control" id="birthday" name="birthday" value="{{ $staff->birthday }}"  required>
+		    				<input type="date" class="form-control" id="birthday" name="birthday" value="{{ $staff->birthday }}"  required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">
 		    				<label for="civilStatus">Civil Status:</label>
 		    				<input type="text" class="form-control" id="civilStatus" name="civilStatus" value="{{ $staff->civilStatus }}" placeholder="Civil status" required>
 		    			</fieldset>
+
+		    			<div class="form-group row">
+
+		    				<div class="radio col-sm-1">
+			    				<label>
+			    					<input type="radio" name="gender" value="m" {{ $staff->gender === 'm' ? 'checked' : '' }}>Male
+			    				</label>
+			    			</div>
+			    			
+			    			<div class="radio col-sm-7">
+			    				<label>
+			    					<input type="radio" name="gender" value="f" {{ $staff->gender === 'f' ? 'checked' : '' }}>Female
+			    				</label>
+			    			</div>
+		    				
+		    			</div>
 
 						<hr>
 		    		

@@ -41,7 +41,7 @@
 
 				    		@foreach ($department->staffs as $staff)
 					    		<tr class="text-center">
-					    			<td>{{ $staff->idNumber }}</td>
+					    			<td>{{ $staff->user['idNumber'] }}</td>
 					    			<td>{{ "$staff->firstName $staff->lastName" }}</td>
 					    			<td>{{ $staff->jobTitle['titleName'] }}</td>
 					    			<td>{{ $staff->employmentStat['statDesc'] }}</td>

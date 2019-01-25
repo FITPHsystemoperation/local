@@ -30,7 +30,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="birNo">B.I.R. No:</label>
-		    				<input type="text" class="form-control" id="birNo" name="birNo" value="{{ $staff->birNo }}" placeholder="B.I.R. Number" required>
+		    				<input type="text" class="form-control" id="birNo" name="birNo" value="{{ $staff->birNo }}" placeholder="B.I.R. Number" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">

@@ -42,14 +42,15 @@ class ComputersController extends Controller
      */
     public function store(ComputerFormRequest $request)
     {
+        $request->validate([
+            'compName' => 'unique:computers',
+        ]);
+
         Computer::create([
             'compName' => $request->get('compName'),
-            'adminPass' => $request->get('adminPass'),
-            'userName' => $request->get('userName'),
-            'userPass' => $request->get('userPass'),
-            'specs' => $request->get('specs'),
-            'withWbuster' => $request->has('withWbuster') ? 1 : 0,
-            'withSkysea' => $request->has('withSkysea') ? 1 : 0,
+            'os' => $request->get('os'),
+            'status' => $request->get('status'),
+            'information' => $request->get('information'),
         ]);
 
         return redirect('/computers')->with('status', 'Computer record successfully added.');
@@ -88,12 +89,9 @@ class ComputersController extends Controller
     {
         $computer->update([
             'compName' => $request->get('compName'),
-            'adminPass' => $request->get('adminPass'),
-            'userName' => $request->get('userName'),
-            'userPass' => $request->get('userPass'),
-            'specs' => $request->get('specs'),
-            'withWbuster' => $request->has('withWbuster') ? 1 : 0,
-            'withSkysea' => $request->has('withSkysea') ? 1 : 0,
+            'os' => $request->get('os'),
+            'status' => $request->get('status'),
+            'information' => $request->get('information'),
         ]);
 
         return redirect("/computer/$computer->id")

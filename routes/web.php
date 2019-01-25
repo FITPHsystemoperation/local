@@ -11,22 +11,18 @@
 |
 */
 
-Route::get('/', function(){
-	return view('home');
-})->name('home');
-// Auth::routes();
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('/login', 'Auth\LoginController@login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-
 Route::get('/computers', 'ComputersController@index');
 Route::get('/computers/create', 'ComputersController@create');
 Route::post('/computers/create', 'ComputersController@store');
 Route::get('/computer/{computer}', 'ComputersController@show');
 Route::get('/computer/{computer}/edit', 'ComputersController@edit');
 Route::post('/computer/{computer}', 'ComputersController@update');
+
+Route::get('/computer/{id}/account/create', 'ComputerAccountController@create');
+Route::post('/computer/{id}/account/create', 'ComputerAccountController@store');
+Route::get('/computer-account/{account}/edit', 'ComputerAccountController@edit');
+Route::post('/computer-account/{account}/edit', 'ComputerAccountController@update');
+Route::post('/computer-account/{account}/delete', 'ComputerAccountController@destroy');
 
 Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
 Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
@@ -73,3 +69,15 @@ Route::post('departments/create', 'DepartmentsController@store');
 Route::get('department/{department}', 'DepartmentsController@show');
 Route::get('department/{department}/edit', 'DepartmentsController@edit');
 Route::post('department/{department}/edit', 'DepartmentsController@update');
+
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+Route::get('/', function(){
+	return view('home');
+})->name('home');
+// Auth::routes();
+Route::get('/profile/{name}', 'PagesController@profile');

@@ -25,9 +25,8 @@ class ComputerFormRequest extends FormRequest
     {
         return [
             'compName' => 'required|min:5',
-            'adminPass' => 'required|min:5',
-            'userName' => 'required|min:5',
-            'userPass' => 'required|min:5',
+            // 'os' => 'min:5',
+            // 'status' => 'min:5',
         ];
     }
 }
