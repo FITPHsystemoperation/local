@@ -18,6 +18,9 @@ Route::get('/computer/{computer}', 'ComputersController@show');
 Route::get('/computer/{computer}/edit', 'ComputersController@edit');
 Route::post('/computer/{computer}', 'ComputersController@update');
 
+Route::get('/computer/{id}/account/create', 'ComputerAccountController@create');
+Route::post('/computer/{id}/account/create', 'ComputerAccountController@store');
+
 Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
 Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
 Route::post('/computer/mouse/{mouse_id}/remove', 'ComputerMouseController@destroy');

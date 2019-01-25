@@ -45,26 +45,6 @@
 		    				<label for="information">Computer Information</label>
 		    				<textarea class="form-control" id="information" name="information" rows="3">{{ old('information') }}</textarea>
 		    			</fieldset>
-
-		    			{{-- <fieldset class="form-group">
-		    				<label for="userName">UserName</label>
-		    				<input type="text" class="form-control" id="userName" name="userName" placeholder="UserName" value="{{ old('userName') }}" required>
-		    			</fieldset>
-		    
-		    			<fieldset class="form-group">
-		    				<label for="userPass">User Password</label>
-		    				<input type="text" class="form-control" id="userPass" name="userPass" placeholder="User Password" value="{{ old('userPass') }}"required>
-		    			</fieldset>
-		    			
-		    			<fieldset class="form-group">
-		    				<label for="adminPass">Admin Password</label>
-		    				<input type="text" class="form-control" id="adminPass" name="adminPass" placeholder="Administrator Password" value="{{ old('adminPass') }}" required>
-		    			</fieldset>
-		    
-		    			<fieldset class="form-group">
-		    				<label for="specs">Computer Specs</label>
-		    				<textarea class="form-control" id="specs" name="specs" rows="3">{{ old('specs') }}</textarea>
-		    			</fieldset> --}}
 		    			
 						<hr>
 		    		

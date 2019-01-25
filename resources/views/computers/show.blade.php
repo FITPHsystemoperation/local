@@ -54,13 +54,13 @@
 
 		    	<div class="card-header">
 		    		
-				    <h2>
+				    <h4>
 				    	Accounts
 				    	<a class="btn btn-primary float-right"
 							href="/computer/{{ $computer->id }}/account/create"
 							role="button"
 						>Add</a>
-				    </h2>
+				    </h4>
 		    		
 		    	</div>
 
