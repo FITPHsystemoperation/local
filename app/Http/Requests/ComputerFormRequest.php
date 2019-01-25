@@ -25,8 +25,8 @@ class ComputerFormRequest extends FormRequest
     {
         return [
             'compName' => 'required|min:5',
-            'os' => 'min:5',
-            'status' => 'min:5',
+            // 'os' => 'min:5',
+            // 'status' => 'min:5',
         ];
     }
 }
