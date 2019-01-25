@@ -45,10 +45,19 @@
 
 	    			<button type="submit" class="btn btn-primary">Update</button>
 
-	    			<a class="btn btn-outline-secondary" href="computer/{{ $account->computer_id }}" role="button">Back</a>
+	    			<a class="btn btn-danger" href="/computer-account/{{ $account->id }}/delete" role="button"
+	    				onclick="event.preventDefault(); document.getElementById('delete_form').submit();" 
+	    			>Remove</a>
+
+	    			<a class="btn btn-outline-secondary" href="/computer/{{ $account->computer_id }}" role="button">Back</a>
+
 	
 				</form>
 				
+    			<form id="delete_form" method="post" action="/computer-account/{{ $account->id }}/delete" class="float-left">
+					@csrf
+				</form>
+
 			</div>{{-- card-body --}}
 
 		</div>{{-- card --}}

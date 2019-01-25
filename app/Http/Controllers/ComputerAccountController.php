@@ -94,8 +94,11 @@ class ComputerAccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ComputerAccount $account)
     {
-        //
+        $account->delete();
+
+        return redirect("/computer/$account->computer_id")
+            ->with('status', 'Account has been removed from this Computer');
     }
 }
