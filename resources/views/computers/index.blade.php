@@ -28,7 +28,7 @@
 			    	<thead>
 			    		<tr class="text-center">
 			    			<th>CompName</th>
-			    			<th>O.S.</th>
+			    			<th>Accounts</th>
 			    			<th>Status</th>
 			    			{{-- <th>Department</th> --}}
 			    		</tr>
@@ -42,7 +42,12 @@
 				    					{{$computer->compName}}
 			    					</a>
 			    				</td>
-			    				<td>{{$computer->os}}</td>
+			    				<td>
+			    					@foreach ($computer->accounts as $account)
+				    					{{ $account['accountName'] }}
+			    						{{ !$loop->last ? '/ ' : '' }}
+			    					@endforeach
+			    				</td>
 			    				<td>{{$computer->status}}</td>
 			    				<td></td>
 
