@@ -109,7 +109,21 @@
 
 		    	<div class="card-body">
 
-					
+						@foreach ($computer->softwares as $software)
+
+							<ul class="list-group {{ !$loop->last ? 'mb-2' : '' }}">
+
+								<li class="list-group-item list-group-item-primary"><strong>{{ ucfirst($software->softwareName) }}</strong></li>
+								@foreach (json_decode($software->pivot->specs) as $key => $spec)
+									<li class="list-group-item pl-5">
+										{{ $key }}:
+										<strong>{{ $spec }}</strong>
+									</li>
+								@endforeach
+							</ul>
+
+						@endforeach
+
 
 			    </div>
 

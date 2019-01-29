@@ -64,6 +64,8 @@ class ComputersController extends Controller
      */
     public function show(Computer $computer)
     {
+        // return $computer->softwares[0]->pivot->specs;
+
         return view('computers.show', compact('computer'));
     }
 
