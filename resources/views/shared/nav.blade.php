@@ -10,25 +10,44 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             @auth
-       
-                <li class="nav-item">
-                    <a class="nav-link" href="/staffs">Staff</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/departments">Department</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/computers">Computer</a>
-                </li>
+                {{-- master-list --}}
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Master List<span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <a class="dropdown-item" href="/staffs">Staff</a>
+
+                        <a class="dropdown-item" href="/departments">Department</a>
+
+                    </div>
+                </li>
+                {{-- computer --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Computer<span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <a class="dropdown-item" href="/computers">Computer</a>
+
+                        <a class="dropdown-item" href="/softwares">Software</a>
+
+                        <a class="dropdown-item" href="/softwares">Accessories</a>
+
+                    </div>
+                </li>
+                {{-- profile --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{-- {{ Auth::user()->staff['firstName'] }} --}}
                         <img src="/storage/staffs/{{ Auth::user()->staff['image'] }}" alt=""
                             style="height: 30px; width: 30px; border-radius: 15px;">
                         <span class="caret"></span>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right">
 
                         <a class="dropdown-item"
                             href="/profile/{{ Auth::user()->staff['firstName'] . Auth::user()->staff['lastName'] }}">

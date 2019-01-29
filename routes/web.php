@@ -63,12 +63,25 @@ Route::get('/staff/{staff}/personal', 'StaffsController@editPersonal');
 Route::post('/staff/{staff}/personal', 'StaffsController@updatePersonal');
 Route::post('/staff/{staff}/delete', 'StaffsController@destroy');
 
-Route::get('departments', 'DepartmentsController@index');
-Route::get('departments/create', 'DepartmentsController@create');
-Route::post('departments/create', 'DepartmentsController@store');
-Route::get('department/{department}', 'DepartmentsController@show');
-Route::get('department/{department}/edit', 'DepartmentsController@edit');
-Route::post('department/{department}/edit', 'DepartmentsController@update');
+Route::get('/departments', 'DepartmentsController@index');
+Route::get('/departments/create', 'DepartmentsController@create');
+Route::post('/departments/create', 'DepartmentsController@store');
+Route::get('/department/{department}', 'DepartmentsController@show');
+Route::get('/department/{department}/edit', 'DepartmentsController@edit');
+Route::post('/department/{department}/edit', 'DepartmentsController@update');
+
+Route::get('/softwares', 'SoftwaresController@index');
+Route::get('/softwares/create', 'SoftwaresController@create');
+Route::post('/softwares/create', 'SoftwaresController@store');
+Route::get('/software/{software}', 'SoftwaresController@show');
+Route::get('/software/{software}/edit', 'SoftwaresController@edit');
+Route::post('/software/{software}/edit', 'SoftwaresController@update');
+
+Route::get('/computer/{computer}/software/create', 'ComputerSoftwareController@index');
+Route::get('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@create');
+Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@store');
+Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
+Route::post('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@update');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');

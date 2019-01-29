@@ -117,6 +117,7 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
     
     'old_password' => 'Password does not match',
+    'duplicate' => 'Duplicate Specs',
 
     /*
     |--------------------------------------------------------------------------
