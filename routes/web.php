@@ -81,6 +81,7 @@ Route::get('/computer/{computer}/software/create', 'ComputerSoftwareController@i
 Route::get('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@create');
 Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@store');
 Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
+Route::post('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@update');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');

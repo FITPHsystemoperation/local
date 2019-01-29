@@ -45,7 +45,7 @@ class ComputerSoftwareController extends Controller
         ComputerSoftware::create([
             'computer_id' => $computer,
             'software_id' => $software,
-            'specs' => array_slice($request->all(), 1)
+            'specs' => array_slice($request->all(), 1),
         ]);
 
         return redirect("/computer/$computer")
@@ -81,9 +81,14 @@ class ComputerSoftwareController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ComputerSoftware $computer_software)
     {
-        //
+        $computer_software->update([
+            'specs' => array_slice($request->all(), 1),
+        ]);
+
+        return redirect("/computer/$computer_software->computer_id")
+            ->with('status', 'Software details successfully updated');
     }
 
     /**

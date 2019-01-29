@@ -22,7 +22,10 @@
 							<fieldset class="form-group">
 								<label for="{{ $spec }}">{{ ucfirst($spec) }}:</label>
 								<input type="text" class="form-control" id="{{ $spec }}" name="{{ $spec }}"
-									value="{{ $computer_software->specs[$spec] }}" {{ $loop->first ? 'autofocus' : '' }} >
+									value="{{
+										array_key_exists($spec, $computer_software->specs) ?
+											$computer_software->specs[$spec] : '' }}"
+									{{ $loop->first ? 'autofocus' : '' }} >
 							</fieldset>
 						@endforeach
 

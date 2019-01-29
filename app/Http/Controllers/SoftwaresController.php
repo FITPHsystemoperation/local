@@ -81,7 +81,7 @@ class SoftwaresController extends Controller
     {
         $software->update([
             'softwareName' => $request->get('softwareName'),
-            'specList' => json_encode(explode(' ', $request['specList'])),
+            'specList' => explode(' ', $request['specList']),
         ]);
 
         return redirect('/softwares')->with('status', "$software->softwareName successfully updated");  

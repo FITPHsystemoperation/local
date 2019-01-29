@@ -36,7 +36,7 @@
 		    				<span class="text-danger">
                                 <strong>*Separate each item using space.</strong>
                             </span>
-		    				<input type="text" class="form-control" id="specList" name="specList" value="{{ implode(' ', json_decode($software->specList)) }}">
+		    				<input type="text" class="form-control" id="specList" name="specList" value="{{ implode(' ', $software->specList) }}">
 		    			</fieldset>
 
 		    			<button type="submit" class="btn btn-primary">Save</button>
