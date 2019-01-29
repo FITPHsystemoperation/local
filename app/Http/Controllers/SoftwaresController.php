@@ -56,6 +56,8 @@ class SoftwaresController extends Controller
      */
     public function show(Software $software)
     {
+        // return $software->computers[0]->computer->compName;
+
         return view('softwares.show', compact('software'));
     }
 
