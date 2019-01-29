@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('old_password', function($attribute, $value, $parameters, $validator) {
             return Hash::check($value, current($parameters));
         });
+
+        Validator::extend('duplicate', function($attribute, $value, $parameters, $validator) {
+            return count(explode(' ', $value)) === count(array_unique(explode(' ', $value)));
+        });
     }
 
     /**

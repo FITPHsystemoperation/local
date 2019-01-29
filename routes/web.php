@@ -74,6 +74,8 @@ Route::get('/softwares', 'SoftwaresController@index');
 Route::get('/softwares/create', 'SoftwaresController@create');
 Route::post('/softwares/create', 'SoftwaresController@store');
 Route::get('/software/{software}', 'SoftwaresController@show');
+Route::get('/software/{software}/edit', 'SoftwaresController@edit');
+Route::post('/software/{software}/edit', 'SoftwaresController@update');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');

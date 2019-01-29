@@ -25,7 +25,7 @@ class SoftwareFormRequest extends FormRequest
     {
         return [
             'softwareName' => 'required|min:3',
-            'specList' => 'regex:/\w\s/',
+            'specList' => 'duplicate',
         ];
     }
 }

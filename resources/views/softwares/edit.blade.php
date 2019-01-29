@@ -12,7 +12,7 @@
 
 	    		<div class="card-header">
 			    
-			    	<h2>New Software</h2>
+			    	<h2>Edit Software</h2>
 	    			
 	    		</div>
 
@@ -22,13 +22,13 @@
 					    <p class="alert alert-danger">{{ $error }}</p>
 					@endforeach
 		    		
-		    		<form method="post" action="/softwares/create">
+		    		<form method="post" action="/software/{{ $software->id }}/edit">
 
 		    			@csrf
 
 		    			<fieldset class="form-group">
 		    				<label for="softwareName">Software Name</label>
-		    				<input type="text" class="form-control" id="softwareName" name="softwareName" placeholder="Software Name" value="{{ old('softwareName') }}" required autofocus>
+		    				<input type="text" class="form-control" id="softwareName" name="softwareName" placeholder="Software Name" value="{{ $software->softwareName }}" required autofocus>
 		    			</fieldset>
 
 		    			<fieldset class="form-group">
@@ -36,7 +36,7 @@
 		    				<span class="text-danger">
                                 <strong>*Separate each item using space.</strong>
                             </span>
-		    				<input type="text" class="form-control" id="specList" name="specList" placeholder="Ex: (Version Password)" value="{{ old('specList') }}">
+		    				<input type="text" class="form-control" id="specList" name="specList" value="{{ implode(' ', json_decode($software->specList)) }}">
 		    			</fieldset>
 
 		    			<button type="submit" class="btn btn-primary">Save</button>

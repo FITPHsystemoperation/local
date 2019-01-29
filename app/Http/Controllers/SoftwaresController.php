@@ -65,9 +65,9 @@ class SoftwaresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Software $software)
     {
-        //
+       return view('softwares.edit', compact('software'));
     }
 
     /**
@@ -77,9 +77,14 @@ class SoftwaresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SoftwareFormRequest $request, Software $software)
     {
-        //
+        $software->update([
+            'softwareName' => $request->get('softwareName'),
+            'specList' => json_encode(explode(' ', $request['specList'])),
+        ]);
+
+        return redirect('/softwares')->with('status', "$software->softwareName successfully updated");  
     }
 
     /**

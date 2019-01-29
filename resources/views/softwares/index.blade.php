@@ -27,18 +27,22 @@
 					
 				    <table class="table border-bottom">
 				    	<thead>
-				    		<tr>
+				    		<tr class="text-center">
 				    			<th>Softwares</th>
+				    			<th>Action</th>
 				    		</tr>
 				    	</thead>
 				    	<tbody>
 				    		@foreach ($softwares as $software)
 
-				    			<tr>
+				    			<tr class="text-center">
 				    				<td>
 				    					<a href="/software/{{ $software->id }}">
 					    					{{ $software->softwareName }}
 				    					</a>
+				    				</td>
+				    				<td>
+								    	<a class="btn btn-sm btn-outline-info" href="/software/{{ $software->id }}/edit" role="button">Edit</a>
 				    				</td>
 				    			</tr>
 
