@@ -33,7 +33,7 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="specList">Spec List </label>
-		    				<span class="text-danger">
+		    				<span class="text-danger float-right">
                                 <strong>*Separate each item using space.</strong>
                             </span>
 		    				<input type="text" class="form-control" id="specList" name="specList" placeholder="Ex: (Version Password)" value="{{ old('specList') }}">

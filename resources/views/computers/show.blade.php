@@ -111,7 +111,7 @@
 
 						@foreach ($computer->softwares as $software)
 
-							<ul class="list-group {{ !$loop->last ? 'mb-2' : '' }}">
+							<ul class="list-group {{ !$loop->last ? 'mb-3' : '' }}">
 								<li class="list-group-item list-group-item-secondary">
 									<h5>
 										{{ ucfirst($software->software->softwareName) }}
@@ -124,7 +124,7 @@
 										@foreach ($software->specs as $key => $spec)
 								
 											<div class="col-sm-3">
-											<h5><span class="lead">{{ $key }}:</span> {{ $spec }}</h5>
+											<h5><span class="lead">{{ ucfirst($key) }}:</span> {{ $spec }}</h5>
 											</div>
 
 										@endforeach
