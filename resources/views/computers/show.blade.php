@@ -92,6 +92,28 @@
 			    </div>
 
 		    </div>
+
+		    <div class="card mt-3 border-secondary">
+
+		    	<div class="card-header">
+		    		
+				    <h4>
+				    	Softwares
+				    	<a class="btn btn-primary float-right"
+							href="/computer/{{ $computer->id }}/software/create"
+							role="button"
+						>Add</a>
+				    </h4>
+		    		
+		    	</div>
+
+		    	<div class="card-body">
+
+					
+
+			    </div>
+
+		    </div>
 				    
 			<h3 class="m-4">Accessories</h3>
 

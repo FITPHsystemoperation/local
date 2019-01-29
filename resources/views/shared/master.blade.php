@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="{!! asset('css/bootstrap.min.css') !!}" rel="stylesheet">
-    <title>@yield('title')</title>
+    <title>@yield('title', 'System Support')</title>
   </head>
   <body>
     

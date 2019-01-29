@@ -32,4 +32,9 @@ class Computer extends Model
     {
         return $this->hasMany(ComputerAccount::class);
     }
+
+    public function softwares()
+    {
+        return $this->belongsToMany(Software::class);
+    }
 }
