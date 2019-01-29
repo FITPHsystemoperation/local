@@ -112,17 +112,30 @@
 						@foreach ($computer->softwares as $software)
 
 							<ul class="list-group {{ !$loop->last ? 'mb-2' : '' }}">
+								<li class="list-group-item list-group-item-secondary">
+									<h5>
+										{{ ucfirst($software->software->softwareName) }}
+										<a class="btn btn-sm btn-outline-info float-right" href="/computer-software/{{ $software->id }}/edit" role="button">Update</a>
+									</h5>
+								</li>
+								<li class="list-group-item">
+									<div class="row">
+									
+										@foreach ($software->specs as $key => $spec)
+								
+											<div class="col-sm-3">
+											<h5><span class="lead">{{ $key }}:</span> {{ $spec }}</h5>
+											</div>
 
-								<li class="list-group-item list-group-item-primary"><strong>{{ ucfirst($software->softwareName) }}</strong></li>
-								@foreach (json_decode($software->pivot->specs) as $key => $spec)
-									<li class="list-group-item pl-5">
-										{{ $key }}:
-										<strong>{{ $spec }}</strong>
-									</li>
-								@endforeach
+										@endforeach
+
+									</div>
+								</li>
 							</ul>
 
 						@endforeach
+
+						
 
 
 			    </div>

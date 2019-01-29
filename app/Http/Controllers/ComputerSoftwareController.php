@@ -45,7 +45,7 @@ class ComputerSoftwareController extends Controller
         ComputerSoftware::create([
             'computer_id' => $computer,
             'software_id' => $software,
-            'specs' => json_encode(array_slice($request->all(), 1))
+            'specs' => array_slice($request->all(), 1)
         ]);
 
         return redirect("/computer/$computer")
@@ -69,9 +69,9 @@ class ComputerSoftwareController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ComputerSoftware $computer_software)
     {
-        //
+        return view('computers.software.edit', compact('computer_software')); 
     }
 
     /**

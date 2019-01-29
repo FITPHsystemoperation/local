@@ -11,7 +11,7 @@
 	    		<div class="card-header">
 	    			
 				    <h3>
-				    	Add Software to {{ $computer->compName }}
+				    	Add @yield('software', 'Software') to {{ $computer->compName }}
 						<div class="btn-group float-right">
 							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Select Software

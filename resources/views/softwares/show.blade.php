@@ -28,7 +28,7 @@
 				    <table class="table border-bottom">
 				    	<thead>
 				    		<tr class="text-center">
-				    			@foreach (json_decode($software->specList) as $spec)
+				    			@foreach ($software->specList as $spec)
 				    				<th>{{ ucfirst($spec) }}</th>
 				    			@endforeach
 				    		</tr>

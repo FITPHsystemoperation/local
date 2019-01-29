@@ -42,7 +42,7 @@ class SoftwaresController extends Controller
 
         Software::create([
             'softwareName' => $request->get('softwareName'),
-            'specList' => json_encode(explode(' ', $request['specList'])),
+            'specList' => explode(' ', $request['specList']),
         ]);
 
         return redirect('/softwares')->with('status', 'Software successfully recorded');  

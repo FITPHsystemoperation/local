@@ -80,6 +80,7 @@ Route::post('/software/{software}/edit', 'SoftwaresController@update');
 Route::get('/computer/{computer}/software/create', 'ComputerSoftwareController@index');
 Route::get('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@create');
 Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@store');
+Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');

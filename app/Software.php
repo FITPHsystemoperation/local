@@ -8,8 +8,10 @@ class Software extends Model
 {
     protected $guarded = ['id'];
 
+    protected $casts = ['specList' => 'array'];
+
     public function computers()
     {
-        return $this->belongsToMany(Computer::class);
+        return $this->hasMany(ComputerSoftware::class);
     }
 }

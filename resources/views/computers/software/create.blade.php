@@ -1,16 +1,12 @@
 @extends('computers.software.index')
 
+@section('software', $software->softwareName)
+
 @section('form')
 	<form method="post" action="/computer/{{ $computer->id }}/software/{{ $software->id }}/create">
 
-		<h4>
-			<span class="lead">Software:</span>
-			{{ $software->softwareName }}
-		</h4>
-		<hr>
-
 		@csrf
-		@foreach (json_decode($software->specList) as $spec)
+		@foreach ($software->specList as $spec)
 			<fieldset class="form-group">
 				<label for="{{ $spec }}">{{ ucfirst($spec) }}:</label>
 				<input type="text" class="form-control" id="{{ $spec }}" name="{{ $spec }}" placeholder="{{ $spec }}" value="{{ old( $spec) }}" {{ $loop->first ? 'autofocus' : '' }} >
@@ -20,7 +16,7 @@
 		
 		<button type="submit" class="btn btn-primary">Save</button>
 
-		<a class="btn btn-outline-secondary" href="/computers" role="button">Back</a>
+		<a class="btn btn-outline-secondary" href="/computer/{{ $computer->id }}" role="button">Back</a>
 
 	</form>
 @endsection

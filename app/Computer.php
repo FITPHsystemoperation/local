@@ -35,6 +35,6 @@ class Computer extends Model
 
     public function softwares()
     {
-        return $this->belongsToMany(Software::class)->withPivot('id', 'specs');
+        return $this->hasMany(ComputerSoftware::class);
     }
 }
