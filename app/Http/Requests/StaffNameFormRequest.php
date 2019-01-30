@@ -26,7 +26,7 @@ class StaffNameFormRequest extends FormRequest
         return [
             'idNumber' => 'required|min:4',
             'firstName' => 'required|min:2',
-            'middleName' => 'required|min:2',
+            // 'middleName' => 'required|min:2',
             'lastName' => 'required|min:2',
             'nickName' => 'required|min:2',
             'image' => 'image|nullable|max:1999',

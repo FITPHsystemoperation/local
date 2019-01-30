@@ -36,7 +36,7 @@
 		    
 		    			<fieldset class="form-group">
 		    				<label for="middleName">Middle name:</label>
-		    				<input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="{{ $staff->middleName }}"required>
+		    				<input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="{{ $staff->middleName }}">
 		    			</fieldset>
 		    			
 		    			<fieldset class="form-group">

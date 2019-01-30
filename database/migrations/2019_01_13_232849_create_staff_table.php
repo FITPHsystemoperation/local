@@ -18,7 +18,7 @@ class CreateStaffTable extends Migration
             $table->increments('id');
             // $table->string('idNumber', 15)->unique();
             $table->string('firstName', 50);
-            $table->string('middleName', 50);
+            $table->string('middleName', 50)->nullable();
             $table->string('lastName', 50);
             $table->string('nickName', 50);
             $table->string('gender', 1);

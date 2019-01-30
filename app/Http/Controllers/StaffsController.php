@@ -16,6 +16,10 @@ use App\Http\Requests\{
 
 class StaffsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -95,7 +99,6 @@ class StaffsController extends Controller
      */
     public function update(StaffNameFormRequest $request, Staff $staff)
     {   
-
         $staff->update([
             'firstName' => $request->get('firstName'),
             'middleName' => $request->get('middleName'),
@@ -109,7 +112,7 @@ class StaffsController extends Controller
 
         if ($request->hasFile('image'))
         {
-            $filename = $staff->idNumber . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+            $filename = $staff->user->idNumber . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
 
             $request->file('image')->storeAs('public/staffs', $filename);
 

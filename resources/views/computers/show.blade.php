@@ -111,11 +111,11 @@
 
 						@foreach ($computer->softwares as $software)
 
-							<ul class="list-group {{ !$loop->last ? 'mb-2' : '' }}">
-								<li class="list-group-item list-group-item-secondary">
+							<ul class="list-group {{ !$loop->last ? 'mb-3' : '' }}">
+								<li class="list-group-item">
 									<h5>
 										{{ ucfirst($software->software->softwareName) }}
-										<a class="btn btn-sm btn-outline-info float-right" href="/computer-software/{{ $software->id }}/edit" role="button">Update</a>
+										<a class="btn btn-sm btn-outline-secondary float-right" href="/computer-software/{{ $software->id }}/edit" role="button">Update</a>
 									</h5>
 								</li>
 								<li class="list-group-item">
@@ -124,7 +124,7 @@
 										@foreach ($software->specs as $key => $spec)
 								
 											<div class="col-sm-3">
-											<h5><span class="lead">{{ $key }}:</span> {{ $spec }}</h5>
+											<h5><span class="lead">{{ ucfirst($key) }}:</span> {{ $spec }}</h5>
 											</div>
 
 										@endforeach
