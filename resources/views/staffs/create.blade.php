@@ -36,7 +36,7 @@
 		    
 		    			<fieldset class="form-group">
 		    				<label for="middleName">Middle name:</label>
-		    				<input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="{{ old('middleName') }}"required>
+		    				<input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="{{ old('middleName') }}">
 		    			</fieldset>
 		    			
 		    			<fieldset class="form-group">
@@ -51,13 +51,13 @@
 
 		    			<div class="form-group row">
 
-			    			<div class="radio col-sm-1">
+			    			<div class="radio col-sm-2">
 			    				<label>
 			    					<input type="radio" name="gender" value="m" checked>Male
 			    				</label>
 			    			</div>
 			    			
-			    			<div class="radio col-sm-1">
+			    			<div class="radio col-sm-2">
 			    				<label>
 			    					<input type="radio" name="gender" value="f">Female
 			    				</label>
