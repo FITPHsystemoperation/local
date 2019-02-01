@@ -15,7 +15,7 @@ class CreateDocumentCategoriesTable extends Migration
     {
         Schema::create('document_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('categoryName', 50);
+            $table->string('categoryName', 50)->unique();
             $table->text('description')->nullable();
             $table->timestamps();
         });

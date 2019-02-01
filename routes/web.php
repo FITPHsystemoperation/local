@@ -89,6 +89,8 @@ Route::post('/document/categories/create', 'DocumentCategoriesController@store')
 Route::get('/document/category/{category}/edit', 'DocumentCategoriesController@edit');
 Route::post('/document/category/{category}/edit', 'DocumentCategoriesController@update');
 
+Route::get('/documents', 'DocumentsController@index');
+
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
