@@ -83,8 +83,10 @@ Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftware
 Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
 Route::post('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@update');
 
-Route::get('/documents/create', 'DocumentsController@create');
-Route::post('/documents/create', 'DocumentsController@store');
+Route::get('/document/categories', 'DocumentCategoriesController@index');
+Route::get('/document/categories/create', 'DocumentCategoriesController@create');
+Route::post('/document/categories/create', 'DocumentCategoriesController@store');
+Route::get('/document/category/{category}/edit', 'DocumentCategoriesController@edit');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');

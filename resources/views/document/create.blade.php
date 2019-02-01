@@ -27,7 +27,7 @@
 		    				<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ old('idNumber') }}" required autofocus>
 		    			</fieldset> --}}
 
-		    			<input type="file" name="pdf">
+		    			<input type="file" name="file">
 
 						<hr>
 		    		

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\DocumentFormRequest;
+use App\DocumentCategory;
+use App\Http\Requests\DocumentCategoryFormRequest;
 
-class DocumentsController extends Controller
+class DocumentCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        //
+        return view('document.category.index')
+            ->with('categories', DocumentCategory::all());
     }
 
     /**
@@ -24,7 +26,7 @@ class DocumentsController extends Controller
      */
     public function create()
     {
-        return view('documents.create');
+        return view('document.category.create');
     }
 
     /**
@@ -33,21 +35,17 @@ class DocumentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DocumentFormRequest $request)
+    public function store(DocumentCategoryFormRequest $request)
     {
-        $request->file('file')->store('public/documents');
-        
-        return 'ok';
+        $request->validate(['categoryName' => 'unique:document_categories']);
 
-        if ($request->hasFile('image'))
-        {
-            $filename = $staff->user->idNumber . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+        DocumentCategory::create([
+            'categoryName' => $request->get('categoryName'),
+            'description' => $request->get('description'),
+        ]);
 
-
-            $staff->update([
-                'image' => $filename,
-            ]);
-        }
+        return redirect('/document/categories')
+            ->with('status', 'Document Category successfully added.');
     }
 
     /**
