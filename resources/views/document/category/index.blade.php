@@ -41,7 +41,7 @@
 			    				</td>
 			    				<td>{{$category->description}}</td>
 			    				<td>
-									<a class="btn btn-sm btn-outline-secondary" href="/document/category/{{ $category->id }}/edit" role="button">Update</a>
+									<a class="btn btn-sm btn-outline-info" href="/document/category/{{ $category->id }}/edit" role="button">Update</a>
 			    				</td>
 
 			    			</tr>

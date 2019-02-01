@@ -65,9 +65,9 @@ class DocumentCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DocumentCategory $category)
     {
-        //
+        return view('document.category.edit', compact('category'));
     }
 
     /**
@@ -77,9 +77,15 @@ class DocumentCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DocumentCategoryFormRequest $request, DocumentCategory $category)
     {
-        //
+        $category->update([
+            'categoryName' => $request->get('categoryName'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect('/document/categories')
+            ->with('status', 'Document Category successfully updated.');
     }
 
     /**
