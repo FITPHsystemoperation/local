@@ -17,8 +17,8 @@ class CreateDocumentsTable extends Migration
             $table->increments('id');
             $table->string('title', 50)->unique();
             $table->text('description');
-            $table->integer('document_category_id')->unsigned()->index();
-            $table->foreign('document_category_id')
+            $table->integer('category_id')->unsigned()->index();
+            $table->foreign('category_id')
                 ->references('id')->on('document_categories')->onDelete('cascade');
             $table->timestamps();
         });

@@ -8,6 +8,6 @@ class Document extends Model
 {
     public function category()
     {
-    	return $this->belongsTo(DocumentCategory::class, 'document_category_id');
+    	return $this->belongsTo(DocumentCategory::class, 'category_id');
     }
 }

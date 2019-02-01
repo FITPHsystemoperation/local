@@ -90,6 +90,8 @@ Route::get('/document/category/{category}/edit', 'DocumentCategoriesController@e
 Route::post('/document/category/{category}/edit', 'DocumentCategoriesController@update');
 
 Route::get('/documents', 'DocumentsController@index');
+Route::get('/documents/create', 'DocumentsController@create');
+Route::post('/documents/create', 'DocumentsController@store');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');

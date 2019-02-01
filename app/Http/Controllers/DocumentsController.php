@@ -25,7 +25,7 @@ class DocumentsController extends Controller
      */
     public function create()
     {
-        return view('documents.create');
+        return view('document.create');
     }
 
     /**
@@ -36,9 +36,10 @@ class DocumentsController extends Controller
      */
     public function store(DocumentFormRequest $request)
     {
+        return $request;
+        
         $request->file('file')->store('public/documents');
         
-        return 'ok';
 
         if ($request->hasFile('image'))
         {
