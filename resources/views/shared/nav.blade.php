@@ -38,6 +38,19 @@
 
                     </div>
                 </li>
+                {{-- document --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Document<span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <a class="dropdown-item" href="/documents">Document</a>
+
+                        <a class="dropdown-item" href="/document/categories">Category</a>
+
+                    </div>
+                </li>
                 {{-- profile --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
