@@ -135,9 +135,6 @@
 
 						@endforeach
 
-						
-
-
 			    </div>
 
 		    </div>

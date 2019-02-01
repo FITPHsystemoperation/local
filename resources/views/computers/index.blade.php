@@ -6,7 +6,7 @@
 <div class="row justify-content-center">
 	<div class="col-sm-8">
 		
-		<div class="card mt-3 mb-3 border-secondary">
+		<div class="card my-3 border-secondary">
 
 			<div class="card-header">
 				
