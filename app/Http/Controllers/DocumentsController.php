@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\DocumentFormRequest;
+use App\DocumentCategory;
 use App\Document;
 
 class DocumentsController extends Controller
@@ -25,7 +26,8 @@ class DocumentsController extends Controller
      */
     public function create()
     {
-        return view('document.create');
+        return view('document.create')
+            ->with('categories', DocumentCategory::all());
     }
 
     /**

@@ -43,8 +43,11 @@
 
 		    			<fieldset class="form-group">
 		    				<label for="category_id">Category:</label>
-		    				<select class="form-control" id="category_id" name="category_id">
-		    					
+		    				<select class="form-control" id="category_id" name="category_id" required>
+		    					<option value="" disabled selected>Select Category</option>
+		    					@foreach ($categories as $category)
+		    						<option value="{{ $category->id }}">{{ $category->categoryName }}</option>
+		    					@endforeach
 		    				</select>
 		    			</fieldset>
 
