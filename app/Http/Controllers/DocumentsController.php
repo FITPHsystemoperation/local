@@ -25,7 +25,7 @@ class DocumentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         return view('document.create')
             ->with('categories', DocumentCategory::all());
     }
@@ -38,20 +38,28 @@ class DocumentsController extends Controller
      */
     public function store(DocumentFormRequest $request)
     {
-        return $request;
+        $document = Document::create([
+            'title' => $request->get('title'),
+            'category_id' => $request->get('category_id'),
+            'description' => $request->get('description'),
+        ]);       
         
-        $request->file('file')->store('public/documents');
-        
+        $document->files()->save(
+            DocumentFile::create([
+                'filename' => 'sfdgdsgf',
+            ])
+        );
 
-        if ($request->hasFile('image'))
-        {
-            $filename = $staff->user->idNumber . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+        return $document->files;
+        // $request->file('file')->store('public/documents');
+        // if ($request->hasFile('image'))
+        // {
 
 
-            $staff->update([
-                'image' => $filename,
-            ]);
-        }
+        //     $staff->update([
+        //         'image' => $filename,
+        //     ]);
+        // }
     }
 
     /**
@@ -60,9 +68,9 @@ class DocumentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Document $document)
     {
-        //
+        return $document->files;
     }
 
     /**
