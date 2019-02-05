@@ -83,6 +83,21 @@ Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftware
 Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
 Route::post('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@update');
 
+Route::get('/document/categories', 'DocumentCategoriesController@index');
+Route::get('/document/categories/create', 'DocumentCategoriesController@create');
+Route::post('/document/categories/create', 'DocumentCategoriesController@store');
+Route::get('/document/category/{category}/edit', 'DocumentCategoriesController@edit');
+Route::post('/document/category/{category}/edit', 'DocumentCategoriesController@update');
+Route::get('/document/category/{category}', 'DocumentCategoriesController@show');
+
+Route::get('/documents', 'DocumentsController@index');
+Route::get('/documents/create', 'DocumentsController@create');
+Route::post('/documents/create', 'DocumentsController@store');
+Route::get('/document/{document}', 'DocumentsController@show');
+Route::post('/document/{document}/upload', 'DocumentsController@addFile');
+Route::get('/document/{document}/edit', 'DocumentsController@edit');
+Route::post('/document/{document}/edit', 'DocumentsController@update');
+
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');

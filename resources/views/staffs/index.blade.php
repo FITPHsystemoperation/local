@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="card mt-3 border-secondary">
+	<div class="card my-3 border-secondary">
 		<div class="card-header">
 		    <h2>Master List
 		    	<a class="btn btn-primary float-right" href="staffs/create" role="button">Add New</a>

@@ -1,7 +1,5 @@
 @extends('shared.master')
 
-@section('title', 'Computers')
-
 @section('content')
 <div class="row justify-content-center">
 	<div class="col-sm-8">
@@ -10,8 +8,10 @@
 
 			<div class="card-header">
 				
-			    <h2>Computer Inventory
-				    <a class="btn btn-primary float-right" href="computers/create" role="button">Add New</a>
+			    <h2>
+			    	{{ $category->categoryName }}
+			    	<a class="btn btn-outline-secondary float-right" href="/document/categories" role="button">Back</a>
+					<a href="/document/category/{{ $category->id }}/edit" class="btn btn-outline-info float-right mr-2">Edit</a>
 			    </h2>
 				
 			</div>
@@ -27,30 +27,27 @@
 			    <table class="table border-bottom">
 			    	<thead>
 			    		<tr class="text-center">
-			    			<th>CompName</th>
-			    			<th>Accounts</th>
-			    			<th>Status</th>
-			    			{{-- <th>Department</th> --}}
+			    			<th>Title</th>
+			    			<th>Uploaded Date</th>
+			    			<th>File</th>
 			    		</tr>
 			    	</thead>
 			    	<tbody>
-			    		@foreach ($computers as $computer)
+			    		@foreach ($category->documents as $document)
 			    			<tr class="text-center">
 			    				
 			    				<td>
-			    					<a href="computer/{{ $computer->id }}">
-				    					{{$computer->compName}}
+			    					<a href="/document/{{ $document->id }}">
+				    					{{$document->title}}
 			    					</a>
 			    				</td>
+			    				<td>{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}</td>
 			    				<td>
-			    					@foreach ($computer->accounts as $account)
-				    					{{ $account['accountName'] }}
-			    						{{ !$loop->last ? '/ ' : '' }}
-			    					@endforeach
+			    					<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
+				    					{{ $document->files->last()->filename }}
+			    					</a>
 			    				</td>
-			    				<td>{{$computer->status}}</td>
-			    				{{-- <td></td> --}}
-
+			    				
 			    			</tr>
 			    		@endforeach
 			    	</tbody>
