@@ -102,9 +102,16 @@ class DocumentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DocumentFormRequest $request, Document $document)
     {
-        //
+        $document->update([
+            'title' => $request->get('title'),
+            'category_id' => $request->get('category_id'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect("/document/$document->id")
+            ->with('status', 'Document information successfully updated');
     }
 
     /**
