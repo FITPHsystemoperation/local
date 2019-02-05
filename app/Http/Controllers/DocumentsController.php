@@ -10,6 +10,10 @@ use App\DocumentFile;
 
 class DocumentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -68,7 +72,7 @@ class DocumentsController extends Controller
     {
         return view('document.show', compact('document'));
     }
-    
+
     public function addFile(Request $request, Document $document)
     {
         $request->validate(['file' =>'required|mimes:pdf|max:10000']);
@@ -85,9 +89,10 @@ class DocumentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Document $document)
     {
-        //
+        return view('document.edit', compact('document'))
+            ->with('categories', DocumentCategory::all());
     }
 
     /**

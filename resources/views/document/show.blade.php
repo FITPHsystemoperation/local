@@ -39,7 +39,7 @@
 
 	    	<div class="card-footer">
 		    		
-				<a href="#" class="btn btn-info">Edit</a>
+				<a href="/document/{{ $document->id }}/edit" class="btn btn-info">Edit</a>
 				<a href="/documents" class="btn btn-outline-secondary">Back</a>
 	    	
 	    	</div>
@@ -69,16 +69,18 @@
 						<thead>
 							<tr class="text-center">
 								<th>File Name</th>
-								<th>Date Uploaded</th>
+								<th>Date</th>
+								<th>Time</th>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($document->files as $file)
+							@foreach ($document->files->reverse() as $file)
 								<tr class="text-center">
 									<td>
 										<a href="/storage/documents/{{ $file->filename }}" target="_blank">{{ $file->filename }}</a>
 									</td>
-									<td>{{ $file->created_at }}</td>
+									<td>{{ date('M d, Y', strtotime($file->created_at)) }}</td>
+									<td>{{ date('h:i A', strtotime($file->created_at)) }}</td>
 								</tr>
 							@endforeach
 						</tbody>

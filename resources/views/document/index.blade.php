@@ -27,8 +27,8 @@
 			    		<tr class="text-center">
 			    			<th>Title</th>
 			    			<th>Category</th>
-			    			<th>Latest File</th>
-			    			<th>Action</th>
+			    			<th>Uploaded Date</th>
+			    			<th>File</th>
 			    		</tr>
 			    	</thead>
 			    	<tbody>
@@ -41,13 +41,13 @@
 			    					</a>
 			    				</td>
 			    				<td>{{ $document->category->categoryName }}</td>
-			    				<td>{{ $document->files->last()->filename }}</td>
+			    				<td>{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}</td>
 			    				<td>
-									<a class="btn btn-sm btn-outline-secondary" role="button" target="_blank" 
-										href="/storage/documents/{{ $document->files->last()->filename }}"
-									>View</a>
+			    					<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
+				    					{{ $document->files->last()->filename }}
+			    					</a>
 			    				</td>
-
+			    				
 			    			</tr>
 			    		@endforeach
 			    	</tbody>

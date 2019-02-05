@@ -94,6 +94,8 @@ Route::get('/documents/create', 'DocumentsController@create');
 Route::post('/documents/create', 'DocumentsController@store');
 Route::get('/document/{document}', 'DocumentsController@show');
 Route::post('/document/{document}/upload', 'DocumentsController@addFile');
+Route::get('/document/{document}/edit', 'DocumentsController@edit');
+Route::post('/document/{document}/edit', 'DocumentsController@update');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
