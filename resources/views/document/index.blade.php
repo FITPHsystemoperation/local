@@ -26,7 +26,9 @@
 			    	<thead>
 			    		<tr class="text-center">
 			    			<th>Title</th>
+			    			<th>Category</th>
 			    			<th>Latest File</th>
+			    			<th>Action</th>
 			    		</tr>
 			    	</thead>
 			    	<tbody>
@@ -39,6 +41,12 @@
 			    					</a>
 			    				</td>
 			    				<td>{{ $document->category->categoryName }}</td>
+			    				<td>{{ $document->files->last()->filename }}</td>
+			    				<td>
+									<a class="btn btn-sm btn-outline-secondary" role="button" target="_blank" 
+										href="http://localhost/storage/documents/{{ $document->files->last()->filename }}"
+									>View</a>
+			    				</td>
 
 			    			</tr>
 			    		@endforeach

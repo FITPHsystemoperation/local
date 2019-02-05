@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\DocumentFormRequest;
-use App\DocumentCategory;
 use App\Document;
+use App\DocumentCategory;
+use App\DocumentFile;
 
 class DocumentsController extends Controller
 {
@@ -38,28 +39,22 @@ class DocumentsController extends Controller
      */
     public function store(DocumentFormRequest $request)
     {
-        $document = Document::create([
+        $filename = str_replace(' ', '-', $request->get('title'))
+            . '_' . time() . '.'
+            . $request->file('file')->getClientOriginalExtension();
+
+        $request->file('file')->storeAs('public/documents', $filename);
+
+        Document::create([
             'title' => $request->get('title'),
             'category_id' => $request->get('category_id'),
             'description' => $request->get('description'),
-        ]);       
-        
-        $document->files()->save(
-            DocumentFile::create([
-                'filename' => 'sfdgdsgf',
-            ])
+        ])->files()->save(
+            new DocumentFile(['filename' => $filename])
         );
 
-        return $document->files;
-        // $request->file('file')->store('public/documents');
-        // if ($request->hasFile('image'))
-        // {
-
-
-        //     $staff->update([
-        //         'image' => $filename,
-        //     ]);
-        // }
+        return redirect('/documents')
+            ->with('status', 'Document successfully recorded.');
     }
 
     /**
