@@ -43,25 +43,20 @@ class DocumentsController extends Controller
             'file' =>'required|mimes:pdf|max:10000',
         ]);
 
-        $filename = str_replace(' ', '-', $request->get('title'))
-            . '_' . time() . '.'
-            . $request->file('file')->getClientOriginalExtension();
-
-        $request->file('file')->storeAs('public/documents', $filename);
-
-        Document::create([
-            'title' => $request->get('title'),
-            'category_id' => $request->get('category_id'),
-            'description' => $request->get('description'),
-        ])->files()->save(
-            new DocumentFile([
-                'filename' => $filename,
-            ])
+        $this->upload(
+            Document::create([
+                'title' => $request->get('title'),
+                'category_id' => $request->get('category_id'),
+                'description' => $request->get('description'),
+            ]),
+            $request->file('file')
         );
-
+        
         return redirect('/documents')
             ->with('status', 'Document successfully recorded.');
     }
+
+    
 
     /**
      * Display the specified resource.
@@ -73,24 +68,12 @@ class DocumentsController extends Controller
     {
         return view('document.show', compact('document'));
     }
-
-    public function fileUpload(Request $request, Document $document)
+    
+    public function addFile(Request $request, Document $document)
     {
-        $request->validate([
-            'file' =>'required|mimes:pdf|max:10000',
-        ]);
-        
-        $filename = str_replace(' ', '-', $document->title)
-            . '_' . time() . '.'
-            . $request->file('file')->getClientOriginalExtension();
+        $request->validate(['file' =>'required|mimes:pdf|max:10000']);
 
-        $request->file('file')->storeAs('public/documents', $filename);
-
-        $document->files()->save(
-            new DocumentFile([
-                'filename' => $filename,
-            ])
-        );
+        $this->upload($document, $request->file('file'));  
 
         return redirect()->back()
             ->with('status', 'File successfully uploaded');
@@ -128,5 +111,20 @@ class DocumentsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function upload($document, $file)
+    {   
+        $filename = str_replace(' ', '-', $document->title)
+            . '_' . time() . '.'
+            . $file->getClientOriginalExtension();
+
+        $file->storeAs('public/documents', $filename);
+
+        $document->files()->save(
+            new DocumentFile([
+                'filename' => $filename,
+            ])
+        );
     }
 }
