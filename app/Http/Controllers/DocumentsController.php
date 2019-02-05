@@ -27,8 +27,7 @@ class DocumentsController extends Controller
      */
     public function create()
     {   
-        return view('document.create')
-            ->with('categories', DocumentCategory::all());
+        return view('document.create')->with('categories', DocumentCategory::all());
     }
 
     /**
@@ -39,6 +38,11 @@ class DocumentsController extends Controller
      */
     public function store(DocumentFormRequest $request)
     {
+        $request->validate([
+            'title' => 'unique:documents',
+            'file' =>'required|mimes:pdf|max:10000',
+        ]);
+
         $filename = str_replace(' ', '-', $request->get('title'))
             . '_' . time() . '.'
             . $request->file('file')->getClientOriginalExtension();
@@ -50,7 +54,9 @@ class DocumentsController extends Controller
             'category_id' => $request->get('category_id'),
             'description' => $request->get('description'),
         ])->files()->save(
-            new DocumentFile(['filename' => $filename])
+            new DocumentFile([
+                'filename' => $filename,
+            ])
         );
 
         return redirect('/documents')
@@ -65,7 +71,29 @@ class DocumentsController extends Controller
      */
     public function show(Document $document)
     {
-        return $document->files;
+        return view('document.show', compact('document'));
+    }
+
+    public function fileUpload(Request $request, Document $document)
+    {
+        $request->validate([
+            'file' =>'required|mimes:pdf|max:10000',
+        ]);
+        
+        $filename = str_replace(' ', '-', $document->title)
+            . '_' . time() . '.'
+            . $request->file('file')->getClientOriginalExtension();
+
+        $request->file('file')->storeAs('public/documents', $filename);
+
+        $document->files()->save(
+            new DocumentFile([
+                'filename' => $filename,
+            ])
+        );
+
+        return redirect()->back()
+            ->with('status', 'File successfully uploaded');
     }
 
     /**

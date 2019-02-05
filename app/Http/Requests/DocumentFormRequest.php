@@ -24,8 +24,7 @@ class DocumentFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:5|unique:documents',
-            'file' =>'required|mimes:pdf|max:10000',
+            'title' => 'required|min:5',
             'category_id' => 'required|integer'
         ];
     }

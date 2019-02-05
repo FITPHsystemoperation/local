@@ -44,7 +44,7 @@
 			    				<td>{{ $document->files->last()->filename }}</td>
 			    				<td>
 									<a class="btn btn-sm btn-outline-secondary" role="button" target="_blank" 
-										href="http://localhost/storage/documents/{{ $document->files->last()->filename }}"
+										href="/storage/documents/{{ $document->files->last()->filename }}"
 									>View</a>
 			    				</td>
 
