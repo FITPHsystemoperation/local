@@ -18,7 +18,7 @@ class DocumentCategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         return view('document.category.index')
             ->with('categories', DocumentCategory::all());
     }
@@ -58,9 +58,9 @@ class DocumentCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DocumentCategory $category)
     {
-        //
+        return view('document.category.show', compact('category'));
     }
 
     /**
@@ -88,7 +88,7 @@ class DocumentCategoriesController extends Controller
             'description' => $request->get('description'),
         ]);
 
-        return redirect('/document/categories')
+        return redirect("/document/category/$category->id")
             ->with('status', 'Document Category successfully updated.');
     }
 

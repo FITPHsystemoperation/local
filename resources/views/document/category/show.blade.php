@@ -8,8 +8,10 @@
 
 			<div class="card-header">
 				
-			    <h2>Document Category
-				    <a class="btn btn-primary float-right" href="/document/categories/create" role="button">Add New</a>
+			    <h2>
+			    	{{ $category->categoryName }}
+			    	<a class="btn btn-outline-secondary float-right" href="/document/categories" role="button">Back</a>
+					<a href="/document/category/{{ $category->id }}/edit" class="btn btn-outline-info float-right mr-2">Edit</a>
 			    </h2>
 				
 			</div>
@@ -25,26 +27,27 @@
 			    <table class="table border-bottom">
 			    	<thead>
 			    		<tr class="text-center">
-			    			<th>Category</th>
-			    			<th>Description</th>
-			    			<th>Document</th>
+			    			<th>Title</th>
+			    			<th>Uploaded Date</th>
+			    			<th>File</th>
 			    		</tr>
 			    	</thead>
 			    	<tbody>
-			    		@foreach ($categories as $category)
+			    		@foreach ($category->documents as $document)
 			    			<tr class="text-center">
 			    				
 			    				<td>
-			    					<a href="/document/category/{{ $category->id }}">
-				    					{{$category->categoryName}}
+			    					<a href="/document/{{ $document->id }}">
+				    					{{$document->title}}
 			    					</a>
 			    				</td>
-			    				<td>{{$category->description}}</td>
+			    				<td>{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}</td>
 			    				<td>
-			    					<strong class="text-danger">{{ $category->documents->count() }}</strong> document/s
+			    					<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
+				    					{{ $document->files->last()->filename }}
+			    					</a>
 			    				</td>
-									{{-- <a class="btn btn-sm btn-outline-info" href="/document/category/{{ $category->id }}/edit" role="button">Update</a> --}}
-
+			    				
 			    			</tr>
 			    		@endforeach
 			    	</tbody>

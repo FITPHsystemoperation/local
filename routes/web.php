@@ -88,6 +88,7 @@ Route::get('/document/categories/create', 'DocumentCategoriesController@create')
 Route::post('/document/categories/create', 'DocumentCategoriesController@store');
 Route::get('/document/category/{category}/edit', 'DocumentCategoriesController@edit');
 Route::post('/document/category/{category}/edit', 'DocumentCategoriesController@update');
+Route::get('/document/category/{category}', 'DocumentCategoriesController@show');
 
 Route::get('/documents', 'DocumentsController@index');
 Route::get('/documents/create', 'DocumentsController@create');
