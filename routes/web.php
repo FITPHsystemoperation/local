@@ -105,7 +105,7 @@ Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->nam
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 Route::get('/test', function(){
-	return Auth::user()->staff;
+	return Auth::user()->role;
 });
 
 Route::get('/', function(){
