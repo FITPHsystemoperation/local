@@ -11,7 +11,9 @@
 			<div class="card-header">
 				
 			    <h2>Computer Inventory
-				    <a class="btn btn-primary float-right" href="computers/create" role="button">Add New</a>
+			    	@can ('create', App\Computer::class)
+					    <a class="btn btn-primary float-right" href="computers/create" role="button">Add New</a>
+			    	@endcan
 			    </h2>
 				
 			</div>

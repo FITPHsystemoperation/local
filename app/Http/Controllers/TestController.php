@@ -8,7 +8,7 @@ class TestController extends Controller
 {
     public function index()
     {
-    	$this->authorize('isDeveloper', auth()->user());
+    	dump(auth()->user()->isUser2());
 
     	return 'worked';
     }
