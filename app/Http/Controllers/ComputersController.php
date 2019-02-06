@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ComputerFormRequest;
 use App\Computer;
+use App\User;
 
 class ComputersController extends Controller
 {
@@ -31,6 +32,8 @@ class ComputersController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Computer::class);
+
         return view('computers.create');
     }
 
@@ -64,6 +67,8 @@ class ComputersController extends Controller
      */
     public function show(Computer $computer)
     {
+        // $this->authorize('viewPassword', $computer);
+
         return view('computers.show', compact('computer'));
     }
 
