@@ -104,6 +104,10 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
+Route::get('/test', function(){
+	return Auth::user()->staff;
+});
+
 Route::get('/', function(){
 	return view('home');
 })->name('home');
