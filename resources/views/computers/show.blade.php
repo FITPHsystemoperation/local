@@ -42,8 +42,10 @@
 			    </div>
 
 		    	<div class="card-footer">
-		    		
-					<a href="/computer/{{ $computer->id }}/edit" class="btn btn-info">Edit</a>
+
+					@can ('update', $computer)
+						<a href="/computer/{{ $computer->id }}/edit" class="btn btn-info">Edit</a>
+					@endcan		    		
 					<a href="/computers" class="btn btn-outline-secondary">Back</a>
 		    	
 		    	</div>

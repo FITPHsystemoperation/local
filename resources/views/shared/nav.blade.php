@@ -64,7 +64,13 @@
 
                         <a class="dropdown-item"
                             href="/profile/{{ Auth::user()->staff['firstName'] . Auth::user()->staff['lastName'] }}">
-                            {{ Auth::user()->staff['firstName'] . ' ' . Auth::user()->staff['lastName'] }}</a>
+                            {{ Auth::user()->staff['firstName'] . ' ' . Auth::user()->staff['lastName'] }}
+                        </a>
+                        
+                        @can ('isDeveloper', auth()->user())
+                            <a class="dropdown-item" href="/dashboard" target="_blank">Dashboard</a>
+                        @endcan
+
                         <div class="dropdown-divider"></div>
 
                         <a class="dropdown-item" href="{{ route('logout') }}"
