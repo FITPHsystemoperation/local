@@ -13,33 +13,15 @@ class ComputerAccountController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create($id)
     {
+        $this->authorize('create', ComputerAccount::class);
+
         return view('computers.account.create', compact('id'))
             ->with('types', AccountType::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ComputerAccountFormRequest $request, $id)
     {   
         ComputerAccount::create([
@@ -53,36 +35,14 @@ class ComputerAccountController extends Controller
             ->with('status', 'Account has been added to this computer');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ComputerAccount $account)
     {
+        $this->authorize('update', $account);
+
         return view('computers.account.edit', compact('account'))
             ->with('types', AccountType::all());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(ComputerAccountFormRequest $request, ComputerAccount $account)
     {
         $account->update([
@@ -95,12 +55,6 @@ class ComputerAccountController extends Controller
             ->with('status', 'Account has been updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(ComputerAccount $account)
     {
         $account->delete();
@@ -108,4 +62,5 @@ class ComputerAccountController extends Controller
         return redirect("/computer/$account->computer_id")
             ->with('status', 'Account has been removed from this Computer');
     }
+
 }

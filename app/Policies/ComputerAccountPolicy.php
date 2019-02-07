@@ -3,33 +3,23 @@
 namespace App\Policies;
 
 use App\User;
-use App\Computer;
+use App\ComputerAccount;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ComputerPolicy
+class ComputerAccountPolicy
 {
     use HandlesAuthorization;
-
-    public function view(User $user, Computer $computer)
-    {
-        //
-    }
 
     public function create(User $user)
     {
         return
             $user->role_id === 2;
     }
-    
-    public function update(User $user, Computer $computer)
+
+    public function update(User $user, ComputerAccount $computerAccount)
     {
         return
             $user->role_id === 2;
     }
 
-    public function viewPassword(User $user)
-    {
-        return
-            $user->role_id === 2;
-    }
 }

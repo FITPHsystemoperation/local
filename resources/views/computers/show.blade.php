@@ -56,12 +56,11 @@
 
 		    	<div class="card-header">
 		    		
-				    <h4>
-				    	Accounts
-				    	<a class="btn btn-primary float-right"
-							href="/computer/{{ $computer->id }}/account/create"
-							role="button"
-						>Add</a>
+				    <h4>Accounts
+				    	@can ('create', App\ComputerAccount::class )
+					    	<a class="btn btn-primary float-right" role="button"
+								href="/computer/{{ $computer->id }}/account/create">Add</a>
+				    	@endcan
 				    </h4>
 		    		
 		    	</div>
@@ -82,6 +81,7 @@
 								<tr class="text-center">
 									<td>{{ $account->accountName }}</td>
 									<td>{{ $account->type->type }}</td>
+
 									@if ( $account->type_id != 1 || Gate::allows('viewPassword', $computer) )
 										<td>{{ $account->password }}</td>
 									@else
@@ -89,8 +89,11 @@
 									@endif
 
 									<td>
-										<a class="btn btn-sm btn-outline-info" href="/computer-account/{{ $account->id }}/edit" role="button">Update</a>
+										@can ('update', $account)
+											<a class="btn btn-sm btn-outline-info" href="/computer-account/{{ $account->id }}/edit" role="button">Update</a>
+										@endcan
 									</td>
+									
 								</tr>
 							@endforeach
 						</tbody>
