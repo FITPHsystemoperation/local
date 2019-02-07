@@ -80,7 +80,12 @@
 								<tr class="text-center">
 									<td>{{ $account->accountName }}</td>
 									<td>{{ $account->type->type }}</td>
-									<td>{{ $account->password }}</td>
+									@if ( $account->type_id != 1 || Gate::allows('viewPassword', $computer) )
+										<td>{{ $account->password }}</td>
+									@else
+										<td>{!! preg_replace('/./', '&#9679;', $account->password) !!}</td>
+									@endif
+
 									<td>
 										<a class="btn btn-sm btn-outline-info" href="/computer-account/{{ $account->id }}/edit" role="button">Update</a>
 									</td>

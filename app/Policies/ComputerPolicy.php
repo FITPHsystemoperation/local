@@ -35,7 +35,7 @@ class ComputerPolicy
      */
     public function create(User $user)
     {
-        return $user->role_id === 4;
+        return $user->role_id === 1;
     }
 
     /**
@@ -84,5 +84,10 @@ class ComputerPolicy
     public function forceDelete(User $user, Computer $computer)
     {
         //
+    }
+
+    public function viewPassword(User $user)
+    {
+        return $user->role_id === 1 || $user->role_id === 2;
     }
 }
