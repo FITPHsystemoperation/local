@@ -32,8 +32,13 @@
 	    			</fieldset>
 
 	    			<fieldset class="form-group">
-	    				<label for="accountRole">Account Role</label>
-	    				<input type="text" class="form-control" id="accountRole" name="accountRole" placeholder="Account Role" value="{{ old('accountRole') }}" required>
+	    				<label for="type_id">Account Role</label>
+	    				<select class="form-control" id="type_id" name="type_id" required>
+	    					<option value="" disabled selected>Select Role</option>
+							@foreach ($types as $type)
+								<option value="{{ $type->id }}">{{ $type->type }}</option>
+							@endforeach	    					
+	    				</select>
 	    			</fieldset>
 
 	    			<fieldset class="form-group">

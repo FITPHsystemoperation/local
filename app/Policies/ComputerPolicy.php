@@ -35,7 +35,7 @@ class ComputerPolicy
      */
     public function create(User $user)
     {
-        return $user->role_id === 2 ;
+        return $user->role_id === 4;
     }
 
     /**
