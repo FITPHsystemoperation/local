@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ComputerAccount;
+use App\AccountType;
 use App\Http\Requests\ComputerAccountFormRequest;
 
 class ComputerAccountController extends Controller
@@ -29,7 +30,8 @@ class ComputerAccountController extends Controller
      */
     public function create($id)
     {
-        return view('computers.account.create', compact('id'));
+        return view('computers.account.create', compact('id'))
+            ->with('types', AccountType::all());
     }
 
     /**
@@ -39,11 +41,11 @@ class ComputerAccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ComputerAccountFormRequest $request, $id)
-    {
+    {   
         ComputerAccount::create([
             'computer_id' => $id,
             'accountName' => $request->get('accountName'),
-            'accountRole' => $request->get('accountRole'),
+            'type_id' => $request->get('type_id'),
             'password' => $request->get('password'),
         ]);
 
@@ -70,7 +72,8 @@ class ComputerAccountController extends Controller
      */
     public function edit(ComputerAccount $account)
     {
-        return view('computers.account.edit', compact('account'));
+        return view('computers.account.edit', compact('account'))
+            ->with('types', AccountType::all());
     }
 
     /**
@@ -84,7 +87,7 @@ class ComputerAccountController extends Controller
     {
         $account->update([
             'accountName' => $request->get('accountName'),
-            'accountRole' => $request->get('accountRole'),
+            'type_id' => $request->get('type_id'),
             'password' => $request->get('password'),
         ]);
 

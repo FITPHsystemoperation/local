@@ -25,7 +25,7 @@ class ComputerAccountFormRequest extends FormRequest
     {
         return [
             'accountName' => 'required|min:5',
-            'accountRole' => 'required|min:5',
+            'type_id' => 'required|integer',
             'password' => 'required|min:5',
         ];
     }

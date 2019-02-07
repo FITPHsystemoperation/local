@@ -12,4 +12,9 @@ class ComputerAccount extends Model
     {
     	return $this->belongsTo(Computer::class);
     }
+
+    public function type()
+    {
+    	return $this->belongsTo(AccountType::class, 'type_id');
+    }
 }
