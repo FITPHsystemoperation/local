@@ -13,37 +13,26 @@ class ComputerSoftwareController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Computer $computer)
     {
+        $this->authorize('create', ComputerSoftware::class);
+
         return view('computers.software.index')
             ->with('softwares', Software::all())
             ->with('computer', $computer);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Computer $computer, Software $software)
     {   
+        $this->authorize('create', ComputerSoftware::class);
+
         return view('computers.software.create')
             ->with('softwares', Software::all())
             ->with('software', $software)
             ->with('computer', $computer);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, $computer, $software)
     {
         ComputerSoftware::create([
@@ -56,35 +45,13 @@ class ComputerSoftwareController extends Controller
             ->with('status', 'Software successfully added to this computer');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ComputerSoftware $computer_software)
     {
+        $this->authorize('create', ComputerSoftware::class);
+     
         return view('computers.software.edit', compact('computer_software')); 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, ComputerSoftware $computer_software)
     {
         $computer_software->update([
@@ -95,14 +62,4 @@ class ComputerSoftwareController extends Controller
             ->with('status', 'Software details successfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

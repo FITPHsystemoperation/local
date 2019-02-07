@@ -81,19 +81,21 @@
 								<tr class="text-center">
 									<td>{{ $account->accountName }}</td>
 									<td>{{ $account->type->type }}</td>
-
+									<td>
+										
 									@if ( $account->type_id != 1 || Gate::allows('viewPassword', $computer) )
-										<td>{{ $account->password }}</td>
+										{{ $account->password }}
 									@else
-										<td>{!! preg_replace('/./', '&#9679;', $account->password) !!}</td>
+										{!! preg_replace('/./', '&#9679;', $account->password) !!}
 									@endif
 
+									</td>
 									<td>
 										@can ('update', $account)
 											<a class="btn btn-sm btn-outline-info" href="/computer-account/{{ $account->id }}/edit" role="button">Update</a>
 										@endcan
 									</td>
-									
+
 								</tr>
 							@endforeach
 						</tbody>
@@ -107,12 +109,11 @@
 
 		    	<div class="card-header">
 		    		
-				    <h4>
-				    	Softwares
-				    	<a class="btn btn-primary float-right"
-							href="/computer/{{ $computer->id }}/software/create"
-							role="button"
-						>Add</a>
+				    <h4>Softwares
+				    	@can ('create', App\ComputerSoftware::class)
+					    	<a class="btn btn-primary float-right" role="button"
+								href="/computer/{{ $computer->id }}/software/create">Add</a>
+				    	@endcan
 				    </h4>
 		    		
 		    	</div>
@@ -123,9 +124,11 @@
 
 							<ul class="list-group {{ !$loop->last ? 'mb-3' : '' }}">
 								<li class="list-group-item">
-									<h5>
-										{{ ucfirst($software->software->softwareName) }}
-										<a class="btn btn-sm btn-outline-secondary float-right" href="/computer-software/{{ $software->id }}/edit" role="button">Update</a>
+									<h5>{{ ucfirst($software->software->softwareName) }}
+										@can ('update', $software)
+											<a class="btn btn-sm btn-outline-secondary float-right" role="button"
+												href="/computer-software/{{ $software->id }}/edit">Update</a>
+										@endcan
 									</h5>
 								</li>
 								<li class="list-group-item">
@@ -134,7 +137,15 @@
 										@foreach ($software->specs as $key => $spec)
 								
 											<div class="col-sm-3">
-											<h5><span class="lead">{{ ucfirst($key) }}:</span> {{ $spec }}</h5>
+												<h5>
+													<span class="lead">{{ ucfirst($key) }}:</span>
+													@if ( preg_match('/password/i', $key) &&
+														Gate::denies('viewPassword', $software))
+														{!! preg_replace('/./', '&#9679;', $spec) !!}
+													@else
+														{{ $spec }}
+													@endif
+												</h5>
 											</div>
 
 										@endforeach
