@@ -14,28 +14,28 @@
 					<form method="post" action="/computers/create">
 						@csrf
 
-						<fieldset class="form-group">
+						<fieldset class="form-group">{{-- compName --}}
 							<label for="compName">Computer Name</label>
 							
 							<input type="text" class="form-control" id="compName" name="compName" placeholder="Computer Name"
 								value="{{ old('compName') }}" required autofocus>
 						</fieldset>
 
-						<fieldset class="form-group">
+						<fieldset class="form-group">{{-- os --}}
 							<label for="os">Operating System</label>
 							
 							<input type="text" class="form-control" id="os" name="os" placeholder="Operating System"
 								value="{{ old('os') }}">
 						</fieldset>
 
-						<fieldset class="form-group">
+						<fieldset class="form-group">{{-- status --}}
 							<label for="status">Computer status</label>
 							
 							<input type="text" class="form-control" id="status" name="status" placeholder="Computer status"
 								value="{{ old('status') }}">
 						</fieldset>
 
-						<fieldset class="form-group">
+						<fieldset class="form-group">{{-- information --}}
 							<label for="information">Computer Information</label>
 							
 							<textarea class="form-control" id="information" name="information" rows="3">{{ old('information') }}</textarea>
