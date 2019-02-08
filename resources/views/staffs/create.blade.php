@@ -65,7 +65,7 @@
 						<div class="col-md-2">
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="gender" value="F">Female
+									<input type="radio" class="form-check-input" name="gender" value="f">Female
 								</label>
 							</div>{{-- form-check --}}
 						</div>{{-- col --}}

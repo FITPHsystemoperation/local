@@ -241,7 +241,7 @@
 						</div>{{-- col --}}
 							
 						<div class="col text-right">
-							<a href="/staff/{{ $staff->id }}/personal" class="btn btn-outline-info">Edit</a>
+							<a href="/staff/{{ $staff->id }}/personal" class="btn btn-outline-info">Update</a>
 						</div>{{-- col --}}
 					</div>{{-- row --}}
 				</div>
