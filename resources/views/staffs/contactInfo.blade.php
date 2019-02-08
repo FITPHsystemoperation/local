@@ -1,71 +1,66 @@
 @extends('shared.master')
 
-@section('title', 'Contact Information')
-
 @section('content')
+	<div class="container my-3">
+		<h1 class="display-4">{{ "$staff->firstName $staff->lastName" }}</h1>
 
-	<div class="row justify-content-center">
-	
-		<div class="col-sm-8">
+		<div class="card border-secondary mt-3">
+			<div class="card-header">
+				<h4>Update Contact Information</h4>
+			</div>{{-- card-header --}}
 
-		    <h1 class="m-3">{{ "$staff->firstName $staff->lastName" }}</h1>
-			
-		    <div class="card border-secondary">
+			<div class="card-body">
+				@include ('shared.error')
 
-		    	<div class="card-header">
-		    		
-				    <h4>Update Contact Information</h4>
-		    	
-		    	</div>
+				<form method="post" action="/staff/{{ $staff->id }}/contact-information">
+					@csrf
 
-		    	<div class="card-body">
-				    
-				    @foreach ($errors->all() as $error)
-					    <p class="alert alert-danger">{{ $error }}</p>
-					@endforeach
-		    		
-		    		<form method="post" action="/staff/{{ $staff->id }}/contact-information">
+					<div class="form-group row">
+						<label for="contactNo" class="col-md-3 col-form-label text-md-right">Contact No.:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="contactNo" name="contactNo" value="{{ $staff->contactNo }}" placeholder="Contact Number" required autofocus>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			@csrf
+					<div class="form-group row">
+						<label for="emailAddress" class="col-md-3 col-form-label text-md-right">Email Address:</label>
+							
+						<div class="col-md-7">
+							<input type="email" class="form-control" id="emailAddress" name="emailAddress" value="{{ $staff->emailAddress }}" placeholder="Email Address" required>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="contactNo">Contact No.:</label>
-		    				<input type="text" class="form-control" id="contactNo" name="contactNo" value="{{ $staff->contactNo }}" placeholder="Contact Number" required autofocus>
-		    			</fieldset>
+					<div class="form-group row">
+						<label for="permanentAddress" class="col-md-3 col-form-label text-md-right">Permanent Address:</label>
+							
+						<div class="col-md-7">
+						<input type="text" class="form-control" id="permanentAddress" name="permanentAddress" value="{{ $staff->permanentAddress }}" placeholder="Address" required>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="emailAddress">Email Address:</label>
-		    				<input type="email" class="form-control" id="emailAddress" name="emailAddress" value="{{ $staff->emailAddress }}" placeholder="Email Address" required>
-		    			</fieldset>
+					<div class="form-group row">
+						<label for="presentAddress" class="col-md-3 col-form-label text-md-right">Present Address:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="presentAddress" name="presentAddress" value="{{ $staff->presentAddress }}" placeholder="Address" required>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="permanentAddress">Permanent Address:</label>
-		    				<input type="text" class="form-control" id="permanentAddress" name="permanentAddress" value="{{ $staff->permanentAddress }}" placeholder="Address" required>
-		    			</fieldset>
+					<div class="form-group row mb-0">
+                        <div class="col-md-9 offset-md-3">
+							<button type="submit" class="btn btn-primary"> 
+								{{ $staff->isCompleted ? 'Save Record' : 'Go Next' }}
+							</button>
 
-		    			<fieldset class="form-group">
-		    				<label for="presentAddress">Present Address:</label>
-		    				<input type="text" class="form-control" id="presentAddress" name="presentAddress" value="{{ $staff->presentAddress }}" placeholder="Address" required>
-		    			</fieldset>
-
-						<hr>
-		    		
-		    			<button type="submit" class="btn btn-primary"> 
-		    				{{ $staff->isCompleted ? 'Save' : 'Next' }}
-		    			</button>
-
-						<a class="btn btn-outline-secondary"
-						href="/staff/{{ $staff->isCompleted ? $staff->id : "$staff->id/working-data" }}"
-						role="button">Back</a>
-
-		    		</form>
-
-		    	</div>
-
-		    </div>
-
-		</div>
-
-	</div>
-
+							<a class="btn btn-outline-secondary" role="button"
+								href="/staff/{{ $staff->isCompleted ? $staff->id : "$staff->id/working-data" }}">
+								Go Back
+							</a>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}
+				</form>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
+	</div>{{-- container --}}
 @endsection
