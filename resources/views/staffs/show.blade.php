@@ -232,6 +232,7 @@
 					</div>{{-- row --}}
 				</div>{{-- card-body --}}
 			</div>{{-- card --}}
+			
 			<div class="card mt-3 border-secondary">{{-- personal --}}
 				<div class="card-header">
 					<div class="row">

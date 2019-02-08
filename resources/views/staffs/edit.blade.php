@@ -1,82 +1,75 @@
 @extends('shared.master')
 
-@section('title', 'Update Staff Record')
-
 @section('content')
+	<div class="container my-3">
+		<div class="card mt-3 border-secondary">
+			<div class="card-header">
+				<h3>Update Staff Record</h3>
+			</div>{{-- card-header --}}
 
-	<div class="row justify-content-center">
-	
-		<div class="col-sm-8">
-			
-		    <div class="card mt-3 border-secondary">
+			<div class="card-body">
+				@include ('shared.error')
 
-		    	<div class="card-header">
-				    <h3>Update Staff Record</h3>
-		    	</div>
+				<form method="post" action="/staff/{{ $staff->id }}/edit" enctype="multipart/form-data">
+					@csrf
 
-		    	<div class="card-body">
-				    
-				    @foreach ($errors->all() as $error)
-					    <p class="alert alert-danger">{{ $error }}</p>
-					@endforeach
-		    		
-		    		<form method="post" action="/staff/{{ $staff->id }}/edit" enctype="multipart/form-data">
+					<div class="form-group row">{{-- idnumber --}}
+						<label for="idNumber" class="col-md-3 col-form-label text-md-right">ID No.:</label>
 
-		    			@csrf
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ $staff->user['idNumber'] }}" required autofocus>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="idNumber">ID No.:</label>
-		    				<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ $staff->user['idNumber'] }}" required autofocus>
-		    			</fieldset>
+					<div class="form-group row">{{-- firstName --}}
+						<label for="firstName" class="col-md-3 col-form-label text-md-right">First Name:</label>
 
-		    			<fieldset class="form-group">
-		    				<label for="firstName">First Name:</label>
-		    				<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" value="{{ $staff->firstName }}" required>
-		    			</fieldset>
-		    
-		    			<fieldset class="form-group">
-		    				<label for="middleName">Middle name:</label>
-		    				<input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="{{ $staff->middleName }}">
-		    			</fieldset>
-		    			
-		    			<fieldset class="form-group">
-		    				<label for="lastName">Last Name:</label>
-		    				<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" value="{{ $staff->lastName }}" required>
-		    			</fieldset>
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" value="{{ $staff->firstName }}" required>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="nickName">Nick Name:</label>
-		    				<input type="text" class="form-control" id="nickName" name="nickName" placeholder="Nick Name" value="{{ $staff->nickName }}" required>
-		    			</fieldset>
+					<div class="form-group row">
+						<label for="middleName" class="col-md-3 col-form-label text-md-right">Middle name:</label>
 
-		    			<fieldset class="form-group">
-		    			</fieldset>
-		    
-		    			<div class="form-group row">
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="{{ $staff->middleName }}">
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-			    			<div class="col-sm-1">
-			    				<label for="image">Image:</label>
-			    			</div>
-			    			<div class="col-sm-3">
-			    				<input type="file" class="form-control-file" id="image" name="image">
-			    			</div>
-			    			
-						</div>
+					<div class="form-group row">
+						<label for="lastName" class="col-md-3 col-form-label text-md-right">Last Name:</label>
 
-						<hr>
-							
-		    			<button type="submit" class="btn btn-primary">Update</button>
-		    			
-						<a class="btn btn-outline-secondary" href="/staff/{{ $staff->id }}" role="button">Back</a>
-		    		
-		    		</form>
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" value="{{ $staff->lastName }}" required>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    	</div>
+					<div class="form-group row">
+						<label for="nickName" class="col-md-3 col-form-label text-md-right">Nick Name:</label>
+						
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="nickName" name="nickName" placeholder="Nick Name" value="{{ $staff->nickName }}" required>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    </div>
+					<div class="form-group row">
+						<label for="image" class="col-md-3 col-form-label text-md-right">Image:</label>
+						
+						<div class="col-md-7">
+							<input type="file" class="form-control-file" id="image" name="image">
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		</div>
+					<div class="form-group row mb-0">
+                        <div class="col-md-9 offset-md-3">
+							<button type="submit" class="btn btn-primary">Update Record</button>
 
-	</div>
-
+							<a class="btn btn-outline-secondary" href="/staff/{{ $staff->id }}" role="button">Go Back</a>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}
+				</form>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
+	</div>{{-- container --}}
 @endsection
