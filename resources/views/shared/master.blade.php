@@ -13,7 +13,7 @@
   <body>
     @include('shared.nav')
 
-    <div class="container-fluid">@yield('content')</div>
+    @yield('content')
 
     <script src="{!! asset('js/jquery-3.3.1.min.js') !!}"></script>
     <script src="{!! asset('js/popper.min.js') !!}"></script>

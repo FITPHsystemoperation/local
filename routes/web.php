@@ -107,7 +107,7 @@ Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('pass
 Route::get('/test', 'TestController@index');
 
 Route::get('/', function(){
-	return view('home');
+	return view('pages.home');
 })->name('home');
 // Auth::routes();
 Route::get('/profile/{name}', 'PagesController@profile');
