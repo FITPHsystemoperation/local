@@ -9,8 +9,8 @@
 						<h2>{{ "$staff->firstName $staff->lastName" }}</h2>
 					</div>{{-- col --}}
 						
-					<div class="col">
-						<a class="btn btn-info float-right mr-2" href="{{ route('password.reset') }}" role="button">Change Password</a>
+					<div class="col text-right">
+						<a class="btn btn-info" href="{{ route('password.reset') }}" role="button">Change Password</a>
 					</div>{{-- col --}}				
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}
