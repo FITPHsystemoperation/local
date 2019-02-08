@@ -9,8 +9,8 @@
     <link href="{!! asset('css/bootstrap.min.css') !!}" rel="stylesheet">
     <title>@yield('title', 'System Support')</title>
   </head>
+  
   <body>
-
     @include('shared.nav')
 
     <div class="container-fluid">@yield('content')</div>
@@ -18,6 +18,5 @@
     <script src="{!! asset('js/jquery-3.3.1.min.js') !!}"></script>
     <script src="{!! asset('js/popper.min.js') !!}"></script>
     <script src="{!! asset('js/bootstrap.min.js') !!}"></script>
-
   </body>
 </html>
