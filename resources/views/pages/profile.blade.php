@@ -152,9 +152,6 @@
 				</div>{{-- card-body --}}
 			</div>{{-- card --}}
 
-
-
-
 			<div class="card mt-3 border-secondary">{{-- accounts --}}
 				<div class="card-header">
 					<h3>Account Information</h3>
