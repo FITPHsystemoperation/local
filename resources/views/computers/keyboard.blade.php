@@ -1,90 +1,70 @@
 @extends('shared.master')
 
-@section('title', 'Add Keyboard')
-
 @section('content')
+	<div class="container my-3">
+		<div class="card border-secondary">
+			<div class="card-header">
+				<h3>Select Existing Keyboard</h3>
+			</div>{{-- card-header --}}
 
-	<div class="row justify-content-center">
-	
-		<div class="col-sm-8">
-			
-		    <div class="card mt-3 border-secondary">
+			<div class="card-body">
+				<form method="post" action="/computer/{{$id}}/keyboard/add">
+					@csrf
 
-		    	<div class="card-header">
-		    		
-				    <h3>Select Existing Keyboard</h3>
-		    		
-		    	</div>
+					<div class="form-group row">
+						<label for="keyboard_id" class="col-md-3 col-form-label text-md-right">Select Keyboard:</label>
+							
+						<div class="col-md-7">
+							<select class="c-select form-control" id="keyboard_id" name="keyboard_id" required autofocus>
+								@foreach ($keyboards as $keyboard)
+									<option value="{{ $keyboard->id }}" {{ $keyboard->computer_id ? 'disabled' : '' }}>
+										{{ $keyboard->keyboardName }}
+									</option>
+								@endforeach{{-- $keyboards as $keyboard --}}
+							</select>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    	<div class="card-body">
+					<div class="form-group row mb-0">
+                        <div class="col-md-9 offset-md-3">
+							<button type="submit" class="btn btn-primary">Link Keyboard</button>
 
-				    <form method="post" action="/computer/{{$id}}/keyboard/add">
+							<a class="btn btn-outline-secondary" href="/computer/{{$id}}" role="button">Go Back</a>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}
+				</form>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
 
-				    	@csrf
+		<div class="card mt-3 border-secondary">
+			<div class="card-header">
+				<h3>Add New Keyboard</h3>
+			</div>{{-- card-header --}}
 
-				    	<fieldset class="form-group">
-				    		<label for="keyboard_id">Select Keyboard</label>
-				    		<select class="c-select form-control" id="keyboard_id" name="keyboard_id" required autofocus>
-				    			@foreach ($keyboards as $keyboard)
-				    				<option
-				    					value="{{ $keyboard->id }}"
-				    					{{ $keyboard->computer_id ? 'disabled' : '' }} 
-				    				>{{ $keyboard->keyboardName }}</option>
-				    			@endforeach
-				    		</select>
-				    	</fieldset>
+			<div class="card-body">
+				@include ('shared.error')
+				@include ('shared.status')
 
-			    		<button type="submit" class="btn btn-primary">Save</button>
+				<form method="post" action="/keyboards/create">
+					@csrf
 
-			    		<a class="btn btn-outline-secondary" href="/computer/{{$id}}" role="button">Back</a>
+					<div class="form-group row">
+						<label for="keyboardName" class="col-md-3 col-form-label text-md-right">Keyboard Name:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" name="keyboardName" placeholder="Keyboard name" value="{{ old('keyboardName') }}" required>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-				    </form>
+					<div class="form-group row mb-0">
+                        <div class="col-md-9 offset-md-3">
+							<button type="submit" class="btn btn-primary">Save Keyboard</button>
 
-		    	</div>
-
-		    </div>
-
-		    <div class="card mt-3 border-secondary">
-
-		    	<div class="card-header">
-		    		
-				    <h3>Add New Keyboard</h3>
-		    		
-		    	</div>
-
-		    	<div class="card-body">
-
-				    @foreach ($errors->all() as $error)
-					    <p class="alert alert-danger">{{ $error }}</p>
-					@endforeach
-
-					@if (session('status'))
-					    <div class="alert alert-success">
-					        {{ session('status') }}
-					    </div>
-					@endif
-
-				    <form method="post" action="/keyboards/create">
-
-				    	@csrf
-
-				    	<fieldset class="form-group">
-				    		<label for="keyboardName">Keyboard Name</label>
-				    		<input type="text" class="form-control" name="keyboardName" placeholder="Keyboard name" value="{{ old('keyboardName') }}" required>
-				    	</fieldset>
-
-			    		<button type="submit" class="btn btn-primary">Add</button>
-
-			    		<button type="reset" class="btn btn-outline-secondary">Clear</button>
-
-				    </form>
-
-		    	</div>
-
-		    </div>
-
-		</div>
-
-	</div>
-
+							<button type="reset" class="btn btn-outline-secondary">Reset Form</button>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}
+				</form>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
+	</div>{{-- container --}}
 @endsection
