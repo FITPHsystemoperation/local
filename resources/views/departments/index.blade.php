@@ -9,8 +9,8 @@
 						<h2>Department List</h2>
 					</div>{{-- col --}}
 						
-					<div class="col">
-						<a class="btn btn-primary float-right" href="departments/create" role="button">Add New</a>
+					<div class="col text-right">
+						<a class="btn btn-primary" href="departments/create" role="button">Add New</a>
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}
