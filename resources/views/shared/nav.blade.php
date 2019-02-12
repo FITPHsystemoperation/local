@@ -36,7 +36,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="/computers">Computer</a>
                         <a class="dropdown-item" href="/softwares">Software</a>
-                        <a class="dropdown-item" href="/softwares">Accessories</a>
+                        <a class="dropdown-item" href="/accesories">Accessories</a>
                     </div>
                 </li>
                 {{-- document --}}

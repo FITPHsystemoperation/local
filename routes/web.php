@@ -77,6 +77,10 @@ Route::get('/software/{software}', 'SoftwaresController@show');
 Route::get('/software/{software}/edit', 'SoftwaresController@edit');
 Route::post('/software/{software}/edit', 'SoftwaresController@update');
 
+Route::get('/accesories', function(){
+    abort(403, 'Sorry, this page is under development.');
+});
+
 Route::get('/computer/{computer}/software/create', 'ComputerSoftwareController@index');
 Route::get('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@create');
 Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@store');
