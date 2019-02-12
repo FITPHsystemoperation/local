@@ -1,65 +1,59 @@
 @extends('shared.master')
 
-@section('title', 'Update Computer Record')
-
 @section('content')
+	<div class="container my-3">
+		<div class="card border-secondary">
+			<div class="card-header">
+				<h3>Update Computer Record</h3>
+			</div>{{-- card-header --}}
 
-	<div class="row justify-content-center">
-	
-		<div class="col-sm-8">
-			
-		    <div class="card mt-3 border-secondary">
+			<div class="card-body">
+				@include('shared.error')
 
-		    	<div class="card-header">
-		    		
-				    <h3>Update Computer Record</h3>
-		    		
-		    	</div>
+				<form method="post" action="/computer/{{ $computer->id }}">
+					@csrf
 
-		    	<div class="card-body">
-				    
-				    @foreach ($errors->all() as $error)
-					    <p class="alert alert-danger">{{ $error }}</p>
-					@endforeach
-		    		
-		    		<form method="post" action="/computer/{{ $computer->id }}">
+					<div class="form-group row">{{-- compName --}}
+						<label for="compName" class="col-md-3 col-form-label text-md-right">Computer Name:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="compName" name="compName" value="{{ $computer->compName }}" required autofocus>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			@csrf
+					<div class="form-group row">{{-- os --}}
+						<label for="os" class="col-md-3 col-form-label text-md-right">Operating System:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="os" name="os" value="{{ $computer->os }}">
+						</div>{{-- col --}}
+					</div>{{-- row --}}
+					
+					<div class="form-group row">{{-- status --}}
+						<label for="status" class="col-md-3 col-form-label text-md-right">Computer status:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="status" name="status" value="{{ $computer->status }}">
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="compName">Computer Name</label>
-		    				<input type="text" class="form-control" id="compName" name="compName" value="{{ $computer->compName }}" required autofocus>
-		    			</fieldset>
+					<div class="form-group row">{{-- information --}}
+						<label for="information" class="col-md-3 col-form-label text-md-right">Computer Information:</label>
+							
+						<div class="col-md-7">
+							<textarea class="form-control" id="information" name="information" rows="3">{{ $computer->information }}</textarea>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="os">Operating System</label>
-		    				<input type="text" class="form-control" id="os" name="os" value="{{ $computer->os }}" >
-		    			</fieldset>
+					<div class="form-group row mb-0">
+                        <div class="col-md-9 offset-md-3">
+							<button type="submit" class="btn btn-primary">Update Record</button>
 
-		    			<fieldset class="form-group">
-		    				<label for="status">Computer Status</label>
-		    				<input type="text" class="form-control" id="status" name="status" value="{{ $computer->status }}" >
-		    			</fieldset>
-
-		    			<fieldset class="form-group">
-		    				<label for="information">Computer Information</label>
-		    				<textarea class="form-control" id="information" name="information" rows="3">{{ $computer->information }}</textarea>
-		    			</fieldset>
-		    		
-						<hr>
-
-		    			<button type="submit" class="btn btn-primary">Update</button>
-		    			
-		    			<a class="btn btn-outline-secondary" href="/computer/{{ $computer->id }}" role="button">Back</a>
-		    		
-		    		</form>
-
-		    	</div>
-
-		    </div>
-
-		</div>
-
-	</div>
-
+							<a class="btn btn-outline-secondary" href="/computer/{{ $computer->id }}" role="button">Go Back</a>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}	
+				</form>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
+	</div>{{-- container --}}
 @endsection
