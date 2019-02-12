@@ -1,63 +1,58 @@
 @extends('shared.master')
 
 @section('content')
+	<div class="container my-3">
+		<div class="card border-secondary">
+			<div class="card-header">
+				<h2>Update Document Information</h2>
+			</div>{{-- card-header --}}
 
-	<div class="row justify-content-center">
-	
-		<div class="col-sm-8">
-			
-		    <div class="card mt-3 border-secondary">
+			<div class="card-body">
+				@include ('shared.error')
 
-	    		<div class="card-header">
-				    <h2>Update Document Information</h2>
-	    		</div>
+				<form method="post" action="/document/{{ $document->id }}/edit">
+					@csrf
 
-		    	<div class="card-body">
+					<div class="form-group row">
+						<label for="title" class="col-md-3 col-form-label text-md-right">Title:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="title" name="title" placeholder="Document Title" value="{{ $document->title }}" required autofocus>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-				    @foreach ($errors->all() as $error)
-					    <p class="alert alert-danger">{{ $error }}</p>
-					@endforeach
-		    		
-		    		<form method="post" action="/document/{{ $document->id }}/edit">
+					<div class="form-group row">
+						<label for="category_id" class="col-md-3 col-form-label text-md-right">Category:</label>
+							
+						<div class="col-md-7">
+							<select class="form-control" id="category_id" name="category_id" required>
+								@foreach ($categories as $category)
+									<option value="{{ $category->id }}"
+										{{ $category->id === $document->category_id ? 'selected' : '' }}>
+										{{ $category->categoryName }}
+									</option>
+								@endforeach{{-- $categories as $category --}}
+							</select>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			@csrf
+					<div class="form-group row">
+						<label for="description" class="col-md-3 col-form-label text-md-right">Description:</label>
+							
+						<div class="col-md-7">
+							<textarea class="form-control" rows="3" id="description" name="description">{{ $document->description }}</textarea>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="title">Title:</label>
-		    				<input type="text" class="form-control" id="title" name="title" placeholder="Document Title" value="{{ $document->title }}" required autofocus>
-		    			</fieldset>
+					<div class="form-group row mb-0">
+                        <div class="col-md-9 offset-md-3">
+							<button type="submit" class="btn btn-primary">Save Record</button>
 
-		    			<fieldset class="form-group">
-		    				<label for="category_id">Category:</label>
-		    				<select class="form-control" id="category_id" name="category_id" required>
-		    					@foreach ($categories as $category)
-		    						<option value="{{ $category->id }}"
-		    							{{ $category->id === $document->category_id ? 'selected' : '' }}>
-		    							{{ $category->categoryName }}
-		    						</option>
-		    					@endforeach
-		    				</select>
-		    			</fieldset>
-
-		    			<fieldset class="form-group">
-		    				<label for="description">Description:</label>
-		    				<textarea class="form-control" rows="3" id="description" name="description">{{ $document->description }}</textarea>
-		    			</fieldset>
-
-						<hr>
-		    		
-		    			<button type="submit" class="btn btn-primary">Save</button>
-
-		    			<a class="btn btn-outline-secondary" href="/document/{{ $document->id }}" role="button">Back</a>
-		    			
-		    		</form>
-
-		    	</div>
-
-		    </div>
-
-		</div>
-
-	</div>
-
+							<a class="btn btn-outline-secondary" href="/document/{{ $document->id }}" role="button">Go Back</a>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}
+				</form>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
+	</div>{{-- container --}}
 @endsection
