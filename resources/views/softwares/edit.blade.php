@@ -1,56 +1,47 @@
 @extends('shared.master')
 
-@section('title', 'New Department Record')
-
 @section('content')
+	<div class="container my-3">
+		<div class="card border-secondary">
+			<div class="card-header">
+				<h2>Edit Software</h2>
+			</div>{{-- card-header --}}
 
-	<div class="row justify-content-center">
-	
-		<div class="col-sm-8">
-			
-		    <div class="card mt-3 border-secondary">
+			<div class="card-body">
+				@include ('shared.error')
 
-	    		<div class="card-header">
-			    
-			    	<h2>Edit Software</h2>
-	    			
-	    		</div>
+				<form method="post" action="/software/{{ $software->id }}/edit">
+					@csrf
 
-		    	<div class="card-body">
-				    
-				    @foreach ($errors->all() as $error)
-					    <p class="alert alert-danger">{{ $error }}</p>
-					@endforeach
-		    		
-		    		<form method="post" action="/software/{{ $software->id }}/edit">
+					<div class="form-group row">
+						<label for="softwareName" class="col-md-3 col-form-label text-md-right">Software Name:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="softwareName" name="softwareName" placeholder="Software Name" value="{{ $software->softwareName }}" required autofocus>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			@csrf
+					<div class="form-group row">
+						<label for="specList" class="col-md-3 col-form-label text-md-right">Spec List:</label>
+							
+						<div class="col-md-7">
+							<input type="text" class="form-control" id="specList" name="specList" value="{{ implode(' ', $software->specList) }}">
 
-		    			<fieldset class="form-group">
-		    				<label for="softwareName">Software Name</label>
-		    				<input type="text" class="form-control" id="softwareName" name="softwareName" placeholder="Software Name" value="{{ $software->softwareName }}" required autofocus>
-		    			</fieldset>
+							<small class="form-text text-muted">
+								<strong>Separate each specs using Spacebar</strong>
+							</small>
+						</div>{{-- col --}}
+					</div>{{-- row --}}
 
-		    			<fieldset class="form-group">
-		    				<label for="specList">Spec List </label>
-		    				<span class="text-danger float-right">
-                                <strong>*Separate each item using space.</strong>
-                            </span>
-		    				<input type="text" class="form-control" id="specList" name="specList" value="{{ implode(' ', $software->specList) }}">
-		    			</fieldset>
+					<div class="form-group row mb-0">
+                        <div class="col-md-9 offset-md-3">
+							<button type="submit" class="btn btn-primary">Update Record</button>
 
-		    			<button type="submit" class="btn btn-primary">Save</button>
-
-		    			<a class="btn btn-outline-secondary" href="/softwares" role="button">Back</a>
-		    			
-		    		</form>
-
-		    	</div>
-
-		    </div>
-
-		</div>
-
-	</div>
-
+							<a class="btn btn-outline-secondary" href="/softwares" role="button">Go Back</a>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}
+				</form>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
+	</div>{{-- container --}}
 @endsection
