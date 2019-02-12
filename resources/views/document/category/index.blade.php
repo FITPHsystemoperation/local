@@ -1,58 +1,47 @@
 @extends('shared.master')
 
 @section('content')
-<div class="row justify-content-center">
-	<div class="col-sm-8">
-		
+	<div class="container">
 		<div class="card my-3 border-secondary">
-
 			<div class="card-header">
-				
-			    <h2>Document Category
-				    <a class="btn btn-primary float-right" href="/document/categories/create" role="button">Add New</a>
-			    </h2>
-				
-			</div>
+				<div class="row">
+					<div class="col">
+						<h2>Document Category</h2>
+					</div>{{-- col --}}
+						
+					<div class="col text-right">
+						<a class="btn btn-primary" href="/document/categories/create" role="button">Add New</a>
+					</div>{{-- col --}}
+				</div>{{-- row --}}
+			</div>{{-- card-header --}}
 
-	    	<div class="card-body">
-			    
-			    @if (session('status'))
-				    <div class="alert alert-success">
-				        {{ session('status') }}
-				    </div>
-				@endif
+			<div class="card-body">
+				@include ('shared.status')
 
-			    <table class="table border-bottom">
-			    	<thead>
-			    		<tr class="text-center">
-			    			<th>Category</th>
-			    			<th>Description</th>
-			    			<th>Document</th>
-			    		</tr>
-			    	</thead>
-			    	<tbody>
-			    		@foreach ($categories as $category)
-			    			<tr class="text-center">
-			    				
-			    				<td>
-			    					<a href="/document/category/{{ $category->id }}">
-				    					{{$category->categoryName}}
-			    					</a>
-			    				</td>
-			    				<td>{{$category->description}}</td>
-			    				<td>
-			    					<strong class="text-danger">{{ $category->documents->count() }}</strong> document/s
-			    				</td>
-									{{-- <a class="btn btn-sm btn-outline-info" href="/document/category/{{ $category->id }}/edit" role="button">Update</a> --}}
+				<table class="table border-bottom">
+					<thead>
+						<tr class="text-center">
+							<th>Category</th>
+							<th>Description</th>
+							<th>Document</th>
+						</tr>
+					</thead>
 
-			    			</tr>
-			    		@endforeach
-			    	</tbody>
-			    </table>
-	    	</div>
-	    </div>
-	</div>
-</div>
+					<tbody>
+						@foreach ($categories as $category)
+							<tr class="text-center">
+								<td>
+									<a href="/document/category/{{ $category->id }}">{{$category->categoryName}}</a>
+								</td>
+								
+								<td>{{$category->description}}</td>
 
+								<td><strong class="text-danger">{{ $category->documents->count() }}</strong> document/s</td>
+							</tr>
+						@endforeach{{-- $categories as $category --}}
+					</tbody>
+				</table>
+			</div>{{-- card-body --}}
+		</div>{{-- card --}}
+	</div>{{-- container --}}
 @endsection
-
