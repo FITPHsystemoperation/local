@@ -33,9 +33,9 @@ class ThemesController extends Controller
         return redirect('/themes')->with('status', 'Theme successfully uploaded'); 
     }
 
-    public function show($id)
+    public function show(Theme $theme)
     {
-        //
+        return view('themes.show', compact('theme'));
     }
 
     public function edit($id)

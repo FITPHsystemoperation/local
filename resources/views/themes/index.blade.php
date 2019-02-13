@@ -28,7 +28,7 @@
                         @foreach ($themes as $theme)
                             <tr class="text-center">
                                 <td>
-                                    <a href="/theme/{{ $theme->id }}">{{ $theme->name }}</a>
+                                    <a href="/themes/{{ $theme->id }}">{{ $theme->name }}</a>
                                 </td>
 
                                 <td>{{ $theme->file }}</td>

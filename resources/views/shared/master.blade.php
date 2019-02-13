@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="{!! asset('favicon.ico') !!}">
     <!-- Bootstrap CSS -->
     <link href="{!! asset('css/' . env('BOOTSTRAP_THEME', 'bootstrap') . '.min.css') !!}" rel="stylesheet">
+    {{-- <link href="{{ asset('/storage/themes/theme1_1550025886.css') }}" rel="stylesheet"> --}}
+    
     <title>@yield('title', 'System Support')</title>
   </head>
   
