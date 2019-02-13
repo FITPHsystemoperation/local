@@ -1,4 +1,4 @@
-<div class="card mt-3 border-secondary">{{-- emergency information --}}
+<div class="card mt-3 border-dark">{{-- emergency information --}}
     <div class="card-header">
         <div class="row">
             <div class="col">

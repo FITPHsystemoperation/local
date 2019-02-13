@@ -4,7 +4,7 @@
 	<div class="container my-3">
 		<h1 class="display-4">{{ "$staff->firstName $staff->lastName" }}</h1>
 
-		<div class="card border-secondary mt-3">
+		<div class="card border-dark mt-3">
 			<div class="card-header">
 				<h4>Update Accounts Information</h4>
 			</div>{{-- card-header --}}

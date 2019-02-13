@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container my-5">
-        <div class="card border-secondary">
+        <div class="card border-dark">
             <div class="card-header">
                 <h2>System Support</h2>
             </div>

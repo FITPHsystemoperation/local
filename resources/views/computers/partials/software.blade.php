@@ -1,4 +1,4 @@
-<div class="card mt-3 border-secondary">{{-- software --}}
+<div class="card mt-3 border-dark">{{-- software --}}
     <div class="card-header">
         <div class="row">
             <div class="col">

@@ -1,4 +1,4 @@
-<div class="card border-secondary">
+<div class="card border-dark">
     <div class="card-header">
         <h2>{{ $computer->compName }}</h2>
     </div>{{-- card-header --}}

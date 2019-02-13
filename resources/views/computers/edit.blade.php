@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container my-3">
-		<div class="card border-secondary">
+		<div class="card border-dark">
 			<div class="card-header">
 				<h3>Update Computer Record</h3>
 			</div>{{-- card-header --}}

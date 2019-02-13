@@ -1,4 +1,4 @@
-<div class="card mt-3 border-secondary">{{-- contact-info --}}
+<div class="card mt-3 border-dark">{{-- contact-info --}}
     <div class="card-header">
         <div class="row">
             <div class="col">

@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container my-3">
-		<div class="card border-secondary">
+		<div class="card border-dark">
 			<div class="card-header">
 				<div class="row">
 					<div class="col">
@@ -56,7 +56,7 @@
 		</div>{{-- card --}}
 
 		@if ($staff->isCompleted)
-			<div class="card mt-3 border-secondary">{{-- work information --}}
+			<div class="card mt-3 border-dark">{{-- work information --}}
 				<div class="card-header">
 					<h3>Employment Information</h3>
 				</div>{{-- card-header --}}
@@ -93,7 +93,7 @@
 				</div>{{-- card-body --}}
 			</div>{{-- card --}}
 
-			<div class="card mt-3 border-secondary">{{-- contact-info --}}
+			<div class="card mt-3 border-dark">{{-- contact-info --}}
 				<div class="card-header">
 					<h3>Contact Information</h3>
 				</div>{{-- card-header --}}
@@ -125,7 +125,7 @@
 				</div>{{-- card-body --}}
 			</div>{{-- card --}}
 
-			<div class="card mt-3 border-secondary">{{-- emergency information --}}
+			<div class="card mt-3 border-dark">{{-- emergency information --}}
 				<div class="card-header">
 					<h3>Emergency Contact Information</h3>
 				</div>{{-- card-header --}}
@@ -152,7 +152,7 @@
 				</div>{{-- card-body --}}
 			</div>{{-- card --}}
 
-			<div class="card mt-3 border-secondary">{{-- accounts --}}
+			<div class="card mt-3 border-dark">{{-- accounts --}}
 				<div class="card-header">
 					<h3>Account Information</h3>
 				</div>
@@ -189,7 +189,7 @@
 				</div>{{-- card-body --}}
 			</div>{{-- card --}}
 
-			<div class="card mt-3 border-secondary">{{-- personal --}}
+			<div class="card mt-3 border-dark">{{-- personal --}}
 				<div class="card-header">
 					<h3>Personal Information</h3>
 				</div>

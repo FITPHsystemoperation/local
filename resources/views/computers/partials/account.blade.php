@@ -1,4 +1,4 @@
-<div class="card mt-3 border-secondary">{{-- account --}}
+<div class="card mt-3 border-dark">{{-- account --}}
     <div class="card-header">
         <div class="row">
             <div class="col">

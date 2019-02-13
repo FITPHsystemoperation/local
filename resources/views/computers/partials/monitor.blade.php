@@ -1,4 +1,4 @@
-<div class="card border-secondary">
+<div class="card border-dark">
     <div class="card-header">
         <div class="row">
             <div class="col">

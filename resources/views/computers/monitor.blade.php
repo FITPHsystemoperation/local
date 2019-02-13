@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container my-3">
-		<div class="card border-secondary">
+		<div class="card border-dark">
 			<div class="card-header">
 				<h3>Select Existing Monitor</h3>
 			</div>{{-- card-header --}}
@@ -36,7 +36,7 @@
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}
 
-		<div class="card mt-3 border-secondary">
+		<div class="card mt-3 border-dark">
 			<div class="card-header">
 				<h3>Add New Monitor</h3>
 			</div>{{-- card-header --}}

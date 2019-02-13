@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="container">
-		<div class="card mt-3 border-secondary">
+		<div class="card mt-3 border-dark">
 			<div class="card-header">
 				<h3>Select Existing Charger</h3>
 			</div>{{-- card-header --}}
@@ -36,7 +36,7 @@
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}
 
-		<div class="card mt-3 border-secondary">
+		<div class="card mt-3 border-dark">
 			<div class="card-header">
 				<h3>Add New Charger</h3>
 			</div>{{-- card-header --}}

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{!! asset('favicon.ico') !!}">
     <!-- Bootstrap CSS -->
-    <link href="{!! asset('css/bootstrap.min.css') !!}" rel="stylesheet">
+    <link href="{!! asset('css/' . env('BOOTSTRAP_THEME', 'bootstrap') . '.min.css') !!}" rel="stylesheet">
     <title>@yield('title', 'System Support')</title>
   </head>
   

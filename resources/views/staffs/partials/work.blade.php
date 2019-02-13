@@ -1,4 +1,4 @@
-<div class="card mt-3 border-secondary">{{-- work information --}}
+<div class="card mt-3 border-dark">{{-- work information --}}
     <div class="card-header">
         <div class="row">
             <div class="col">
