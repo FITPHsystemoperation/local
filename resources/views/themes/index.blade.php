@@ -16,11 +16,15 @@
             </div>{{-- card-header --}}  
 
             <div class="card-body">
+                @include ('shared.status')
+
                 <table class="table border-bottom">
                     <thead>
                         <tr class="text-center">
                             <th>Theme</th>
+                            <th>Description</th>
                             <th>File</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
@@ -28,10 +32,34 @@
                         @foreach ($themes as $theme)
                             <tr class="text-center">
                                 <td>
-                                    <a href="/themes/{{ $theme->id }}">{{ $theme->name }}</a>
+                                    {!! !$theme->enabled ? '<strike>' : '' !!}
+                                        <a href="/themes/{{ $theme->id }}">{{ ucwords($theme->name) }}</a>
+                                    {!! !$theme->enabled ? '</strike>' : '' !!}
                                 </td>
 
-                                <td>{{ $theme->file }}</td>
+                                <td>{{ ucwords($theme->description) }}</td>
+
+                                <td>
+                                    <a href="{{ asset($theme->file) }}" target="_blank">{{ $theme->file }}</a>
+                                </td>
+
+                                <td>
+                                    <form method="post" action="/themes/{{ $theme->id }}">
+                                        @csrf
+
+                                        @method ('patch')
+
+                                        @if ( $theme->enabled )
+                                            <input type="hidden" name="enabled" value="0">
+
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">Disable</button>
+                                        @else
+                                            <input type="hidden" name="enabled" value="1">
+
+                                            <button type="submit" class="btn btn-primary btn-sm">Enable</button>
+                                        @endif
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach{{-- $themes as $theme --}}
                     </tbody>

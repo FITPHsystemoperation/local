@@ -22,6 +22,14 @@
                     </div>{{-- row --}}
 
                     <div class="form-group row">
+                        <label for="description" class="col-md-3 col-form-label text-md-right">Theme Description:</label>
+                        
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Theme Description" value="{{ old('description') }}" required autofocus>
+                        </div>{{-- col --}}
+                    </div>{{-- row --}}
+
+                    <div class="form-group row">
                         <label for="file" class="col-md-3 col-form-label text-md-right">Attach Stylesheet:</label>
                         
                         <div class="col-md-7">

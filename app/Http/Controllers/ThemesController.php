@@ -40,28 +40,33 @@ class ThemesController extends Controller
 
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Theme $theme)
     {
-        //
+        $theme->update([
+            'enabled' => $request->get('enabled'),
+        ]);
+
+        return redirect()->back()
+            ->with('status', 'Themes successfully updated');
     }
 
     public function destroy($id)
     {
-        //
+        abort(403);
     }
 
     protected function upload($request)
     {   
-        $filename = str_replace(' ', '-', $request->get('name'))
-            . '_' . time() . '.'
+        $filename = str_replace(' ', '-', $request->get('name')) . '.'
             . $request->file('file')->getClientOriginalExtension();
 
         Theme::create([
             'name' => $request->get('name'),
-            'file' => "/storage/themes/$filename"
+            'description' => $request->get('description'),
+            'file' => "storage/themes/$filename"
         ]);
 
         $request->file('file')->storeAs('public/themes', $filename);
