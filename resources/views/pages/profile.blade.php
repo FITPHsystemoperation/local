@@ -10,6 +10,7 @@
 					</div>{{-- col --}}
 						
 					<div class="col text-right">
+						<a class="btn btn-warning" href="/select-theme" role="button">Select Theme</a>
 						<a class="btn btn-info" href="{{ route('password.reset') }}" role="button">Change Password</a>
 					</div>{{-- col --}}				
 				</div>{{-- row --}}

@@ -70,6 +70,10 @@
                         </a>
 
                         @can ('isDeveloper', auth()->user())
+                            <div class="dropdown-divider"></div>
+                            
+                            <a class="dropdown-item" href="/themes">Theme Manager</a>
+                            
                             <a class="dropdown-item" href="/dashboard" target="_blank">Dashboard</a>
                         @endcan
 

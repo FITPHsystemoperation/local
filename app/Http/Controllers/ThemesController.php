@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Theme;
+
+class ThemesController extends Controller
+{
+    public function index()
+    {
+        dd(Theme::all());
+        return view('themes.index')->with('themes', Theme::all());
+    }
+
+    public function create()
+    {
+        //
+    }
+    
+    public function store(Request $request)
+    {
+        //
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
+}
