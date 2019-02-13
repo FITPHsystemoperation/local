@@ -8,8 +8,8 @@ class TestController extends Controller
 {
     public function index()
     {
-    	dump(auth()->user()->isUser2());
+        $this->authorize('isDeveloper', auth()->user());
 
-    	return 'worked';
+    	dd(auth()->user()->theme->file);
     }
 }

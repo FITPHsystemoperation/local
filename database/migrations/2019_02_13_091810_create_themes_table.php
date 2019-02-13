@@ -23,9 +23,16 @@ class CreateThemesTable extends Migration
         });
 
         DB::table('themes')->insert([
-            'name' => 'Default',
-            'description' => 'Basic Bootstrap',
-            'file' => 'css/bootstrap.min.css',
+            [
+                'name' => 'Default',
+                'description' => 'Basic Bootstrap',
+                'file' => 'css/bootstrap.min.css',
+            ],
+            [
+                'name' => 'Cerulian',
+                'description' => 'A Calm Blue Sky',
+                'file' => 'css/cerulian.min.css',
+            ],
         ]);
     }
 

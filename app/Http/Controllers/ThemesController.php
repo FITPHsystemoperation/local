@@ -35,6 +35,8 @@ class ThemesController extends Controller
 
     public function show(Theme $theme)
     {
+        $this->authorize('view', $theme);
+
         return view('themes.show', compact('theme'));
     }
 
@@ -45,6 +47,8 @@ class ThemesController extends Controller
 
     public function update(Request $request, Theme $theme)
     {
+        $this->authorize('update', $theme);
+
         $theme->update([
             'enabled' => $request->get('enabled'),
         ]);

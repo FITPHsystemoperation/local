@@ -38,23 +38,8 @@ class User extends Authenticatable
         return $this->belongsTo(UserRole::class, 'role_id');
     }
 
-    public function isDev()
+    public function theme()
     {
-        return $this->role_id <= 1;
-    }
-
-    public function isAdmin()
-    {
-        return $this->role_id <= 2;
-    }
-
-    public function isUser1()
-    {
-        return $this->role_id <= 3;
-    }
-
-    public function isUser2()
-    {
-        return $this->role_id <= 4;
+        return $this->belongsTo(Theme::class);
     }
 }

@@ -13,8 +13,6 @@ class PagesController extends Controller
 
     public function profile()
     {
-    	// dd(Auth::user());
-
     	return view('pages.profile')->with('staff', Auth::user()->staff);
     }
 }
