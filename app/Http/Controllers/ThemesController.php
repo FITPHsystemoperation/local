@@ -9,7 +9,6 @@ class ThemesController extends Controller
 {
     public function index()
     {
-        dd(Theme::all());
         return view('themes.index')->with('themes', Theme::all());
     }
 
