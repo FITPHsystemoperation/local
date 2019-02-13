@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Theme;
 
 class ThemesController extends Controller
@@ -60,6 +61,21 @@ class ThemesController extends Controller
     public function destroy($id)
     {
         abort(403);
+    }
+
+    public function preview(Theme $theme)
+    {
+        return view('pages.theme', compact('theme'))
+            ->with('staff', Auth::user()->staff)
+            ->with('themes', Theme::where('enabled', 1)->get());
+    }
+
+    public function apply(Request $request, Theme $theme)
+    {
+        $theme->users()->save(Auth::user());
+        
+        return redirect('/profile/' . Auth::user()->staff->firstName . Auth::user()->staff->lastName)
+            ->with('status', "$theme->name theme applied"); 
     }
 
     protected function upload($request)
