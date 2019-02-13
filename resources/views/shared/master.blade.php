@@ -9,7 +9,7 @@
     @if ( Auth::user() && Auth::user()->theme )
       <link href="{!! asset(Auth::user()->theme->file) !!}" rel="stylesheet">
     @else
-      <link href="{!! asset(App\Theme::whereId( env('DEFAULT_THEME', 1) )->first()->file) !!}" rel="stylesheet">
+      <link href="{!! asset(App\Theme::whereId( config('app.theme') )->first()->file) !!}" rel="stylesheet">
     @endif
 
     <title>@yield('title', 'System Support')</title>
