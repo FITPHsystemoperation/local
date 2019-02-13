@@ -10,6 +10,6 @@ class TestController extends Controller
     {
         $this->authorize('isDeveloper', auth()->user());
 
-    	dd(auth()->user()->theme->file);
+    	dd(auth()->user() ? 'ok' : 'none');
     }
 }

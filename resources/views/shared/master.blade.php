@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{!! asset('favicon.ico') !!}">
     <!-- Bootstrap CSS -->
-    <link href="{!! asset('css/' . env('BOOTSTRAP_THEME', 'bootstrap') . '.min.css') !!}" rel="stylesheet">
-    {{-- <link href="{{ asset('/storage/themes/theme1_1550025886.css') }}" rel="stylesheet"> --}}
-    
+    @if ( Auth::user() && Auth::user()->theme )
+      <link href="{!! asset(Auth::user()->theme->file) !!}" rel="stylesheet">
+    @else
+      <link href="{!! asset(App\Theme::whereId( env('DEFAULT_THEME', 1) )->first()->file) !!}" rel="stylesheet">
+    @endif
+
     <title>@yield('title', 'System Support')</title>
   </head>
   

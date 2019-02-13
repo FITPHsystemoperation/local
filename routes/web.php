@@ -114,6 +114,7 @@ Route::get('/', function(){
 })->name('home');
 
 Route::get('/profile/{name}', 'PagesController@profile');
+Route::get('/select-theme/{theme}', 'PagesController@theme');
 
 Route::resource('themes', 'ThemesController');
 
