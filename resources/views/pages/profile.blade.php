@@ -12,7 +12,7 @@
 	                @if ( Auth::user()->theme )
 	                    <a class="btn btn-warning" role="button" href="/select-theme/{{ Auth::user()->theme_id }}">Select Theme</a>
 	                @else
-	                    <a class="btn btn-warning" role="button" href="/select-theme/{{ env('DEFAULT_THEME', 1) }}">Select Theme</a>
+	                    <a class="btn btn-warning" role="button" href="/select-theme/{{ config('app.theme') }}">Select Theme</a>
 	                @endif
 	                
 	                <a class="btn btn-info" href="{{ route('password.reset') }}" role="button">Change Password</a>

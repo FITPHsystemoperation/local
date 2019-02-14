@@ -16,7 +16,7 @@
             <div class="offset-md-1 col-sm-11">
                 <h4 class="p-2">
                     <span class="lead">Date Hired:</span>
-                    {{ $staff->dateHired }}
+                    {{ date('F j, Y', strtotime($staff->dateHired)) }}
                 </h4>   
 
                 <h4 class="p-2">
