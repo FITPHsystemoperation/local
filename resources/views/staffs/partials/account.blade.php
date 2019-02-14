@@ -5,7 +5,7 @@
                             <h3>Account Information</h3>
                         </div>{{-- col --}}
                         <div class="col text-right">
-                            <a href="/staff/{{ $staff->id }}/account" class="btn btn-outline-info">Update</a>
+                            <a href="{{ route('staffs.account.edit', $staff->id) }}" class="btn btn-outline-info">Update</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
                 </div>

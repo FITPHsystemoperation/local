@@ -10,7 +10,7 @@
 					</div>{{-- col --}}
 				
 					<div class="col text-right">
-						<a class="btn btn-primary" href="staffs/create" role="button">Add New</a>
+						<a class="btn btn-primary" href="{{ route('staffs.create') }}" role="button">Add New</a>
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}
@@ -33,7 +33,7 @@
 						@foreach ($staffs as $staff)
 							<tr class="text-center">
 								<td>
-									<a href="/staff/{{ $staff->id }}">{{ $staff->user['idNumber'] }}</a>
+									<a href="{{ route('staffs.show', $staff->id) }}">{{ $staff->user['idNumber'] }}</a>
 								</td>
 
 								<td>{{ "$staff->firstName $staff->lastName" }}</td>

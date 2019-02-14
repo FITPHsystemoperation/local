@@ -6,7 +6,7 @@
             </div>{{-- col --}}
                 
             <div class="col text-right">
-                <a href="/staff/{{ $staff->id }}/contact-information" class="btn btn-outline-info">Update</a>
+                <a href="{{ route('staffs.contact.edit', $staff->id) }}" class="btn btn-outline-info">Update</a>
             </div>{{-- col --}}
         </div>{{-- row --}}
     </div>{{-- card-header --}}

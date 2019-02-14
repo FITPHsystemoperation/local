@@ -22,7 +22,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="/staffs">Staff</a>
+                        <a class="dropdown-item" href="{{ route('staffs.index') }}">Staff</a>
                         <a class="dropdown-item" href="/departments">Department</a>
                     </div>
                 </li>

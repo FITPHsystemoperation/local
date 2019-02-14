@@ -6,9 +6,9 @@
             </div>{{-- col --}}
                 
             <div class="col text-right">
-                <a href="/staff/{{ $staff->id }}/edit" class="btn btn-outline-info">Update</a>
+                <a class="btn btn-outline-info" href="{{ route('staffs.edit', $staff->id) }}">Update</a>
 
-                <a class="btn btn-outline-secondary" href="/staffs" role="button">Go Back</a>
+                <a class="btn btn-outline-secondary" href="{{ route('staffs.index') }}" role="button">Go Back</a>
             </div>{{-- col --}}             
         </div>{{-- row --}}
     </div>{{-- card-header --}}
@@ -54,10 +54,13 @@
 
     @if ( !$staff->isCompleted )
         <div class="card-footer">
-            <a href="/staff/{{ $staff->id }}/working-data" class="btn btn-primary float-left mr-2">Add Information</a>
+            <a href="{{ route('staffs.work.edit', $staff->id) }}" class="btn btn-primary float-left mr-2">Add Information</a>
 
-            <form method="post" action="/staff/{{ $staff->id }}/delete" class="float-left">
+            <form method="post" action="{{ route('staffs.destroy', $staff->id) }}" class="float-left">
                 @csrf
+
+                @method ('delete')
+
                 <button type="Submit" class="btn btn-outline-danger">Delete</button>
             </form>
         </div>{{-- card-footer --}}

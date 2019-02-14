@@ -10,8 +10,10 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/staff/{{ $staff->id }}/edit" enctype="multipart/form-data">
+				<form method="post" action="{{ route('staffs.update', $staff->id) }}" enctype="multipart/form-data">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">{{-- idnumber --}}
 						<label for="idNumber" class="col-md-3 col-form-label text-md-right">ID No.:</label>
@@ -65,7 +67,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Update Record</button>
 
-							<a class="btn btn-outline-secondary" href="/staff/{{ $staff->id }}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('staffs.show', $staff->id) }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>

@@ -12,8 +12,10 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/staff/{{ $staff->id }}/contact-information">
+				<form method="post" action="{{ route('staffs.contact.update', $staff->id) }}">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">
 						<label for="contactNo" class="col-md-3 col-form-label text-md-right">Contact No.:</label>
@@ -54,7 +56,7 @@
 							</button>
 
 							<a class="btn btn-outline-secondary" role="button"
-								href="/staff/{{ $staff->isCompleted ? $staff->id : "$staff->id/working-data" }}">
+								href="{{ route($staff->isCompleted ? 'staffs.show' : 'staffs.work.edit', $staff->id) }}">
 								Go Back
 							</a>
                         </div>{{-- col --}}

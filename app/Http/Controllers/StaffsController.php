@@ -20,34 +20,17 @@ class StaffsController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $staffs = Staff::all();
-
-        return view('staffs.index', compact('staffs'));
+        return view('staffs.index')->with('staffs', Staff::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('staffs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StaffNameFormRequest $request)
     {
         $request->validate(['idNumber' => 'unique:users']);
@@ -64,39 +47,20 @@ class StaffsController extends Controller
             'password' => Hash::make('123456'),
         ]); 
 
-        return redirect('/staffs')
-            ->with('status', 'Staff successfully recorded.');
+        return redirect()->route('staffs.index')
+            ->with('status', 'Staff successfully recorded');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Staff $staff)
     {   
         return view('staffs.show', compact('staff'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Staff $staff)
     {
         return view('staffs.edit', compact('staff'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(StaffNameFormRequest $request, Staff $staff)
     {   
         $staff->update([
@@ -110,45 +74,30 @@ class StaffsController extends Controller
             'idNumber' => $request->get('idNumber'),
         ]);
 
-        if ($request->hasFile('image'))
-        {
-            $filename = $staff->user->idNumber . '_' . time() . '.' . $request->file('image')->getClientOriginalExtension();
+        $this->uploadImage($request->file('image'), $staff);
 
-            $request->file('image')->storeAs('public/staffs', $filename);
-
-            $staff->update([
-                'image' => $filename,
-            ]);
-        }
-
-        return redirect("/staff/$staff->id")
-            ->with('status', 'Staff record successfully updated.');
+        return redirect()->route('staffs.show', $staff->id)
+            ->with('status', 'Staff record successfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Staff $staff)
     {
         $staff->delete();
 
-        return redirect('/staffs')
-            ->with('status', "$staff->idNumber successfully removed from the record");
+        return redirect()->route('staffs.index')
+            ->with('status', "$staff->firstName $staff->firstName successfully removed from the record");
     }
 
-    public function editWorkingData(Staff $staff)
+    public function editWork(Staff $staff)
     {
-        return view('staffs.workingData')
+        return view('staffs.work')
             ->with('staff', $staff)
             ->with('stats', \App\EmploymentStat::all())
             ->with('titles', \App\JobTitle::all())
             ->with('departments', \App\Department::all());
     }
 
-    public function updateWorkingData(StaffWorkFormRequest $request, Staff $staff)
+    public function updateWork(StaffWorkFormRequest $request, Staff $staff)
     {
         $staff->update([
             'dateHired' => $request->get('dateHired'),
@@ -158,18 +107,18 @@ class StaffsController extends Controller
             'dailyRate' => $request->get('dailyRate'),
         ]);
 
-        return $staff->isCompleted ? 
-            redirect("/staff/$staff->id")
-                ->with('status', "Working data successfully updated"):
-            redirect("/staff/$staff->id/contact-information");
+        return !$staff->isCompleted ? 
+            redirect()->route('staffs.contact.edit', $staff->id):
+            redirect()->route('staffs.show', $staff->id)
+                ->with('status', "Working data successfully updated");
     }
 
-    public function editContactInfo(Staff $staff)
+    public function editContact(Staff $staff)
     {
-        return view('staffs.contactInfo')->with('staff', $staff);
+        return view('staffs.contact', compact('staff'));
     }
 
-    public function updateContactInfo(StaffContactFormRequest $request, Staff $staff)
+    public function updateContact(StaffContactFormRequest $request, Staff $staff)
     {
         $staff->update([
             'contactNo' => $request->get('contactNo'),
@@ -178,15 +127,15 @@ class StaffsController extends Controller
             'presentAddress' => $request->get('presentAddress'),
         ]);
 
-        return $staff->isCompleted ? 
-            redirect("/staff/$staff->id")
-                ->with('status', "Contact Information successfully updated"):
-            redirect("/staff/$staff->id/emergency");
+        return !$staff->isCompleted ? 
+            redirect()->route('staffs.emergency.edit', $staff->id):
+            redirect()->route('staffs.show', $staff->id)
+                ->with('status', "Contact Information successfully updated");
     }
 
     public function editEmergency(Staff $staff)
     {
-        return view('staffs.emergency')->with('staff', $staff);
+        return view('staffs.emergency', compact('staff'));
     }
 
     public function updateEmergency(StaffEmergencyFormRequest $request, Staff $staff)
@@ -197,15 +146,15 @@ class StaffsController extends Controller
             'emergencyRelation' => $request->get('emergencyRelation'),
         ]);
 
-        return $staff->isCompleted ? 
-            redirect("/staff/$staff->id")
-                ->with('status', "Emergency Contact Information successfully updated"):
-            redirect("/staff/$staff->id/account");
+        return !$staff->isCompleted ? 
+            redirect()->route('staffs.account.edit', $staff->id):
+            redirect()->route('staffs.show', $staff->id)
+                ->with('status', "Emergency Contact Information successfully updated");
     }
 
     public function editAccount(Staff $staff)
     {
-        return view('staffs.account')->with('staff', $staff);
+        return view('staffs.account', compact('staff'));
     }
 
     public function updateAccount(StaffAccountFormRequest $request, Staff $staff)
@@ -218,15 +167,15 @@ class StaffsController extends Controller
             'bankNo' => $request->get('bankNo'),
         ]);
 
-        return $staff->isCompleted ? 
-            redirect("/staff/$staff->id")
-                ->with('status', "Account Information successfully updated"):
-            redirect("/staff/$staff->id/personal");
+        return !$staff->isCompleted ? 
+            redirect()->route('staffs.personal.edit', $staff->id):
+            redirect()->route('staffs.show', $staff->id)
+                ->with('status', "Account Information successfully updated");
     }
 
     public function editPersonal(Staff $staff)
     {
-        return view('staffs.personal')->with('staff', $staff);
+        return view('staffs.personal', compact('staff'));
     }
 
     public function updatePersonal(StaffPersonalFormRequest $request, Staff $staff)
@@ -238,16 +187,21 @@ class StaffsController extends Controller
             'isCompleted' => 1  
         ]);
 
-        if ( $staff->isCompleted )
+        return redirect()->route('staffs.show', $staff->id)
+            ->with('status', "Information successfully updated");
+    }
+
+    protected function uploadImage($image, $staff)
+    {
+        if ($image)
         {
-            return redirect("/staff/$staff->id")
-                ->with('status', "Personal Information successfully updated");
-        }
-        else
-        {
-            $staff->update(['isCompleted' => 1]);
-            return redirect("/staff/$staff->id")
-                ->with('status', "Information successfully updated");
+            $filename = $staff->user->idNumber . '_' . time() . '.' . $image->getClientOriginalExtension();
+
+            $image->storeAs('public/staffs', $filename);
+
+            $staff->update([
+                'image' => $filename,
+            ]);
         }
     }
 }

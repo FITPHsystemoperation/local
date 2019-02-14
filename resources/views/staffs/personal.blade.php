@@ -12,8 +12,10 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/staff/{{ $staff->id }}/personal">
+				<form method="post" action="{{ route('staffs.personal.update', $staff->id) }}">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">
 						<label for="birthday" class="col-md-3 col-form-label text-md-right">Birth Date:</label>
@@ -56,7 +58,7 @@
 							<button type="submit" class="btn btn-primary">Save Record</button>
 
 							<a class="btn btn-outline-secondary" role="button"
-								href="/staff/{{ $staff->isCompleted ? $staff->id : "$staff->id/account" }}">Go Back
+								href="{{ route($staff->isCompleted ? 'staffs.show' : 'staffs.account.edit', $staff->id) }}">Go Back
 							</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
