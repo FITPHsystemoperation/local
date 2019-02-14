@@ -12,25 +12,20 @@
 */
 Route::resource('/staffs', 'StaffsController');
 
-Route::prefix('/staffs/{staff}')->name('staffs.')->group(function(){
-    Route::get('/working-data', 'StaffsController@editWork')->name('work.edit');
-    Route::patch('/working-data', 'StaffsController@updateWork')->name('work.update');
-    Route::get('/contact-information', 'StaffsController@editContact')->name('contact.edit');
-    Route::patch('/contact-information', 'StaffsController@updateContact')->name('contact.update');
-    Route::get('/emergency', 'StaffsController@editEmergency')->name('emergency.edit');
-    Route::patch('/emergency', 'StaffsController@updateEmergency')->name('emergency.update');
-    Route::get('/account', 'StaffsController@editAccount')->name('account.edit');
-    Route::patch('/account', 'StaffsController@updateAccount')->name('account.update');
-    Route::get('/personal', 'StaffsController@editPersonal')->name('personal.edit');
-    Route::patch('/personal', 'StaffsController@updatePersonal')->name('personal.update');
-});
+// Route::prefix('/staffs/{staff}')->name('staffs.')->group(function(){
+//     Route::get('/working-data', 'StaffsController@editWork')->name('work.edit');
+//     Route::patch('/working-data', 'StaffsController@updateWork')->name('work.update');
+//     Route::get('/contact-information', 'StaffsController@editContact')->name('contact.edit');
+//     Route::patch('/contact-information', 'StaffsController@updateContact')->name('contact.update');
+//     Route::get('/emergency', 'StaffsController@editEmergency')->name('emergency.edit');
+//     Route::patch('/emergency', 'StaffsController@updateEmergency')->name('emergency.update');
+//     Route::get('/account', 'StaffsController@editAccount')->name('account.edit');
+//     Route::patch('/account', 'StaffsController@updateAccount')->name('account.update');
+//     Route::get('/personal', 'StaffsController@editPersonal')->name('personal.edit');
+//     Route::patch('/personal', 'StaffsController@updatePersonal')->name('personal.update');
+// });
 
-// Route::get('/departments', 'DepartmentsController@index');
-// Route::get('/departments/create', 'DepartmentsController@create');
-// Route::post('/departments/create', 'DepartmentsController@store');
-// Route::get('/department/{department}', 'DepartmentsController@show');
-// Route::get('/department/{department}/edit', 'DepartmentsController@edit');
-// Route::post('/department/{department}/edit', 'DepartmentsController@update');
+Route::resource('departments', 'DepartmentsController');
 
 // Route::get('/computers', 'ComputersController@index');
 // Route::get('/computers/create', 'ComputersController@create');

@@ -10,9 +10,9 @@
 					</div>{{-- col --}}
 						
 					<div class="col text-right">
-						<a class="btn btn-info" href="/department/{{ $department->id }}/edit" role="button">Rename</a>
+						<a class="btn btn-info" href="{{ route('departments.edit', $department->id) }}" role="button">Rename</a>
 						
-						<a class="btn btn-outline-secondary" href="/departments" role="button">Go Back</a>
+						<a class="btn btn-outline-secondary" href="{{ route('departments.index') }}" role="button">Go Back</a>
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}
