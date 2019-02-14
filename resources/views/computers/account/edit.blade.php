@@ -10,8 +10,10 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/computer-account/{{ $account->id }}/edit">
+				<form method="post" action="{{ route('computers.account.update', [$account->computer_id, $account->id]) }}">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">
 						<label for="accountName" class="col-md-3 col-form-label text-md-right">Account Name:</label>
@@ -47,18 +49,21 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Update Record</button>
 
-							<a class="btn btn-danger" href="/computer-account/{{ $account->id }}/delete" role="button"
+							<a class="btn btn-danger" role="button" href="#"
 								onclick="event.preventDefault(); document.getElementById('delete_form').submit();">
 								Delete Record
 							</a>
 
-							<a class="btn btn-outline-secondary" href="/computer/{{ $account->computer_id }}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('computers.show', $account->computer_id) }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>
 
-				<form id="delete_form" method="post" action="/computer-account/{{ $account->id }}/delete">
+				<form id="delete_form" method="post"
+					action="{{ route('computers.account.destroy', [$account->computer_id, $account->id]) }}">
 					@csrf
+
+					@method ('delete')
 				</form>
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}

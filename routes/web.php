@@ -27,14 +27,13 @@ Route::resource('/staffs', 'StaffsController');
 Route::resource('/departments', 'DepartmentsController');
 
 Route::resource('/computers', 'ComputersController');
+Route::resource('/computers/{computer}/account', 'ComputerAccountController', ['as' => 'computers']);
 
-Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
-    Route::get('/account/create', 'ComputerAccountController@create')->name('account.create');
-    Route::post('/account', 'ComputerAccountController@store')->name('account.store');
-    Route::get('/account/{account}/edit', 'ComputerAccountController@edit')->name('account.edit');
-    Route::patch('/account/{account}', 'ComputerAccountController@update')->name('account.update');
-});
-// Route::post('/computer-account/{account}/delete', 'ComputerAccountController@destroy');
+// Route::get('/computer/{computer}/software/create', 'ComputerSoftwareController@index');
+// Route::get('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@create');
+// Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@store');
+// Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
+// Route::post('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@update');
 
 // Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
 // Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
@@ -64,11 +63,6 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
 // Route::get('/software/{software}/edit', 'SoftwaresController@edit');
 // Route::post('/software/{software}/edit', 'SoftwaresController@update');
 
-// Route::get('/computer/{computer}/software/create', 'ComputerSoftwareController@index');
-// Route::get('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@create');
-// Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@store');
-// Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
-// Route::post('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@update');
 
 // Route::get('/document/categories', 'DocumentCategoriesController@index');
 // Route::get('/document/categories/create', 'DocumentCategoriesController@create');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Computer;
 use App\ComputerAccount;
 use App\AccountType;
 use App\Http\Requests\ComputerAccountFormRequest;
@@ -14,28 +15,28 @@ class ComputerAccountController extends Controller
         $this->middleware('auth');
     }
     
-    public function create($id)
+    public function create(Computer $computer)
     {
         $this->authorize('create', ComputerAccount::class);
 
-        return view('computers.account.create', compact('id'))
+        return view('computers.account.create', compact('computer'))
             ->with('types', AccountType::all());
     }
 
-    public function store(ComputerAccountFormRequest $request, $id)
+    public function store(ComputerAccountFormRequest $request, Computer $computer)
     {   
         ComputerAccount::create([
-            'computer_id' => $id,
+            'computer_id' => $computer->id,
             'accountName' => $request->get('accountName'),
             'type_id' => $request->get('type_id'),
             'password' => $request->get('password'),
         ]);
 
-        return redirect("/computer/$id")
+        return redirect()->route('computers.show', $computer->id)
             ->with('status', 'Account has been added to this computer');
     }
 
-    public function edit(ComputerAccount $account)
+    public function edit(Computer $computer, ComputerAccount $account)
     {
         $this->authorize('update', $account);
 
@@ -43,7 +44,7 @@ class ComputerAccountController extends Controller
             ->with('types', AccountType::all());
     }
 
-    public function update(ComputerAccountFormRequest $request, ComputerAccount $account)
+    public function update(ComputerAccountFormRequest $request,Computer $computer, ComputerAccount $account)
     {
         $account->update([
             'accountName' => $request->get('accountName'),
@@ -51,15 +52,15 @@ class ComputerAccountController extends Controller
             'password' => $request->get('password'),
         ]);
 
-        return redirect("/computer/$account->computer_id")
+        return redirect()->route('computers.show', $computer->id)
             ->with('status', 'Account has been updated');
     }
 
-    public function destroy(ComputerAccount $account)
+    public function destroy(Computer $computer, ComputerAccount $account)
     {
         $account->delete();
 
-        return redirect("/computer/$account->computer_id")
+        return redirect()->route('computers.show', $computer->id)
             ->with('status', 'Account has been removed from this Computer');
     }
 
