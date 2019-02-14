@@ -12,7 +12,7 @@
                         
                     <div class="col text-right">
                         @can ('create', App\Computer::class)
-                            <a class="btn btn-primary float-right" href="computers/create" role="button">Add New</a>
+                            <a class="btn btn-primary float-right" href="{{ route('computers.create') }}" role="button">Add New</a>
                         @endcan
                     </div>{{-- col --}}
                 </div>{{-- row --}}
@@ -34,7 +34,7 @@
                         @foreach ($computers as $computer)
                             <tr class="text-center">
                                 <td>
-                                    <a href="computer/{{ $computer->id }}">{{$computer->compName}}</a>
+                                    <a href="{{ route('computers.show', $computer->id) }}">{{$computer->compName}}</a>
                                 </td>
                                 
                                 <td>

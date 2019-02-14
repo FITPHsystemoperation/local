@@ -24,9 +24,9 @@
 
     <div class="card-footer">
         @can ('update', $computer)
-            <a href="/computer/{{ $computer->id }}/edit" class="btn btn-info">Update</a>
+            <a href="{{ route('computers.edit', $computer->id) }}" class="btn btn-info">Update</a>
         @endcan                 
 
-        <a href="/computers" class="btn btn-outline-secondary">Go Back</a>
+        <a href="{{ route('computers.index') }}" class="btn btn-outline-secondary">Go Back</a>
     </div>{{-- card-footer --}}
 </div>{{-- card --}}

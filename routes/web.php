@@ -11,7 +11,6 @@
 |
 */
 Route::resource('/staffs', 'StaffsController');
-
 // Route::prefix('/staffs/{staff}')->name('staffs.')->group(function(){
 //     Route::get('/working-data', 'StaffsController@editWork')->name('work.edit');
 //     Route::patch('/working-data', 'StaffsController@updateWork')->name('work.update');
@@ -25,19 +24,16 @@ Route::resource('/staffs', 'StaffsController');
 //     Route::patch('/personal', 'StaffsController@updatePersonal')->name('personal.update');
 // });
 
-Route::resource('departments', 'DepartmentsController');
+Route::resource('/departments', 'DepartmentsController');
 
-// Route::get('/computers', 'ComputersController@index');
-// Route::get('/computers/create', 'ComputersController@create');
-// Route::post('/computers/create', 'ComputersController@store');
-// Route::get('/computer/{computer}', 'ComputersController@show');
-// Route::get('/computer/{computer}/edit', 'ComputersController@edit');
-// Route::post('/computer/{computer}', 'ComputersController@update');
+Route::resource('/computers', 'ComputersController');
 
-// Route::get('/computer/{id}/account/create', 'ComputerAccountController@create');
-// Route::post('/computer/{id}/account/create', 'ComputerAccountController@store');
-// Route::get('/computer-account/{account}/edit', 'ComputerAccountController@edit');
-// Route::post('/computer-account/{account}/edit', 'ComputerAccountController@update');
+Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
+    Route::get('/account/create', 'ComputerAccountController@create')->name('account.create');
+    Route::post('/account', 'ComputerAccountController@store')->name('account.store');
+    Route::get('/account/{account}/edit', 'ComputerAccountController@edit')->name('account.edit');
+    Route::patch('/account/{account}', 'ComputerAccountController@update')->name('account.update');
+});
 // Route::post('/computer-account/{account}/delete', 'ComputerAccountController@destroy');
 
 // Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');

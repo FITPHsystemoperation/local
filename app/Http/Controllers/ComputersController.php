@@ -16,9 +16,8 @@ class ComputersController extends Controller
 
     public function index()
     {
-        $computers = Computer::orderBy('compName')->get();
-
-        return view('computers.index', compact('computers'));
+        return view('computers.index')
+            ->with('computers', Computer::orderBy('compName')->get());
     }
 
     public function create()
@@ -41,7 +40,8 @@ class ComputersController extends Controller
             'information' => $request->get('information'),
         ]);
 
-        return redirect('/computers')->with('status', 'Computer record successfully added.');
+        return redirect()->route('computers.index')
+            ->with('status', 'Computer record successfully added');
     }
 
     public function show(Computer $computer)
@@ -65,8 +65,12 @@ class ComputersController extends Controller
             'information' => $request->get('information'),
         ]);
 
-        return redirect("/computer/$computer->id")
-            ->with('status', 'Computer record successfully updated.');
+        return redirect()->route('computers.show', $computer->id    )
+            ->with('status', 'Computer record successfully updated');
     }
-   
+
+    public function destroy()
+    {
+        abort(403);
+    }
 }

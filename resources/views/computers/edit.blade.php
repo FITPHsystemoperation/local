@@ -10,8 +10,10 @@
 			<div class="card-body">
 				@include('shared.error')
 
-				<form method="post" action="/computer/{{ $computer->id }}">
+				<form method="post" action="{{ route('computers.update', $computer->id) }}">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">{{-- compName --}}
 						<label for="compName" class="col-md-3 col-form-label text-md-right">Computer Name:</label>
@@ -49,7 +51,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Update Record</button>
 
-							<a class="btn btn-outline-secondary" href="/computer/{{ $computer->id }}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('computers.show', $computer->id) }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}	
 				</form>

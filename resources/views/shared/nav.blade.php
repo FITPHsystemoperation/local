@@ -23,7 +23,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('staffs.index') }}">Staff</a>
-                        <a class="dropdown-item" href="/departments">Department</a>
+                        <a class="dropdown-item" href="{{ route('departments.index') }}">Department</a>
                     </div>
                 </li>
                 {{-- computer --}}
@@ -34,7 +34,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="/computers">Computer</a>
+                        <a class="dropdown-item" href="{{ route('computers.index') }}">Computer</a>
                         <a class="dropdown-item" href="/softwares">Software</a>
                         <a class="dropdown-item" href="/accesories">Accessories</a>
                     </div>

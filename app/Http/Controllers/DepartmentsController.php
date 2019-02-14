@@ -43,13 +43,6 @@ class DepartmentsController extends Controller
         return view('departments.edit', compact('department'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(DepartmentFormRequest $request, Department $department)
     {
         $department->update(['departmentName' => $request->get('departmentName')]);

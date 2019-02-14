@@ -10,7 +10,7 @@
 			<div class="card-body">
 				@include('shared.error')
 
-				<form method="post" action="/computers/create">
+				<form method="post" action="{{ route('computers.store') }}">
 					@csrf
 
 					<div class="form-group row">{{-- compName --}}
@@ -52,7 +52,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Save Record</button>
 
-							<a class="btn btn-outline-secondary" href="/computers" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('computers.index') }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>

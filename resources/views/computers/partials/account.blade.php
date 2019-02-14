@@ -7,7 +7,7 @@
                 
             <div class="col text-right">
                 @can ('create', App\ComputerAccount::class )
-                    <a class="btn btn-primary" role="button" href="/computer/{{ $computer->id }}/account/create">Add</a>
+                    <a class="btn btn-primary" role="button" href="{{ route('computers.account.create', $computer->id) }}">Add</a>
                 @endcan{{-- create --}}
             </div>{{-- col --}}
         </div>{{-- row --}}
@@ -41,7 +41,8 @@
 
                         <td>
                             @can ('update', $account)
-                                <a class="btn btn-sm btn-outline-info" href="/computer-account/{{ $account->id }}/edit" role="button">Update</a>
+                                <a class="btn btn-sm btn-outline-info" role="button"
+                                    href="{{ route('computers.account.edit', [$computer->id, $account->id]) }}">Update</a>
                             @endcan
                         </td>
                     </tr>
