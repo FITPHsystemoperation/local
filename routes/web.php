@@ -39,12 +39,11 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::post('/mouse', 'MousesController@store')->name('mouse.store');
     Route::patch('/mouse', 'MousesController@attach')->name('mouse.attach');
     Route::patch('/mouse/{mouse}', 'MousesController@detach')->name('mouse.detach');
+    Route::get('/keyboard', 'KeyboardsController@index')->name('keyboard.index');
+    Route::post('/keyboard', 'KeyboardsController@store')->name('keyboard.store');
+    Route::patch('/keyboard', 'KeyboardsController@attach')->name('keyboard.attach');
+    Route::patch('/keyboard/{keyboard}', 'KeyboardsController@detach')->name('keyboard.detach');
 });
-//index, create, assign
-// Route::resource('/computers/{computer}/mouse', 'MousesController', ['as' => 'computers']);
-
-// Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
-// Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
 
 // Route::get('/computer/{id}/keyboard', 'ComputerKeyboardController@index');
 // Route::post('/computer/{id}/keyboard/add', 'ComputerKeyboardController@store');

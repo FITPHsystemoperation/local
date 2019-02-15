@@ -17,12 +17,12 @@
 					@method ('patch')
 
 					<div class="form-group row">
-						<label for="mouse_id" class="col-md-3 col-form-label text-md-right">Select Mouse:</label>
+						<label for="mouse" class="col-md-3 col-form-label text-md-right">Select Mouse:</label>
 
 						<div class="col-md-7">
-							<select class="c-select form-control" id="mouse_id" name="mouse_id" required autofocus>
+							<select class="c-select form-control" id="mouse" name="mouse" required autofocus>
 								@foreach ($mouses as $mouse)
-									<option value="{{ $mouse->id }}" {{ $mouse->computer_id ? 'disabled' : '' }}>
+									<option value="{{ $mouse->id }}" {{ $mouse->computer ? 'disabled' : '' }}>
 										{{ $mouse->mouseName }}
 									</option>
 								@endforeach{{-- $mouses as $mouse --}}

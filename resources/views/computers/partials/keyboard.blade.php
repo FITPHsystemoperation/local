@@ -6,7 +6,7 @@
             </div>{{-- col --}}
 
             <div class="col text-right">
-                <a class="btn btn-primary" href="/computer/{{ $computer->id }}/keyboard" role="button">Add</a>
+                <a class="btn btn-primary" role="button" href="{{ route('computers.keyboard.index', $computer) }}">Add</a>
             </div>{{-- col --}}
         </div>{{-- row --}}
 
@@ -16,8 +16,11 @@
         @foreach ($computer->keyboards as $keyboard)
             <h5 class="pt-1">
                 &#9656; {{ $keyboard->keyboardName }}
-                <form method="post" action="/computer/keyboard/{{ $keyboard->id }}/remove" class="float-right">
+                <form method="post" class="float-right" action="{{ route('computers.keyboard.detach', [$computer->id, $keyboard->id]) }}">
                     @csrf
+
+                    @method ('patch')
+
                     <button type="submit" class="close" title="Remove">&times;</button>
                 </form>
             </h5>

@@ -8,16 +8,21 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				<form method="post" action="/computer/{{$id}}/keyboard/add">
+				@include ('shared.error')
+				@include ('shared.status')
+
+				<form method="post" action="{{ route('computers.keyboard.attach', $computer->id) }}">
 					@csrf
 
+					@method ('patch')
+
 					<div class="form-group row">
-						<label for="keyboard_id" class="col-md-3 col-form-label text-md-right">Select Keyboard:</label>
+						<label for="keyboard" class="col-md-3 col-form-label text-md-right">Select Keyboard:</label>
 							
 						<div class="col-md-7">
-							<select class="c-select form-control" id="keyboard_id" name="keyboard_id" required autofocus>
+							<select class="c-select form-control" id="keyboard" name="keyboard" required autofocus>
 								@foreach ($keyboards as $keyboard)
-									<option value="{{ $keyboard->id }}" {{ $keyboard->computer_id ? 'disabled' : '' }}>
+									<option value="{{ $keyboard->id }}" {{ $keyboard->computer ? 'disabled' : '' }}>
 										{{ $keyboard->keyboardName }}
 									</option>
 								@endforeach{{-- $keyboards as $keyboard --}}
@@ -27,9 +32,9 @@
 
 					<div class="form-group row mb-0">
                         <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Link Keyboard</button>
+							<button type="submit" class="btn btn-primary">Attach Keyboard</button>
 
-							<a class="btn btn-outline-secondary" href="/computer/{{$id}}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>
@@ -42,10 +47,7 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				@include ('shared.error')
-				@include ('shared.status')
-
-				<form method="post" action="/keyboards/create">
+				<form method="post" action="{{ route('computers.keyboard.store', $computer->id) }}">
 					@csrf
 
 					<div class="form-group row">

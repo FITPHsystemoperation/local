@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\KeyboardsFormRequest;
+use App\Computer;
 use App\Keyboard;
 
 class KeyboardsController extends Controller
@@ -12,35 +12,16 @@ class KeyboardsController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Computer $computer)
     {
-        //
+        return view('computers.keyboard', compact('computer'))
+            ->with('keyboards', Keyboard::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(KeyboardsFormRequest $request)
-    {
-        $request->validate([ 'keyboardName' => 'unique:keyboards', ]);
+        $request->validate([ 'keyboardName' => 'required|min:5|unique:keyboards', ]);
 
         Keyboard::create(['keyboardName' => $request->get('keyboardName')]);
 
@@ -48,48 +29,23 @@ class KeyboardsController extends Controller
             ->with('status', 'Keyboard successfully recorded'); 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function attach(Request $request, Computer $computer)
     {
-        //
+        $request->validate([ 'keyboard' => 'required' ]);
+        
+        $keyboard = Keyboard::findOrFail($request->get('keyboard'));
+        
+        $computer->keyboards()->save($keyboard);
+
+        return redirect()->route('computers.show', $computer->id)
+            ->with('status', "Keyboard:$keyboard->keyboardName has been attached to this computer");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function detach(Computer $computer, Keyboard $keyboard)
     {
-        //
-    }
+        $keyboard->update(['computer_id' => null]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->back()
+            ->with('status', "Keyboard:$keyboard->keyboardName has been detached from this computer");
     }
 }
