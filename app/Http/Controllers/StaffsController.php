@@ -35,7 +35,7 @@ class StaffsController extends Controller
     {
         $request->validate(['idNumber' => 'unique:users']);
         
-        Staff::create([
+        $staff = Staff::create([
             'firstName' => $request->get('firstName'),
             'middleName' => $request->get('middleName'),
             'lastName' => $request->get('lastName'),
@@ -45,10 +45,10 @@ class StaffsController extends Controller
         ])->user()->create([
             'idNumber' => $request->get('idNumber'),
             'password' => Hash::make('123456'),
-        ]); 
+        ]);
 
         return redirect()->route('staffs.index')
-            ->with('status', 'Staff successfully recorded');
+            ->with('status', 'Staff:<strong>' . $staff->idNumber . '</strong> successfully recorded');
     }
 
     public function show(Staff $staff)
@@ -85,7 +85,7 @@ class StaffsController extends Controller
         $staff->delete();
 
         return redirect()->route('staffs.index')
-            ->with('status', "$staff->firstName $staff->firstName successfully removed from the record");
+            ->with('status', "Staff:<strong>$staff->firstName $staff->lastName</strong> successfully removed from the record");
     }
 
     public function editWork(Staff $staff)
