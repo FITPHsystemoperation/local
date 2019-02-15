@@ -18,23 +18,27 @@
 			<div class="card-body">
 				@include ('shared.status')
 
-				<table class="table border-bottom">
-					<thead>
-						<tr>
-							<th>Department</th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						@foreach ($departments as $department)
-							<tr>
-								<td>
-									<a href="{{ route('departments.show', $department->id) }}">{{ $department->departmentName }}</a>
-								</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>{{-- table --}}
+				@component ('shared.check-content', ['data' => $departments])
+					@slot ('content')
+						<table class="table border-bottom">
+							<thead>
+								<tr>
+									<th>Department</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								@foreach ($departments as $department)
+									<tr>
+										<td>
+											<a href="{{ route('departments.show', $department->id) }}">{{ $department->departmentName }}</a>
+										</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>{{-- table --}}
+					@endslot
+				@endcomponent
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}
 	</div>{{-- container --}}

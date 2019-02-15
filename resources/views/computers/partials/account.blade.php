@@ -14,40 +14,44 @@
     </div>{{-- card-header --}}
 
     <div class="card-body">
-        <table class="table border-bottom">
-            <thead>
-                <tr class="text-center">
-                    <th>User Name</th>
-                    <th>User Role</th>
-                    <th>Password</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        @component ('shared.check-content', ['data' => $computer->accounts])
+            @slot ('content')
+                <table class="table border-bottom">
+                    <thead>
+                        <tr class="text-center">
+                            <th>User Name</th>
+                            <th>User Role</th>
+                            <th>Password</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
 
-            <tbody>
-                @foreach ($computer->accounts as $account)
-                    <tr class="text-center">
-                        <td>{{ $account->accountName }}</td>
-                        
-                        <td>{{ $account->type->type }}</td>
-                        
-                        <td>
-                            @if ( $account->type_id != 1 || Gate::allows('viewPassword', $computer) )
-                                {{ $account->password }}
-                            @else
-                                {!! preg_replace('/./', '&#9679;', $account->password) !!}
-                            @endif
-                        </td>
+                    <tbody>
+                        @foreach ($computer->accounts as $account)
+                            <tr class="text-center">
+                                <td>{{ $account->accountName }}</td>
+                                
+                                <td>{{ $account->type->type }}</td>
+                                
+                                <td>
+                                    @if ( $account->type_id != 1 || Gate::allows('viewPassword', $computer) )
+                                        {{ $account->password }}
+                                    @else
+                                        {!! preg_replace('/./', '&#9679;', $account->password) !!}
+                                    @endif
+                                </td>
 
-                        <td>
-                            @can ('update', $account)
-                                <a class="btn btn-sm btn-outline-info" role="button"
-                                    href="{{ route('computers.account.edit', [$computer->id, $account->id]) }}">Update</a>
-                            @endcan
-                        </td>
-                    </tr>
-                @endforeach{{-- $computer->accounts as $account --}}
-            </tbody>
-        </table>
+                                <td>
+                                    @can ('update', $account)
+                                        <a class="btn btn-sm btn-outline-info" role="button"
+                                            href="{{ route('computers.account.edit', [$computer->id, $account->id]) }}">Update</a>
+                                    @endcan
+                                </td>
+                            </tr>
+                        @endforeach{{-- $computer->accounts as $account --}}
+                    </tbody>
+                </table>
+            @endslot
+        @endcomponent
     </div>{{-- card-body --}}
 </div>{{-- card --}}

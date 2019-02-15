@@ -1,3 +1,5 @@
 @foreach ($errors->all() as $error)
-    <p class="alert alert-danger text-center">{{ $error }}</p>
+    <div class="alert alert-danger text-center">
+        {{ $error }}
+    </div>
 @endforeach

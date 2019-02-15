@@ -17,33 +17,37 @@
 
 			<div class="card-body">
 				@include ('shared.status')
-				
-				<table class="table border-bottom">
-					<thead>
-						<tr class="text-center">
-							<th>ID No.</th>
-							<th>Full Name</th>
-							<th>Job Title</th>
-							<th>Status</th>
-							<th>Department</th>
-						</tr>
-					</thead>
 
-					<tbody>
-						@foreach ($staffs as $staff)
-							<tr class="text-center">
-								<td>
-									<a href="{{ route('staffs.show', $staff->id) }}">{{ $staff->user['idNumber'] }}</a>
-								</td>
+				@component ('shared.check-content', ['data' => $staffs])
+					@slot ('content')
+						<table class="table border-bottom">
+							<thead>
+								<tr class="text-center">
+									<th>ID No.</th>
+									<th>Full Name</th>
+									<th>Job Title</th>
+									<th>Status</th>
+									<th>Department</th>
+								</tr>
+							</thead>
 
-								<td>{{ "$staff->firstName $staff->lastName" }}</td>
-								<td>{{ $staff->jobTitle['titleName'] }}</td>
-								<td>{{ $staff->employmentStat['statDesc'] }}</td>
-								<td>{{ $staff->department['departmentName'] }}</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
+							<tbody>
+								@foreach ($staffs as $staff)
+									<tr class="text-center">
+										<td>
+											<a href="{{ route('staffs.show', $staff->id) }}">{{ $staff->user['idNumber'] }}</a>
+										</td>
+
+										<td>{{ "$staff->firstName $staff->lastName" }}</td>
+										<td>{{ $staff->jobTitle['titleName'] }}</td>
+										<td>{{ $staff->employmentStat['statDesc'] }}</td>
+										<td>{{ $staff->department['departmentName'] }}</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					@endslot
+				@endcomponent
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}
 	</div>{{-- container --}}

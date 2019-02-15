@@ -20,30 +20,34 @@
 			<div class="card-body">
 				@include ('shared.status')
 
-				<table class="table border-bottom">
-					<thead>
-						<tr class="text-center">
-							<th>ID No.</th>
-							<th>Full Name</th>
-							<th>Job Title</th>
-							<th>Status</th>
-						</tr>
-					</thead>
+				@component ('shared.check-content', ['data' => $department->staffs])
+					@slot ('content')
+						<table class="table border-bottom">
+							<thead>
+								<tr class="text-center">
+									<th>ID No.</th>
+									<th>Full Name</th>
+									<th>Job Title</th>
+									<th>Status</th>
+								</tr>
+							</thead>
 
-					<tbody>
-						@foreach ($department->staffs as $staff)
-							<tr class="text-center">
-								<td>{{ $staff->user['idNumber'] }}</td>
-								
-								<td>{{ "$staff->firstName $staff->lastName" }}</td>
-								
-								<td>{{ $staff->jobTitle['titleName'] }}</td>
-								
-								<td>{{ $staff->employmentStat['statDesc'] }}</td>
-							</tr>
-						@endforeach{{-- ($department->staffs as $staff) --}}
-					</tbody>
-				</table>
+							<tbody>
+								@foreach ($department->staffs as $staff)
+									<tr class="text-center">
+										<td>{{ $staff->user['idNumber'] }}</td>
+										
+										<td>{{ "$staff->firstName $staff->lastName" }}</td>
+										
+										<td>{{ $staff->jobTitle['titleName'] }}</td>
+										
+										<td>{{ $staff->employmentStat['statDesc'] }}</td>
+									</tr>
+								@endforeach{{-- ($department->staffs as $staff) --}}
+							</tbody>
+						</table>
+					@endslot
+				@endcomponent
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}
 	</div>{{-- container --}}

@@ -12,17 +12,21 @@
     </div>{{-- card-header --}}
 
     <div class="card-body">
-            @foreach ($computer->mouses as $mouse)
-                <h5 class="pt-1">
-                    &#9656; {{ $mouse->mouseName }}
-                    <form class="float-right" method="post" action="{{ route('computers.mouse.detach', [$computer->id, $mouse->id]) }}">
-                        @csrf
+        @component ('shared.check-content', ['data' => $computer->mouses])
+            @slot ('content')
+                @foreach ($computer->mouses as $mouse)
+                    <h5 class="pt-1">
+                        &#9656; {{ $mouse->mouseName }}
+                        <form class="float-right" method="post" action="{{ route('computers.mouse.detach', [$computer->id, $mouse->id]) }}">
+                            @csrf
 
-                        @method ('patch')
+                            @method ('patch')
 
-                        <button type="submit" class="close" title="Remove">&times;</button>
-                    </form>
-                </h5>
-            @endforeach{{-- $computer->mouses as $mouse --}}
+                            <button type="submit" class="close" title="Remove">&times;</button>
+                        </form>
+                    </h5>
+                @endforeach{{-- $computer->mouses as $mouse --}}
+            @endslot
+        @endcomponent
     </div>{{-- card-body --}}
 </div>{{-- card --}}

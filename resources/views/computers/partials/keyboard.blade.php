@@ -13,17 +13,21 @@
     </div>{{-- card-header --}}
 
     <div class="card-body">
-        @foreach ($computer->keyboards as $keyboard)
-            <h5 class="pt-1">
-                &#9656; {{ $keyboard->keyboardName }}
-                <form method="post" class="float-right" action="{{ route('computers.keyboard.detach', [$computer->id, $keyboard->id]) }}">
-                    @csrf
+        @component ('shared.check-content', ['data' => $computer->keyboards])
+            @slot ('content')
+                @foreach ($computer->keyboards as $keyboard)
+                    <h5 class="pt-1">
+                        &#9656; {{ $keyboard->keyboardName }}
+                        <form method="post" class="float-right" action="{{ route('computers.keyboard.detach', [$computer->id, $keyboard->id]) }}">
+                            @csrf
 
-                    @method ('patch')
+                            @method ('patch')
 
-                    <button type="submit" class="close" title="Remove">&times;</button>
-                </form>
-            </h5>
-        @endforeach{{-- $computer->keyboards as $keyboard --}}
+                            <button type="submit" class="close" title="Remove">&times;</button>
+                        </form>
+                    </h5>
+                @endforeach{{-- $computer->keyboards as $keyboard --}}
+            @endslot
+        @endcomponent
     </div>{{-- card-body --}}
 </div>{{-- card --}}

@@ -12,17 +12,21 @@
     </div>{{-- card-header --}}
 
     <div class="card-body">
-        @foreach ($computer->chargers as $charger)
-            <h5 class="pt-1">
-                &#9656; {{ $charger->chargerName }}
-                <form method="post" class="float-right" action="{{ route('computers.charger.detach', [$computer->id, $charger->id]) }}">
-                    @csrf
+        @component ('shared.check-content', ['data' => $computer->chargers])
+            @slot ('content')
+                @foreach ($computer->chargers as $charger)
+                    <h5 class="pt-1">
+                        &#9656; {{ $charger->chargerName }}
+                        <form method="post" class="float-right" action="{{ route('computers.charger.detach', [$computer->id, $charger->id]) }}">
+                            @csrf
 
-                    @method ('patch')
+                            @method ('patch')
 
-                    <button type="submit" class="close" title="Remove">&times;</button>
-                </form>
-            </h5>
-        @endforeach{{-- $computer->chargers as $charger --}}
+                            <button type="submit" class="close" title="Remove">&times;</button>
+                        </form>
+                    </h5>
+                @endforeach{{-- $computer->chargers as $charger --}}
+            @endslot
+        @endcomponent
     </div>{{-- card-body --}}
 </div>{{-- card --}}
