@@ -32,7 +32,7 @@
 
 					<div class="form-group row mb-0">
                         <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Link Mouse</button>
+							<button type="submit" class="btn btn-primary">Attach Mouse</button>
 
 							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
                         </div>{{-- col --}}

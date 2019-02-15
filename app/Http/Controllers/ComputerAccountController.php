@@ -30,7 +30,7 @@ class ComputerAccountController extends Controller
 
     public function store(ComputerAccountFormRequest $request, Computer $computer)
     {   
-        ComputerAccount::create([
+        $account = ComputerAccount::create([
             'computer_id' => $computer->id,
             'accountName' => $request->get('accountName'),
             'type_id' => $request->get('type_id'),
@@ -38,7 +38,7 @@ class ComputerAccountController extends Controller
         ]);
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', 'Account has been added to this computer');
+            ->with('status', '<strong>' . $account->type->type . '</strong> account has been registered to this computer');
     }
 
     public function show()
@@ -63,7 +63,7 @@ class ComputerAccountController extends Controller
         ]);
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', 'Account has been updated');
+            ->with('status', "Account:<strong>$account->accountName</strong> successfully updated");
     }
 
     public function destroy(Computer $computer, ComputerAccount $account)
@@ -71,6 +71,6 @@ class ComputerAccountController extends Controller
         $account->delete();
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', 'Account has been removed from this Computer');
+            ->with('status', "Account:<strong>$account->accountName</strong> has been removed from this Computer");
     }
 }

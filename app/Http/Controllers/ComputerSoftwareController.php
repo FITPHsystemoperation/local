@@ -35,14 +35,14 @@ class ComputerSoftwareController extends Controller
 
     public function store(Request $request, Computer $computer, Software $software)
     {
-        ComputerSoftware::create([
+        $computer_software = ComputerSoftware::create([
             'computer_id' => $computer->id,
             'software_id' => $software->id,
             'specs' => array_slice($request->all(), 1),
         ]);
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', 'Software successfully added to this computer');
+            ->with('status', 'Software:<strong>' . $computer_software->software->softwareName . '</strong> successfully added to this computer');
     }
 
     public function edit(Computer $computer, ComputerSoftware $computer_software)
@@ -59,14 +59,16 @@ class ComputerSoftwareController extends Controller
         ]);
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', 'Software details successfully updated');
+            ->with('status', 'Software:<strong>' . $computer_software->software->softwareName . '</strong> details successfully updated');
     }
 
     public function destroy(Computer $computer, ComputerSoftware $computer_software)
-    {
+    {   
+        $software = $computer_software->software;
+
         $computer_software->delete();
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', 'Software successfully removed');
+            ->with('status', "Software:<strong>$software->softwareName</strong> successfully removed from this computer");
     }
 }

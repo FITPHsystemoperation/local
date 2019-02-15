@@ -33,7 +33,7 @@ class ComputersController extends Controller
             'compName' => 'unique:computers',
         ]);
 
-        Computer::create([
+        $computer = Computer::create([
             'compName' => $request->get('compName'),
             'os' => $request->get('os'),
             'status' => $request->get('status'),
@@ -41,7 +41,7 @@ class ComputersController extends Controller
         ]);
 
         return redirect()->route('computers.index')
-            ->with('status', 'Computer record successfully added');
+            ->with('status', "Computer:<strong>$computer->compName</strong> successfully recorded");
     }
 
     public function show(Computer $computer)
@@ -66,7 +66,7 @@ class ComputersController extends Controller
         ]);
 
         return redirect()->route('computers.show', $computer->id    )
-            ->with('status', 'Computer record successfully updated');
+            ->with('status', 'Computer information successfully updated');
     }
 
     public function destroy()
