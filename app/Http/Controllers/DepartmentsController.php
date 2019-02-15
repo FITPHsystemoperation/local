@@ -27,10 +27,10 @@ class DepartmentsController extends Controller
     {
         $request->validate(['departmentName' => 'unique:departments']);
 
-        Department::create(['departmentName' => $request->get('departmentName')]);
+        $department = Department::create(['departmentName' => $request->get('departmentName')]);
 
         return redirect()->route('departments.index')
-            ->with('status', 'Department successfully recorded');
+            ->with('status', "Department:<strong>$department->departmentName</strong> successfully recorded");
     }
 
     public function show(Department $department)
@@ -48,7 +48,7 @@ class DepartmentsController extends Controller
         $department->update(['departmentName' => $request->get('departmentName')]);
 
         return redirect()->route('departments.show', $department->id)
-            ->with('status', 'Record successfully updated');
+            ->with('status', 'Department successfully updated');
     }
 
     public function destroy($id)
