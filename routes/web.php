@@ -43,6 +43,11 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::post('/keyboard', 'KeyboardsController@store')->name('keyboard.store');
     Route::patch('/keyboard', 'KeyboardsController@attach')->name('keyboard.attach');
     Route::patch('/keyboard/{keyboard}', 'KeyboardsController@detach')->name('keyboard.detach');
+    //index, create
+    Route::get('/monitor', 'MonitorsController@index')->name('monitor.index');
+    Route::post('/monitor', 'MonitorsController@store')->name('monitor.store');
+    Route::patch('/monitor', 'MonitorsController@attach')->name('monitor.attach');
+    Route::patch('/monitor/{monitor}', 'MonitorsController@detach')->name('monitor.detach');
 });
 
 // Route::get('/computer/{id}/keyboard', 'ComputerKeyboardController@index');

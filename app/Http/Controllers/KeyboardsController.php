@@ -38,7 +38,7 @@ class KeyboardsController extends Controller
         $computer->keyboards()->save($keyboard);
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', "Keyboard:$keyboard->keyboardName has been attached to this computer");
+            ->with('status', "Keyboard:<strong>$keyboard->keyboardName</strong> has been attached to this computer");
     }
 
     public function detach(Computer $computer, Keyboard $keyboard)
@@ -46,6 +46,6 @@ class KeyboardsController extends Controller
         $keyboard->update(['computer_id' => null]);
 
         return redirect()->back()
-            ->with('status', "Keyboard:$keyboard->keyboardName has been detached from this computer");
+            ->with('status', "Keyboard:<strong>$keyboard->keyboardName</strong> has been detached from this computer");
     }
 }

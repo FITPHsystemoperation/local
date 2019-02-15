@@ -38,7 +38,7 @@ class MousesController extends Controller
         $computer->mouses()->save($mouse);
 
         return redirect()->route('computers.show', $computer->id)
-            ->with('status', "Mouse:$mouse->mouseName has been attached to this computer");
+            ->with('status', "Mouse:<strong>$mouse->mouseName</strong> has been attached to this computer");
     }
 
     public function detach(Computer $computer, Mouse $mouse)
@@ -46,6 +46,6 @@ class MousesController extends Controller
         $mouse->update(['computer_id' => null]);
 
         return redirect()->back()
-            ->with('status', "Mouse:$mouse->mouseName has been detached from this computer");
+            ->with('status', "Mouse:<strong>$mouse->mouseName</strong> has been detached from this computer");
     }
 }

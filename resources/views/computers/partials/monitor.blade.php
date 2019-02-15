@@ -6,7 +6,7 @@
             </div>{{-- col --}}
 
             <div class="col text-right">
-                <a class="btn btn-primary" href="/computer/{{ $computer->id }}/monitor" role="button">Add</a>
+                <a class="btn btn-primary" role="button" href="{{ route('computers.monitor.index', $computer->id) }}">Add</a>
             </div>
         </div>{{-- row --}}
     </div>{{-- card-header --}}
@@ -15,8 +15,11 @@
         @foreach ($computer->monitors as $monitor)
             <h5 class="pt-1">
                 &#9656; {{ $monitor->monitorName }}
-                <form method="post" action="/computer/monitor/{{ $monitor->id }}/remove" class="float-right">
+                <form method="post" class="float-right" action="{{ route('computers.monitor.detach', [$computer->id, $monitor->id]) }}">
                     @csrf
+
+                    @method ('patch')
+
                     <button type="submit" class="close" title="Remove">&times;</button>
                 </form>
             </h5>

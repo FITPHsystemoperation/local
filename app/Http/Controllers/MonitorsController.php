@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\MonitorsFormRequest;
+use App\Computer;
 use App\Monitor;
 
 class MonitorsController extends Controller
@@ -12,35 +12,16 @@ class MonitorsController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Computer $computer)
     {
-        //
+        return view('computers.monitor', compact('computer'))
+            ->with('monitors', Monitor::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(MonitorsFormRequest $request)
-    {
-        $request->validate([ 'monitorName' => 'unique:monitors' ]);
+        $request->validate([ 'monitorName' => 'required|min:5|unique:monitors' ]);
         
         Monitor::create(['monitorName' => $request->get('monitorName')]);
 
@@ -48,48 +29,23 @@ class MonitorsController extends Controller
             ->with('status', 'Monitor successfully recorded'); 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function attach(Request $request, Computer $computer)
     {
-        //
+        $request->validate([ 'monitor' => 'required' ]);
+        
+        $monitor = Monitor::findOrFail($request->get('monitor'));
+        
+        $computer->monitors()->save($monitor);
+
+        return redirect()->route('computers.show', $computer->id)
+            ->with('status', "Monitor:<strong>$monitor->monitorName</strong> has been attached to this computer");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function detach(Computer $computer, Monitor $monitor)
     {
-        //
-    }
+        $monitor->update(['computer_id' => null]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->back()
+            ->with('status', "Monitor:<strong>$monitor->monitorName</strong> has been detached from this computer");
     }
 }
