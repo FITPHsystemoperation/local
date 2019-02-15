@@ -11,23 +11,23 @@
 |
 */
 Route::resource('/staffs', 'StaffsController');
-// Route::prefix('/staffs/{staff}')->name('staffs.')->group(function(){
-//     Route::get('/working-data', 'StaffsController@editWork')->name('work.edit');
-//     Route::patch('/working-data', 'StaffsController@updateWork')->name('work.update');
-//     Route::get('/contact-information', 'StaffsController@editContact')->name('contact.edit');
-//     Route::patch('/contact-information', 'StaffsController@updateContact')->name('contact.update');
-//     Route::get('/emergency', 'StaffsController@editEmergency')->name('emergency.edit');
-//     Route::patch('/emergency', 'StaffsController@updateEmergency')->name('emergency.update');
-//     Route::get('/account', 'StaffsController@editAccount')->name('account.edit');
-//     Route::patch('/account', 'StaffsController@updateAccount')->name('account.update');
-//     Route::get('/personal', 'StaffsController@editPersonal')->name('personal.edit');
-//     Route::patch('/personal', 'StaffsController@updatePersonal')->name('personal.update');
-// });
+Route::prefix('/staffs/{staff}')->name('staffs.')->group(function(){
+    Route::get('/working-data', 'StaffsController@editWork')->name('work.edit');
+    Route::patch('/working-data', 'StaffsController@updateWork')->name('work.update');
+    Route::get('/contact-information', 'StaffsController@editContact')->name('contact.edit');
+    Route::patch('/contact-information', 'StaffsController@updateContact')->name('contact.update');
+    Route::get('/emergency', 'StaffsController@editEmergency')->name('emergency.edit');
+    Route::patch('/emergency', 'StaffsController@updateEmergency')->name('emergency.update');
+    Route::get('/account', 'StaffsController@editAccount')->name('account.edit');
+    Route::patch('/account', 'StaffsController@updateAccount')->name('account.update');
+    Route::get('/personal', 'StaffsController@editPersonal')->name('personal.edit');
+    Route::patch('/personal', 'StaffsController@updatePersonal')->name('personal.update');
+});
 
 Route::resource('/departments', 'DepartmentsController');
+
 Route::resource('/computers', 'ComputersController');
 Route::resource('/computers/{computer}/account', 'ComputerAccountController', ['as' => 'computers']);
-
 Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::get('/software/select', 'ComputerSoftwareController@index')->name('software.index');
     Route::get('/software/{software}', 'ComputerSoftwareController@create')->name('software.create');
@@ -43,28 +43,15 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::post('/keyboard', 'KeyboardsController@store')->name('keyboard.store');
     Route::patch('/keyboard', 'KeyboardsController@attach')->name('keyboard.attach');
     Route::patch('/keyboard/{keyboard}', 'KeyboardsController@detach')->name('keyboard.detach');
-    //index, create
     Route::get('/monitor', 'MonitorsController@index')->name('monitor.index');
     Route::post('/monitor', 'MonitorsController@store')->name('monitor.store');
     Route::patch('/monitor', 'MonitorsController@attach')->name('monitor.attach');
     Route::patch('/monitor/{monitor}', 'MonitorsController@detach')->name('monitor.detach');
+    Route::get('/charger', 'ChargersController@index')->name('charger.index');
+    Route::post('/charger', 'ChargersController@store')->name('charger.store');
+    Route::patch('/charger', 'ChargersController@attach')->name('charger.attach');
+    Route::patch('/charger/{charger}', 'ChargersController@detach')->name('charger.detach');
 });
-
-// Route::get('/computer/{id}/keyboard', 'ComputerKeyboardController@index');
-// Route::post('/computer/{id}/keyboard/add', 'ComputerKeyboardController@store');
-// Route::post('/computer/keyboard/{keyboard_id}/remove', 'ComputerKeyboardController@destroy');
-
-// Route::get('/computer/{id}/monitor', 'ComputerMonitorController@index');
-// Route::post('/computer/{id}/monitor/add', 'ComputerMonitorController@store');
-// Route::post('/computer/monitor/{monitor_id}/remove', 'ComputerMonitorController@destroy');
-
-// Route::get('/computer/{id}/charger', 'ComputerChargerController@index');
-// Route::post('/computer/{id}/charger/add', 'ComputerChargerController@store');
-// Route::post('/computer/charger/{charger_id}/remove', 'ComputerChargerController@destroy');
-
-// Route::post('/keyboards/create', 'KeyboardsController@store');
-// Route::post('/monitors/create', 'MonitorsController@store');
-// Route::post('/chargers/create', 'ChargersController@store');
 
 // Route::get('/softwares', 'SoftwaresController@index');
 // Route::get('/softwares/create', 'SoftwaresController@create');

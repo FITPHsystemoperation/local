@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ChargersFormRequest;
+use App\Computer;
 use App\Charger;
 
 class ChargersController extends Controller
@@ -12,35 +12,16 @@ class ChargersController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Computer $computer)
     {
-        //
+        return view('computers.charger', compact('computer'))
+            ->with('chargers', Charger::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ChargersFormRequest $request)
-    {
-        $request->validate([ 'chargerName' => 'unique:chargers', ]);
+        $request->validate([ 'chargerName' => 'required|min:5|unique:chargers', ]);
 
         Charger::create(['chargerName' => $request->get('chargerName')]);
 
@@ -48,48 +29,23 @@ class ChargersController extends Controller
             ->with('status', 'Charger successfully recorded');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function attach(Request $request, Computer $computer)
     {
-        //
+        $request->validate([ 'charger' => 'required' ]);
+        
+        $charger = Charger::findOrFail($request->get('charger'));
+        
+        $computer->chargers()->save($charger);
+
+        return redirect()->route('computers.show', $computer->id)
+            ->with('status', "Charger:<strong>$charger->chargerName</strong> has been attached to this computer");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function detach(Computer $computer, Charger $charger)
     {
-        //
-    }
+        $charger->update(['computer_id' => null]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->back()
+            ->with('status', "Charger:<strong>$charger->chargerName</strong> has been detached from this computer");
     }
 }

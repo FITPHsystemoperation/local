@@ -8,16 +8,21 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				<form method="post" action="/computer/{{$id}}/charger/add">
+				@include ('shared.error')
+				@include ('shared.status')
+
+				<form method="post" action="{{ route('computers.charger.attach', $computer->id) }}">
 					@csrf
 
+					@method ('patch')
+
 					<div class="form-group row">
-						<label for="charger_id" class="col-md-3 col-form-label text-md-right">Select Charger:</label>
+						<label for="charger" class="col-md-3 col-form-label text-md-right">Select Charger:</label>
 							
 						<div class="col-md-7">
-							<select class="c-select form-control" id="charger_id" name="charger_id" required autofocus>
+							<select class="c-select form-control" id="charger" name="charger" required autofocus>
 								@foreach ($chargers as $charger)
-									<option value="{{ $charger->id }}" {{ $charger->computer_id ? 'disabled' : '' }}>
+									<option value="{{ $charger->id }}" {{ $charger->computer ? 'disabled' : '' }}>
 										{{ $charger->chargerName }}
 									</option>
 								@endforeach{{-- $chargers as $charger --}}
@@ -27,9 +32,9 @@
 
 					<div class="form-group row mb-0">
                         <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Link Charger</button>
+							<button type="submit" class="btn btn-primary">Attach Charger</button>
 
-							<a class="btn btn-outline-secondary" href="/computer/{{$id}}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>
@@ -42,10 +47,7 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				@include ('shared.error')
-				@include ('shared.status')
-
-				<form method="post" action="/chargers/create">
+				<form method="post" action="{{ route('computers.charger.store', $computer->id) }}">
 					@csrf
 
 					<div class="form-group row">

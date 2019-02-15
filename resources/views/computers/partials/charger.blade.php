@@ -6,7 +6,7 @@
             </div>{{-- col --}}
 
             <div class="col text-right">
-                <a class="btn btn-primary" href="/computer/{{ $computer->id }}/charger" role="button">Add</a>
+                <a class="btn btn-primary" role="button" href="{{ route('computers.charger.index', $computer->id) }}">Add</a>
             </div>{{-- col --}}
         </div>{{-- row --}}
     </div>{{-- card-header --}}
@@ -15,8 +15,11 @@
         @foreach ($computer->chargers as $charger)
             <h5 class="pt-1">
                 &#9656; {{ $charger->chargerName }}
-                <form method="post" action="/computer/charger/{{ $charger->id }}/remove" class="float-right">
+                <form method="post" class="float-right" action="{{ route('computers.charger.detach', [$computer->id, $charger->id]) }}">
                     @csrf
+
+                    @method ('patch')
+
                     <button type="submit" class="close" title="Remove">&times;</button>
                 </form>
             </h5>
