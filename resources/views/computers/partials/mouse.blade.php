@@ -6,7 +6,7 @@
             </div>{{-- col --}}
                 
             <div class="col text-right">
-                <a class="btn btn-primary" role="button" href="/computer/{{ $computer->id }}/mouse">Add</a>
+                <a class="btn btn-primary" role="button" href="{{ route('computers.mouse.index', $computer->id) }}">Add</a>
             </div>{{-- col --}}
         </div>{{-- row --}}
     </div>{{-- card-header --}}
@@ -15,8 +15,11 @@
             @foreach ($computer->mouses as $mouse)
                 <h5 class="pt-1">
                     &#9656; {{ $mouse->mouseName }}
-                    <form method="post" action="/computer/mouse/{{ $mouse->id }}/remove" class="float-right">
+                    <form class="float-right" method="post" action="{{ route('computers.mouse.detach', [$computer->id, $mouse->id]) }}">
                         @csrf
+
+                        @method ('patch')
+
                         <button type="submit" class="close" title="Remove">&times;</button>
                     </form>
                 </h5>

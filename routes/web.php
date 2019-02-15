@@ -27,7 +27,7 @@ Route::resource('/staffs', 'StaffsController');
 Route::resource('/departments', 'DepartmentsController');
 Route::resource('/computers', 'ComputersController');
 Route::resource('/computers/{computer}/account', 'ComputerAccountController', ['as' => 'computers']);
-//select, create, update, destryo
+
 Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::get('/software/select', 'ComputerSoftwareController@index')->name('software.index');
     Route::get('/software/{software}', 'ComputerSoftwareController@create')->name('software.create');
@@ -35,11 +35,16 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::get('/software/{computer_software}/edit', 'ComputerSoftwareController@edit')->name('software.edit');
     Route::patch('/software/{computer_software}', 'ComputerSoftwareController@update')->name('software.update');
     Route::delete('/software/{computer_software}', 'ComputerSoftwareController@destroy')->name('software.destroy');
+    Route::get('/mouse', 'MousesController@index')->name('mouse.index');
+    Route::post('/mouse', 'MousesController@store')->name('mouse.store');
+    Route::patch('/mouse', 'MousesController@attach')->name('mouse.attach');
+    Route::patch('/mouse/{mouse}', 'MousesController@detach')->name('mouse.detach');
 });
+//index, create, assign
+// Route::resource('/computers/{computer}/mouse', 'MousesController', ['as' => 'computers']);
 
 // Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
 // Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');
-// Route::post('/computer/mouse/{mouse_id}/remove', 'ComputerMouseController@destroy');
 
 // Route::get('/computer/{id}/keyboard', 'ComputerKeyboardController@index');
 // Route::post('/computer/{id}/keyboard/add', 'ComputerKeyboardController@store');
@@ -53,7 +58,6 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
 // Route::post('/computer/{id}/charger/add', 'ComputerChargerController@store');
 // Route::post('/computer/charger/{charger_id}/remove', 'ComputerChargerController@destroy');
 
-// Route::post('/mouses/create', 'MousesController@store');
 // Route::post('/keyboards/create', 'KeyboardsController@store');
 // Route::post('/monitors/create', 'MonitorsController@store');
 // Route::post('/chargers/create', 'ChargersController@store');

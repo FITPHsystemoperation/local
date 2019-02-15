@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\MousesFormRequest;
+use App\Computer;
 use App\Mouse;
 
 class MousesController extends Controller
@@ -12,35 +12,16 @@ class MousesController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+ 
+    public function index(Computer $computer)
     {
-        //
+        return view('computers.mouse', compact('computer'))
+            ->with('mouses', Mouse::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(MousesFormRequest $request)
-    {
-        $request->validate([ 'mouseName' => 'unique:mouses', ]);
+        $request->validate([ 'mouseName' => 'required|min:5|unique:mouses' ]);
 
         Mouse::create(['mouseName' => $request->get('mouseName')]);
 
@@ -48,48 +29,23 @@ class MousesController extends Controller
             ->with('status', 'Mouse successfully recorded'); 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function attach(Request $request, Computer $computer)
     {
-        //
+        $request->validate([ 'mouse_id' => 'required' ]);
+        
+        $mouse = Mouse::findOrFail($request->get('mouse_id'));
+        
+        $computer->mouses()->save($mouse);
+
+        return redirect()->route('computers.show', $computer->id)
+            ->with('status', 'Mouse has been attached to this computer');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function detach(Computer $computer, Mouse $mouse)
     {
-        //
-    }
+        $mouse->update(['computer_id' => null]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->back()
+            ->with('status', 'Mouse has been detached from this computer');
     }
 }

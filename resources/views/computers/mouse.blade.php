@@ -8,8 +8,13 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				<form method="post" action="/computer/{{$id}}/mouse/add">
+				@include ('shared.error')
+				@include ('shared.status')
+
+				<form method="post" action="{{ route('computers.mouse.attach', $computer->id) }}">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">
 						<label for="mouse_id" class="col-md-3 col-form-label text-md-right">Select Mouse:</label>
@@ -29,7 +34,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Link Mouse</button>
 
-							<a class="btn btn-outline-secondary" href="/computer/{{$id}}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>
@@ -42,10 +47,7 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				@include ('shared.error')
-				@include ('shared.status')
-
-				<form method="post" action="/mouses/create">
+				<form method="post" action="{{ route('computers.mouse.store', $computer->id) }}">
 					@csrf
 
 					<div class="form-group row">
