@@ -33,33 +33,40 @@ class ComputerSoftwareController extends Controller
             ->with('computer', $computer);
     }
 
-    public function store(Request $request, $computer, $software)
+    public function store(Request $request, Computer $computer, Software $software)
     {
         ComputerSoftware::create([
-            'computer_id' => $computer,
-            'software_id' => $software,
+            'computer_id' => $computer->id,
+            'software_id' => $software->id,
             'specs' => array_slice($request->all(), 1),
         ]);
 
-        return redirect("/computer/$computer")
+        return redirect()->route('computers.show', $computer->id)
             ->with('status', 'Software successfully added to this computer');
     }
 
-    public function edit(ComputerSoftware $computer_software)
+    public function edit(Computer $computer, ComputerSoftware $computer_software)
     {
         $this->authorize('create', ComputerSoftware::class);
      
         return view('computers.software.edit', compact('computer_software')); 
     }
 
-    public function update(Request $request, ComputerSoftware $computer_software)
+    public function update(Request $request, Computer $computer, ComputerSoftware $computer_software)
     {
         $computer_software->update([
-            'specs' => array_slice($request->all(), 1),
+            'specs' => array_slice($request->all(), 2),
         ]);
 
-        return redirect("/computer/$computer_software->computer_id")
+        return redirect()->route('computers.show', $computer->id)
             ->with('status', 'Software details successfully updated');
     }
 
+    public function destroy(Computer $computer, ComputerSoftware $computer_software)
+    {
+        $computer_software->delete();
+
+        return redirect()->route('computers.show', $computer->id)
+            ->with('status', 'Software successfully removed');
+    }
 }

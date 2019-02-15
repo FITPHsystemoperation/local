@@ -5,7 +5,7 @@
 
     <div class="dropdown-menu">
         @foreach ($softwares as $software)
-            <a class="dropdown-item" href="/computer/{{ $computer->id }}/software/{{ $software->id }}/create">
+            <a class="dropdown-item" href="{{ route('computers.software.create', [$computer->id, $software->id]) }}">
                 {{ $software->softwareName }}
             </a>
         @endforeach{{-- $softwares as $software --}}

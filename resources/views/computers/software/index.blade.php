@@ -5,7 +5,7 @@
 		<div class="card border-dark">
 			<div class="card-header">
 				<div class="row">
-					<div class="col">
+					<div class="col-8">
 						<h3>Add New Software to {{ $computer->compName }}</h3>
 					</div>{{-- col --}}
 						

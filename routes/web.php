@@ -25,15 +25,17 @@ Route::resource('/staffs', 'StaffsController');
 // });
 
 Route::resource('/departments', 'DepartmentsController');
-
 Route::resource('/computers', 'ComputersController');
 Route::resource('/computers/{computer}/account', 'ComputerAccountController', ['as' => 'computers']);
-
-// Route::get('/computer/{computer}/software/create', 'ComputerSoftwareController@index');
-// Route::get('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@create');
-// Route::post('/computer/{computer}/software/{software}/create', 'ComputerSoftwareController@store');
-// Route::get('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@edit');
-// Route::post('/computer-software/{computer_software}/edit', 'ComputerSoftwareController@update');
+//select, create, update, destryo
+Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
+    Route::get('/software/select', 'ComputerSoftwareController@index')->name('software.index');
+    Route::get('/software/{software}', 'ComputerSoftwareController@create')->name('software.create');
+    Route::post('/software/{software}', 'ComputerSoftwareController@store')->name('software.store');
+    Route::get('/software/{computer_software}/edit', 'ComputerSoftwareController@edit')->name('software.edit');
+    Route::patch('/software/{computer_software}', 'ComputerSoftwareController@update')->name('software.update');
+    Route::delete('/software/{computer_software}', 'ComputerSoftwareController@destroy')->name('software.destroy');
+});
 
 // Route::get('/computer/{id}/mouse', 'ComputerMouseController@index');
 // Route::post('/computer/{id}/mouse/add', 'ComputerMouseController@store');

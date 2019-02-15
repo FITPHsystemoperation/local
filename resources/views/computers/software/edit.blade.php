@@ -8,8 +8,10 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				<form method="post" action="/computer-software/{{ $computer_software->id }}/edit">
+				<form method="post" action="{{ route('computers.software.update', [$computer_software->computer_id, $computer_software->id]) }}">
 					@csrf
+
+					@method ('patch')
 
 					@foreach ($computer_software->software->specList as $spec)
 						<div class="form-group row">
@@ -28,9 +30,22 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Save Record</button>
 
-							<a class="btn btn-outline-secondary" href="/computer/{{$computer_software->computer->id}}" role="button">Go Back</a>
+							<a class="btn btn-danger" role="button" href="#"
+								onclick="event.preventDefault(); document.getElementById('delete_form').submit();">
+								Delete Record
+							</a>
+
+							<a class="btn btn-outline-secondary" role="button"
+								href="{{ route('computers.show', $computer_software->computer_id) }}">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
+				</form>
+
+				<form id="delete_form" method="post"
+					action="{{ route('computers.software.destroy', [$computer_software->computer_id, $computer_software->id]) }}">
+					@csrf
+
+					@method ('delete')
 				</form>
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}

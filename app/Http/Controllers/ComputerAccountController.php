@@ -15,6 +15,11 @@ class ComputerAccountController extends Controller
         $this->middleware('auth');
     }
     
+    public function index()
+    {
+        abort(404);
+    }
+
     public function create(Computer $computer)
     {
         $this->authorize('create', ComputerAccount::class);
@@ -34,6 +39,11 @@ class ComputerAccountController extends Controller
 
         return redirect()->route('computers.show', $computer->id)
             ->with('status', 'Account has been added to this computer');
+    }
+
+    public function show()
+    {
+        abort(404);
     }
 
     public function edit(Computer $computer, ComputerAccount $account)
@@ -63,5 +73,4 @@ class ComputerAccountController extends Controller
         return redirect()->route('computers.show', $computer->id)
             ->with('status', 'Account has been removed from this Computer');
     }
-
 }

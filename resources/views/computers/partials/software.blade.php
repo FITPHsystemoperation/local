@@ -7,7 +7,7 @@
                 
             <div class="col text-right">
                 @can ('create', App\ComputerSoftware::class)
-                    <a class="btn btn-primary" role="button" href="/computer/{{ $computer->id }}/software/create">Add</a>
+                    <a class="btn btn-primary" role="button" href="{{ route('computers.software.index', $computer->id) }}">Add</a>
                 @endcan{{-- create --}}
             </div>{{-- col --}}
         </div>{{-- row --}}
@@ -25,7 +25,7 @@
                         <div class="col text-right">
                             @can ('update', $software)
                                 <a class="btn btn-sm btn-outline-secondary float-right" role="button"
-                                    href="/computer-software/{{ $software->id }}/edit">Update</a>
+                                    href="{{ route('computers.software.edit', [$computer->id, $software->id]) }}">Update</a>
                             @endcan
                         </div>{{-- col --}}
                     </div>{{-- row --}}

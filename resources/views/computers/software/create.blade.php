@@ -5,7 +5,7 @@
 		<div class="card border-dark">
 			<div class="card-header">
 				<div class="row">
-					<div class="col">
+					<div class="col-8">
 						<h3>Add {{ ucwords($software->softwareName) }} to {{ $computer->compName }}</h3>
 					</div>{{-- col --}}
 						
@@ -16,7 +16,7 @@
 			</div>{{-- card-header --}}
 
 			<div class="card-body">
-				<form method="post" action="/computer/{{ $computer->id }}/software/{{ $software->id }}/create">
+				<form method="post" action="{{ route('computers.software.store', [$computer->id, $software->id]) }}">
 					@csrf
 
 					@foreach ($software->specList as $spec)
@@ -33,7 +33,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Save Record</button>
 
-							<a class="btn btn-outline-secondary" href="/computer/{{ $computer->id }}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>
