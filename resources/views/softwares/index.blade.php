@@ -10,7 +10,7 @@
 					</div>{{-- col --}}
 						
 					<div class="col text-right">
-						<a class="btn btn-primary" href="/softwares/create" role="button">Add New</a>
+						<a class="btn btn-primary" href="{{ route('softwares.create') }}" role="button">Add New</a>
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}
@@ -30,11 +30,11 @@
 						@foreach ($softwares as $software)
 							<tr class="text-center">
 								<td>
-									<a href="/software/{{ $software->id }}">{{ $software->softwareName }}</a>
+									<a href="{{ route('softwares.show', $software->id) }}">{{ $software->softwareName }}</a>
 								</td>
 								
 								<td>
-									<a class="btn btn-sm btn-outline-info" href="/software/{{ $software->id }}/edit" role="button">Edit</a>
+									<a class="btn btn-sm btn-outline-info" href="{{ route('softwares.edit', $software->id) }}" role="button">Update</a>
 								</td>
 							</tr>
 						@endforeach{{-- $softwares as $software --}}

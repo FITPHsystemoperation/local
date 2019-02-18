@@ -10,7 +10,7 @@
 					</div>{{-- col --}}
 						
 					<div class="col text-right">
-						<a class="btn btn-outline-secondary" href="/softwares" role="button">Go Back</a>
+						<a class="btn btn-outline-secondary" href="{{ route('softwares.index') }}" role="button">Go Back</a>
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}

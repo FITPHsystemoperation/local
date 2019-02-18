@@ -52,6 +52,8 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::patch('/charger', 'ChargersController@attach')->name('charger.attach');
     Route::patch('/charger/{charger}', 'ChargersController@detach')->name('charger.detach');
 });
+//index,create,show
+Route::resource('/softwares', 'SoftwaresController');
 
 // Route::get('/softwares', 'SoftwaresController@index');
 // Route::get('/softwares/create', 'SoftwaresController@create');

@@ -10,8 +10,10 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/software/{{ $software->id }}/edit">
+				<form method="post" action="{{ route('softwares.update', $software->id) }}">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">
 						<label for="softwareName" class="col-md-3 col-form-label text-md-right">Software Name:</label>
@@ -37,7 +39,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Update Record</button>
 
-							<a class="btn btn-outline-secondary" href="/softwares" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('softwares.index') }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>

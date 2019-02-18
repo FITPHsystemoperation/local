@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="{{ route('home') }}">Home</a>
             </li>
 
             @auth
@@ -35,7 +35,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('computers.index') }}">Computer</a>
-                        <a class="dropdown-item" href="/softwares">Software</a>
+                        <a class="dropdown-item" href="{{ route('softwares.index') }}">Software</a>
                         <a class="dropdown-item" href="/accesories">Accessories</a>
                     </div>
                 </li>
