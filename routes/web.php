@@ -52,16 +52,11 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::patch('/charger', 'ChargersController@attach')->name('charger.attach');
     Route::patch('/charger/{charger}', 'ChargersController@detach')->name('charger.detach');
 });
-//index,create,show
+
 Route::resource('/softwares', 'SoftwaresController');
 
-// Route::get('/softwares', 'SoftwaresController@index');
-// Route::get('/softwares/create', 'SoftwaresController@create');
-// Route::post('/softwares/create', 'SoftwaresController@store');
-// Route::get('/software/{software}', 'SoftwaresController@show');
-// Route::get('/software/{software}/edit', 'SoftwaresController@edit');
-// Route::post('/software/{software}/edit', 'SoftwaresController@update');
-
+Route::resource('/documents', 'DocumentsController');
+Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->name('documents.addFile');
 
 // Route::get('/document/categories', 'DocumentCategoriesController@index');
 // Route::get('/document/categories/create', 'DocumentCategoriesController@create');
@@ -69,14 +64,6 @@ Route::resource('/softwares', 'SoftwaresController');
 // Route::get('/document/category/{category}/edit', 'DocumentCategoriesController@edit');
 // Route::post('/document/category/{category}/edit', 'DocumentCategoriesController@update');
 // Route::get('/document/category/{category}', 'DocumentCategoriesController@show');
-
-// Route::get('/documents', 'DocumentsController@index');
-// Route::get('/documents/create', 'DocumentsController@create');
-// Route::post('/documents/create', 'DocumentsController@store');
-// Route::get('/document/{document}', 'DocumentsController@show');
-// Route::post('/document/{document}/upload', 'DocumentsController@addFile');
-// Route::get('/document/{document}/edit', 'DocumentsController@edit');
-// Route::post('/document/{document}/edit', 'DocumentsController@update');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
@@ -92,6 +79,6 @@ Route::get('/', function(){
 // Route::get('/select-theme/{theme}', 'ThemesController@preview');
 // Route::post('/themes/{theme}/apply', 'ThemesController@apply');
 
-// Route::resource('themes', 'ThemesController');
+Route::resource('themes', 'ThemesController');
 
 // Route::get('/test', 'TestController@index');//for testing

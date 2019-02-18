@@ -10,8 +10,10 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/document/{{ $document->id }}/edit">
+				<form method="post" action="{{ route('documents.update', $document->id) }}">
 					@csrf
+
+					@method ('patch')
 
 					<div class="form-group row">
 						<label for="title" class="col-md-3 col-form-label text-md-right">Title:</label>
@@ -48,7 +50,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Save Record</button>
 
-							<a class="btn btn-outline-secondary" href="/document/{{ $document->id }}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('documents.show', $document->id) }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>

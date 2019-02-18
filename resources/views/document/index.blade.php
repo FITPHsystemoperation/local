@@ -10,7 +10,7 @@
 					</div>{{-- col --}}
 						
 					<div class="col text-right">
-						<a class="btn btn-primary" href="/documents/create" role="button">Add New</a>
+						<a class="btn btn-primary" href="{{ route('documents.create') }}" role="button">Add New</a>
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}
@@ -32,7 +32,7 @@
 						@foreach ($documents as $document)
 							<tr class="text-center">
 								<td>
-									<a href="/document/{{ $document->id }}">{{$document->title}}</a>
+									<a href="{{ route('documents.show', $document->id) }}">{{$document->title}}</a>
 								</td>
 
 								<td>{{ $document->category->categoryName }}</td>

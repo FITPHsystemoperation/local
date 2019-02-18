@@ -23,9 +23,9 @@
 			</div>{{-- card-body --}}
 
 			<div class="card-footer">
-				<a href="/document/{{ $document->id }}/edit" class="btn btn-info">Update</a>
+				<a href="{{ route('documents.edit', $document->id) }}" class="btn btn-info">Update</a>
 
-				<a href="/documents" class="btn btn-outline-secondary">Go Back</a>
+				<a href="{{ route('documents.index') }}" class="btn btn-outline-secondary">Go Back</a>
 			</div>{{-- card-footer --}}
 		</div>{{-- card --}}
 
@@ -43,8 +43,10 @@
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 
-				<form  method="post" action="/document/{{ $document->id }}/upload" enctype="multipart/form-data">
+				<form  method="post" action="{{ route('documents.addFile', $document->id) }}" enctype="multipart/form-data">
 					@csrf
+					@method ('patch')
+
 					<input type="file" id="file" name="file" style="display: none;" onchange="this.form.submit();"/>
 				</form>
 			</div>{{-- card-header --}}

@@ -14,32 +14,17 @@ class DocumentsController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return view('document.index')->with('documents', Document::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {   
         return view('document.create')->with('categories', DocumentCategory::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(DocumentFormRequest $request)
     {
         $request->validate([
@@ -47,30 +32,44 @@ class DocumentsController extends Controller
             'file' =>'required|mimes:pdf|max:10000',
         ]);
 
-        $this->upload(
-            Document::create([
-                'title' => $request->get('title'),
-                'category_id' => $request->get('category_id'),
-                'description' => $request->get('description'),
-            ]),
-            $request->file('file')
-        );
+        $document = Document::create([
+            'title' => $request->get('title'),
+            'category_id' => $request->get('category_id'),
+            'description' => $request->get('description'),
+        ]);
+
+        $this->upload($document, $request->file('file'));
         
         return redirect('/documents')
-            ->with('status', 'Document successfully recorded.');
+            ->with('status', "Document:<strong>$document->title</strong> successfully recorded");
     }
 
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Document $document)
     {
         return view('document.show', compact('document'));
+    }
+
+    public function edit(Document $document)
+    {
+        return view('document.edit', compact('document'))
+            ->with('categories', DocumentCategory::all());
+    }
+
+    public function update(DocumentFormRequest $request, Document $document)
+    {
+        $document->update([
+            'title' => $request->get('title'),
+            'category_id' => $request->get('category_id'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect()->route('documents.show', $document->id)
+            ->with('status', 'Document information successfully updated');
+    }
+
+    public function destroy($id)
+    {
+        abort(403);
     }
 
     public function addFile(Request $request, Document $document)
@@ -80,49 +79,7 @@ class DocumentsController extends Controller
         $this->upload($document, $request->file('file'));  
 
         return redirect()->back()
-            ->with('status', 'File successfully uploaded');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Document $document)
-    {
-        return view('document.edit', compact('document'))
-            ->with('categories', DocumentCategory::all());
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(DocumentFormRequest $request, Document $document)
-    {
-        $document->update([
-            'title' => $request->get('title'),
-            'category_id' => $request->get('category_id'),
-            'description' => $request->get('description'),
-        ]);
-
-        return redirect("/document/$document->id")
-            ->with('status', 'Document information successfully updated');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            ->with('status', 'File successfully added to this document');
     }
 
     protected function upload($document, $file)

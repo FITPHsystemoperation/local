@@ -47,7 +47,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="/documents">Document</a>
+                        <a class="dropdown-item" href="{{ route('documents.index') }}">Document</a>
                         <a class="dropdown-item" href="/document/categories">Category</a>
                     </div>
                 </li>
