@@ -57,13 +57,11 @@ Route::resource('/documents', 'DocumentsController');
 Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->name('documents.addFile');
 
 Route::resource('themes', 'ThemesController');
+Route::get('/themes/select/{theme}', 'ThemesController@preview')->name('theme.select');
+Route::patch('/themes/select/{theme}', 'ThemesController@apply')->name('theme.apply');
 
-// Route::get('/profile/{name}', 'PagesController@profile');
-// Route::get('/select-theme/{theme}', 'ThemesController@preview');
-// Route::post('/themes/{theme}/apply', 'ThemesController@apply');
+Route::get('/profile/{name}', 'PagesController@profile')->name('profile');
 
-
-// Route::get('/test', 'TestController@index');//for testing
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -73,3 +71,5 @@ Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('pass
 Route::get('/', function(){
     return view('pages.home');
 })->name('home');
+
+// Route::get('/test', 'TestController@index');//for testing

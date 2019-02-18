@@ -25,7 +25,7 @@
 
                         <div class="dropdown-menu">
                             @foreach ($themes as $option)
-                                <a class="dropdown-item" href="/select-theme/{{ $option->id }}">
+                                <a class="dropdown-item" href="{{ route('theme.select', $option->id) }}">
                                     {{ ucwords($option->name) }}
                                 </a>
                             @endforeach{{-- $themes as $option --}}
@@ -35,10 +35,11 @@
                     
                 <div class="col text-right">
                     <a class="btn btn-outline-secondary float-right" role="button"
-                        href="/profile/{{ Auth::user()->staff['firstName'] . Auth::user()->staff['lastName'] }}">Go Back</a>
+                        href="{{ route('profile', Auth::user()->staff['firstName'] . Auth::user()->staff['lastName']) }}">Go Back</a>
                         
-                    <form method="post" action="/themes/{{ $theme->id }}/apply" class="float-right mr-2">
+                    <form method="post" action="{{ route('theme.apply', $theme->id) }}" class="float-right mr-2">
                         @csrf
+                        @method ('patch')
 
                         <button type="submit" class="btn btn-warning">Apply Theme</button>
                     </form>

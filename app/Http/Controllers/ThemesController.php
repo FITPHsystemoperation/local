@@ -66,7 +66,7 @@ class ThemesController extends Controller
 
     public function preview(Theme $theme)
     {
-        return view('pages.theme', compact('theme'))
+        return view('pages.select-theme', compact('theme'))
             ->with('staff', Auth::user()->staff)
             ->with('themes', Theme::where('enabled', 1)->get());
     }
@@ -75,8 +75,8 @@ class ThemesController extends Controller
     {
         $theme->users()->save(Auth::user());
         
-        return redirect('/profile/' . Auth::user()->staff->firstName . Auth::user()->staff->lastName)
-            ->with('status', "$theme->name theme applied"); 
+        return redirect()->route('profile', Auth::user()->staff->firstName . Auth::user()->staff->lastName)
+            ->with('status', "Theme:<strong>$theme->name</strong> successfully applied"); 
     }
 
     protected function upload($request)

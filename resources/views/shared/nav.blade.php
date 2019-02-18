@@ -65,7 +65,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item"
-                            href="/profile/{{ Auth::user()->staff['firstName'] . Auth::user()->staff['lastName'] }}">
+                            href="{{ route('profile', Auth::user()->staff['firstName'] . Auth::user()->staff['lastName']) }}">
                             {{ Auth::user()->staff['firstName'] . ' ' . Auth::user()->staff['lastName'] }}
                         </a>
 
