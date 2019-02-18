@@ -10,7 +10,7 @@
 					</div>{{-- col --}}
 						
 					<div class="col text-right">
-						<a class="btn btn-primary" href="/document/categories/create" role="button">Add New</a>
+						<a class="btn btn-primary" href="{{ route('document.category.create') }}" role="button">Add New</a>
 					</div>{{-- col --}}
 				</div>{{-- row --}}
 			</div>{{-- card-header --}}
@@ -31,7 +31,7 @@
 						@foreach ($categories as $category)
 							<tr class="text-center">
 								<td>
-									<a href="/document/category/{{ $category->id }}">{{$category->categoryName}}</a>
+									<a href="{{ route('document.category.show', $category->id) }}">{{$category->categoryName}}</a>
 								</td>
 								
 								<td>{{$category->description}}</td>

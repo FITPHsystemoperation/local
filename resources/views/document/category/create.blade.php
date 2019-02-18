@@ -10,7 +10,7 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/document/categories/create">
+				<form method="post" action="{{ route('document.category.store') }}">
 					@csrf
 
 					<div class="form-group row">
@@ -33,7 +33,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Save Record</button>
 
-							<a class="btn btn-outline-secondary" href="/document/categories/" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('document.category.index') }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>

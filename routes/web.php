@@ -57,6 +57,8 @@ Route::resource('/softwares', 'SoftwaresController');
 
 Route::resource('/documents', 'DocumentsController');
 Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->name('documents.addFile');
+//
+Route::resource('/document/category', 'DocumentCategoriesController', ['as' => 'document']);
 
 // Route::get('/document/categories', 'DocumentCategoriesController@index');
 // Route::get('/document/categories/create', 'DocumentCategoriesController@create');

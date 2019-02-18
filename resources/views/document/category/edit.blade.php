@@ -10,9 +10,9 @@
 			<div class="card-body">
 				@include ('shared.error')
 
-				<form method="post" action="/document/category/{{ $category->id }}/edit">
-
+				<form method="post" action="{{ route('document.category.update', $category->id) }}">
 					@csrf
+					@method ('patch')
 
 					<div class="form-group row">
 						<label for="categoryName" class="col-md-3 col-form-label text-md-right">Category:</label>
@@ -34,7 +34,7 @@
                         <div class="col-md-9 offset-md-3">
 							<button type="submit" class="btn btn-primary">Update Record</button>
 
-							<a class="btn btn-outline-secondary" href="/document/category/{{ $category->id }}" role="button">Go Back</a>
+							<a class="btn btn-outline-secondary" href="{{ route('document.category.show', $category->id) }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
 				</form>

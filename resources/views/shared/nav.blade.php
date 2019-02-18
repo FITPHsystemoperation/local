@@ -48,7 +48,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('documents.index') }}">Document</a>
-                        <a class="dropdown-item" href="/document/categories">Category</a>
+                        <a class="dropdown-item" href="{{ route('document.category.index') }}">Category</a>
                     </div>
                 </li>
                 {{-- profile --}}
@@ -74,7 +74,7 @@
                             
                             <a class="dropdown-item" href="/themes">Theme Manager</a>
                             
-                            <a class="dropdown-item" href="/dashboard" target="_blank">Dashboard</a>
+                            <a class="dropdown-item" href="{{ route('telescope') }}" target="_blank">Dashboard</a>
                         @endcan
 
                         <div class="dropdown-divider"></div>

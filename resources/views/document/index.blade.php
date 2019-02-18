@@ -18,36 +18,40 @@
 			<div class="card-body">
 				@include ('shared.status')
 
-				<table class="table border-bottom">
-					<thead>
-						<tr class="text-center">
-							<th>Title</th>
-							<th>Category</th>
-							<th>Uploaded Date</th>
-							<th>File</th>
-						</tr>
-					</thead>
+				@component ('shared.check-content', ['data' => $documents])
+					@slot ('content') 
+						<table class="table border-bottom">
+							<thead>
+								<tr class="text-center">
+									<th>Title</th>
+									<th>Category</th>
+									<th>Uploaded Date</th>
+									<th>File</th>
+								</tr>
+							</thead>
 
-					<tbody>
-						@foreach ($documents as $document)
-							<tr class="text-center">
-								<td>
-									<a href="{{ route('documents.show', $document->id) }}">{{$document->title}}</a>
-								</td>
+							<tbody>
+								@foreach ($documents as $document)
+									<tr class="text-center">
+										<td>
+											<a href="{{ route('documents.show', $document->id) }}">{{$document->title}}</a>
+										</td>
 
-								<td>{{ $document->category->categoryName }}</td>
-								
-								<td>{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}</td>
-								
-								<td>
-									<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
-										{{ $document->files->last()->filename }}
-									</a>
-								</td>
-							</tr>
-						@endforeach{{-- $documents as $document --}}
-					</tbody>
-				</table>
+										<td>{{ $document->category->categoryName }}</td>
+										
+										<td>{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}</td>
+										
+										<td>
+											<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
+												{{ $document->files->last()->filename }}
+											</a>
+										</td>
+									</tr>
+								@endforeach{{-- $documents as $document --}}
+							</tbody>
+						</table>
+					@endslot 
+				@endcomponent 
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}
 	</div>{{-- container --}}
