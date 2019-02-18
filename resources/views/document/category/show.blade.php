@@ -35,7 +35,7 @@
 								@foreach ($category->documents as $document)
 									<tr class="text-center">
 										<td>
-											<a href="/document/{{ $document->id }}">{{$document->title}}</a>
+											<a href="{{ route('documents.show', $document->id) }}">{{$document->title}}</a>
 										</td>
 
 										<td>{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}</td>

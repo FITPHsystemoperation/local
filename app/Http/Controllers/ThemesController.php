@@ -31,7 +31,8 @@ class ThemesController extends Controller
 
         $this->upload($request);
             
-        return redirect('/themes')->with('status', 'Theme successfully uploaded'); 
+        return redirect()->route('themes.index')
+            ->with('status', 'Theme successfully uploaded'); 
     }
 
     public function show(Theme $theme)

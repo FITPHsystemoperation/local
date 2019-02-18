@@ -10,7 +10,7 @@
             <div class="card-body">
                 @include ('shared.error')
 
-                <form method="post" action="/themes" enctype="multipart/form-data">
+                <form method="post" action="{{ route('themes.store') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group row">
@@ -45,7 +45,7 @@
                         <div class="col-md-9 offset-md-3">
                             <button type="submit" class="btn btn-primary">Save Theme</button>
 
-                            <a class="btn btn-outline-secondary" href="/themes" role="button">Go Back</a>
+                            <a class="btn btn-outline-secondary" href="{{ route('themes.index') }}" role="button">Go Back</a>
                         </div>{{-- col --}}
                     </div>{{-- row --}}
                 </form>

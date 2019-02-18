@@ -34,7 +34,7 @@
           <div class="col-lg-8 col-md-7 col-sm-6">
             <h1>{{ ucwords($theme->name) }}</h1>
             <p class="lead">{{ ucwords($theme->description) }}</p>
-            <a class="btn btn-lg btn-outline-secondary" href="/themes" role="button">Go Back</a>
+            <a class="btn btn-lg btn-outline-secondary" href="{{ route('themes.index') }}" role="button">Go Back</a>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@
 								@foreach ($software->computers as $computer)
 									<tr class="text-center">
 										<td>
-											<a href="/computer/{{ $computer->computer->id }}">
+											<a href="{{ route('computers.show', $computer->id) }}">
 												{{ $computer->computer->compName }}
 											</a>
 										</td>

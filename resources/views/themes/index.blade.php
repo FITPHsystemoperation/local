@@ -10,7 +10,7 @@
                     </div>{{-- col --}}
 
                     <div class="col text-right">
-                        <a class="btn btn-primary" href="/themes/create" role="button">Add</a>
+                        <a class="btn btn-primary" href="{{ route('themes.create') }}" role="button">Add</a>
                     </div>{{-- col --}}
                 </div>{{-- row --}}
             </div>{{-- card-header --}}  
@@ -33,7 +33,7 @@
                             <tr class="text-center">
                                 <td>
                                     {!! !$theme->enabled ? '<strike>' : '' !!}
-                                        <a href="/themes/{{ $theme->id }}">{{ ucwords($theme->name) }}</a>
+                                        <a href="{{ route('themes.show', $theme->id) }}">{{ ucwords($theme->name) }}</a>
                                     {!! !$theme->enabled ? '</strike>' : '' !!}
                                 </td>
 
@@ -44,7 +44,7 @@
                                 </td>
 
                                 <td>
-                                    <form method="post" action="/themes/{{ $theme->id }}">
+                                    <form method="post" action="{{ route('themes.update', $theme->id) }}">
                                         @csrf
 
                                         @method ('patch')

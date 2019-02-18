@@ -23,7 +23,6 @@ Route::prefix('/staffs/{staff}')->name('staffs.')->group(function(){
     Route::get('/personal', 'StaffsController@editPersonal')->name('personal.edit');
     Route::patch('/personal', 'StaffsController@updatePersonal')->name('personal.update');
 });
-
 Route::resource('/departments', 'DepartmentsController');
 
 Route::resource('/computers', 'ComputersController');
@@ -52,21 +51,19 @@ Route::prefix('/computers/{computer}')->name('computers.')->group(function(){
     Route::patch('/charger', 'ChargersController@attach')->name('charger.attach');
     Route::patch('/charger/{charger}', 'ChargersController@detach')->name('charger.detach');
 });
-
 Route::resource('/softwares', 'SoftwaresController');
-
+Route::resource('/document/category', 'DocumentCategoriesController', ['as' => 'document']);
 Route::resource('/documents', 'DocumentsController');
 Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->name('documents.addFile');
-//
-Route::resource('/document/category', 'DocumentCategoriesController', ['as' => 'document']);
 
-// Route::get('/document/categories', 'DocumentCategoriesController@index');
-// Route::get('/document/categories/create', 'DocumentCategoriesController@create');
-// Route::post('/document/categories/create', 'DocumentCategoriesController@store');
-// Route::get('/document/category/{category}/edit', 'DocumentCategoriesController@edit');
-// Route::post('/document/category/{category}/edit', 'DocumentCategoriesController@update');
-// Route::get('/document/category/{category}', 'DocumentCategoriesController@show');
+Route::resource('themes', 'ThemesController');
 
+// Route::get('/profile/{name}', 'PagesController@profile');
+// Route::get('/select-theme/{theme}', 'ThemesController@preview');
+// Route::post('/themes/{theme}/apply', 'ThemesController@apply');
+
+
+// Route::get('/test', 'TestController@index');//for testing
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -76,11 +73,3 @@ Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('pass
 Route::get('/', function(){
     return view('pages.home');
 })->name('home');
-
-// Route::get('/profile/{name}', 'PagesController@profile');
-// Route::get('/select-theme/{theme}', 'ThemesController@preview');
-// Route::post('/themes/{theme}/apply', 'ThemesController@apply');
-
-Route::resource('themes', 'ThemesController');
-
-// Route::get('/test', 'TestController@index');//for testing
