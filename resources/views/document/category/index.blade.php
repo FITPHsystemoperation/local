@@ -18,29 +18,33 @@
 			<div class="card-body">
 				@include ('shared.status')
 
-				<table class="table border-bottom">
-					<thead>
-						<tr class="text-center">
-							<th>Category</th>
-							<th>Description</th>
-							<th>Document</th>
-						</tr>
-					</thead>
+				@component ('shared.check-content', ['data' => $categories])
+					@slot ('content')
+						<table class="table border-bottom">
+							<thead>
+								<tr class="text-center">
+									<th>Category</th>
+									<th>Description</th>
+									<th>Document</th>
+								</tr>
+							</thead>
 
-					<tbody>
-						@foreach ($categories as $category)
-							<tr class="text-center">
-								<td>
-									<a href="{{ route('document.category.show', $category->id) }}">{{$category->categoryName}}</a>
-								</td>
-								
-								<td>{{$category->description}}</td>
+							<tbody>
+								@foreach ($categories as $category)
+									<tr class="text-center">
+										<td>
+											<a href="{{ route('document.category.show', $category->id) }}">{{$category->categoryName}}</a>
+										</td>
+										
+										<td>{{$category->description}}</td>
 
-								<td><strong class="text-danger">{{ $category->documents->count() }}</strong> document/s</td>
-							</tr>
-						@endforeach{{-- $categories as $category --}}
-					</tbody>
-				</table>
+										<td><strong class="text-danger">{{ $category->documents->count() }}</strong> document/s</td>
+									</tr>
+								@endforeach{{-- $categories as $category --}}
+							</tbody>
+						</table>
+					@endslot
+				@endcomponent
 			</div>{{-- card-body --}}
 		</div>{{-- card --}}
 	</div>{{-- container --}}

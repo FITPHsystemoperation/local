@@ -1,0 +1,1 @@
+copy and paste "Auth" folder to "../vendor/laravel/framework/src/Illuminate/Foundation/Auth"

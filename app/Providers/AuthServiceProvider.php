@@ -30,7 +30,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::before(function($user){
-            return $user->role_id === 1;
+            if ($user->role_id === 1)
+            {
+                return true;
+            };
         });
     }
 }
