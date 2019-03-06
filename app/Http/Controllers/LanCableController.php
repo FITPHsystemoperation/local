@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\LanCable;
 
 class LanCableController extends Controller
 {
@@ -13,17 +14,21 @@ class LanCableController extends Controller
 
     public function index()
     {
-        return view('lan-cable.index');
+        return view('lan-cable.index')
+            ->with('cables', LanCable::all());
     }
 
     public function create()
     {
-        //
+        return view('lan-cable.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:10'
+        ]);
+        dd($request);
     }
 
     public function show($id)

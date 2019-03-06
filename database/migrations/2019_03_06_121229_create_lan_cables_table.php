@@ -15,6 +15,8 @@ class CreateLanCablesTable extends Migration
     {
         Schema::create('lan_cables', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 25)->unique();
+            $table->string('description', 100);
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 <nav class="navbar is-fixed-top is-dark" id="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <p class="navbar-item">System Support</p>
+        <p class="navbar-item"><b>System Support</b></p>
 
         <a role="button" class="navbar-burger burger" :class="{ 'is-active': isActive }" @click="toggleNavbar" aria-label="menu" aria-expanded="false" data-target="navbarContent">
             <span aria-hidden="true"></span>
