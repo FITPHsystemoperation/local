@@ -6,13 +6,13 @@
         
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">New LAN Cable</p>
-                
-                <a class="delete" href="{{ route('cables.index') }}" aria-label="close"></a>
+                <p class="modal-card-title">Edit LAN Cable Information</p>
+                <a class="delete" aria-label="close" href="{{ route('cables.index') }}"></a>
             </header><!-- modal-card-head -->
-
-            <form method="post" action="{{ route('cables.store') }}">
+            
+            <form method="post" action="{{ route('cables.update', $cable->id) }}">
                 @csrf
+                @method ('patch')
 
                 <section class="modal-card-body">
                     @include ('shared.bulma-error')
@@ -21,7 +21,7 @@
                         <label class="label" for="name">Tag Name:</label>
                     
                         <div class="control has-icons-right">
-                            <input class="input" type="text" id="name" name="name" placeholder="Tag Name" value="{{ old('name') }}" required autofocus>
+                            <input class="input" type="text" id="name" name="name" placeholder="Tag Name" value="{{ $cable->name }}" required autofocus>
                             
                             <span class="icon is-small is-right">
                                 <i class="fas fa-tag"></i>
@@ -33,7 +33,7 @@
                         <label class="label" for="description">Description:</label>
                     
                         <div class="control has-icons-right">
-                            <input class="input" type="text" id="description" name="description" placeholder="Tag Description" value="{{ old('description') }}" required>
+                            <input class="input" type="text" id="description" name="description" placeholder="Tag Description" value="{{ $cable->description }}" required>
                                 
                             <span class="icon is-small is-right">
                                 <i class="fas fa-question"></i>

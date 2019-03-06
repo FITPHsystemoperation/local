@@ -41,21 +41,32 @@ class LanCableController extends Controller
 
     public function show($id)
     {
-        //
+        abort(404);
     }
 
-    public function edit($id)
+    public function edit(LanCable $cable)
     {
-        //
+        return view('lan-cable.edit', compact('cable'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, LanCable $cable)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3',
+            'description' => 'required|min:3',
+        ]);
+
+        $cable->update([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect()->route('cables.index')
+            ->with('status', "LAN:<strong>$cable->name</strong> successfully updated!");
     }
 
     public function destroy($id)
     {
-        //
+        abort(403);
     }
 }

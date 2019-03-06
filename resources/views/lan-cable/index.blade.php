@@ -6,7 +6,7 @@
             <article class="message">
                 <div class="message-header">
                     <p>LAN Cables</p>
-                    <a class="button is-primary is-rounded" href="{{ route('cables.create') }}"><span class="fa fa-plus"></span></a>
+                    <a class="button is-primary is-rounded" href="{{ route('cables.create') }}" title="Add New"><span class="fa fa-plus"></span></a>
                 </div><!-- message-header -->
             
                 <div class="message-body">
@@ -31,7 +31,8 @@
                                             <td class="has-text-centered">{{ $cable->description }}</td>
                                             
                                             <td class="has-text-centered">
-                                                <a class="button is-info is-rounded is-outlined is-small" href="#">
+                                                <a class="button is-info is-rounded is-outlined is-small" title="Update" 
+                                                    href="{{ route('cables.edit', $cable->id) }}">
                                                     <span class="fas fa-edit"></span>
                                                 </a>
                                             </td>
