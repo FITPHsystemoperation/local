@@ -36,6 +36,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('computers.index') }}">Computer</a>
                         <a class="dropdown-item" href="{{ route('softwares.index') }}">Software</a>
+                        <a class="dropdown-item" href="{{ route('cables.index') }}">Lan Cables</a>
                         <a class="dropdown-item" href="/accesories">Accessories</a>
                     </div>
                 </li>
