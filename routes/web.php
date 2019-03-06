@@ -60,6 +60,8 @@ Route::resource('themes', 'ThemesController');
 Route::get('/themes/select/{theme}', 'ThemesController@preview')->name('theme.select');
 Route::patch('/themes/select/{theme}', 'ThemesController@apply')->name('theme.apply');
 
+Route::resource('/cables', 'LanCableController');
+
 Route::get('/profile/{name}', 'PagesController@profile')->name('profile');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
