@@ -26,9 +26,17 @@ class LanCableController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:10'
+            'name' => 'required|min:3|unique:lan_cables',
+            'description' => 'required|min:3',
         ]);
-        dd($request);
+
+        $cable = LanCable::create([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect()->route('cables.index')
+            ->with('status', "LAN:<strong>$cable->name</strong> successfully recorded!");
     }
 
     public function show($id)

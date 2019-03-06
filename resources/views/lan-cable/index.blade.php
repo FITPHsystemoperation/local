@@ -10,11 +10,13 @@
                 </div><!-- message-header -->
             
                 <div class="message-body">
+                    @include ('shared.bulma-status')
+
                     @component ('shared.bulma-check-content', ['data' => $cables])
                         @slot ('content')
-                            <table class="table is-fullwidth is-bordered is-striped is-hoverable">
+                            <table class="table is-fullwidth is-bordered is-hoverable">
                                 <thead>
-                                    <tr>
+                                    <tr class="has-background-primary">
                                         <th class="has-text-centered">Tag</th>
                                         <th class="has-text-centered">Description</th>
                                         <th class="has-text-centered">Action</th>
@@ -25,8 +27,14 @@
                                     @foreach ($cables as $cable)
                                         <tr>
                                             <td class="has-text-centered">{{ $cable->name }}</td>
+                                            
                                             <td class="has-text-centered">{{ $cable->description }}</td>
-                                            <td class="has-text-centered"><button class="button is-warning is-outlined is-small">Update</button></td>
+                                            
+                                            <td class="has-text-centered">
+                                                <a class="button is-info is-rounded is-outlined is-small" href="#">
+                                                    <span class="fas fa-edit"></span>
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

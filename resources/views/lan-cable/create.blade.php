@@ -15,19 +15,13 @@
                 @csrf
 
                 <section class="modal-card-body">
-                    @if ( $errors->hasAny() )
-                        <div class="notification is-danger">
-                            @foreach ($errors->all() as $error)
-                                <p class="has-text-centered">{{ $error }}</p>
-                            @endforeach
-                        </div>
-                    @endif
+                    @include ('shared.bulma-error')
 
                     <div class="field">
                         <label class="label" for="name">Tag Name:</label>
                     
                         <div class="control has-icons-right">
-                            <input class="input" type="text" id="name" name="name" placeholder="Tag Name" required autofocus>
+                            <input class="input" type="text" id="name" name="name" placeholder="Tag Name" value="{{ old('name') }}" required autofocus>
                             
                             <span class="icon is-small is-right">
                                 <i class="fas fa-tag"></i>
@@ -39,7 +33,7 @@
                         <label class="label" for="description">Description:</label>
                     
                         <div class="control has-icons-right">
-                            <input class="input" type="text" id="description" name="description" placeholder="Tag Description" required>
+                            <input class="input" type="text" id="description" name="description" placeholder="Tag Description" value="{{ old('description') }}" required>
                                 
                             <span class="icon is-small is-right">
                                 <i class="fas fa-question"></i>
