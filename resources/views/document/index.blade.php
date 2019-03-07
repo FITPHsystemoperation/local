@@ -30,7 +30,7 @@
                         	    <tbody>
                         	    	@foreach ($documents as $document)
 	                        	        <tr>
-	                        	            <td class="has-text-centered has-text-link">
+	                        	            <td class="has-text-centered">
 												<a href="{{ route('documents.show', $document->id) }}">{{$document->title}}</a>
 	                        	            </td>
 
@@ -40,7 +40,7 @@
 	                        	            	{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}
 	                        	            </td>
 
-	                        	            <td class="has-text-centered has-text-link">
+	                        	            <td class="has-text-centered">
 												<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
 													{{ $document->files->last()->filename }}
 												</a>

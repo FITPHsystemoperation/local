@@ -1,7 +1,9 @@
 @if ( $errors->all() )
-    <div class="notification is-danger">
-        @foreach ($errors->all() as $error)
-            <p class="has-text-centered">{{ $error }}</p>
-        @endforeach
-    </div>
+    <article class="message is-danger">
+        <div class="message-body">
+            @foreach ($errors->all() as $error)
+                <p class="subtitle">{{ $error }}</p>
+            @endforeach
+        </div><!-- message-body -->
+    </article><!-- message -->
 @endif

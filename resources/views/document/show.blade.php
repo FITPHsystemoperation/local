@@ -1,82 +1,71 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<h2>{{ $document->title }}</h2>
-			</div>{{-- card-header --}}
-
-			<div class="card-body">
-				@include ('shared.status')
-				@include ('shared.error')
-
-				<h4 class="p-2">
-					<span class="lead">Category:</span>
-					{{ $document->category->categoryName }}
-				</h4>
-
-				<h4 class="p-2">
-					<span class="lead">Description:</span>
-					{{ $document->description }}
-				</h4>				    	
-			</div>{{-- card-body --}}
-
-			<div class="card-footer">
-				<a href="{{ route('documents.edit', $document->id) }}" class="btn btn-info">Update</a>
-
-				<a href="{{ route('documents.index') }}" class="btn btn-outline-secondary">Go Back</a>
-			</div>{{-- card-footer --}}
-		</div>{{-- card --}}
-
-		<div class="card mt-3 border-dark">
-			<div class="card-header">
-				<div class="row">
-					<div class="col">
-						<h4>Uploaded Files</h4>
-					</div>{{-- col --}}
-						
-					<div class="col text-right">
-						<button type="button" class="btn btn-primary" onclick="document.getElementById('file').click();">
-							Upload New
+	<section class="section">
+	    <div class="container">
+	        <article class="message">
+	            <div class="message-header">
+	                <p>{{ $document->title }}</p>
+	        		
+					<div class="buttons">
+						<button class="button is-primary is-rounded" title="Upload New" onclick="document.getElementById('file').click();">
+							<span class="fas fa-plus"></span>
 						</button>
-					</div>{{-- col --}}
-				</div>{{-- row --}}
+						
+		        		<a class="button is-warning is-rounded is-outlined" title="Update" href="{{ route('documents.edit', $document->id) }}">
+							<span class="fas fa-edit"></span>
+		        		</a>
 
-				<form  method="post" action="{{ route('documents.addFile', $document->id) }}" enctype="multipart/form-data">
-					@csrf
-					@method ('patch')
+		        		<a class="button is-success is-rounded is-outlined" title="Go Back" href="{{ route('documents.index') }}">
+							<span class="fas fa-chevron-circle-left"></span>
+		        		</a>
+					</div>
+	            </div><!-- message-header -->
 
-					<input type="file" id="file" name="file" style="display: none;" onchange="this.form.submit();"/>
-				</form>
-			</div>{{-- card-header --}}
+	        
+	            <div class="message-body">
+					@include ('shared.bulma-status')
+					@include ('shared.bulma-error')
 
-			<div class="card-body">
-				<table class="table border-bottom">
-					<thead>
-						<tr class="text-center">
-							<th>File Name</th>
-							<th>Date</th>
-							<th>Time</th>
-						</tr>
-					</thead>
+	            	<div class="content">
+	            		<info attr="Category">{{ $document->category->categoryName }}</info>
 
-					<tbody>
-						@foreach ($document->files->reverse() as $file)
-							<tr class="text-center">
-								<td>
-									<a href="/storage/documents/{{ $file->filename }}" target="_blank">{{ $file->filename }}</a>
-								</td>
+	            		<info attr="Description">{{ $document->description }}</info>
+	            	</div>{{-- content --}}
+					
+					<table class="table is-fullwidth is-bordered is-striped is-hoverable">
+					    <thead>
+					        <tr class="has-background-grey-light">
+					            <th class="has-text-centered">File Name</th>
+					            <th class="has-text-centered">Date</th>
+					            <th class="has-text-centered">Time</th>
+					        </tr>
+					    </thead>
+					
+					    <tbody>
+					    	@foreach ($document->files->reverse() as $file)
+						        <tr>
+						            <td class="has-text-centered">
+										<a href="/storage/documents/{{ $file->filename }}" target="_blank">{{ $file->filename }}</a>
+						            </td>
 
-								<td>{{ date('M d, Y', strtotime($file->created_at)) }}</td>
-								
-								<td>{{ date('h:i A', strtotime($file->created_at)) }}</td>
-							</tr>
-						@endforeach{{-- $document->files->reverse() as $file --}}
-					</tbody>
-				</table>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+						            <td class="has-text-centered">{{ date('M d, Y', strtotime($file->created_at)) }}</td>
+						            <td class="has-text-centered">{{ date('h:i A', strtotime($file->created_at)) }}</td>
+						        </tr>
+							@endforeach{{-- $document->files->reverse() as $file --}}
+					    </tbody>
+					</table>
+
+	            	
+	            </div><!-- message-body -->
+	        </article><!-- message -->
+
+            <form  method="post" action="{{ route('documents.addFile', $document->id) }}" enctype="multipart/form-data">
+				@csrf
+				@method ('patch')
+
+				<input type="file" id="file" name="file" style="display: none;" onchange="this.form.submit();"/>
+			</form>
+	    </div><!-- container -->
+	</section><!-- section -->
 @endsection
-

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'System Support')</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('./css/bulma.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('./css/bulma.css') }}">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -16,6 +16,6 @@
     </div>
 
     <script src="{{ asset('./js/vue.js') }}"></script>
-    <script src="{{ asset('./js/app.js') }}"></script>
+    <script src="{{ asset('./js/my.js') }}"></script>
 </body>
 </html>
