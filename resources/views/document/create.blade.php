@@ -59,7 +59,7 @@
 	    		        <label class="label" for="category_id">Category:</label>
 	    		    
 	    		        <div class="control">
-	    		        	<div class="select is-fullwidth {{ $errors->has('title') ? ' is-danger' : '' }}">
+	    		        	<div class="select is-fullwidth {{ $errors->has('category_id') ? ' is-danger' : '' }}">
 	    		        	    <select id="category_id" name="category_id" required>
 									<option value="" disabled selected>Select Category</option>
 									

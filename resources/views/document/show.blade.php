@@ -5,7 +5,7 @@
 	    <div class="container">
 	        <article class="message">
 	            <div class="message-header">
-	                <p>{{ $document->title }}</p>
+	                <p>Document</p>
 	        		
 					<div class="buttons">
 						<button class="button is-primary is-rounded" title="Upload New" onclick="document.getElementById('file').click();">
@@ -28,6 +28,8 @@
 					@include ('shared.bulma-error')
 
 	            	<div class="content">
+	            		<info attr="Title">{{ $document->title }}</info>
+
 	            		<info attr="Category">{{ $document->category->categoryName }}</info>
 
 	            		<info attr="Description">{{ $document->description }}</info>

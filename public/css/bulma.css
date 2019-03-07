@@ -6548,13 +6548,13 @@ a.list-item {
 }
 
 .message-header + .message-body {
-  border-width: 0;
+  border-width: 1px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
 .message-body {
-  border-color: #dbdbdb;
+  border-color: #363636;
   border-radius: 4px;
   border-style: solid;
   border-width: 0 0 0 4px;
