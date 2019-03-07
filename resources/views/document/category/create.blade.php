@@ -24,7 +24,7 @@
 					            value="{{ old('categoryName') }}" required autofocus>
 					
 					        <span class="icon is-small is-right">
-					            <i class="fas fa-category"></i>
+					            <i class="fas fa-tag"></i>
 					        </span><!-- icon -->
 					    </div><!-- control -->
 					

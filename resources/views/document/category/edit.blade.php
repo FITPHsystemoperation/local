@@ -1,44 +1,52 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card mt-3 border-dark">
-			<div class="card-header">
-				<h2>Update Category</h2>
-			</div>{{-- card-header --}}
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">Update Category</p>
 
-			<div class="card-body">
-				@include ('shared.error')
+	            <a class="delete" aria-label="close" href="{{ route('document.category.show', $category->id) }}"></a>
+	        </header><!-- modal-card-head -->
+	
+			<form method="post" action="{{ route('document.category.update', $category->id) }}">
+				@csrf
+				@method ('patch')
 
-				<form method="post" action="{{ route('document.category.update', $category->id) }}">
-					@csrf
-					@method ('patch')
+		        <section class="modal-card-body">
+					<div class="field">
+					    <label class="label" for="categoryName">Category:</label>
+					
+					    <div class="control has-icons-right">
+					        <input type="text" id="categoryName" name="categoryName" placeholder="Category"
+					            class="input {{ $errors->has('categoryName') ? ' is-danger' : '' }}"
+					            value="{{ $category->categoryName }}" required autofocus>
+					
+					        <span class="icon is-small is-right">
+					            <i class="fas fa-tag"></i>
+					        </span><!-- icon -->
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('categoryName') }}</p>
+					</div><!-- field -->
 
-					<div class="form-group row">
-						<label for="categoryName" class="col-md-3 col-form-label text-md-right">Category:</label>
-							
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Category" value="{{ $category->categoryName }}" required autofocus>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+					<div class="field">
+					    <label class="label" for="description">Description:</label>
+					
+					    <div class="control">
+					        <textarea id="description" name="description" rows="3" placeholder="Description" class="textarea">{{ $category->description }}</textarea>
+					    </div><!-- control -->
+					</div><!-- field -->
+		        </section><!-- modal-card-body -->
+		        
+		        <footer class="modal-card-foot">
+					<button type="submit" class="button is-primary">Save Record</button>
 
-					<div class="form-group row">
-						<label for="description" class="col-md-3 col-form-label text-md-right">Description:</label>
-							
-						<div class="col-md-7">
-							<textarea class="form-control" rows="3" id="description" name="description">{{ $category->description }}</textarea>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Update Record</button>
-
-							<a class="btn btn-outline-secondary" href="{{ route('document.category.show', $category->id) }}" role="button">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+		            <a class="button" href="{{ route('document.category.show', $category->id) }}">Go Back</a>
+		        </footer><!-- modal-card-foot -->
+		    </form>
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection
