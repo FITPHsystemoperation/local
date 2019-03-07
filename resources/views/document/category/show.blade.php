@@ -8,11 +8,11 @@
 	                <p>{{ $category->categoryName }}</p>
 	        
 	        		<div class="buttons">
-		        		<a class="button is-warning is-outlined is-rounded" href="{{ route('document.category.edit', $category->id) }}">
+		        		<a class="button is-warning is-outlined is-rounded" href="{{ route('document.category.edit', $category->id) }}" title="Update">
 							<span class="fas fa-edit"></span>
 		        		</a>
 
-		        		<a class="button is-success is-outlined is-rounded" href="{{ route('document.category.index') }}">
+		        		<a class="button is-success is-outlined is-rounded" href="{{ route('document.category.index') }}" title="Go Back">
 							<span class="fas fa-chevron-circle-left"></span>
 		        		</a>
 	        		</div>

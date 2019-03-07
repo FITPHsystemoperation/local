@@ -7,7 +7,7 @@
 	            <div class="message-header">
 	                <p>Document Category</p>
 	        		
-	        		<a class="button is-primary is-rounded" href="{{ route('document.category.create') }}">
+	        		<a class="button is-primary is-rounded" href="{{ route('document.category.create') }}" title="Add New">
 						<span class="fas fa-plus"></span>
 	        		</a>
 	            </div><!-- message-header -->

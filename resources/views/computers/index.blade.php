@@ -1,60 +1,55 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-    <div class="container my-3">
-        
-        <div class="card border-dark">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col">
-                        <h2>Computer Inventory</h2>
-                    </div>{{-- col --}}
-                        
-                    <div class="col text-right">
-                        @can ('create', App\Computer::class)
-                            <a class="btn btn-primary float-right" href="{{ route('computers.create') }}" role="button">Add New</a>
-                        @endcan
-                    </div>{{-- col --}}
-                </div>{{-- row --}}
-            </div>{{-- card-header --}}
-
-            <div class="card-body">
-                @include('shared.status')
-
-                @component ('shared.check-content', ['data' => $computers])
-                    @slot ('content')
-                        <table class="table border-bottom">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>CompName</th>
-                                    <th>Accounts</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach ($computers as $computer)
-                                    <tr class="text-center">
-                                        <td>
-                                            <a href="{{ route('computers.show', $computer->id) }}">{{$computer->compName}}</a>
-                                        </td>
-                                        
-                                        <td>
-                                            @foreach ($computer->accounts as $account)
-                                                {{ $account['accountName'] }}
-                                                
-                                                {{ !$loop->last ? '/ ' : '' }}
-                                            @endforeach
-                                        </td>
-                                        
-                                        <td>{{$computer->status}}</td>
+    <section class="section">
+        <div class="container">
+            <article class="message">
+                <div class="message-header">
+                    <p>Computer Inventory</p>
+                    
+                    <a class="button is-primary is-rounded" href="{{ route('computers.create') }}" title="Add New">
+                        <span class="fas fa-plus"></span>
+                    </a>
+                </div><!-- message-header -->
+            
+                <div class="message-body">
+                    @include('shared.bulma-status')
+                    
+                    @component ('shared.bulma-check-content', ['data' => $computers])
+                        @slot ('content')
+                            <table class="table is-fullwidth is-bordered is-hoverable">
+                                <thead>
+                                    <tr class="has-background-grey-light">
+                                        <th class="has-text-centered">CompName</th>
+                                        <th class="has-text-centered">Accounts</th>
+                                        <th class="has-text-centered">Status</th>
                                     </tr>
-                                @endforeach{{-- ($computers as $computer) --}}
-                            </tbody>
-                        </table>
-                    @endslot
-                @endcomponent
-            </div>{{-- card-body --}}
-        </div>{{-- card --}}
-    </div>{{-- container --}}
+                                </thead>
+                            
+                                <tbody>
+                                    @foreach ($computers as $computer)
+                                        <tr>
+                                            <td class="has-text-centered">
+                                                <a href="{{ route('computers.show', $computer->id) }}">{{$computer->compName}}</a>
+                                            </td>
+                                            
+                                            <td class="has-text-centered">
+                                                @foreach ($computer->accounts as $account)
+                                                    {{ $account['accountName'] }}
+                                                    
+                                                    {{ !$loop->last ? '/ ' : '' }}
+                                                @endforeach
+                                            </td>
+                                            
+                                            <td class="has-text-centered">{{$computer->status}}</td>
+                                        </tr>
+                                    @endforeach{{-- ($computers as $computer) --}}
+                                </tbody>
+                            </table>
+                        @endslot
+                    @endcomponent
+                </div><!-- message-body -->
+            </article><!-- message -->
+        </div><!-- container -->
+    </section><!-- section -->
 @endsection
