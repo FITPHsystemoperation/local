@@ -1,59 +1,60 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<div class="row">
-					<div class="col">
-						<h2>Documents</h2>
-					</div>{{-- col --}}
-						
-					<div class="col text-right">
-						<a class="btn btn-primary" href="{{ route('documents.create') }}" role="button">Add New</a>
-					</div>{{-- col --}}
-				</div>{{-- row --}}
-			</div>{{-- card-header --}}
+	<section class="section">
+	    <div class="container">
+	        <article class="message">
+	            <div class="message-header">
+	                <p>Documents</p>
+	        
+					<a class="button is-primary is-rounded" href="{{ route('documents.create') }}" title="Add new">
+						<span class="fas fa-plus"></span>
+					</a>
+	            </div><!-- message-header -->
+	        
+	            <div class="message-body">
+	            	@include ('shared.bulma-status')
 
-			<div class="card-body">
-				@include ('shared.status')
+	            	@component ('shared.bulma-check-content', ['data' => $documents])
+                        @slot ('content')
+                        	<table class="table is-fullwidth is-bordered is-hoverable">
+                        	    <thead>
+                        	        <tr class="has-background-grey-light">
+                        	            <th class="has-text-centered">Title</th>
+                        	            <th class="has-text-centered">Category</th>
+                        	            <th class="has-text-centered">Uploaded Date</th>
+                        	            <th class="has-text-centered">File</th>
+                        	        </tr>
+                        	    </thead>
+                        	
+                        	    <tbody>
+                        	    	@foreach ($documents as $document)
+	                        	        <tr>
+	                        	            <td class="has-text-centered has-text-link">
+												<a href="{{ route('documents.show', $document->id) }}">{{$document->title}}</a>
+	                        	            </td>
 
-				@component ('shared.check-content', ['data' => $documents])
-					@slot ('content') 
-						<table class="table border-bottom">
-							<thead>
-								<tr class="text-center">
-									<th>Title</th>
-									<th>Category</th>
-									<th>Uploaded Date</th>
-									<th>File</th>
-								</tr>
-							</thead>
+	                        	            <td class="has-text-centered">{{ $document->category->categoryName }}</td>
 
-							<tbody>
-								@foreach ($documents as $document)
-									<tr class="text-center">
-										<td>
-											<a href="{{ route('documents.show', $document->id) }}">{{$document->title}}</a>
-										</td>
+	                        	            <td class="has-text-centered">
+	                        	            	{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}
+	                        	            </td>
 
-										<td>{{ $document->category->categoryName }}</td>
-										
-										<td>{{ date('M d, Y', strtotime($document->files->last()->created_at)) }}</td>
-										
-										<td>
-											<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
-												{{ $document->files->last()->filename }}
-											</a>
-										</td>
-									</tr>
-								@endforeach{{-- $documents as $document --}}
-							</tbody>
-						</table>
-					@endslot 
-				@endcomponent 
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+	                        	            <td class="has-text-centered has-text-link">
+												<a href="/storage/documents/{{ $document->files->last()->filename }}" target="_blank">
+													{{ $document->files->last()->filename }}
+												</a>
+	                        	            </td>
+	                        	        </tr>
+                        	    	@endforeach
+                        	    </tbody>
+                        	</table>
+                        @endslot
+                    @endcomponent
+	            </div><!-- message-body -->
+	        </article><!-- message -->
+	    </div><!-- container -->
+	</section><!-- section -->
+
 @endsection
 
