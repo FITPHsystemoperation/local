@@ -1,6 +1,69 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">New Document</p>
+
+	            <a class="delete" aria-label="close" href="{{ route('documents.index') }}">Button</a>
+	        </header><!-- modal-card-head -->
+
+	        <form method="post" action="{{ route('documents.store') }}" enctype="multipart/form-data">
+				@csrf
+			
+		        <section class="modal-card-body">
+		    		<div class="field">
+	    		        <label class="label" for="title">Title:</label>
+	    		    
+	    		        <div class="control has-icons-right">
+	    		            <input type="text" id="title" name="title" placeholder="Document Title"
+		    		            class="input {{ $errors->has('title') ? ' is-danger' : '' }}"
+		    		            value="{{ old('title') }}" required autofocus>
+
+		    		        <span class="icon is-small is-right">
+		    		            <i class="fas fa-file-alt"></i>
+		    		        </span><!-- icon -->
+	    		        </div><!-- control -->
+
+	    		        <p class="help is-danger">{{ $errors->first('title') }}</p>
+	    		    </div><!-- field -->
+
+	    		    <div class="field">
+	    		    	<label class="label" for="file">Attach Document:</label>
+								    		    
+	    		        <div class="control">
+	    		            <div class="file has-name is-fullwidth">
+	    		                <label class="file-label">
+	    		                    <input class="file-input" type="file" id="file" @change="selectFile($event)">
+	    		                    
+	    		                    <span class="file-cta">
+	    		                        <span class="file-icon">
+	    		                            <i class="fas fa-upload"></i>
+	    		                        </span>
+	    		            
+	    		                        <span class="file-label">Choose a file…</span>
+	    		                    </span><!-- file-cta -->
+	    		            
+	    		                    <span class="file-name">@{{ filename }}</span>
+	    		                </label><!-- file-label -->
+	    		            </div><!-- file -->
+	    		        </div><!-- control -->
+
+	    		        <p class="help is-danger">{{ $errors->first('file') }}</p>
+	    		    </div><!-- field -->
+		        </section><!-- modal-card-body -->
+		        	
+		        <footer class="modal-card-foot">
+					<button type="submit" class="button is-primary">Save Record</button>
+
+		        	<a class="button" href="{{ route('documents.index') }}">Cancel</a>
+		        </footer><!-- modal-card-foot -->
+	        </form>
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 	<div class="container my-3">
 		<div class="card border-dark">
 			<div class="card-header">
