@@ -1,7 +1,7 @@
 Vue.component('info', {
     props: ['attr'],
     template: `
-        <p class="subtitle is-4">
+        <p class="subtitle">
             <span class="has-text-grey">{{ attr }}:</span>
 
             <span class="has-text-weight-semibold"><slot></slot></span>

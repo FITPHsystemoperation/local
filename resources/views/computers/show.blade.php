@@ -1,10 +1,15 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		@include ('computers.partials.computer')
+	<section class="section">
+	    <div class="container">
+			@include ('computers.partials.computer')
 
-		@include ('computers.partials.account')
+			@include ('computers.partials.account')
+	        
+	    </div><!-- container -->
+	</section><!-- section -->
+	<div class="container my-3">
 
 		@include ('computers.partials.software')
 

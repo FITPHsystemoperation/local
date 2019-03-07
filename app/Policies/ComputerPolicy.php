@@ -26,10 +26,4 @@ class ComputerPolicy
         return
             $user->role_id === 2;
     }
-
-    public function viewPassword(User $user)
-    {
-        return
-            $user->role_id === 2;
-    }
 }

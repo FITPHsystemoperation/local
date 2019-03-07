@@ -95,7 +95,7 @@
 
 Vue.component('info', {
   props: ['attr'],
-  template: "\n        <p class=\"subtitle is-4\">\n            <span class=\"has-text-grey\">{{ attr }}:</span>\n\n            <span class=\"has-text-weight-semibold\"><slot></slot></span>\n        </p>\n    "
+  template: "\n        <p class=\"subtitle\">\n            <span class=\"has-text-grey\">{{ attr }}:</span>\n\n            <span class=\"has-text-weight-semibold\"><slot></slot></span>\n        </p>\n    "
 });
 new Vue({
   el: '#navbar',

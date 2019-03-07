@@ -22,4 +22,8 @@ class ComputerAccountPolicy
             $user->role_id === 2;
     }
 
+    public function viewPassword(User $user, ComputerAccount $computerAccount)
+    {
+        return $computerAccount->type_id != 1 || $user->role_id === 2;
+    }
 }
