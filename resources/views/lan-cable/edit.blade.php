@@ -15,30 +15,36 @@
                 @method ('patch')
 
                 <section class="modal-card-body">
-                    @include ('shared.bulma-error')
-
                     <div class="field">
                         <label class="label" for="name">Tag Name:</label>
                     
                         <div class="control has-icons-right">
-                            <input class="input" type="text" id="name" name="name" placeholder="Tag Name" value="{{ $cable->name }}" required autofocus>
+                            <input type="text" id="name" name="name" placeholder="Tag Name"
+                                class="input {{ $errors->has('name') ? ' is-danger' : '' }}"
+                                value="{{ $cable->name }}" required autofocus>
                             
                             <span class="icon is-small is-right">
                                 <i class="fas fa-tag"></i>
                             </span><!-- icon -->
                         </div><!-- control -->
+
+                        <p class="help is-danger">{{ $errors->first('name') }}</p>
                     </div><!-- field -->
 
                     <div class="field">
                         <label class="label" for="description">Description:</label>
                     
                         <div class="control has-icons-right">
-                            <input class="input" type="text" id="description" name="description" placeholder="Tag Description" value="{{ $cable->description }}" required>
+                            <input type="text" id="description" name="description" placeholder="Tag Description"
+                                class="input {{ $errors->has('name') ? ' is-danger' : '' }}"
+                                value="{{ $cable->description }}" required>
                                 
                             <span class="icon is-small is-right">
                                 <i class="fas fa-question"></i>
                             </span><!-- icon -->
                         </div><!-- control -->
+
+                        <p class="help is-danger">{{ $errors->first('description') }}</p>
                     </div><!-- field -->
                 </section><!-- modal-card-body -->
                 

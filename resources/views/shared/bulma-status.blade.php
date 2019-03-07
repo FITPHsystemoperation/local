@@ -1,5 +1,5 @@
 @if (session('status'))
-    <article class="message is-info has-text-centered">
+    <article class="message is-info">
         <div class="message-body">
             <p class="subtitle">{!! session('status') !!}</p>
         </div><!-- message-body -->
