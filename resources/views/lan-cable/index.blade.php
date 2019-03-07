@@ -16,7 +16,7 @@
                         @slot ('content')
                             <table class="table is-fullwidth is-bordered is-hoverable">
                                 <thead>
-                                    <tr class="has-background-primary">
+                                    <tr class="has-background-grey-light">
                                         <th class="has-text-centered">Tag</th>
                                         <th class="has-text-centered">Description</th>
                                         <th class="has-text-centered">Action</th>

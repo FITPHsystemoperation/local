@@ -25,7 +25,7 @@
                 </div><!-- has-dropdown -->
                 {{-- computer --}}
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <span class="navbar-link">Computer</span>
+                    <span class="navbar-link">Inventory</span>
 
                     <div class="navbar-dropdown">
                         <a class="navbar-item" href="{{ route('computers.index') }}">Computer</a>

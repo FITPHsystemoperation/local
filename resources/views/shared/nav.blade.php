@@ -29,7 +29,7 @@
                 {{-- computer --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Computer
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Inventory
                         <span class="caret"></span>
                     </a>
 

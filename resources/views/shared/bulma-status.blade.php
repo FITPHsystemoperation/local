@@ -1,5 +1,7 @@
 @if (session('status'))
-    <div class="notification is-info has-text-centered">
-        {!! session('status') !!}
-    </div>
+    <article class="message is-info has-text-centered">
+        <div class="message-body">
+            <p class="subtitle">{!! session('status') !!}</p>
+        </div><!-- message-body -->
+    </article><!-- message -->
 @endif
