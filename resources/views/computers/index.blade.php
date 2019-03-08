@@ -7,9 +7,9 @@
                 <div class="message-header">
                     <p>Computer Inventory</p>
                     
-                    <a class="button is-primary is-rounded" href="{{ route('computers.create') }}" title="Add New">
+                    <my-link class="is-primary is-rounded" href="{{ route('computers.create') }}" title="Add New">
                         <span class="fas fa-plus"></span>
-                    </a>
+                    </my-link>
                 </div><!-- message-header -->
             
                 <div class="message-body">

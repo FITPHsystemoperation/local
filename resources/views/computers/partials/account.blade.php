@@ -2,9 +2,9 @@
     <div class="message-header">
         <p>Accounts</p>
 
-        <a class="button is-primary is-rounded is-outlined" href="{{ route('computers.account.create', $computer->id) }}" title="Add Account">
+        <my-link class="is-primary is-rounded" lined="true" href="{{ route('computers.account.create', $computer->id) }}" title="Add Account">
             <span class="fas fa-plus"></span>
-        </a>
+        </my-link>
     </div><!-- message-header -->
 
     <div class="message-body">
@@ -32,10 +32,10 @@
                                     !!}
                                 </td>
                                 <td class="has-text-centered">
-                                    <a class="button is-info is-small is-outlined is-rounded" title="Update Account" 
+                                    <my-link class="is-info is-small is-rounded" lined="true" title="Update Account" 
                                         href="{{ route('computers.account.edit', [$computer->id, $account->id]) }}">
                                         <span class="fas fa-edit"></span>
-                                    </a>    
+                                    </my-link>    
                                 </td>
                             </tr>
                         @endforeach{{-- $computer->accounts as $account --}}

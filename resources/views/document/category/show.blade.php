@@ -13,7 +13,7 @@
 		        		</my-link>
 
 		        		<my-link class="is-success is-rounded" lined="true" href="{{ route('document.category.index') }}" title="Go Back">
-							<span class="fas fa-chevron-circle-left"></span>
+							<span class="fas fa-arrow-left"></span>
 		        		</my-link>
 	        		</div>
 	            </div><!-- message-header -->

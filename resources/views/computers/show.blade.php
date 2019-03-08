@@ -6,12 +6,12 @@
 			@include ('computers.partials.computer')
 
 			@include ('computers.partials.account')
+
+			@include ('computers.partials.software')
 	        
 	    </div><!-- container -->
 	</section><!-- section -->
 	<div class="container my-3">
-
-		@include ('computers.partials.software')
 
 		<h1 class="display-4 m-3">Accessories</h1>
 

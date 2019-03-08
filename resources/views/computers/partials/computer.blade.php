@@ -3,17 +3,19 @@
         <p>Computer</p>
 
         <div class="buttons">
-            <a class="button is-warning is-rounded is-outlined" href="{{ route('computers.edit', $computer->id) }}" title="Update">
+            <my-link class="is-warning is-rounded" lined="true" href="{{ route('computers.edit', $computer->id) }}" title="Update">
                 <span class="fas fa-edit"></span>
-            </a>
+            </my-link>
 
-            <a class="button is-success is-rounded is-outlined" href="{{ route('computers.index') }}" title="Go Back">
-                <span class="fas fa-chevron-circle-left"></span>
-            </a>
+            <my-link class="is-success is-rounded" lined="true" href="{{ route('computers.index') }}" title="Go Back">
+                <span class="fas fa-arrow-left"></span>
+            </my-link>
         </div>
     </div><!-- message-header -->
 
     <div class="message-body">
+        @include ('shared.bulma-status')
+        
         <div class="content">
             <info attr="Computer Name">{{ $computer->compName }}</info>
             <info attr="Operating System">{{ $computer->os }}</info>
