@@ -141,19 +141,9 @@ new Vue({
     selectFile: function selectFile(file) {
       this.filename = file.target.files[0].name;
     },
-    alert: function (_alert) {
-      function alert() {
-        return _alert.apply(this, arguments);
-      }
-
-      alert.toString = function () {
-        return _alert.toString();
-      };
-
-      return alert;
-    }(function () {
-      alert('ok');
-    })
+    submit: function submit() {
+      this.isLoading = true;
+    }
   }
 });
 

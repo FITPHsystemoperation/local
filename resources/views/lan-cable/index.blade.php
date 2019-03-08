@@ -6,7 +6,10 @@
             <article class="message">
                 <div class="message-header">
                     <p>LAN Cables</p>
-                    <a class="button is-primary is-rounded" href="{{ route('cables.create') }}" title="Add New"><span class="fa fa-plus"></span></a>
+
+                    <my-link class="is-primary is-rounded" href="{{ route('cables.create') }}" title="Add New">
+                        <span class="fa fa-plus"></span>
+                    </my-link>
                 </div><!-- message-header -->
             
                 <div class="message-body">

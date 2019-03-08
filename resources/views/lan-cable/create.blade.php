@@ -11,7 +11,7 @@
                 <a class="delete" href="{{ route('cables.index') }}" aria-label="close"></a>
             </header><!-- modal-card-head -->
 
-            <form method="post" action="{{ route('cables.store') }}">
+            <form method="post" action="{{ route('cables.store') }}" @submit="submit">
                 @csrf
 
                 <section class="modal-card-body">
@@ -49,9 +49,9 @@
                 </section><!-- modal-card-body -->
                 
                 <footer class="modal-card-foot">
-                    <button type="submit" class="button is-primary">Save</button>
+                    <button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Save Record</button>
 
-                    <a class="button" href="{{ route('cables.index') }}">Cancel</a>
+                    <my-link href="{{ route('cables.index') }}">Cancel</my-link>
                 </footer><!-- modal-card-foot -->
             </form>
         </div><!-- modal-card -->

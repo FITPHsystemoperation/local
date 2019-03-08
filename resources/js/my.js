@@ -56,8 +56,8 @@ new Vue({
         selectFile(file) {
             this.filename = file.target.files[0].name;
         },
-        alert() {
-            alert('ok');
+        submit() {
+            this.isLoading = true;
         }
     }
 });
