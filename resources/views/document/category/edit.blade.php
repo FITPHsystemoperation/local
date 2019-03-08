@@ -11,7 +11,7 @@
 	            <a class="delete" aria-label="close" href="{{ route('document.category.show', $category->id) }}"></a>
 	        </header><!-- modal-card-head -->
 	
-			<form method="post" action="{{ route('document.category.update', $category->id) }}">
+			<form method="post" action="{{ route('document.category.update', $category->id) }}" @submit="submit">
 				@csrf
 				@method ('patch')
 
@@ -42,9 +42,9 @@
 		        </section><!-- modal-card-body -->
 		        
 		        <footer class="modal-card-foot">
-					<button type="submit" class="button is-primary">Save Record</button>
+					<button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Save Record</button>
 
-		            <a class="button" href="{{ route('document.category.show', $category->id) }}">Go Back</a>
+		            <my-link href="{{ route('document.category.show', $category->id) }}">Go Back</my-link>
 		        </footer><!-- modal-card-foot -->
 		    </form>
 	    </div><!-- modal-card -->
