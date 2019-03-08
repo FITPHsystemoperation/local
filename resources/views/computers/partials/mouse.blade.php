@@ -15,8 +15,7 @@
                     <li>
                         {{ $mouse->mouseName }}
 
-                        <form method="post" class="is-pulled-right" @submit="submit"
-                            action="{{ route('computers.mouse.detach', [$computer->id, $mouse->id]) }}">
+                        <form method="post" class="is-pulled-right" action="{{ route('computers.mouse.detach', [$computer->id, $mouse->id]) }}">
                             @csrf
                             @method ('patch')
                              

@@ -21,6 +21,7 @@
 					    </div><!-- column -->
 					
 					    <div class="column is-6">
+							@include ('computers.partials.keyboard')
 					    </div><!-- column -->
 					</div><!-- columns -->
 
@@ -44,7 +45,6 @@
 			</div>{{-- col --}}
 
 			<div class="col-md-6">
-				@include ('computers.partials.keyboard')
 			</div>{{-- col --}}
 		</div>{{-- row --}}
 
