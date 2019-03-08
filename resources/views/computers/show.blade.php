@@ -27,35 +27,15 @@
 
 					<div class="columns">
 					    <div class="column is-6">
-					        
+							@include ('computers.partials.monitor')
 					    </div><!-- column -->
 					
 					    <div class="column is-6">
+							@include ('computers.partials.charger')
 					    </div><!-- column -->
 					</div><!-- columns -->
 			    </div><!-- message-body -->
 			</article><!-- message -->
 	    </div><!-- container -->
 	</section><!-- section -->
-	<div class="container my-3">
-
-
-		<div class="row">
-			<div class="col-md-6">
-			</div>{{-- col --}}
-
-			<div class="col-md-6">
-			</div>{{-- col --}}
-		</div>{{-- row --}}
-
-		<div class="row mt-3">
-			<div class="col-md-6">
-				@include ('computers.partials.monitor')
-			</div>{{-- col --}}
-
-			<div class="col-md-6">
-				@include ('computers.partials.charger')
-			</div>{{-- col --}}
-		</div>{{-- row --}}
-	</div>{{-- container --}}
 @endsection

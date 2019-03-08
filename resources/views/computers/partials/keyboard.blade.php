@@ -19,8 +19,8 @@
                             @csrf
                             @method ('patch')
 
-                            <my-submit class="is-danger is-rounded is-small" lined="true" href="" title="Remove Keyboard">
-                                <span class="fas fa-trash"></span>
+                            <my-submit class="is-danger is-rounded is-small" lined="true" title="Remove Keyboard">
+                                <span class="fas fa-times"></span>
                             </my-submit>
                         </form>
                     </li>

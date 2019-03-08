@@ -1,5 +1,5 @@
 <div class="box">
-    <my-link class="is-primary is-rounded is-small is-pulled-right" lined="true" title="Add New Mouse"
+    <my-link class="is-primary is-rounded is-small is-pulled-right" lined="true" title="Add Mouse"
         href="{{ route('computers.mouse.index', $computer->id) }}">
         <span class="fas fa-plus"></span>
     </my-link>
@@ -20,7 +20,7 @@
                             @method ('patch')
                              
                             <my-submit class="is-danger is-rounded is-small" lined="true" title="Remove Mouse">
-                                <span class="fas fa-trash"></span>
+                                <span class="fas fa-times"></span>
                             </my-submit>
                         </form>
                     </li>

@@ -1,32 +1,31 @@
-<div class="card border-dark">
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <h4>Charger</h4>
-            </div>{{-- col --}}
+<div class="box">
+    <my-link class="is-primary is-rounded is-small is-pulled-right" lined="true" title="Add Charger"
+        href="{{ route('computers.charger.index', $computer->id) }}">
+        <span class="fas fa-plus"></span>
+    </my-link>
 
-            <div class="col text-right">
-                <a class="btn btn-primary" role="button" href="{{ route('computers.charger.index', $computer->id) }}">Add</a>
-            </div>{{-- col --}}
-        </div>{{-- row --}}
-    </div>{{-- card-header --}}
+    <p class="subtitle">Charger</p>
 
-    <div class="card-body">
-        @component ('shared.check-content', ['data' => $computer->chargers])
-            @slot ('content')
+    @if ( $computer->chargers->all() )
+        <hr>
+
+        <div class="content">
+            <ul>
                 @foreach ($computer->chargers as $charger)
-                    <h5 class="pt-1">
-                        &#9656; {{ $charger->chargerName }}
-                        <form method="post" class="float-right" action="{{ route('computers.charger.detach', [$computer->id, $charger->id]) }}">
-                            @csrf
+                    <li>
+                        {{ $charger->chargerName }}
 
+                        <form method="post" class="is-pulled-right" action="{{ route('computers.charger.detach', [$computer->id, $charger->id]) }}">
+                            @csrf
                             @method ('patch')
 
-                            <button type="submit" class="close" title="Remove">&times;</button>
+                            <my-submit class="is-danger is-rounded is-small" lined="true" title="Remove Charger">
+                                <span class="fas fa-times"></span>
+                            </my-submit>
                         </form>
-                    </h5>
+                    </li>
                 @endforeach{{-- $computer->chargers as $charger --}}
-            @endslot
-        @endcomponent
-    </div>{{-- card-body --}}
-</div>{{-- card --}}
+            </ul>
+        </div>
+    @endif
+</div>
