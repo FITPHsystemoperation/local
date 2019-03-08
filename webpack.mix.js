@@ -12,5 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/my.js', 'public/js')
-   .sass('resources/sass/bulma.sass', 'public/css');
+   .sass('resources/sass/bulma.sass', 'public/css').version();
    

@@ -120,6 +120,29 @@ Vue.component('my-link', {
     this.isOutlined = this.lined;
   }
 });
+Vue.component('my-submit', {
+  props: {
+    lined: {
+      default: false
+    }
+  },
+  template: "\n        <button type=\"submit\" class=\"button\" :class=\"{ 'is-loading': isLoading, 'is-outlined': isOutlined }\" @click=\"toggleMe\"><slot></slot></button>\n    ",
+  data: function data() {
+    return {
+      isLoading: false,
+      isOutlined: false
+    };
+  },
+  methods: {
+    toggleMe: function toggleMe() {
+      this.isLoading = true;
+      this.isOutlined = false;
+    }
+  },
+  mounted: function mounted() {
+    this.isOutlined = this.lined;
+  }
+});
 new Vue({
   el: '#navbar',
   data: {

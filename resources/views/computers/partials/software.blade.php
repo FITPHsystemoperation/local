@@ -40,6 +40,5 @@
                 @endforeach{{-- $computer->softwares as $software --}}
             @endslot
         @endcomponent
-        
     </div><!-- message-body -->
 </article><!-- message -->

@@ -8,16 +8,39 @@
 			@include ('computers.partials.account')
 
 			@include ('computers.partials.software')
-	        
+
+			<article class="message">
+			    <div class="message-header">
+			        <p>Accessories</p>
+			    </div><!-- message-header -->
+			
+			    <div class="message-body">
+					<div class="columns">
+					    <div class="column is-6">
+							@include ('computers.partials.mouse')
+					    </div><!-- column -->
+					
+					    <div class="column is-6">
+					    </div><!-- column -->
+					</div><!-- columns -->
+
+					<div class="columns">
+					    <div class="column is-6">
+					        
+					    </div><!-- column -->
+					
+					    <div class="column is-6">
+					    </div><!-- column -->
+					</div><!-- columns -->
+			    </div><!-- message-body -->
+			</article><!-- message -->
 	    </div><!-- container -->
 	</section><!-- section -->
 	<div class="container my-3">
 
-		<h1 class="display-4 m-3">Accessories</h1>
 
 		<div class="row">
 			<div class="col-md-6">
-				@include ('computers.partials.mouse')
 			</div>{{-- col --}}
 
 			<div class="col-md-6">
