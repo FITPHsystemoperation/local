@@ -8,17 +8,18 @@
 	                <p>Document</p>
 	        		
 					<div class="buttons">
-						<button class="button is-primary is-rounded" title="Upload New" onclick="document.getElementById('file').click();">
+						<button class="button is-primary is-rounded " :class="{ 'is-loading': isLoading }" title="Upload New"
+							onclick="document.getElementById('file').click();">
 							<span class="fas fa-plus"></span>
 						</button>
 						
-		        		<a class="button is-warning is-rounded is-outlined" title="Update" href="{{ route('documents.edit', $document->id) }}">
+		        		<my-link class="is-warning is-rounded" lined="true" title="Update" href="{{ route('documents.edit', $document->id) }}">
 							<span class="fas fa-edit"></span>
-		        		</a>
+		        		</my-link>
 
-		        		<a class="button is-success is-rounded is-outlined" title="Go Back" href="{{ route('documents.index') }}">
+		        		<my-link class="is-success is-rounded" lined="true" title="Go Back" href="{{ route('documents.index') }}">
 							<span class="fas fa-chevron-circle-left"></span>
-		        		</a>
+		        		</my-link>
 					</div>
 	            </div><!-- message-header -->
 
@@ -66,7 +67,7 @@
 				@csrf
 				@method ('patch')
 
-				<input type="file" id="file" name="file" style="display: none;" onchange="this.form.submit();"/>
+				<input type="file" id="file" name="file" style="display: none;" onchange="this.form.submit();" @change="submit"/>
 			</form>
 	    </div><!-- container -->
 	</section><!-- section -->

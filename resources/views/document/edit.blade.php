@@ -11,7 +11,7 @@
 	            <a class="delete" aria-label="close" href="{{ route('documents.show', $document->id) }}"></a>
 	        </header><!-- modal-card-head -->
 	
-			<form method="post" action="{{ route('documents.update', $document->id) }}">
+			<form method="post" action="{{ route('documents.update', $document->id) }}" @submit="submit">
 				@csrf
 				@method ('patch')
 
@@ -63,9 +63,9 @@
 		        </section><!-- modal-card-body -->
 		        
 		        <footer class="modal-card-foot">
-		            <button class="button is-primary" type="submit">Save Record</button>
+		            <button class="button is-primary" :class="{ 'is-loading': isLoading }" type="submit">Save Record</button>
 
-		            <a class="button" href="{{ route('documents.show', $document->id) }}">Go Back</a>
+		            <my-link href="{{ route('documents.show', $document->id) }}">Go Back</my-link>
 		        </footer><!-- modal-card-foot -->
 		    </form>
 	    </div><!-- modal-card -->

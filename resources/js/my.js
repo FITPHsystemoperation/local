@@ -58,6 +58,9 @@ new Vue({
         },
         submit() {
             this.isLoading = true;
+        },
+        alert() {
+            alert('ok')
         }
     }
 });

@@ -7,9 +7,9 @@
 	            <div class="message-header">
 	                <p>Documents</p>
 	        
-					<a class="button is-primary is-rounded" href="{{ route('documents.create') }}" title="Add new">
+					<my-link class="is-primary is-rounded" href="{{ route('documents.create') }}" title="Add new">
 						<span class="fas fa-plus"></span>
-					</a>
+					</my-link>
 	            </div><!-- message-header -->
 	        
 	            <div class="message-body">
