@@ -97,6 +97,29 @@ Vue.component('info', {
   props: ['attr'],
   template: "\n        <p class=\"subtitle\">\n            <span class=\"has-text-grey\">{{ attr }}:</span>\n\n            <span class=\"has-text-weight-semibold\"><slot></slot></span>\n        </p>\n    "
 });
+Vue.component('my-link', {
+  props: {
+    lined: {
+      default: false
+    }
+  },
+  template: "\n        <a class=\"button\" :class=\"{ 'is-loading': isLoading, 'is-outlined': isOutlined }\" @click=\"toggleMe\"><slot></slot></a>\n    ",
+  data: function data() {
+    return {
+      isLoading: false,
+      isOutlined: false
+    };
+  },
+  methods: {
+    toggleMe: function toggleMe() {
+      this.isLoading = true;
+      this.isOutlined = false;
+    }
+  },
+  mounted: function mounted() {
+    this.isOutlined = this.lined;
+  }
+});
 new Vue({
   el: '#navbar',
   data: {
@@ -111,12 +134,26 @@ new Vue({
 new Vue({
   el: '#app',
   data: {
-    filename: 'Select Document'
+    filename: 'Select Document',
+    isLoading: false
   },
   methods: {
     selectFile: function selectFile(file) {
       this.filename = file.target.files[0].name;
-    }
+    },
+    alert: function (_alert) {
+      function alert() {
+        return _alert.apply(this, arguments);
+      }
+
+      alert.toString = function () {
+        return _alert.toString();
+      };
+
+      return alert;
+    }(function () {
+      alert('ok');
+    })
   }
 });
 

@@ -31,10 +31,10 @@
                                             <td class="has-text-centered">{{ $cable->description }}</td>
                                             
                                             <td class="has-text-centered">
-                                                <a class="button is-info is-rounded is-outlined is-small" title="Update" 
-                                                    href="{{ route('cables.edit', $cable->id) }}">
+                                                <my-link class="is-small is-info is-rounded" lined="true"
+                                                    href="{{ route('cables.edit', $cable->id) }}" title="Update">
                                                     <span class="fas fa-edit"></span>
-                                                </a>
+                                                </my-link>
                                             </td>
                                         </tr>
                                     @endforeach
