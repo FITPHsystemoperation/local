@@ -8,7 +8,7 @@
                     <p>Computer Inventory</p>
                     
                     <my-link class="is-primary is-rounded" href="{{ route('computers.create') }}" title="Add New">
-                        <span class="fas fa-plus"></span>
+                        <span class="fa fa-plus"></span>
                     </my-link>
                 </div><!-- message-header -->
             

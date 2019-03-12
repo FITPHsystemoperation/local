@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'System Support')</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('./css/bulma.css') }}">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="{{ asset('./js/fa.js') }}"></script>
 </head>
 
 <body class="has-navbar-fixed-top">

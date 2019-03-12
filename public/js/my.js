@@ -158,7 +158,8 @@ new Vue({
   el: '#app',
   data: {
     filename: 'Select Document',
-    isLoading: false
+    isLoading: false,
+    dropdownActive: false
   },
   methods: {
     selectFile: function selectFile(file) {
@@ -166,6 +167,9 @@ new Vue({
     },
     submit: function submit() {
       this.isLoading = true;
+    },
+    toggleDropdown: function toggleDropdown() {
+      this.dropdownActive = !this.dropdownActive;
     },
     alert: function (_alert) {
       function alert() {
