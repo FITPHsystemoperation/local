@@ -50,7 +50,7 @@
 								<div class="field">
 									<div class="control">
 								        <input type="text" id="{{ $spec }}" name="{{ $spec }}" placeholder="{{ ucwords($spec) }}"
-								            class="input {{ $errors->has($spec) ? ' is-danger' : '' }}" {{ $loop->first ? 'autofocus' : '' }}
+								            class="input" {{ $loop->first ? 'autofocus' : '' }}
 								            value="{{ old($spec) }}">
 								    </div><!-- control -->
 								</div>{{-- field --}}
