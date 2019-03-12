@@ -1,32 +1,31 @@
-<div class="card border-dark">
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <h4>Monitor</h4>
-            </div>{{-- col --}}
+<div class="box">
+    <my-link class="is-primary is-rounded is-small is-pulled-right" lined="true" title="Add Monitor"
+        href="{{ route('computers.monitor.index', $computer->id) }}">
+        <span class="fas fa-plus"></span>
+    </my-link>
 
-            <div class="col text-right">
-                <a class="btn btn-primary" role="button" href="{{ route('computers.monitor.index', $computer->id) }}">Add</a>
-            </div>
-        </div>{{-- row --}}
-    </div>{{-- card-header --}}
+    <p class="subtitle">Monitor</p>
 
-    <div class="card-body">
-        @component ('shared.check-content', ['data' => $computer->monitors])
-            @slot ('content')
+    @if ( $computer->monitors->all() )
+        <hr>
+
+        <div class="content">
+            <ul>
                 @foreach ($computer->monitors as $monitor)
-                    <h5 class="pt-1">
-                        &#9656; {{ $monitor->monitorName }}
-                        <form method="post" class="float-right" action="{{ route('computers.monitor.detach', [$computer->id, $monitor->id]) }}">
-                            @csrf
+                    <li>
+                        {{ $monitor->monitorName }}
 
+                        <form method="post" class="is-pulled-right" action="{{ route('computers.monitor.detach', [$computer->id, $monitor->id]) }}">
+                            @csrf
                             @method ('patch')
 
-                            <button type="submit" class="close" title="Remove">&times;</button>
+                            <my-submit class="is-danger is-rounded is-small" lined="true" title="Remove Monitor">
+                                <span class="fas fa-times"></span>
+                            </my-submit>
                         </form>
-                    </h5>
+                    </li>
                 @endforeach{{-- $computer->monitors as $monitor --}}
-            @endslot
-        @endcomponent
-    </div>{{-- card-body --}}
-</div>{{-- card --}}
+            </ul>
+        </div>        
+    @endif
+</div>

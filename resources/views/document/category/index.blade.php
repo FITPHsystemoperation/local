@@ -1,47 +1,49 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container">
-		<div class="card my-3 border-dark">
-			<div class="card-header">
-				<div class="row">
-					<div class="col">
-						<h2>Document Category</h2>
-					</div>{{-- col --}}
-						
-					<div class="col text-right">
-						<a class="btn btn-primary" href="{{ route('document.category.create') }}" role="button">Add New</a>
-					</div>{{-- col --}}
-				</div>{{-- row --}}
-			</div>{{-- card-header --}}
+	<section class="section">
+	    <div class="container">
+	        <article class="message">
+	            <div class="message-header">
+	                <p>Document Category</p>
+	        		
+	        		<my-link class="is-primary is-rounded" href="{{ route('document.category.create') }}" title="Add New">
+						<span class="fas fa-plus"></span>
+	        		</my-link>
+	            </div><!-- message-header -->
+	        
+	            <div class="message-body">
+	            	@include ('shared.bulma-status')
 
-			<div class="card-body">
-				@include ('shared.status')
-
-				<table class="table border-bottom">
-					<thead>
-						<tr class="text-center">
-							<th>Category</th>
-							<th>Description</th>
-							<th>Document</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						@foreach ($categories as $category)
-							<tr class="text-center">
-								<td>
-									<a href="{{ route('document.category.show', $category->id) }}">{{$category->categoryName}}</a>
-								</td>
-								
-								<td>{{$category->description}}</td>
-
-								<td><strong class="text-danger">{{ $category->documents->count() }}</strong> document/s</td>
-							</tr>
-						@endforeach{{-- $categories as $category --}}
-					</tbody>
-				</table>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+					@component ('shared.bulma-check-content', ['data' => $categories])
+						@slot ('content')
+							<table class="table is-fullwidth is-bordered is-hoverable">
+							    <thead>
+							        <tr class="has-background-grey-light">
+							            <th class="has-text-centered">Category</th>
+							            <th class="has-text-centered">Description</th>
+							            <th class="has-text-centered">Document</th>
+							        </tr>
+							    </thead>
+							
+							    <tbody>
+						        	@foreach ($categories as $category)
+								        <tr>
+								            <td class="has-text-centered">
+												<a href="{{ route('document.category.show', $category->id) }}">{{$category->categoryName}}</a>
+								            </td>
+								            <td class="has-text-centered">{{$category->description}}</td>
+								            <td class="has-text-centered">
+								            	<strong class="has-text-danger">{{ $category->documents->count() }}</strong> document/s
+								            </td>
+								        </tr>
+									@endforeach{{-- $categories as $category --}}
+							    </tbody>
+							</table>
+						@endslot
+					@endcomponent
+	            </div><!-- message-body -->
+	        </article><!-- message -->
+	    </div><!-- container -->
+	</section><!-- section -->
 @endsection

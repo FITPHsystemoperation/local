@@ -1,32 +1,27 @@
-<div class="card border-dark">
-    <div class="card-header">
-        <h2>{{ $computer->compName }}</h2>
-    </div>{{-- card-header --}}
+<article class="message">
+    <div class="message-header">
+        <p>Computer</p>
 
-    <div class="card-body">
-        @include ('shared.status')
+        <div class="buttons">
+            <my-link class="is-warning is-rounded" lined="true" href="{{ route('computers.edit', $computer->id) }}" title="Update">
+                <span class="fas fa-edit"></span>
+            </my-link>
 
-        <h4 class="p-2">
-            <span class="lead">Operating System:</span>
-            {{ $computer->os }}
-        </h4>                       
+            <my-link class="is-success is-rounded" lined="true" href="{{ route('computers.index') }}" title="Go Back">
+                <span class="fas fa-arrow-left"></span>
+            </my-link>
+        </div>
+    </div><!-- message-header -->
 
-        <h4 class="p-2">
-            <span class="lead">Computer Status:</span>
-            {{ $computer->status }}
-        </h4>
-
-        <h4 class="p-2">
-            <span class="lead">Computer Information:</span>
-            {{ $computer->information }}
-        </h4>
-    </div>{{-- card-body --}}
-
-    <div class="card-footer">
-        @can ('update', $computer)
-            <a href="{{ route('computers.edit', $computer->id) }}" class="btn btn-info">Update</a>
-        @endcan                 
-
-        <a href="{{ route('computers.index') }}" class="btn btn-outline-secondary">Go Back</a>
-    </div>{{-- card-footer --}}
-</div>{{-- card --}}
+    <div class="message-body">
+        @include ('shared.bulma-status')
+        
+        <div class="content">
+            <info attr="Computer Name">{{ $computer->compName }}</info>
+            <info attr="Operating System">{{ $computer->os }}</info>
+            <info attr="Computer Status">{{ $computer->status }}</info>
+            <info attr="Computer Information">{{ $computer->information }}</info>
+        </div>
+        
+    </div><!-- message-body -->
+</article><!-- message -->

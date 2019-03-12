@@ -29,13 +29,14 @@
                 {{-- computer --}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Computer
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Inventory
                         <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="{{ route('computers.index') }}">Computer</a>
                         <a class="dropdown-item" href="{{ route('softwares.index') }}">Software</a>
+                        <a class="dropdown-item" href="{{ route('cables.index') }}">Lan Cables</a>
                         <a class="dropdown-item" href="/accesories">Accessories</a>
                     </div>
                 </li>

@@ -1,60 +1,73 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<h2>Update Document Information</h2>
-			</div>{{-- card-header --}}
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">Update Document Information</p>
 
-			<div class="card-body">
-				@include ('shared.error')
+	            <a class="delete" aria-label="close" href="{{ route('documents.show', $document->id) }}"></a>
+	        </header><!-- modal-card-head -->
+	
+			<form method="post" action="{{ route('documents.update', $document->id) }}" @submit="submit">
+				@csrf
+				@method ('patch')
 
-				<form method="post" action="{{ route('documents.update', $document->id) }}">
-					@csrf
+		        <section class="modal-card-body">
+					<div class="field">
+	    		        <label class="label" for="title">Title:</label>
+	    		    
+	    		        <div class="control has-icons-right">
+	    		            <input type="text" id="title" name="title" placeholder="Document Title"
+		    		            class="input {{ $errors->has('title') ? ' is-danger' : '' }}"
+		    		            value="{{ $document->title }}" required autofocus>
 
-					@method ('patch')
+		    		        <span class="icon is-small is-right">
+		    		            <i class="fas fa-file-alt"></i>
+		    		        </span><!-- icon -->
+	    		        </div><!-- control -->
 
-					<div class="form-group row">
-						<label for="title" class="col-md-3 col-form-label text-md-right">Title:</label>
-							
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="title" name="title" placeholder="Document Title" value="{{ $document->title }}" required autofocus>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+	    		        <p class="help is-danger">{{ $errors->first('title') }}</p>
+	    		    </div><!-- field -->
 
-					<div class="form-group row">
-						<label for="category_id" class="col-md-3 col-form-label text-md-right">Category:</label>
-							
-						<div class="col-md-7">
-							<select class="form-control" id="category_id" name="category_id" required>
-								@foreach ($categories as $category)
-									<option value="{{ $category->id }}"
-										{{ $category->id === $document->category_id ? 'selected' : '' }}>
-										{{ $category->categoryName }}
-									</option>
-								@endforeach{{-- $categories as $category --}}
-							</select>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+	    		    <div class="field">
+	    		        <label class="label" for="category_id">Category:</label>
+	    		    
+	    		        <div class="control">
+	    		        	<div class="select is-fullwidth {{ $errors->has('category_id') ? ' is-danger' : '' }}">
+	    		        	    <select id="category_id" name="category_id" >
+									<option value="" disabled selected>Select Category</option>
+									
+									@foreach ($categories as $category)
+										<option value="{{ $category->id }}"
+											{{ $category->id === $document->category_id ? 'selected' : '' }}>
+											{{ $category->categoryName }}
+										</option>
+									@endforeach{{-- $categories as $category --}}
+	    		        	    </select>
+	    		        	</div><!-- select -->
+	    		        </div><!-- control -->
 
-					<div class="form-group row">
-						<label for="description" class="col-md-3 col-form-label text-md-right">Description:</label>
-							
-						<div class="col-md-7">
-							<textarea class="form-control" rows="3" id="description" name="description">{{ $document->description }}</textarea>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+	    		        <p class="help is-danger">{{ $errors->first('category_id') }}</p>
+	    		    </div><!-- field -->
 
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Save Record</button>
+	    		    <div class="field">
+					    <label class="label" for="description">Description:</label>
+					
+					    <div class="control">
+							<textarea id="description" name="description" rows="3" placeholder="Document description" class="textarea">{{ $document->description }}</textarea>
+					    </div><!-- control -->
+					</div><!-- field -->
+		        </section><!-- modal-card-body -->
+		        
+		        <footer class="modal-card-foot">
+		            <button class="button is-primary" :class="{ 'is-loading': isLoading }" type="submit">Save Record</button>
 
-							<a class="btn btn-outline-secondary" href="{{ route('documents.show', $document->id) }}" role="button">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+		            <my-link href="{{ route('documents.show', $document->id) }}">Go Back</my-link>
+		        </footer><!-- modal-card-foot -->
+		    </form>
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection
