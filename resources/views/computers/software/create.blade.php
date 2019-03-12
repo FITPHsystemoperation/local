@@ -21,7 +21,7 @@
 						<div class="field-body">
 							<div class="field">
 								<div class="control">
-									<div class="dropdown is-right" :class="{ 'is-active': dropdownActive }">
+									<div class="dropdown" :class="{ 'is-active': dropdownActive }">
 									    <div class="dropdown-trigger">
 									        <div class="button is-outlined is-link is-fullwidth" @click="toggleDropdown" aria-haspopup="true" aria-controls="dropdown-menu">
 									            <span>{{ ucwords($software->softwareName) }}</span>
