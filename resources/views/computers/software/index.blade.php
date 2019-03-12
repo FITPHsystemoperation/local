@@ -19,7 +19,18 @@
 					<div class="field-body">
 						<div class="field is-narrow">
 							<div class="control">
-								@include ('computers.software.partials.list')
+								<div class="dropdown" :class="{ 'is-active': dropdownActive }">
+								    <div class="dropdown-trigger">
+								        <button class="button is-outlined is-link" @click="toggleDropdown" aria-haspopup="true" aria-controls="dropdown-menu">
+								            <span>Software Selection</span>
+								            <span class="icon is-small">
+								                <i class="fas fa-angle-down" aria-hidden="true"></i>
+								            </span>
+								        </button>
+								    </div><!-- dropdown-trigger -->
+								    
+									@include ('computers.software.partials.list')
+								</div><!-- dropdown -->
 							</div>{{-- control --}}
 						</div>{{-- field --}}
 					</div>{{-- field-body --}}
