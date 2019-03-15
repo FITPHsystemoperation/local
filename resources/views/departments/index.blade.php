@@ -21,18 +21,21 @@
 				@component ('shared.check-content', ['data' => $departments])
 					@slot ('content')
 						<table class="table border-bottom">
-							<thead>
+							<thead class="text-center">
 								<tr>
 									<th>Department</th>
+									<th>Members</th>
 								</tr>
 							</thead>
 							
 							<tbody>
 								@foreach ($departments as $department)
-									<tr>
+									<tr class="text-center">
 										<td>
 											<a href="{{ route('departments.show', $department->id) }}">{{ $department->departmentName }}</a>
 										</td>
+
+										<td><strong class="text-primary">{{ $department->staffs->count() }}</strong> member/s</td>
 									</tr>
 								@endforeach
 							</tbody>
