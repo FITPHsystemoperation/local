@@ -35,6 +35,8 @@ class ComputerSoftwareController extends Controller
 
     public function store(Request $request, Computer $computer, Software $software)
     {
+        $this->authorize('create', ComputerSoftware::class);
+
         $computer_software = ComputerSoftware::create([
             'computer_id' => $computer->id,
             'software_id' => $software->id,
@@ -47,13 +49,15 @@ class ComputerSoftwareController extends Controller
 
     public function edit(Computer $computer, ComputerSoftware $computer_software)
     {
-        $this->authorize('create', ComputerSoftware::class);
+        $this->authorize('update', $computer_software);
      
         return view('computers.software.edit', compact('computer_software')); 
     }
 
     public function update(Request $request, Computer $computer, ComputerSoftware $computer_software)
     {
+        $this->authorize('update', $computer_software);
+
         $computer_software->update([
             'specs' => array_slice($request->all(), 2),
         ]);
@@ -64,6 +68,8 @@ class ComputerSoftwareController extends Controller
 
     public function destroy(Computer $computer, ComputerSoftware $computer_software)
     {   
+        $this->authorize('update', $computer_software);
+            
         $software = $computer_software->software;
 
         $computer_software->delete();
