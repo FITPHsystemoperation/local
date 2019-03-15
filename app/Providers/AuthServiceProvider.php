@@ -20,6 +20,10 @@ class AuthServiceProvider extends ServiceProvider
         'App\Theme' => 'App\Policies\ThemePolicy',
         'App\Staff' => 'App\Policies\StaffPolicy',
         'App\Department' => 'App\Policies\DepartmentPolicy',
+        'App\Mouse' => 'App\Policies\MousePolicy',
+        'App\Keyboard' => 'App\Policies\KeyboardPolicy',
+        'App\Charger' => 'App\Policies\ChargerPolicy',
+        'App\Monitor' => 'App\Policies\MonitorPolicy',
     ];
 
     /**

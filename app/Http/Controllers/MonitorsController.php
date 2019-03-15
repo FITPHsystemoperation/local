@@ -15,12 +15,16 @@ class MonitorsController extends Controller
 
     public function index(Computer $computer)
     {
+        $this->authorize('create', Monitor::class);
+
         return view('computers.monitor', compact('computer'))
             ->with('monitors', Monitor::all());
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Monitor::class);
+
         $request->validate([ 'monitorName' => 'required|min:5|unique:monitors' ]);
         
         Monitor::create(['monitorName' => $request->get('monitorName')]);
@@ -31,6 +35,8 @@ class MonitorsController extends Controller
 
     public function attach(Request $request, Computer $computer)
     {
+        $this->authorize('create', Monitor::class);
+
         $request->validate([ 'monitor' => 'required' ]);
         
         $monitor = Monitor::findOrFail($request->get('monitor'));
@@ -43,6 +49,8 @@ class MonitorsController extends Controller
 
     public function detach(Computer $computer, Monitor $monitor)
     {
+        $this->authorize('update', $monitor);
+
         $monitor->update(['computer_id' => null]);
 
         return redirect()->back()
