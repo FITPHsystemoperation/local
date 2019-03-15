@@ -6,7 +6,7 @@
 	    
 	    <div class="modal-card">
 	        <header class="modal-card-head">
-	            <p class="modal-card-title">Attach Mouse</p>
+	            <p class="modal-card-title">Mouse</p>
 	            <a class="delete" href="{{ route('computers.show', $computer->id) }}" aria-label="close"></a>
 	        </header><!-- modal-card-head -->
 				
@@ -20,7 +20,7 @@
 
 					    <label class="label" for="mouse">Select Mouse:</label>
 						
-						<div class="field has-addons">
+						<div class="field is-grouped">
 						    <div class="control is-expanded">
 						    	<div class="select is-fullwidth {{ $errors->has('mouse') ? ' is-danger' : '' }}">
 						    	    <select id="mouse" name="mouse" autofocus required>
@@ -48,7 +48,7 @@
 					<form method="post" @submit="submit" action="{{ route('computers.mouse.store', $computer->id) }}">
 						@csrf
 
-						<div class="field has-addons">
+						<div class="field is-grouped">
 						    <div class="control is-expanded has-icons-right">
 						        <input type="text" id="mouseName" name="mouseName" placeholder="Mouse Name"
 						            class="input {{ $errors->has('mouseName') ? ' is-danger' : '' }}"
