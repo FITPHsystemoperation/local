@@ -23,7 +23,7 @@
 						<div class="field is-grouped">
 						    <div class="control is-expanded">
 								<div class="select is-fullwidth  {{ $errors->has('keyboard') ? ' is-danger' : '' }}">
-								    <select id="keyboard" name="keyboard" autofocus>
+								    <select id="keyboard" name="keyboard" autofocus required>
 								        @foreach ($keyboards as $keyboard)
 											<option value="{{ $keyboard->id }}" {{ $keyboard->computer ? 'disabled' : '' }}>
 												{{ $keyboard->keyboardName }}

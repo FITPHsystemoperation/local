@@ -1,72 +1,77 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<h3>Select Existing Monitor</h3>
-			</div>{{-- card-header --}}
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">Monitor</p>
+	            <a class="delete" href="{{ route('computers.show', $computer->id) }}" aria-label="close"></a>
+	        </header><!-- modal-card-head -->
+	
+	        <section class="modal-card-body">
+				@include ('shared.bulma-status')
 
-			<div class="card-body">
-				@include ('shared.error')
-				@include ('shared.status')
+	        	<div class="box">
+					<form method="post" @submit="submit" action="{{ route('computers.monitor.attach', $computer->id) }}">
+						@csrf
+						@method ('patch')
 
-				<form method="post" action="{{ route('computers.monitor.attach', $computer->id) }}">
-					@csrf
+					    <label class="label" for="monitor">Select Monitor:</label>
+						
+						<div class="field is-grouped">
+						    <div class="control is-expanded">
+								<div class="select is-fullwidth {{ $errors->has('monitor') ? 'is-danger': '' }}">
+								    <select id="monitor" name="monitor" autofocus>
+										@foreach ($monitors as $monitor)
+											<option value="{{ $monitor->id }}" {{ $monitor->computer ? 'disabled' : '' }}>
+												{{ $monitor->monitorName }}
+											</option>
+										@endforeach{{-- $monitors as $monitor --}}
+								    </select>
+								</div><!-- select -->
+						    </div><!-- control -->
 
-					@method ('patch')
+						    <div class="control">
+						    	<button type="submit" class="button is-link" :class="{ 'is-loading': isLoading }">Attach</button>
+						    </div>{{-- control --}}
+						</div><!-- field -->
+						
+					    <p class="help is-danger">{{ $errors->first('monitor') }}</p>
+	        		</form>
+	        	</div>{{-- box --}}
 
-					<div class="form-group row">
-						<label for="monitor" class="col-md-3 col-form-label text-md-right">Select Monitor:</label>
-							
-						<div class="col-md-7">
-							<select class="c-select form-control" id="monitor" name="monitor" required autofocus>
-								@foreach ($monitors as $monitor)
-									<option value="{{ $monitor->id }}" {{ $monitor->computer ? 'disabled' : '' }}>
-										{{ $monitor->monitorName }}
-									</option>
-								@endforeach{{-- $monitors as $monitor --}}
-							</select>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+	        	<div class="box">
+					<form method="post" @submit="submit" action="{{ route('computers.monitor.store', $computer->id) }}">
+						@csrf
 
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Attach Monitor</button>
+	        		    <label class="label" for="monitorName">Add New Monitor:</label>
+		        		
+		        		<div class="field is-grouped">
+		        		    <div class="control is-expanded has-icons-right">
+		        		        <input type="text" id="monitorName" name="monitorName" placeholder="Monitor Name"
+		        		            class="input {{ $errors->has('monitorName') ? ' is-danger' : '' }}"
+		        		            value="{{ old('monitorName') }}">
+		        		
+		        		        <span class="icon is-small is-right">
+		        		            <i class="fas fa-desktop"></i>
+		        		        </span><!-- icon -->
+		        		    </div><!-- control -->
 
-							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-
-		<div class="card mt-3 border-dark">
-			<div class="card-header">
-				<h3>Add New Monitor</h3>
-			</div>{{-- card-header --}}
-
-			<div class="card-body">
-				<form method="post" action="{{ route('computers.monitor.store', $computer->id) }}">
-					@csrf
-
-					<div class="form-group row">
-						<label for="monitorName" class="col-md-3 col-form-label text-md-right">Monitor Name:</label>
-							
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="monitorName" placeholder="Monitor name" value="{{ old('monitorName') }}" required>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Save Monitor</button>
-
-							<button type="reset" class="btn btn-outline-secondary">Reset Form</button>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+		        		    <div class="control">
+		        		    	<button type="submit" class="button is-info" :class="{ 'is-loading': isLoading }">Record</button>
+		        		    </div>{{-- control --}}
+		        		</div><!-- field -->
+		        		
+	        		    <p class="help is-danger">{{ $errors->first('monitorName') }}</p>
+	        		</form>
+	        	</div>{{-- box --}}
+	        </section><!-- modal-card-body -->
+	        
+	        <footer class="modal-card-foot">
+	        	<my-link href="{{ route('computers.show', $computer->id) }}">Go Back</my-link>
+	        </footer><!-- modal-card-foot -->
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection
