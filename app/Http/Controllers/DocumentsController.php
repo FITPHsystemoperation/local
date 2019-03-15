@@ -22,11 +22,15 @@ class DocumentsController extends Controller
 
     public function create()
     {   
+        $this->authorize('create', Document::class);
+
         return view('document.create')->with('categories', DocumentCategory::all());
     }
 
     public function store(DocumentFormRequest $request)
     {
+        $this->authorize('create', Document::class);
+
         $request->validate([
             'title' => 'unique:documents',
             'file' =>'required|mimes:pdf|max:10000',
@@ -51,12 +55,16 @@ class DocumentsController extends Controller
 
     public function edit(Document $document)
     {
+        $this->authorize('update', $document);
+
         return view('document.edit', compact('document'))
             ->with('categories', DocumentCategory::all());
     }
 
     public function update(DocumentFormRequest $request, Document $document)
     {
+        $this->authorize('update', $document);
+
         $document->update([
             'title' => $request->get('title'),
             'category_id' => $request->get('category_id'),
@@ -74,6 +82,8 @@ class DocumentsController extends Controller
 
     public function addFile(Request $request, Document $document)
     {
+        $this->authorize('update', $document);
+        
         $request->validate(['file' =>'required|mimes:pdf|max:10000']);
 
         $this->upload($document, $request->file('file'));  
