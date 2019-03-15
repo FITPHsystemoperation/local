@@ -1,72 +1,77 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<h3>Select Existing Mouse</h3>
-			</div>{{-- card-header --}}
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">Mouse</p>
+	            <a class="delete" href="{{ route('computers.show', $computer->id) }}" aria-label="close"></a>
+	        </header><!-- modal-card-head -->
+				
+	        <section class="modal-card-body">
+				@include ('shared.bulma-status')
 
-			<div class="card-body">
-				@include ('shared.error')
-				@include ('shared.status')
+	        	<div class="box">
+					<form method="post" @submit="submit" id="attach-form" action="{{ route('computers.mouse.attach', $computer->id) }}">
+						@csrf
+						@method ('patch')
 
-				<form method="post" action="{{ route('computers.mouse.attach', $computer->id) }}">
-					@csrf
+					    <label class="label" for="mouse">Select Mouse:</label>
+						
+						<div class="field is-grouped">
+						    <div class="control is-expanded">
+						    	<div class="select is-fullwidth {{ $errors->has('mouse') ? ' is-danger' : '' }}">
+						    	    <select id="mouse" name="mouse" autofocus required>
+						    	        @foreach ($mouses as $mouse)
+											<option value="{{ $mouse->id }}" {{ $mouse->computer ? 'disabled' : '' }}>
+												{{ $mouse->mouseName }}
+											</option>
+										@endforeach{{-- $mouses as $mouse --}}
+						    	    </select>
+						    	</div><!-- select -->
+						    </div><!-- control -->
 
-					@method ('patch')
+					    	<div class="control">
+						    	<button type="submit" class="button is-link" :class="{ 'is-loading': isLoading }">Attach</button>
+					    	</div>{{-- control --}}
+						</div><!-- field -->
 
-					<div class="form-group row">
-						<label for="mouse" class="col-md-3 col-form-label text-md-right">Select Mouse:</label>
+					    <p class="help is-danger">{{ $errors->first('mouse') }}</p>
+					</form>
+	        	</div>{{-- box --}}
 
-						<div class="col-md-7">
-							<select class="c-select form-control" id="mouse" name="mouse" required autofocus>
-								@foreach ($mouses as $mouse)
-									<option value="{{ $mouse->id }}" {{ $mouse->computer ? 'disabled' : '' }}>
-										{{ $mouse->mouseName }}
-									</option>
-								@endforeach{{-- $mouses as $mouse --}}
-							</select>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+				<div class="box">
+				    <label class="label" for="mouseName">Add New Mouse:</label>
 
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Attach Mouse</button>
+					<form method="post" @submit="submit" action="{{ route('computers.mouse.store', $computer->id) }}">
+						@csrf
 
-							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
+						<div class="field is-grouped">
+						    <div class="control is-expanded has-icons-right">
+						        <input type="text" id="mouseName" name="mouseName" placeholder="Mouse Name"
+						            class="input {{ $errors->has('mouseName') ? ' is-danger' : '' }}"
+						            value="{{ old('mouseName') }}" required>
+						
+						        <span class="icon is-small is-right">
+						            <i class="fas fa-mouse-pointer"></i>
+						        </span><!-- icon -->
+						    </div><!-- control -->
 
-		<div class="card mt-3 border-dark">
-			<div class="card-header">
-				<h3>Add New Mouse</h3>
-			</div>{{-- card-header --}}
+						    <div class="control">
+						    	<button class="button is-info" :class="{ 'is-loading': isLoading }">Record</button>
+						    </div>{{-- control --}}
+						</div><!-- field -->
 
-			<div class="card-body">
-				<form method="post" action="{{ route('computers.mouse.store', $computer->id) }}">
-					@csrf
-
-					<div class="form-group row">
-						<label for="mouseName" class="col-md-3 col-form-label text-md-right">Mouse Name:</label>
-							
-						<div class="col-md-7">
-							<input type="text" class="form-control" name="mouseName" placeholder="Mouse name" value="{{ old('mouseName') }}" required>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Save Mouse</button>
-
-							<button type="reset" class="btn btn-outline-secondary">Reset Form</button>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+					    <p class="help is-danger">{{ $errors->first('mouseName') }}</p>
+					</form>
+				</div>{{-- box --}}
+	        </section><!-- modal-card-body -->
+	        
+	        <footer class="modal-card-foot">
+	            <my-link class="button" href="{{ route('computers.show', $computer->id) }}">Go Back</my-link>
+	        </footer><!-- modal-card-foot -->
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection

@@ -1,43 +1,70 @@
-@extends('computers.software.index')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<div class="row">
-					<div class="col-8">
-						<h3>Add {{ ucwords($software->softwareName) }} to {{ $computer->compName }}</h3>
-					</div>{{-- col --}}
-						
-					<div class="col text-right">
-						@include ('computers.software.partials.list')
-					</div>{{-- col --}}					
-				</div>{{-- row --}}
-			</div>{{-- card-header --}}
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">Add Software</p>
+	            <a class="delete" href="{{ route('computers.show', $computer->id) }}" aria-label="close"></a>
+	        </header><!-- modal-card-head -->
+	
+			<form method="post" action="{{ route('computers.software.store', [$computer->id, $software->id]) }}" @submit="submit">
+				@csrf
+		        <section class="modal-card-body">
+		        	<div class="field is-horizontal">
+						<div class="field-label is-normal">
+							<label class="label">Software:</label>
+						</div>{{-- field-label --}}
 
-			<div class="card-body">
-				<form method="post" action="{{ route('computers.software.store', [$computer->id, $software->id]) }}">
-					@csrf
+						<div class="field-body">
+							<div class="field">
+								<div class="control">
+									<div class="dropdown" :class="{ 'is-active': dropdownActive }">
+									    <div class="dropdown-trigger">
+									        <div class="button is-outlined is-link is-fullwidth" @click="toggleDropdown" aria-haspopup="true" aria-controls="dropdown-menu">
+									            <span>{{ ucwords($software->softwareName) }}</span>
+									            <span class="icon is-small">
+									                <i class="fas fa-angle-down" aria-hidden="true"></i>
+									            </span>
+									        </div>
+									    </div><!-- dropdown-trigger -->
+									    
+										@include ('computers.software.partials.list')
+									</div><!-- dropdown -->
+								</div>{{-- control --}}
+							</div>{{-- field --}}
+						</div>{{-- field-body --}}
+					</div>{{-- field --}}
+
+					<hr>					
 
 					@foreach ($software->specList as $spec)
-						<div class="form-group row">
-							<label for="{{ $spec }}" class="col-md-3 col-form-label text-md-right">{{ ucfirst($spec) }}:</label>
-								
-							<div class="col-md-7">
-								<input type="text" class="form-control" id="{{ $spec }}" name="{{ $spec }}" placeholder="{{ $spec }}" value="{{ old( $spec) }}" {{ $loop->first ? 'autofocus' : '' }} >
-							</div>{{-- col --}}
-						</div>{{-- row --}}
+						<div class="field is-horizontal">
+							<div class="field-label is-normal">
+								<label class="label" for="{{ $spec }}">{{ ucwords($spec) }}:</label>
+							</div>{{-- field-label --}}
+
+							<div class="field-body">
+								<div class="field">
+									<div class="control">
+								        <input type="text" id="{{ $spec }}" name="{{ $spec }}" placeholder="{{ ucwords($spec) }}"
+								            class="input" {{ $loop->first ? 'autofocus' : '' }}
+								            value="{{ old($spec) }}">
+								    </div><!-- control -->
+								</div>{{-- field --}}
+							</div>{{-- field-body --}}
+						</div>{{-- field --}}
 					@endforeach{{-- $software->specList as $spec --}}
+		        </section><!-- modal-card-body -->
 
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Save Record</button>
+		        <footer class="modal-card-foot">
+		        	<button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Save Record</button>
 
-							<a class="btn btn-outline-secondary" role="button" href="{{ route('computers.show', $computer->id) }}">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+		            <my-link href="{{ route('computers.show', $computer->id) }}">Go Back</my-link>
+		        </footer><!-- modal-card-foot -->
+	        </form>
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection
