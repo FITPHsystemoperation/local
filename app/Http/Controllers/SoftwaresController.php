@@ -21,11 +21,15 @@ class SoftwaresController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Software::class);
+
         return view('softwares.create');
     }
 
     public function store(SoftwareFormRequest $request)
     {   
+        $this->authorize('create', Software::class);
+
         $request->validate(['softwareName' => 'unique:software']);
 
         $software = Software::create([
@@ -44,11 +48,15 @@ class SoftwaresController extends Controller
 
     public function edit(Software $software)
     {
+        $this->authorize('update', $software);
+
        return view('softwares.edit', compact('software'));
     }
 
     public function update(SoftwareFormRequest $request, Software $software)
     {
+        $this->authorize('update', $software);
+        
         $software->update([
             'softwareName' => $request->get('softwareName'),
             'specList' => explode(' ', $request['specList']),

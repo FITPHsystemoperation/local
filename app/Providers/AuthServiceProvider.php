@@ -24,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Keyboard' => 'App\Policies\KeyboardPolicy',
         'App\Charger' => 'App\Policies\ChargerPolicy',
         'App\Monitor' => 'App\Policies\MonitorPolicy',
+        'App\Software' => 'App\Policies\SoftwarePolicy',
     ];
 
     /**
