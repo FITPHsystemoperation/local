@@ -27,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Software' => 'App\Policies\SoftwarePolicy',
         'App\LanCable' => 'App\Policies\LanCablePolicy',
         'App\Document' => 'App\Policies\DocumentPolicy',
+        'App\DocumentCategory' => 'App\Policies\DocumentCategoryPolicy',
     ];
 
     /**

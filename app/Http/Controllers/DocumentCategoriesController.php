@@ -21,11 +21,15 @@ class DocumentCategoriesController extends Controller
 
     public function create()
     {
+        $this->authorize('create', DocumentCategory::class);
+
         return view('document.category.create');
     }
 
     public function store(DocumentCategoryFormRequest $request)
     {
+        $this->authorize('create', DocumentCategory::class);
+
         $request->validate(['categoryName' => 'unique:document_categories']);
 
         $category = DocumentCategory::create([
@@ -44,11 +48,15 @@ class DocumentCategoriesController extends Controller
 
     public function edit(DocumentCategory $category)
     {
+        $this->authorize('update', $category);
+
         return view('document.category.edit', compact('category'));
     }
 
     public function update(DocumentCategoryFormRequest $request, DocumentCategory $category)
     {
+        $this->authorize('update', $category);
+        
         $category->update([
             'categoryName' => $request->get('categoryName'),
             'description' => $request->get('description'),
