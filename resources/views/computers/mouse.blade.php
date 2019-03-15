@@ -43,10 +43,10 @@
 	        	</div>{{-- box --}}
 
 				<div class="box">
-				    <label class="label" for="mouseName">Add New Mouse:</label>
-
 					<form method="post" @submit="submit" action="{{ route('computers.mouse.store', $computer->id) }}">
 						@csrf
+
+					    <label class="label" for="mouseName">Add New Mouse:</label>
 
 						<div class="field is-grouped">
 						    <div class="control is-expanded has-icons-right">
