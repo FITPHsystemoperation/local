@@ -15,12 +15,16 @@ class ChargersController extends Controller
 
     public function index(Computer $computer)
     {
-        return view('computers.charger', compact('computer'))
+        $this->authorize('create', Charger::class);
+
+        return view('computers.accessories.charger', compact('computer'))
             ->with('chargers', Charger::all());
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Charger::class);
+
         $request->validate([ 'chargerName' => 'required|min:5|unique:chargers', ]);
 
         Charger::create(['chargerName' => $request->get('chargerName')]);
@@ -31,6 +35,8 @@ class ChargersController extends Controller
 
     public function attach(Request $request, Computer $computer)
     {
+        $this->authorize('create', Charger::class);
+
         $request->validate([ 'charger' => 'required' ]);
         
         $charger = Charger::findOrFail($request->get('charger'));
@@ -43,6 +49,8 @@ class ChargersController extends Controller
 
     public function detach(Computer $computer, Charger $charger)
     {
+        $this->authorize('update', $charger);
+
         $charger->update(['computer_id' => null]);
 
         return redirect()->back()

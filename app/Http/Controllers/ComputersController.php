@@ -29,6 +29,8 @@ class ComputersController extends Controller
 
     public function store(ComputerFormRequest $request)
     {
+        $this->authorize('create', Computer::class);
+
         $request->validate([
             'compName' => 'unique:computers',
         ]);
@@ -58,6 +60,8 @@ class ComputersController extends Controller
 
     public function update(ComputerFormRequest $request, Computer $computer)
     {
+        $this->authorize('update', $computer);
+        
         $computer->update([
             'compName' => $request->get('compName'),
             'os' => $request->get('os'),

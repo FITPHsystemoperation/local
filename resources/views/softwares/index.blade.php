@@ -1,50 +1,48 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<div class="row">
-					<div class="col">
-						<h2>Software Management</h2>
-					</div>{{-- col --}}
-						
-					<div class="col text-right">
-						<a class="btn btn-primary" href="{{ route('softwares.create') }}" role="button">Add New</a>
-					</div>{{-- col --}}
-				</div>{{-- row --}}
-			</div>{{-- card-header --}}
+	<section class="section">
+	    <div class="container">
+	        <article class="message">
+	            <div class="message-header">
+	                <p>Software Management</p>
+	        
+					<my-link class="is-primary is-rounded" href="{{ route('softwares.create') }}" title="Add New">
+						<span class="fa fa-plus"></span>
+					</my-link>
+	            </div><!-- message-header -->
+	        
+	            <div class="message-body">
+					@include ('shared.bulma-status')
 
-			<div class="card-body">
-				@include ('shared.status')
+					@component ('shared.bulma-check-content', ['data' => $softwares ])
+						@slot('content')
+							<table class="table is-fullwidth is-bordered is-hoverable">
+							    <thead>
+							        <tr class="has-background-grey-light">
+							            <th class="has-text-centered">Softwares</th>
+							            <th class="has-text-centered">Installed</th>
+							        </tr>
+							    </thead>
+							
+							    <tbody>
+									@foreach ($softwares as $software)
+								        <tr>
+											<td class="has-text-centered">
+												<a href="{{ route('softwares.show', $software->id) }}">{{ $software->softwareName }}</a>
+											</td>
 
-				@component ('shared.check-content', ['data' => $softwares])
-					@slot ('content')
-						<table class="table border-bottom">
-							<thead>
-								<tr class="text-center">
-									<th>Softwares</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								@foreach ($softwares as $software)
-									<tr class="text-center">
-										<td>
-											<a href="{{ route('softwares.show', $software->id) }}">{{ $software->softwareName }}</a>
-										</td>
-										
-										<td>
-											<a class="btn btn-sm btn-outline-info" href="{{ route('softwares.edit', $software->id) }}" role="button">Update</a>
-										</td>
-									</tr>
-								@endforeach{{-- $softwares as $software --}}
-							</tbody>
-						</table>
-					@endslot
-				@endcomponent
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+											<td class="has-text-centered">
+												<strong class="has-text-danger">{{ $software->computers->count() }}</strong> computer/s
+											</td>
+										</tr>
+									@endforeach{{-- $softwares as $software --}}
+							    </tbody>
+							</table>
+						@endslot
+					@endcomponent
+	            </div><!-- message-body -->
+	        </article><!-- message -->
+	    </div><!-- container -->
+	</section><!-- section -->
 @endsection

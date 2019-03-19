@@ -30,6 +30,8 @@ class ComputerAccountController extends Controller
 
     public function store(ComputerAccountFormRequest $request, Computer $computer)
     {   
+        $this->authorize('create', ComputerAccount::class);
+
         $account = ComputerAccount::create([
             'computer_id' => $computer->id,
             'accountName' => $request->get('accountName'),
@@ -56,6 +58,8 @@ class ComputerAccountController extends Controller
 
     public function update(ComputerAccountFormRequest $request,Computer $computer, ComputerAccount $account)
     {
+        $this->authorize('update', $account);
+
         $account->update([
             'accountName' => $request->get('accountName'),
             'type_id' => $request->get('type_id'),
@@ -68,6 +72,8 @@ class ComputerAccountController extends Controller
 
     public function destroy(Computer $computer, ComputerAccount $account)
     {
+        $this->authorize('update', $account);
+        
         $account->delete();
 
         return redirect()->route('computers.show', $computer->id)

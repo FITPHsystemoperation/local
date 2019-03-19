@@ -20,11 +20,15 @@ class LanCableController extends Controller
 
     public function create()
     {
+        $this->authorize('create', LanCable::class);
+
         return view('lan-cable.create');
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', LanCable::class);
+
         $request->validate([
             'name' => 'required|min:3|unique:lan_cables',
             'description' => 'required|min:3',
@@ -46,11 +50,15 @@ class LanCableController extends Controller
 
     public function edit(LanCable $cable)
     {
+        $this->authorize('update', $cable);
+
         return view('lan-cable.edit', compact('cable'));
     }
 
     public function update(Request $request, LanCable $cable)
     {
+        $this->authorize('update', $cable);
+        
         $request->validate([
             'name' => 'required|min:3',
             'description' => 'required|min:3',

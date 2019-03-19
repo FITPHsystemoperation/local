@@ -15,12 +15,16 @@ class KeyboardsController extends Controller
 
     public function index(Computer $computer)
     {
-        return view('computers.keyboard', compact('computer'))
+        $this->authorize('create', Keyboard::class);
+
+        return view('computers.accessories.keyboard', compact('computer'))
             ->with('keyboards', Keyboard::all());
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Keyboard::class);
+
         $request->validate([ 'keyboardName' => 'required|min:5|unique:keyboards', ]);
 
         Keyboard::create(['keyboardName' => $request->get('keyboardName')]);
@@ -31,6 +35,8 @@ class KeyboardsController extends Controller
 
     public function attach(Request $request, Computer $computer)
     {
+        $this->authorize('create', Keyboard::class);
+
         $request->validate([ 'keyboard' => 'required' ]);
         
         $keyboard = Keyboard::findOrFail($request->get('keyboard'));
@@ -43,6 +49,8 @@ class KeyboardsController extends Controller
 
     public function detach(Computer $computer, Keyboard $keyboard)
     {
+        $this->authorize('update', $keyboard);
+
         $keyboard->update(['computer_id' => null]);
 
         return redirect()->back()

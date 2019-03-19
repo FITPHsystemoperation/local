@@ -15,12 +15,16 @@ class MousesController extends Controller
  
     public function index(Computer $computer)
     {
-        return view('computers.mouse', compact('computer'))
+        $this->authorize('create', Mouse::class);
+
+        return view('computers.accessories.mouse', compact('computer'))
             ->with('mouses', Mouse::all());
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create', Mouse::class);
+
         $request->validate([ 'mouseName' => 'required|min:5|unique:mouses' ]);
 
         Mouse::create(['mouseName' => $request->get('mouseName')]);
@@ -31,6 +35,8 @@ class MousesController extends Controller
 
     public function attach(Request $request, Computer $computer)
     {
+        $this->authorize('create', Mouse::class);
+
         $request->validate([ 'mouse' => 'required' ]);
         
         $mouse = Mouse::findOrFail($request->get('mouse'));
@@ -43,6 +49,8 @@ class MousesController extends Controller
 
     public function detach(Computer $computer, Mouse $mouse)
     {
+        $this->authorize('update', $mouse);
+
         $mouse->update(['computer_id' => null]);
 
         return redirect()->back()

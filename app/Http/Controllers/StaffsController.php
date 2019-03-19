@@ -28,11 +28,15 @@ class StaffsController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Staff::class);
+
         return view('staffs.create');
     }
 
     public function store(StaffNameFormRequest $request)
     {
+        $this->authorize('create', Staff::class);
+
         $request->validate(['idNumber' => 'unique:users']);
         
         $staff = Staff::create([
@@ -53,16 +57,22 @@ class StaffsController extends Controller
 
     public function show(Staff $staff)
     {   
+        $this->authorize('view', $staff);
+
         return view('staffs.show', compact('staff'));
     }
 
     public function edit(Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         return view('staffs.edit', compact('staff'));
     }
 
     public function update(StaffNameFormRequest $request, Staff $staff)
     {   
+        $this->authorize('update', $staff);
+
         $staff->update([
             'firstName' => $request->get('firstName'),
             'middleName' => $request->get('middleName'),
@@ -82,6 +92,8 @@ class StaffsController extends Controller
 
     public function destroy(Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         $staff->delete();
 
         return redirect()->route('staffs.index')
@@ -90,6 +102,8 @@ class StaffsController extends Controller
 
     public function editWork(Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         return view('staffs.work')
             ->with('staff', $staff)
             ->with('stats', \App\EmploymentStat::all())
@@ -99,6 +113,8 @@ class StaffsController extends Controller
 
     public function updateWork(StaffWorkFormRequest $request, Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         $staff->update([
             'dateHired' => $request->get('dateHired'),
             'employment_stat_id' => $request->get('employment_stat_id'),
@@ -115,11 +131,15 @@ class StaffsController extends Controller
 
     public function editContact(Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         return view('staffs.contact', compact('staff'));
     }
 
     public function updateContact(StaffContactFormRequest $request, Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         $staff->update([
             'contactNo' => $request->get('contactNo'),
             'emailAddress' => $request->get('emailAddress'),
@@ -135,11 +155,15 @@ class StaffsController extends Controller
 
     public function editEmergency(Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         return view('staffs.emergency', compact('staff'));
     }
 
     public function updateEmergency(StaffEmergencyFormRequest $request, Staff $staff)
     {   
+        $this->authorize('update', $staff);
+
         $staff->update([
             'emergencyPerson' => $request->get('emergencyPerson'),
             'emergencyNo' => $request->get('emergencyNo'),
@@ -154,11 +178,15 @@ class StaffsController extends Controller
 
     public function editAccount(Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         return view('staffs.account', compact('staff'));
     }
 
     public function updateAccount(StaffAccountFormRequest $request, Staff $staff)
     {   
+        $this->authorize('update', $staff);
+
         $staff->update([
             'birNo' => $request->get('birNo'),
             'sssNo' => $request->get('sssNo'),
@@ -175,11 +203,15 @@ class StaffsController extends Controller
 
     public function editPersonal(Staff $staff)
     {
+        $this->authorize('update', $staff);
+
         return view('staffs.personal', compact('staff'));
     }
 
     public function updatePersonal(StaffPersonalFormRequest $request, Staff $staff)
     {   
+        $this->authorize('update', $staff);
+        
         $staff->update([
             'birthday' => $request->get('birthday'),
             'civilStatus' => $request->get('civilStatus'),

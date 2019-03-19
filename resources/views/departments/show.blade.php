@@ -1,54 +1,54 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<div class="row">
-					<div class="col">
-						<h2>{{ $department->departmentName }}</h2>
-					</div>{{-- col --}}
-						
-					<div class="col text-right">
-						<a class="btn btn-info" href="{{ route('departments.edit', $department->id) }}" role="button">Rename</a>
-						
-						<a class="btn btn-outline-secondary" href="{{ route('departments.index') }}" role="button">Go Back</a>
-					</div>{{-- col --}}
-				</div>{{-- row --}}
-			</div>{{-- card-header --}}
+	<section class="section">
+	    <div class="container">
+	        <article class="message">
+	            <div class="message-header">
+	                <p>{{ $department->departmentName }}</p>
+	        
+					<div class="buttons">
+						<my-link class="is-warning is-rounded" lined="true" title="Update"
+							href="{{ route('departments.edit', $department->id) }}">
+							<span class="fa fa-edit"></span>
+						</my-link>
 
-			<div class="card-body">
-				@include ('shared.status')
+						<my-link class="is-success is-rounded" lined="true" href="{{ route('departments.index') }}" title="Go Back">
+							<span class="fa fa-arrow-left"></span>
+						</my-link>
+					</div>
+	            </div><!-- message-header -->
+	        
+	            <div class="message-body">
+	            	@include ('shared.bulma-status')
 
-				@component ('shared.check-content', ['data' => $department->staffs])
-					@slot ('content')
-						<table class="table border-bottom">
-							<thead>
-								<tr class="text-center">
-									<th>ID No.</th>
-									<th>Full Name</th>
-									<th>Job Title</th>
-									<th>Status</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								@foreach ($department->staffs as $staff)
-									<tr class="text-center">
-										<td>{{ $staff->user['idNumber'] }}</td>
-										
-										<td>{{ "$staff->firstName $staff->lastName" }}</td>
-										
-										<td>{{ $staff->jobTitle['titleName'] }}</td>
-										
-										<td>{{ $staff->employmentStat['statDesc'] }}</td>
-									</tr>
-								@endforeach{{-- ($department->staffs as $staff) --}}
-							</tbody>
-						</table>
-					@endslot
-				@endcomponent
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+					@component ('shared.bulma-check-content', ['data' => $department->staffs])
+						@slot ('content')
+							<table class="table is-fullwidth is-bordered is-hoverable">
+							    <thead>
+							        <tr class="has-background-grey-light">
+							            <th class="has-text-centered">I.D No.</th>
+							            <th class="has-text-centered">Full Name</th>
+							            <th class="has-text-centered">Job Title</th>
+							        </tr>
+							    </thead>
+							
+							    <tbody>
+									@foreach ($department->staffs as $staff)
+								        <tr>
+											<td class="has-text-centered">{{ $staff->user['idNumber'] }}</td>
+											
+											<td class="has-text-centered">{{ "$staff->firstName $staff->lastName" }}</td>
+											
+											<td class="has-text-centered">{{ $staff->jobTitle['titleName'] }}</td>
+										</tr>
+									@endforeach{{-- ($department->staffs as $staff) --}}
+							    </tbody>
+							</table>
+						@endslot
+					@endcomponent
+	            </div><!-- message-body -->
+	        </article><!-- message -->
+	    </div><!-- container -->
+	</section><!-- section -->
 @endsection

@@ -20,11 +20,15 @@ class DepartmentsController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Department::class);
+
         return view('departments.create');
     }
 
     public function store(DepartmentFormRequest $request)
     {
+        $this->authorize('create', Department::class);
+
         $request->validate(['departmentName' => 'unique:departments']);
 
         $department = Department::create(['departmentName' => $request->get('departmentName')]);
@@ -40,11 +44,15 @@ class DepartmentsController extends Controller
 
     public function edit(Department $department)
     {
+        $this->authorize('update', $department);
+
         return view('departments.edit', compact('department'));
     }
 
     public function update(DepartmentFormRequest $request, Department $department)
     {
+        $this->authorize('update', $department);
+        
         $department->update(['departmentName' => $request->get('departmentName')]);
 
         return redirect()->route('departments.show', $department->id)

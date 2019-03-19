@@ -1,47 +1,60 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<h2>New Software</h2>
-			</div>{{-- card-header --}}
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">New Software</p>
+	            <a class="delete" href="{{ route('softwares.index') }}" aria-label="close"></a>
+	        </header><!-- modal-card-head -->
+	
+			<form method="post" @submit="submit" action="{{ route('softwares.store') }}">
+				@csrf
 
-			<div class="card-body">
-				@include ('shared.error')
+		        <section class="modal-card-body">
+		        	<div class="field">
+		        	        <label class="label" for="softwareName">Software Name:</label>
+		        	    
+		        	        <div class="control has-icons-right">
+		        	            <input type="text" id="softwareName" name="softwareName" placeholder="Software Name"
+		        	                class="input {{ $errors->has('softwareName') ? ' is-danger' : '' }}"
+		        	                value="{{ old('softwareName') }}" autofocus required>
+		        	    
+		        	            <span class="icon is-small is-right">
+		        	                <i class="fas fa-compact-disc"></i>
+		        	            </span><!-- icon -->
+		        	        </div><!-- control -->
+		        	    
+		        	        <p class="help is-danger">{{ $errors->first('softwareName') }}</p>
+		        	    </div><!-- field -->    
 
-				<form method="post" action="{{ route('softwares.store') }}">
-					@csrf
+		        	    <div class="field">
+		        	        <p class="help is-info has-text-weight-bold is-pulled-right">*Separate each specs using Spacebar</p>
 
-					<div class="form-group row">
-						<label for="softwareName" class="col-md-3 col-form-label text-md-right">Software Name:</label>
-							
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="softwareName" name="softwareName" placeholder="Software Name" value="{{ old('softwareName') }}" required autofocus>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+		        	        <label class="label" for="specList">Spec List:</label>
+		        	    
+		        	        <div class="control has-icons-right">
+		        	            <input type="text" id="specList" name="specList" placeholder="Ex: (Version Password)"
+		        	                class="input {{ $errors->has('specList') ? ' is-danger' : '' }}"
+		        	                value="{{ old('specList') }}">
+		        	    
+		        	            <span class="icon is-small is-right">
+		        	                <i class="fas fa-list"></i>
+		        	            </span><!-- icon -->
+		        	        </div><!-- control -->
+		        	    
+		        	        <p class="help is-danger">{{ $errors->first('specList') }}</p>
+		        	    </div><!-- field -->
+		        </section><!-- modal-card-body -->
+		        
+		        <footer class="modal-card-foot">
+					<button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Record</button>
 
-					<div class="form-group row">
-						<label for="specList" class="col-md-3 col-form-label text-md-right">Spec List:</label>
-							
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="specList" name="specList" placeholder="Ex: (Version Password)" value="{{ old('specList') }}">
-
-							<small class="form-text text-muted">
-								<strong>Separate each specs using Spacebar</strong>
-							</small>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Save Record</button>
-
-							<a class="btn btn-outline-secondary" href="{{ route('softwares.index') }}" role="button">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+		            <my-link href="{{ route('softwares.index') }}">Go Back</my-link>
+		        </footer><!-- modal-card-foot -->
+		    </form>
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection
