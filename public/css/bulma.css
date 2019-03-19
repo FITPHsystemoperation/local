@@ -6369,10 +6369,11 @@ a.list-item {
 }
 
 .message a:not(.button):not(.tag):not(.dropdown-item) {
-  color: #3273dc;
+  color: #209cee;
 }
 
 .message a:not(.button):not(.tag):not(.dropdown-item):hover {
+  color: #3273dc;
   text-decoration: underline;
 }
 

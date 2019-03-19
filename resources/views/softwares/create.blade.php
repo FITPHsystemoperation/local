@@ -20,7 +20,7 @@
 		        	        <div class="control has-icons-right">
 		        	            <input type="text" id="softwareName" name="softwareName" placeholder="Software Name"
 		        	                class="input {{ $errors->has('softwareName') ? ' is-danger' : '' }}"
-		        	                value="{{ old('softwareName') }}" autofocus>
+		        	                value="{{ old('softwareName') }}" autofocus required>
 		        	    
 		        	            <span class="icon is-small is-right">
 		        	                <i class="fas fa-compact-disc"></i>
