@@ -62,8 +62,8 @@ class SoftwaresController extends Controller
             'specList' => explode(' ', $request['specList']),
         ]);
 
-        return redirect()->route('softwares.index')
-            ->with('status', "Software:<strong>$software->softwareName</strong> successfully updated");  
+        return redirect()->route('softwares.show', $software->id)
+            ->with('status', "Software successfully updated");  
     }
 
     public function destroy($id)

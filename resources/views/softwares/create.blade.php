@@ -31,18 +31,21 @@
 		        	    </div><!-- field -->    
 
 		        	    <div class="field">
+		        	        <p class="help is-info has-text-weight-bold is-pulled-right">*Separate each specs using Spacebar</p>
+
 		        	        <label class="label" for="specList">Spec List:</label>
 		        	    
 		        	        <div class="control has-icons-right">
 		        	            <input type="text" id="specList" name="specList" placeholder="Ex: (Version Password)"
-		        	                class="input" value="{{ old('specList') }}">
+		        	                class="input {{ $errors->has('specList') ? ' is-danger' : '' }}"
+		        	                value="{{ old('specList') }}">
 		        	    
 		        	            <span class="icon is-small is-right">
 		        	                <i class="fas fa-list"></i>
 		        	            </span><!-- icon -->
 		        	        </div><!-- control -->
 		        	    
-		        	        <p class="help is-info">Separate each specs using Spacebar</p>
+		        	        <p class="help is-danger">{{ $errors->first('specList') }}</p>
 		        	    </div><!-- field -->
 		        </section><!-- modal-card-body -->
 		        

@@ -21,7 +21,7 @@
 							    <thead>
 							        <tr class="has-background-grey-light">
 							            <th class="has-text-centered">Softwares</th>
-							            <th class="has-text-centered">Action</th>
+							            <th class="has-text-centered">Installed</th>
 							        </tr>
 							    </thead>
 							
@@ -33,10 +33,7 @@
 											</td>
 
 											<td class="has-text-centered">
-												<my-link class="is-info is-small is-rounded" lined="true" title="Update"
-													href="{{ route('softwares.edit', $software->id) }}">
-													<span class="fa fa-edit"></span>
-												</my-link>
+												<strong class="has-text-danger">{{ $software->computers->count() }}</strong> computer/s
 											</td>
 										</tr>
 									@endforeach{{-- $softwares as $software --}}
