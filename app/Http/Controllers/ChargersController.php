@@ -17,7 +17,7 @@ class ChargersController extends Controller
     {
         $this->authorize('create', Charger::class);
 
-        return view('computers.charger', compact('computer'))
+        return view('computers.accessories.charger', compact('computer'))
             ->with('chargers', Charger::all());
     }
 

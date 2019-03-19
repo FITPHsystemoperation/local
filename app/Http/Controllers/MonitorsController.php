@@ -17,7 +17,7 @@ class MonitorsController extends Controller
     {
         $this->authorize('create', Monitor::class);
 
-        return view('computers.monitor', compact('computer'))
+        return view('computers.accessories.monitor', compact('computer'))
             ->with('monitors', Monitor::all());
     }
 

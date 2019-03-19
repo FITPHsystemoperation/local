@@ -10,7 +10,6 @@
 			@include ('computers.partials.software')
 
 			@include ('computers.partials.accessories')
-			
 	    </div><!-- container -->
 	</section><!-- section -->
 @endsection

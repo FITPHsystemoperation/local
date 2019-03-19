@@ -17,7 +17,7 @@ class KeyboardsController extends Controller
     {
         $this->authorize('create', Keyboard::class);
 
-        return view('computers.keyboard', compact('computer'))
+        return view('computers.accessories.keyboard', compact('computer'))
             ->with('keyboards', Keyboard::all());
     }
 

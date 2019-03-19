@@ -37,8 +37,8 @@
             <div class="column is-6">
                 @component ('computers.components.accessory-output', [
                         'computer' => $computer->id,
-                        'accessory' => 'monitor',
-                        'items' => $computer->monitors,  
+                        'accessory' => 'charger',
+                        'items' => $computer->chargers,  
                     ])
                 @endcomponent
             </div><!-- column -->

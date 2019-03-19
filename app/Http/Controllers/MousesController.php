@@ -17,7 +17,7 @@ class MousesController extends Controller
     {
         $this->authorize('create', Mouse::class);
 
-        return view('computers.mouse', compact('computer'))
+        return view('computers.accessories.mouse', compact('computer'))
             ->with('mouses', Mouse::all());
     }
 
