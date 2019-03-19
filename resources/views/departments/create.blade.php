@@ -6,7 +6,7 @@
 	    
 	    <div class="modal-card">
 	        <header class="modal-card-head">
-	            <p class="modal-card-title">New Department Record</p>
+	            <p class="modal-card-title">Add New Department</p>
 	            <a class="delete" href="{{ route('departments.index') }}" aria-label="close"></a>
 	        </header><!-- modal-card-head -->
 	
