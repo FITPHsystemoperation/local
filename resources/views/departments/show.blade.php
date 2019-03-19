@@ -27,7 +27,7 @@
 							<table class="table is-fullwidth is-bordered is-hoverable">
 							    <thead>
 							        <tr class="has-background-grey-light">
-							            <th class="has-text-centered">I.D No.</th>
+							            <th class="has-text-centered">ID No.</th>
 							            <th class="has-text-centered">Full Name</th>
 							            <th class="has-text-centered">Job Title</th>
 							        </tr>

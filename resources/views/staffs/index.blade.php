@@ -1,54 +1,52 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container-fluid my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<div class="row">
-					<div class="col">
-						<h2>Master List</h2>
-					</div>{{-- col --}}
-				
-					<div class="col text-right">
-						<a class="btn btn-primary" href="{{ route('staffs.create') }}" role="button">Add New</a>
-					</div>{{-- col --}}
-				</div>{{-- row --}}
-			</div>{{-- card-header --}}
+	<section class="section">
+	    <div class="container">
+	        <article class="message">
+	            <div class="message-header">
+	                <p>Master List</p>
+	        
+		            <my-link class="is-primary is-rounded" href="{{ route('staffs.create') }}" title="Add New">
+		            	<span class="fa fa-plus"></span>
+		            </my-link>    
+	            </div><!-- message-header -->
+	        
+	            <div class="message-body">
+	            	@include ('shared.bulma-status')
 
-			<div class="card-body">
-				@include ('shared.status')
+					@component ('shared.bulma-check-content', ['data' => $staffs])
+						@slot ('content')
+			            	<table class="table is-fullwidth is-bordered is-hoverable">
+			            	    <thead>
+			            	        <tr class="has-background-grey-light">
+			            	            <th class="has-text-centered">ID No.</th>
+			            	            <th class="has-text-centered">Full Name</th>
+			            	            <th class="has-text-centered">Job Title</th>
+			            	            <th class="has-text-centered">Status</th>
+			            	            <th class="has-text-centered">Dept</th>
+			            	        </tr>
+			            	    </thead>
+			            	
+			            	    <tbody>
+									@foreach ($staffs as $staff)
+										<tr>
+											<td class="has-text-centered">
+												<a href="{{ route('staffs.show', $staff->id) }}">{{ $staff->user['idNumber'] }}</a>
+											</td>
 
-				@component ('shared.check-content', ['data' => $staffs])
-					@slot ('content')
-						<table class="table border-bottom">
-							<thead>
-								<tr class="text-center">
-									<th>ID No.</th>
-									<th>Full Name</th>
-									<th>Job Title</th>
-									<th>Status</th>
-									<th>Department</th>
-								</tr>
-							</thead>
-
-							<tbody>
-								@foreach ($staffs as $staff)
-									<tr class="text-center">
-										<td>
-											<a href="{{ route('staffs.show', $staff->id) }}">{{ $staff->user['idNumber'] }}</a>
-										</td>
-
-										<td>{{ "$staff->firstName $staff->lastName" }}</td>
-										<td>{{ $staff->jobTitle['titleName'] }}</td>
-										<td>{{ $staff->employmentStat['statDesc'] }}</td>
-										<td>{{ $staff->department['departmentName'] }}</td>
-									</tr>
-								@endforeach
-							</tbody>
-						</table>
-					@endslot
-				@endcomponent
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+											<td class="has-text-centered">{{ "$staff->firstName $staff->lastName" }}</td>
+											<td class="has-text-centered">{{ $staff->jobTitle['titleName'] }}</td>
+											<td class="has-text-centered">{{ $staff->employmentStat['statDesc'] }}</td>
+											<td class="has-text-centered">{{ $staff->department['departmentName'] }}</td>
+										</tr>
+									@endforeach{{-- $staffs as $staff --}}
+			            	    </tbody>
+			            	</table>
+						@endslot
+					@endcomponent
+	            </div><!-- message-body -->
+	        </article><!-- message -->
+	    </div><!-- container -->
+	</section><!-- section -->
 @endsection
