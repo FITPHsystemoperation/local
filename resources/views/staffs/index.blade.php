@@ -36,9 +36,9 @@
 											</td>
 
 											<td class="has-text-centered">{{ "$staff->firstName $staff->lastName" }}</td>
-											<td class="has-text-centered">{{ $staff->jobTitle['titleName'] }}</td>
-											<td class="has-text-centered">{{ $staff->employmentStat['statDesc'] }}</td>
-											<td class="has-text-centered">{{ $staff->department['departmentName'] }}</td>
+											<td class="has-text-centered">{{ optional($staff->jobTitle)->titleName }}</td>
+											<td class="has-text-centered">{{ optional($staff->employmentStat)->statDesc }}</td>
+											<td class="has-text-centered">{{ optional($staff->department)->departmentName }}</td>
 										</tr>
 									@endforeach{{-- $staffs as $staff --}}
 			            	    </tbody>

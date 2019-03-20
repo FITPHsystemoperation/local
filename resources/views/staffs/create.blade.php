@@ -1,85 +1,101 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<div class="card border-dark">
-			<div class="card-header">
-				<h2>New Staff Record</h2>
-			</div>{{-- card-header --}}
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">New Staff</p>
+	            <a class="delete" href="{{ route('staffs.index') }}" aria-label="close"></a>
+	        </header><!-- modal-card-head -->
+	
+			<form method="post" @submit="submit" action="{{ route('staffs.store') }}">
+				@csrf
 
-			<div class="card-body">
-				@include ('shared.error')
+		        <section class="modal-card-body">
+		            <div class="field">
+		                <label class="label" for="idNumber">I.D. No:</label>
+		            
+		                <div class="control has-icons-right">
+		                    <input type="text" id="idNumber" name="idNumber" placeholder="FIT xxxx"
+		                        class="input {{ $errors->has('idNumber') ? ' is-danger' : '' }}"
+		                        value="{{ old('idNumber') }}" autofocus required>
+		            
+		                    <span class="icon is-small is-right">
+		                        <i class="fas fa-id-card"></i>
+		                    </span><!-- icon -->
+		                </div><!-- control -->
+		            
+		                <p class="help is-danger">{{ $errors->first('idNumber') }}</p>
+		            </div><!-- field -->
 
-				<form method="post" action="{{ route('staffs.store') }}">
-					@csrf
+		            <div class="field">
+		                <label class="label" for="firstName">First Name:</label>
+		            
+		                <div class="control">
+		                    <input type="text" id="firstName" name="firstName" placeholder="First Name"
+		                        class="input {{ $errors->has('firstName') ? ' is-danger' : '' }}"
+		                        value="{{ old('firstName') }}" required>
+		                </div><!-- control -->
+		            
+		                <p class="help is-danger">{{ $errors->first('firstName') }}</p>
+		            </div><!-- field -->
+		
+					<div class="field">
+					    <label class="label" for="middleName">Middle Name:</label>
+					
+					    <div class="control">
+					        <input type="text" id="middleName" name="middleName" placeholder="Middle Name"
+					            class="input" value="{{ old('middleName') }}">
+					    </div><!-- control -->
+					</div><!-- field -->
 
-					<div class="form-group row">{{-- idnumber --}}
-						<label for="idNumber" class="col-md-3 col-form-label text-md-right">ID No.:</label>
+					<div class="field">
+					    <label class="label" for="lastName">Last Name:</label>
+					
+					    <div class="control">
+					        <input type="text" id="lastName" name="lastName" placeholder="Last Name"
+					            class="input {{ $errors->has('lastName') ? ' is-danger' : '' }}"
+					            value="{{ old('lastName') }}" required>
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('lastName') }}</p>
+					</div><!-- field -->
 
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="idNumber" name="idNumber" placeholder="FIT xxxx" value="{{ old('idNumber') }}" required autofocus>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+					<div class="field">
+					    <label class="label" for="nickName">Nick Name:</label>
+					
+					    <div class="control">
+					        <input type="text" id="nickName" name="nickName" placeholder="Nick Name"
+					            class="input {{ $errors->has('nickName') ? ' is-danger' : '' }}"
+					            value="{{ old('nickName') }}" required>
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('nickName') }}</p>
+					</div><!-- field -->
 
-					<div class="form-group row">{{-- firstName --}}
-						<label for="firstName" class="col-md-3 col-form-label text-md-right">First Name:</label>
+					<div class="field">
+						<label class="label">Gender:</label>
 
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" value="{{ old('firstName') }}" required>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+					    <div class="control">
+							<label class="radio">
+					            <input type="radio" name="gender" value="m" checked> Male
+					        </label>
+					        
+					        <label class="radio">
+					            <input type="radio" name="gender" value="f"> Female
+					        </label>										        
+					    </div><!-- control -->
+					</div><!-- field -->
+		        </section><!-- modal-card-body -->
+		        
+		        <footer class="modal-card-foot">
+					<button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Save Record</button>
 
-					<div class="form-group row">
-						<label for="middleName" class="col-md-3 col-form-label text-md-right">Middle name:</label>
-
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="middleName" name="middleName" placeholder="Middle name" value="{{ old('middleName') }}">
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row">
-						<label for="lastName" class="col-md-3 col-form-label text-md-right">Last Name:</label>
-
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" value="{{ old('lastName') }}" required>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row">
-						<label for="nickName" class="col-md-3 col-form-label text-md-right">Nick Name:</label>
-						
-						<div class="col-md-7">
-							<input type="text" class="form-control" id="nickName" name="nickName" placeholder="Nick Name" value="{{ old('nickName') }}" required>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row">
-						<div class="col-md-2 offset-md-3">
-							<div class="form-check">
-								<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="gender" value="m" checked>Male
-								</label>
-							</div>{{-- form-check --}}
-						</div>{{-- col --}}
-
-						<div class="col-md-2">
-							<div class="form-check">
-								<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="gender" value="f">Female
-								</label>
-							</div>{{-- form-check --}}
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">Save Record</button>
-
-							<a class="btn btn-outline-secondary" href="{{ route('staffs.index') }}" role="button">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+		            <my-link href="{{ route('staffs.index') }}">Go Back</my-link>
+		        </footer><!-- modal-card-foot -->
+		    </form>
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection
