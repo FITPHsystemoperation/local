@@ -1,43 +1,19 @@
-<div class="card mt-3 border-dark">{{-- accounts --}}
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col">
-                            <h3>Account Information</h3>
-                        </div>{{-- col --}}
-                        <div class="col text-right">
-                            <a href="{{ route('staffs.account.edit', $staff->id) }}" class="btn btn-outline-info">Update</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-                </div>
+<article class="message">
+    <div class="message-header">
+        <p>Account Information</p>
+        
+        <my-link class="is-warning is-rounded" lined="true" href="{{ route('staffs.account.edit', $staff->id) }}" title="Update">
+            <span class="fa fa-edit"></span>
+        </my-link>
+    </div><!-- message-header -->
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="offset-md-1 col-sm-11">
-                            <h4 class="p-2">
-                                <span class="lead">B.I.R. No.:</span>
-                                {{ $staff->birNo }}
-                            </h4>   
-
-                            <h4 class="p-2">
-                                <span class="lead">S.S.S. No:</span>
-                                {{ $staff->sssNo }}
-                            </h4>                   
-
-                            <h4 class="p-2">
-                                <span class="lead">Pagibig No.:</span>
-                                {{ $staff->pagibigNo }}
-                            </h4>
-
-                            <h4 class="p-2">
-                                <span class="lead">Philhealth No.:</span>
-                                {{ $staff->philhealthNo }}
-                            </h4>
-
-                            <h4 class="p-2">
-                                <span class="lead">Bank Account No.:</span>
-                                {{ $staff->bankNo }}
-                            </h4>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-                </div>{{-- card-body --}}
-            </div>{{-- card --}}
+    <div class="message-body" style="padding-left: 5em;">
+        <div class="content">
+            <info attr="B.I.R. No.">{{ $staff->birNo }}</info>
+            <info attr="S.S.S. No.">{{ $staff->sssNo }}</info>
+            <info attr="Pagibig No.">{{ $staff->pagibigNo }}</info>
+            <info attr="Philhealth No.">{{ $staff->philhealthNo }}</info>
+            <info attr="Bank Account No.">{{ $staff->bankNo }}</info>
+        </div>{{-- content --}}
+    </div><!-- message-body -->
+</article><!-- message -->
