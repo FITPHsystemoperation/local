@@ -1,68 +1,50 @@
-<div class="card border-dark">
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <h2>{{ "$staff->firstName $staff->lastName" }}</h2>
-            </div>{{-- col --}}
-                
-            <div class="col text-right">
-                <a class="btn btn-outline-info" href="{{ route('staffs.edit', $staff->id) }}">Update</a>
+<article class="message">
+    <div class="message-header">
+        <p>{{ "$staff->firstName $staff->lastName" }}</p>
+    
+        <div class="buttons">
+            @if ( !$staff->isCompleted )
+                <my-link class="is-primary is-rounded" lined="true" href="{{ route('staffs.work.edit', $staff->id) }}" title="Add Information">
+                    <span class="fa fa-plus"></span>
+                </my-link>
 
-                <a class="btn btn-outline-secondary" href="{{ route('staffs.index') }}" role="button">Go Back</a>
-            </div>{{-- col --}}             
-        </div>{{-- row --}}
-    </div>{{-- card-header --}}
+                <form method="post" action="{{ route('staffs.destroy', $staff->id) }}" style="margin-right: 0.5em;">
+                    @csrf
+                    @method ('delete')
 
-    <div class="card-body">
-        @include('shared.status')
+                    <my-submit class="is-danger is-rounded" lined="true" title="Delete">
+                        <span class="fa fa-trash"></span>
+                    </my-submit>
+                </form>
+            @endif{{-- ( !$staff->isCompleted ) --}}
 
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                    <img src="/storage/staffs/{{ $staff->image }}" alt="{{ $staff->user['idNumber'] }}_img" class="card-img-top" alt="...">
-                </div>{{-- card --}}
-            </div>{{-- col-sm-3 --}}
+            <my-link class="is-warning is-rounded" lined="true" href="{{ route('staffs.edit', $staff->id) }}" title="Update">
+                <span class="fa fa-edit"></span>
+            </my-link>
+            
+            <my-link class="is-success is-rounded" lined="true" href="{{ route('staffs.index') }}" title="Go Back">
+                <span class="fa fa-arrow-left"></span>
+            </my-link>
+        </div>
+    </div><!-- message-header -->
 
-            <div class="col-sm-9">
-                <h4 class="p-2">
-                    <span class="lead">ID No.:</span>
-                    {{ $staff->user['idNumber'] }}
-                </h4>   
+    <div class="message-body">
+        @include('shared.bulma-status')
 
-                <h4 class="p-2">
-                    <span class="lead">First Name:</span>
-                    {{ $staff->firstName }}
-                </h4>                   
-
-                <h4 class="p-2">
-                    <span class="lead">Middle Name:</span>
-                    {{ $staff->middleName }}
-                </h4>
-
-                <h4 class="p-2">
-                    <span class="lead">Last Name:</span>
-                    {{ $staff->lastName }}
-                </h4>
-
-                <h4 class="p-2">
-                    <span class="lead">Nick Name:</span>
-                    {{ $staff->nickName }}
-                </h4>
-            </div>{{-- col-sm-9 --}}
-        </div>{{-- row --}}
-    </div>{{-- card-body --}}
-
-    @if ( !$staff->isCompleted )
-        <div class="card-footer">
-            <a href="{{ route('staffs.work.edit', $staff->id) }}" class="btn btn-primary float-left mr-2">Add Information</a>
-
-            <form method="post" action="{{ route('staffs.destroy', $staff->id) }}" class="float-left">
-                @csrf
-
-                @method ('delete')
-
-                <button type="Submit" class="btn btn-outline-danger">Delete</button>
-            </form>
-        </div>{{-- card-footer --}}
-    @endif{{-- ( !$staff->isCompleted ) --}}
-</div>{{-- card --}}
+        <article class="media">
+            <figure class="media-left">
+                <figure class="image" style="width: 225px; height: 225px;">
+                    <img src="{{ asset("/storage/staffs/$staff->image") }}">
+                </figure>
+            </figure><!-- media-left -->
+        
+            <div class="media-content">
+                <info attr="I.D. No">{{ $staff->user->idNumber }}</info>
+                <info attr="First Name">{{ $staff->firstName }}</info>
+                <info attr="Middle Name">{{ $staff->middleName }}</info>
+                <info attr="Last Name">{{ $staff->lastName }}</info>
+                <info attr="Nick Name">{{ $staff->nickName }}</info>
+            </div><!-- media-right -->
+        </article><!-- media -->        
+    </div><!-- message-body -->
+</article><!-- message -->
