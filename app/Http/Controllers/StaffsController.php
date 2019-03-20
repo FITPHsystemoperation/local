@@ -104,7 +104,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.work')
+        return view('staffs.inputs.work')
             ->with('staff', $staff)
             ->with('stats', \App\EmploymentStat::all())
             ->with('titles', \App\JobTitle::all())

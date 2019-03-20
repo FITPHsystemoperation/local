@@ -1,92 +1,115 @@
-@extends('shared.master')
+@extends('shared.layout')
 
 @section('content')
-	<div class="container my-3">
-		<h1 class="display-4">{{ "$staff->firstName $staff->lastName" }}</h1>
+	<div class="modal is-active">
+	    <div class="modal-background"></div>
+	    
+	    <div class="modal-card">
+	        <header class="modal-card-head">
+	            <p class="modal-card-title">Update Work Related Data</p>
+	            <a class="delete" href="{{ route('staffs.show', $staff->id) }}" aria-label="close"></a>
+	        </header><!-- modal-card-head -->
+	
+			<form method="post" @submit="submit" action="{{ route('staffs.work.update', $staff->id) }}">
+				@csrf
+				@method ('patch')
+				
+		        <section class="modal-card-body">
+		            <p class="subtitle has-text-centered has-text-weight-semibold">{{ "$staff->firstName $staff->lastName" }}</p>
 
-		<div class="card border-dark mt-3">
-			<div class="card-header">
-				<h4>Update Work Related Data</h4>
-			</div>{{-- card-header --}}
+					<div class="field">
+					    <label class="label" for="dateHired">Date Hired:</label>
+					
+					    <div class="control">
+					        <input type="date" id="dateHired" name="dateHired" placeholder="Document Title"
+					            class="input {{ $errors->has('dateHired') ? ' is-danger' : '' }}"
+					            value="{{ $staff->dateHired }}" autofocus>
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('dateHired') }}</p>
+					</div><!-- field -->
 
-			<div class="card-body">
-				@include ('shared.error')
+					<div class="field">
+					    <label class="label" for="employment_stat_id">Employment Status:</label>
+					
+					    <div class="control">
+					    	<div class="select is-fullwidth  {{ $errors->has('employment_stat_id') ? ' is-danger' : '' }}">
+					    	    <select id="employment_stat_id" name="employment_stat_id" required>
+					    	        @foreach ($stats as $stat)
+										<option value="{{ $stat->id }}"
+											{{ $staff->employment_stat_id === $stat->id ? 'selected' : '' }}>
+												{{ $stat->statDesc }}
+										</option>
+									@endforeach
+					    	    </select>
+					    	</div><!-- select -->
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('employment_stat_id') }}</p>
+					</div><!-- field -->
 
-				<form method="post" action="{{ route('staffs.work.update', $staff->id) }}">
-					@csrf
+					<div class="field">
+					    <label class="label" for="job_title_id">Job Title:</label>
+					
+					    <div class="control">
+					    	<div class="select is-fullwidth {{ $errors->has('job_title_id') ? ' is-danger' : '' }}">
+					    	    <select id="job_title_id" name="job_title_id" required>
+									@foreach ($titles as $title)
+										<option value="{{ $title->id }}" {{ $staff->job_title_id === $title->id ? 'selected' : '' }}>
+											{{ $title->titleName }}
+										</option>
+									@endforeach
+					    	    </select>
+					    	</div><!-- select -->
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('job_title_id') }}</p>
+					</div><!-- field -->
 
-					@method ('patch')
+					<div class="field">
+					    <label class="label" for="department_id">Department:</label>
+					
+					    <div class="control">
+					    	<div class="select is-fullwidth {{ $errors->has('department_id') ? ' is-danger' : '' }}">
+					    	    <select id="department_id" name="department_id" required>
+					    	        @foreach ($departments as $department)
+										<option value="{{ $department->id }}"
+											{{ $staff->department_id === $department->id ? 'selected' : '' }} >
+												{{ $department->departmentName }}
+										</option>
+									@endforeach
+					    	    </select>
+					    	</div><!-- select -->
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('department_id') }}</p>
+					</div><!-- field -->
 
-					<div class="form-group row">
-						<label for="dateHired" class="col-md-3 col-form-label text-md-right">Date Hired:</label>
-						<div class="col-md-7">
-							<input type="date" class="form-control" id="dateHired" name="dateHired" value="{{ $staff->dateHired }}" required autofocus>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
+					<div class="field">
+					    <label class="label" for="dailyRate">Daily Rate:</label>
+					
+					    <div class="control has-icons-right">
+					        <input type="text" id="dailyRate" name="dailyRate" placeholder="Daily Rate"
+					            class="input {{ $errors->has('dailyRate') ? ' is-danger' : '' }}"
+					            value="{{ $staff->dailyRate }}" required>
+					
+					        <span class="icon is-small is-right">
+					            <i class="fas fa-money-bill-alt"></i>
+					        </span><!-- icon -->
+					    </div><!-- control -->
+					
+					    <p class="help is-danger">{{ $errors->first('dailyRate') }}</p>
+					</div><!-- field -->
+		        </section><!-- modal-card-body -->
+		        
+		        <footer class="modal-card-foot">
+					<button class="button is-primary" :class="{ 'is-loading': isLoading }">
+						{{ $staff->isCompleted ? 'Save Record' : 'Go Next' }}
+					</button>
 
-					<div class="form-group row">
-						<label for="employment_stat_id" class="col-md-3 col-form-label text-md-right">Employment Status:</label>
-							
-						<div class="col-md-7">
-							<select class="c-select form-control" id="employment_stat_id" name="employment_stat_id" required>
-								@foreach ($stats as $stat)
-									<option value="{{ $stat->id }}"
-										{{ $staff->employment_stat_id === $stat->id ? 'selected' : '' }}>
-											{{ $stat->statDesc }}
-									</option>
-								@endforeach
-							</select>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row">
-						<label for="job_title_id" class="col-md-3 col-form-label text-md-right">Job Title:</label>
-						
-						<div class="col-md-7">
-							<select class="c-select form-control" id="job_title_id" name="job_title_id" required>
-								@foreach ($titles as $title)
-									<option value="{{ $title->id }}" {{ $staff->job_title_id === $title->id ? 'selected' : '' }}>
-										{{ $title->titleName }}
-									</option>
-								@endforeach
-							</select>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row">
-						<label for="department_id" class="col-md-3 col-form-label text-md-right">Department:</label>
-						
-						<div class="col-md-7">
-							<select class="c-select form-control" id="department_id" name="department_id" required>
-								@foreach ($departments as $department)
-									<option value="{{ $department->id }}"
-										{{ $staff->department_id === $department->id ? 'selected' : '' }} >
-											{{ $department->departmentName }}
-									</option>
-								@endforeach
-							</select>
-						</div>
-					</div>{{-- row --}}
-
-					<div class="form-group row">
-						<label for="dailyRate" class="col-md-3 col-form-label text-md-right">Daily Rate:</label>
-						
-						<div class="col-md-7">
-							<input type="number" class="form-control" id="dailyRate" name="dailyRate" value="{{ $staff->dailyRate }}" required>
-						</div>{{-- col --}}
-					</div>{{-- row --}}
-
-					<div class="form-group row mb-0">
-                        <div class="col-md-9 offset-md-3">
-							<button type="submit" class="btn btn-primary">
-								{{ $staff->isCompleted ? 'Save Record' : 'Go Next' }}
-							</button>
-
-							<a class="btn btn-outline-secondary" href="{{ route('staffs.show', $staff->id) }}" role="button">Go Back</a>
-                        </div>{{-- col --}}
-                    </div>{{-- row --}}
-				</form>
-			</div>{{-- card-body --}}
-		</div>{{-- card --}}
-	</div>{{-- container --}}
+		            <my-link href="{{ route('staffs.show', $staff->id) }}">Go Back</my-link>
+		        </footer><!-- modal-card-foot -->
+		    </form>
+	    </div><!-- modal-card -->
+	</div><!-- modal -->
 @endsection
