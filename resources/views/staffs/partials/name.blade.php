@@ -38,7 +38,7 @@
                 </figure>
             </figure><!-- media-left -->
         
-            <div class="media-content">
+            <div class="media-content" style="padding-left: 1em;">
                 <info attr="I.D. No">{{ $staff->user->idNumber }}</info>
                 <info attr="First Name">{{ $staff->firstName }}</info>
                 <info attr="Middle Name">{{ $staff->middleName }}</info>
