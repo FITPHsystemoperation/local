@@ -24,7 +24,7 @@ class StaffNameFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'idNumber' => 'required|min:4',
+            'idNumber' => 'required|min:4|max:15',
             'firstName' => 'required|min:2',
             // 'middleName' => 'required|min:2',
             'lastName' => 'required|min:2',

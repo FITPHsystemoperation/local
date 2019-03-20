@@ -10,9 +10,9 @@
     <div class="message-body" style="padding-left: 5em;">
         <div class="content">
             <info attr="Date Hired">{{ date('F j, Y', strtotime($staff->dateHired)) }}</info>
-            <info attr="Employment Status">{{ $staff->employmentStat['statDesc'] }}</info>
-            <info attr="Job Title">{{ $staff->jobTitle['titleName'] }}</info>
-            <info attr="Department">{{ $staff->department['departmentName'] }}</info>
+            <info attr="Employment Status">{{ optional($staff->employmentStat)->statDesc }}</info>
+            <info attr="Job Title">{{ optional($staff->jobTitle)->titleName }}</info>
+            <info attr="Department">{{ optional($staff->department)->departmentName }}</info>
             <info attr="Daily Rate">{{ $staff->dailyRate }}</info>
         </div>{{-- content --}}
     </div><!-- message-body -->
