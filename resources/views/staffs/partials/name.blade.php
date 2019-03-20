@@ -33,17 +33,19 @@
 
         <article class="media">
             <figure class="media-left">
-                <figure class="image" style="width: 225px; height: 225px;">
+                <figure class="image" style="width: 210px; height: 210px;">
                     <img src="{{ asset("/storage/staffs/$staff->image") }}">
                 </figure>
             </figure><!-- media-left -->
         
             <div class="media-content" style="padding-left: 1em;">
-                <info attr="I.D. No">{{ $staff->user->idNumber }}</info>
-                <info attr="First Name">{{ $staff->firstName }}</info>
-                <info attr="Middle Name">{{ $staff->middleName }}</info>
-                <info attr="Last Name">{{ $staff->lastName }}</info>
-                <info attr="Nick Name">{{ $staff->nickName }}</info>
+                <div class="content">
+                    <info attr="I.D. No">{{ $staff->user->idNumber }}</info>
+                    <info attr="First Name">{{ $staff->firstName }}</info>
+                    <info attr="Middle Name">{{ $staff->middleName }}</info>
+                    <info attr="Last Name">{{ $staff->lastName }}</info>
+                    <info attr="Nick Name">{{ $staff->nickName }}</info>
+                </div>
             </div><!-- media-right -->
         </article><!-- media -->        
     </div><!-- message-body -->
