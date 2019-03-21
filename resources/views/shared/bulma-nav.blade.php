@@ -60,10 +60,6 @@
                         </a>
 
                         @can ('isDeveloper', auth()->user())
-                            <div class="navbar-divider"></div>
-                            
-                            <a class="navbar-item" href="{{ route('themes.index') }}">Theme Manager</a>
-                            
                             <a class="navbar-item" href="{{ route('telescope') }}" target="_blank">Dashboard</a>
                         @endcan
 
