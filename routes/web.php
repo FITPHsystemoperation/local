@@ -56,9 +56,9 @@ Route::resource('/document/category', 'DocumentCategoriesController', ['as' => '
 Route::resource('/documents', 'DocumentsController');
 Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->name('documents.addFile');
 
-Route::resource('themes', 'ThemesController');
-Route::get('/themes/select/{theme}', 'ThemesController@preview')->name('theme.select');
-Route::patch('/themes/select/{theme}', 'ThemesController@apply')->name('theme.apply');
+// Route::resource('themes', 'ThemesController');
+// Route::get('/themes/select/{theme}', 'ThemesController@preview')->name('theme.select');
+// Route::patch('/themes/select/{theme}', 'ThemesController@apply')->name('theme.apply');
 
 Route::resource('/cables', 'LanCableController');
 

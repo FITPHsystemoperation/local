@@ -34,7 +34,7 @@
                         <label class="label" for="password">New Password:</label>
                     
                         <div class="control has-icons-right">
-                            <input type="text" id="password" name="password" placeholder="New Password"
+                            <input type="password" id="password" name="password" placeholder="New Password"
                                 class="input {{ $errors->has('password') ? ' is-danger' : '' }}" required>
                     
                             <span class="icon is-small is-right">
@@ -49,7 +49,7 @@
                         <label class="label" for="password_confirmation">Confirm Password:</label>
                     
                         <div class="control has-icons-right">
-                            <input type="text" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"
+                            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"
                                 class="input {{ $errors->has('password') ? ' is-danger' : '' }}" required>
                     
                             <span class="icon is-small is-right">

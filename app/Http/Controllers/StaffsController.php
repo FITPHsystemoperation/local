@@ -104,7 +104,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.work')
+        return view('staffs.inputs.work')
             ->with('staff', $staff)
             ->with('stats', \App\EmploymentStat::all())
             ->with('titles', \App\JobTitle::all())
@@ -133,7 +133,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.contact', compact('staff'));
+        return view('staffs.inputs.contact', compact('staff'));
     }
 
     public function updateContact(StaffContactFormRequest $request, Staff $staff)
@@ -157,7 +157,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.emergency', compact('staff'));
+        return view('staffs.inputs.emergency', compact('staff'));
     }
 
     public function updateEmergency(StaffEmergencyFormRequest $request, Staff $staff)
@@ -180,7 +180,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.account', compact('staff'));
+        return view('staffs.inputs.account', compact('staff'));
     }
 
     public function updateAccount(StaffAccountFormRequest $request, Staff $staff)
@@ -205,7 +205,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.personal', compact('staff'));
+        return view('staffs.inputs.personal', compact('staff'));
     }
 
     public function updatePersonal(StaffPersonalFormRequest $request, Staff $staff)
