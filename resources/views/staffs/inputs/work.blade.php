@@ -1,7 +1,14 @@
 @extends('shared.layout')
 
 @section('content')
-	@component ('staffs.components.input', ['staff' => $staff])
+	@component ('staffs.components.input', [
+		'staff' => $staff,
+		'form' => [
+			'title' => 'Update Work Related Data',
+			'post' => 'staffs.work.update',
+			'prev_route' => 'staffs.show',
+		]
+	])
 		<div class="field">
 		    <label class="label" for="dateHired">Date Hired:</label>
 	

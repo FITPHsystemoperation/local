@@ -102,7 +102,7 @@
 		        </section><!-- modal-card-body -->
 		        
 		        <footer class="modal-card-foot">
-					<button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Update</button>
+					<button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Save Record</button>
 
 		            <my-link href="{{ route('staffs.show', $staff->id) }}">Go Back</my-link>
 		        </footer><!-- modal-card-foot -->

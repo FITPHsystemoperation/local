@@ -32,6 +32,8 @@
 	    		    </div><!-- field -->
 
 	    		    <div class="field">
+	    		    	<p class="help is-info is-pulled-right">*Maximum: 10mb</p>
+
 	    		    	<label class="label" for="file">Attach Document:</label>
 
 	    		        <div class="control">

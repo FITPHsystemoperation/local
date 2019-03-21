@@ -133,7 +133,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.contact', compact('staff'));
+        return view('staffs.inputs.contact', compact('staff'));
     }
 
     public function updateContact(StaffContactFormRequest $request, Staff $staff)

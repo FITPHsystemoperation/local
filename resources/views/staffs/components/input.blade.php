@@ -3,11 +3,11 @@
     
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title">Update Work Related Data</p>
+            <p class="modal-card-title">{{ $form['title'] }}</p>
             <a class="delete" href="{{ route('staffs.show', $staff->id) }}" aria-label="close"></a>
         </header><!-- modal-card-head -->
 
-        <form method="post" @submit="submit" action="{{ route('staffs.work.update', $staff->id) }}">
+        <form method="post" @submit="submit" action="{{ route( $form['post'], $staff->id ) }}">
             @csrf
             @method ('patch')
             
@@ -19,10 +19,10 @@
             
             <footer class="modal-card-foot">
                 <button class="button is-primary" :class="{ 'is-loading': isLoading }">
-                    {{ $staff->isCompleted ? 'Save Record' : 'Go Next' }}
+                    {{ $staff->isCompleted ? 'Save Record' : 'Save & Next' }}
                 </button>
 
-                <my-link href="{{ route('staffs.show', $staff->id) }}">Go Back</my-link>
+                <my-link href="{{ route( $form['prev_route'], $staff->id ) }}">Go Back</my-link>
             </footer><!-- modal-card-foot -->
         </form>
     </div><!-- modal-card -->
