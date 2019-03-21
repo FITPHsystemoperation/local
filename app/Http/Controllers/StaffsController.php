@@ -180,7 +180,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.account', compact('staff'));
+        return view('staffs.inputs.account', compact('staff'));
     }
 
     public function updateAccount(StaffAccountFormRequest $request, Staff $staff)
@@ -205,7 +205,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.personal', compact('staff'));
+        return view('staffs.inputs.personal', compact('staff'));
     }
 
     public function updatePersonal(StaffPersonalFormRequest $request, Staff $staff)
