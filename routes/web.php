@@ -56,13 +56,7 @@ Route::resource('/document/category', 'DocumentCategoriesController', ['as' => '
 Route::resource('/documents', 'DocumentsController');
 Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->name('documents.addFile');
 
-// Route::resource('themes', 'ThemesController');
-// Route::get('/themes/select/{theme}', 'ThemesController@preview')->name('theme.select');
-// Route::patch('/themes/select/{theme}', 'ThemesController@apply')->name('theme.apply');
-
 Route::resource('/cables', 'LanCableController');
-
-Route::get('/profile/{name}', 'PagesController@profile')->name('profile');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
@@ -70,8 +64,10 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
-Route::get('/', function(){
-    return view('pages.home');
-})->name('home');
+Route::get('/', 'PagesController@home')->name('home');
+Route::get('/profile/{name}', 'PagesController@profile')->name('profile')->middleware('auth');
 
+// Route::resource('themes', 'ThemesController');
+// Route::get('/themes/select/{theme}', 'ThemesController@preview')->name('theme.select');
+// Route::patch('/themes/select/{theme}', 'ThemesController@apply')->name('theme.apply');
 // Route::get('/test', 'TestController@index');//for testing
