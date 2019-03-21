@@ -157,7 +157,7 @@ class StaffsController extends Controller
     {
         $this->authorize('update', $staff);
 
-        return view('staffs.emergency', compact('staff'));
+        return view('staffs.inputs.emergency', compact('staff'));
     }
 
     public function updateEmergency(StaffEmergencyFormRequest $request, Staff $staff)
