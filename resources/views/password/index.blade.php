@@ -30,7 +30,13 @@
                                     @foreach ($passwords as $password)
                                         <tr>
                                             <td class="has-text-centered">{{ $password->subject }}</td>
-                                            <td class="has-text-centered">{{ $password->password }}</td>
+                                            
+                                            <td class="has-text-centered">
+                                                {!! Gate::allows('view', $password) ?
+                                                    $password->password: preg_replace('/./', '&#9679;', $password->password)
+                                                !!}
+                                            </td>
+
                                             <td class="has-text-centered">
                                                 <my-link class="is-info is-rounded is-small" lined="true" title="Update"
                                                     href="{{ route('passwords.edit', $password->id) }}">
