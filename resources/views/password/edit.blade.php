@@ -6,13 +6,14 @@
         
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">New Password</p>
+                <p class="modal-card-title">Update Password</p>
                 <a class="delete" href="{{ route('passwords.index') }}" aria-label="close"></a>
             </header><!-- modal-card-head -->
-
-            <form method="post" @submit="submit" action="{{ route('passwords.store') }}">
+            
+            <form method="post" @submit="submit" action="{{ route('passwords.update', $password->id) }}">
                 @csrf
-
+                @method ('patch')
+                
                 <section class="modal-card-body">
                     <div class="field">
                         <label class="label" for="subject">Subject:</label>
@@ -20,7 +21,7 @@
                         <div class="control has-icons-right">
                             <input type="text" id="subject" name="subject" placeholder="Subject"
                                 class="input {{ $errors->has('subject') ? ' is-danger' : '' }}"
-                                value="{{ old('subject') }}" autofocus required>
+                                value="{{ $password->subject }}" autofocus required>
                     
                             <span class="icon is-small is-right">
                                 <i class="fas fa-lock"></i>
@@ -36,7 +37,7 @@
                         <div class="control has-icons-right">
                             <input type="text" id="password" name="password" placeholder="Password"
                                 class="input {{ $errors->has('password') ? ' is-danger' : '' }}"
-                                value="{{ old('password') }}" required>
+                                value="{{ $password->password }}" required>
                     
                             <span class="icon is-small is-right">
                                 <i class="fas fa-key"></i>
@@ -50,14 +51,13 @@
                         <label class="label" for="desciption">Description:</label>
                     
                         <div class="control">
-                            <textarea id="description" name="description" rows="3" placeholder="Type Description Here..." class="textarea">{{ old('description') }}</textarea>
+                            <textarea id="description" name="description" rows="3" placeholder="Type Description Here..." class="textarea">{{ $password->description }}</textarea>
                         </div><!-- control -->
                     </div><!-- field -->
                 </section><!-- modal-card-body -->
                 
                 <footer class="modal-card-foot">
                     <button type="submit" class="button is-primary" :class="{ 'is-loading': isLoading }">Save Record</button>
-
                     <my-link href="{{ route('passwords.index') }}">Go Back</my-link>
                 </footer><!-- modal-card-foot -->
             </form>

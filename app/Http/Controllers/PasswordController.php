@@ -32,48 +32,30 @@ class PasswordController extends Controller
             ->with('status', "Subject:<strong>$password->subject</strong> successfully recorded");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Password $password)
     {
-        //
+        abort(404);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Password $password)
     {
-        //
+        return view('password.edit', compact('password'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(PasswordFormRequest $request, Password $password)
     {
-        //
+        $password->update([
+            'subject' => $request->get('subject'),
+            'password' => $request->get('password'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect()->route('passwords.index')
+            ->with('status', "Subject:<strong>$password->subject</strong> successfully updated");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        abort(403);
     }
 }
