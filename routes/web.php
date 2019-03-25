@@ -57,6 +57,7 @@ Route::resource('/documents', 'DocumentsController');
 Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->name('documents.addFile');
 
 Route::resource('/cables', 'LanCableController');
+Route::resource('/passwords', 'PasswordController');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
