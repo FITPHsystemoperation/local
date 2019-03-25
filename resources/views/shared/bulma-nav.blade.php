@@ -31,7 +31,8 @@
                         <a class="navbar-item" href="{{ route('computers.index') }}">Computer</a>
                         <a class="navbar-item" href="{{ route('softwares.index') }}">Software</a>
                         <a class="navbar-item" href="{{ route('cables.index') }}">Lan Cables</a>
-                        <a class="navbar-item" href="/accesories">Accessories</a>
+                        <a class="navbar-item" href="{{ route('passwords.index') }}">Password</a>
+                        {{-- <a class="navbar-item" href="/accesories">Accessories</a> --}}
                     </div><!-- dropdown -->
                 </div><!-- has-dropdown -->
                 {{-- document --}}
