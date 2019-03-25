@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PasswordFormRequest;
 use App\Password;
 use Illuminate\Http\Request;
 
@@ -12,25 +13,23 @@ class PasswordController extends Controller
         return view('password.index')->with('passwords', Password::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('password.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(PasswordFormRequest $request)
     {
-        //
+        $request->validate(['subject' => 'unique:passwords']);
+
+        $password = Password::create([
+            'subject' => $request->get('subject'),
+            'password' => $request->get('password'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect()->route('passwords.index')
+            ->with('status', "Subject:<strong>$password->subject</strong> successfully recorded");
     }
 
     /**

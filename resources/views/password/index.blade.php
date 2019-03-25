@@ -13,6 +13,8 @@
                 </div><!-- message-header -->
             
                 <div class="message-body">
+                    @include ('shared.bulma-status')
+
                     <table class="table is-fullwidth is-bordered is-hoverable">
                         <thead>
                             <tr class="has-background-grey-light">
