@@ -12,13 +12,6 @@ class CalendarController extends Controller
     {
         $month = new Month($month, $year);
 
-        // dd($month);
-
         return view('calendar.index', compact('month'));
-    }
-
-    protected function showDate($date)
-    {
-        return date('F j, Y', $date);
     }
 }

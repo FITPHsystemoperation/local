@@ -9,8 +9,8 @@ class Month
     public $index;
     public $name;
     public $year;
-    protected $firstDay;    
-    protected $lastDay;    
+    public $firstDay;    
+    public $lastDay;    
     protected $noOfWeeks;
     public $weeks = [];
 
@@ -33,11 +33,18 @@ class Month
 
     protected function setNoOfweeks()
     {
-        if (date('W', $this->lastDay) < date('W', $this->firstDay))
+        $firstWeek = date('W', $this->firstDay);
+        $lastWeek = date('W', $this->lastDay);
+
+        if ( $lastWeek == 1 )
         {
-            return $this->noOfWeeks = (53 - date('W', $this->firstDay) + 1); 
+            $lastWeek = 53;
         }
-        return $this->noOfWeeks = (date('W', $this->lastDay) - date('W', $this->firstDay) + 1); 
+        elseif ( $firstWeek > $lastWeek )
+        {
+            $firstWeek = 0; 
+        }
+        return $this->noOfWeeks = ($lastWeek - $firstWeek + 1); 
     }
 
     protected function generateWeeks($day)
