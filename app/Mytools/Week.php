@@ -28,7 +28,9 @@ class Week
     protected function generateDays($day)
     {
         for ($i=0; $i < 7; $i++) {
-            $this->days[ strtolower(date('D', $day)) ] = new Day($day);
+            $status = date('m', $day) == $this->month;
+
+            $this->days[ strtolower(date('D', $day)) ] = new Day($day, $status);
 
             $day = mktime(0, 0, 0, date('n', $day), date('j', $day) + 1, date('Y', $day));
          } 

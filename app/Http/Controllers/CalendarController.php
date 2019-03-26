@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index($month, $year)
     {
         $month = new Month($month, $year);
+
+        // dd($month);
 
         return view('calendar.index', compact('month'));
     }
