@@ -6,17 +6,19 @@ use App\Mytools\Week;
 
 class Month
 {
+    public $index;
     public $name;
     public $year;
-    public $firstDay;    
-    public $lastDay;    
-    public $noOfWeeks;
+    protected $firstDay;    
+    protected $lastDay;    
+    protected $noOfWeeks;
     public $weeks = [];
 
     function __construct($month, $year)
     {
         $this->firstDay = mktime(0, 0, 0, $month, 1, $year);
         $this->lastDay = mktime(0, 0, 0, $month, date('t', $this->firstDay), $year);
+        $this->index = date('m', $this->firstDay);
 
         $this->setName();
         $this->setNoOfWeeks();
@@ -31,6 +33,10 @@ class Month
 
     protected function setNoOfweeks()
     {
+        if (date('W', $this->lastDay) < date('W', $this->firstDay))
+        {
+            return $this->noOfWeeks = (53 - date('W', $this->firstDay) + 1); 
+        }
         return $this->noOfWeeks = (date('W', $this->lastDay) - date('W', $this->firstDay) + 1); 
     }
 

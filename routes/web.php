@@ -58,7 +58,7 @@ Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->na
 
 Route::resource('/cables', 'LanCableController');
 Route::resource('/passwords', 'PasswordController');
-Route::get('/calendar/{month}/{year}', 'CalendarController@index');
+Route::get('/calendar/{month}/{year}', 'CalendarController@index')->name('calendar');
 
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');

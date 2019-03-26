@@ -9,8 +9,10 @@
                 </div><!-- message-header -->
             
                 <div class="message-body">
-                    <p class="title">{{ "$month->name $month->year"}}</p>
-                    <div class="columns has-background-link has-text-centered">
+                    @include ('calendar.partials.months')
+                    @include ('calendar.partials.years')
+
+                    <div class="columns has-background-link has-text-centered" style="margin-top: 1em;">
                         <div class="column" style="padding: 0.5em;">
                             <p class="subtitle has-text-light is-6 has-text-weight-bold">Monday</p>
                         </div><!-- column -->
