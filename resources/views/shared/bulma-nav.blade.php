@@ -14,6 +14,7 @@
             <a class="navbar-item" href="{{ route('home') }}">Home</a>
 
             @auth
+                <a class="navbar-item" href="{{ route('calendar', [date('m'), date('Y')]) }}">Calendar</a>
                 {{-- master-list --}}
                 <div class="navbar-item has-dropdown is-hoverable">
                     <span class="navbar-link">Master List</span>
