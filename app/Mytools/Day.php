@@ -11,6 +11,8 @@ class Day
     public $value;
     public $fullDate;
     public $day;
+    public $month;
+    public $year;
     public $active;
     public $sunday;
     public $tasks = [];
@@ -21,6 +23,8 @@ class Day
         $this->active = $status;
         $this->fullDate = date('F d, Y', $day);
         $this->day = date('j', $day);
+        $this->month = date('m', $day);
+        $this->year = date('Y', $day);
         $this->sunday = (date('N', $day) == 7);
         $this->date = date('Y-m-d', $day);
 

@@ -9,8 +9,6 @@
                 </div><!-- message-header -->
             
                 <div class="message-body">
-     
-
                     @include ('calendar.partials.months')
                     @include ('calendar.partials.years')
 
