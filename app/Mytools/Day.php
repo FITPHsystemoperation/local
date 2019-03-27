@@ -29,6 +29,6 @@ class Day
 
     protected function storeTasks()
     {
-        $this->tasks = DB::table('tasks')->where('date', $this->date)->get()->all();
+        $this->tasks = DB::table('tasks')->where('date', $this->date)->get();
     }
 }
