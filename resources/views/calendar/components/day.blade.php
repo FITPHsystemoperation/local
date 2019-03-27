@@ -4,7 +4,7 @@
                 <ul class="has-text-right is-pulled-right" style="margin-top: -5px;">
                     @foreach ( $day->tasks->take(3) as $task)
                         <li>
-                            <span class="tag is-link" title="{{ $task->description }}">
+                            <span class="tag is-info" title="{{ $task->description }}">
                                 {{ ucwords($task->subject) }}
                             </span>
                         </li>
@@ -16,6 +16,10 @@
                         {{ $day->day }}
                     </a>
                 </p>
+
+                @if ( $day->isToday() )
+                    <p class="icon fa fa-calendar-day has-text-success is-medium" style="margin: -11px 0 0 -6px;"></p>
+                @endif
         </div>
     @else
         <div class="box is-radiusless is-unselectable {{ $day->sunday ? 'has-background-white-ter': '' }}" style="padding: 1em; height: 6em;">

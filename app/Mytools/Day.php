@@ -31,4 +31,9 @@ class Day
     {
         $this->tasks = DB::table('tasks')->where('date', $this->date)->get();
     }
+
+    public function isToday()
+    {
+        return mktime(0, 0, 0, date('m'), date('d'), date('Y')) == $this->value;
+    }
 }
