@@ -5,6 +5,11 @@
                 <p class="title is-6 has-text-weight-bold {{ $day->sunday ? 'has-text-danger': '' }}">
                     {{ $day->day }}
                 </p>
+                @foreach ( $day->tasks as $task)
+                    <div class="tag is-info is-pulled-right">
+                        {{ $task->subject }}
+                    </div>
+                @endforeach
             </div>
         </a>
     @else
