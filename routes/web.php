@@ -58,10 +58,10 @@ Route::patch('/documents/{document}/addFile', 'DocumentsController@addFile')->na
 
 Route::resource('/cables', 'LanCableController');
 Route::resource('/passwords', 'PasswordController');
-Route::get('/calendar/{month}/{year}', 'CalendarController@index')->name('calendar');
-Route::get('/day/{day}/tasks', 'CalendarController@dailyTask')->name('tasks.daily')
-    ->where('day', '([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))');
 
+Route::get('/calendar/{month}/{year}', 'CalendarController@index')->name('calendar');
+
+Route::resource('/day/{date}/tasks', 'TasksController');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
