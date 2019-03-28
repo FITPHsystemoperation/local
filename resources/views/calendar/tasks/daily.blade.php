@@ -31,6 +31,7 @@
                                     <tr class="has-background-grey-light">
                                         <th class="has-text-centered">Subject</th>
                                         <th class="has-text-centered">Description</th>
+                                        <th class="has-text-centered">Action</th>
                                     </tr>
                                 </thead>
                             
@@ -39,6 +40,11 @@
                                         <tr>
                                             <td class="has-text-centered">{{ ucwords($task->subject) }}</td>
                                             <td class="has-text-centered">{{ $task->description }}</td>
+                                            <td class="has-text-centered">
+                                                <my-link class="is-info is-rounded is-small" lined="true" href="{{ route('tasks.edit', [$task->date, $task->id]) }}" title="Update">
+                                                    <span class="fa fa-edit"></span>
+                                                </my-link>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

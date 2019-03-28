@@ -30,7 +30,7 @@ class TasksController extends Controller
         ]);
 
         return redirect()->route('tasks.index', $date)
-            ->with('status', "Schedule:<strong>$task->subject</strong> recorded for this day");
+            ->with('status', "Schedule:<strong>$task->subject</strong> successfully recorded");
     }
 
     public function show($date, Task $task)
@@ -39,38 +39,31 @@ class TasksController extends Controller
             ->with('day', $this->getDay($date));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($date, Task $task)
     {
-        //
+        return view('calendar.tasks.edit', compact('task'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(TasksFormRequest $request, $date, Task $task)
     {
-        //
+        $request->validate(['date' => 'required|date']);
+
+        $task->update([
+            'date' => $request->get('date'),
+            'subject' => $request->get('subject'),
+            'description' => $request->get('description'),
+        ]);
+
+        return redirect()->route('tasks.index', $task->date)
+            ->with('status', "Schedule:<strong>$task->subject</strong> successfully updated");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($date, Task $task)
     {
-        //
+        $task->delete();
+
+        return redirect()->route('tasks.index', $task->date)
+            ->with('status', "Schedule:<strong>$task->subject</strong> successfully removed");
     }
 
     protected function getDay($date)
