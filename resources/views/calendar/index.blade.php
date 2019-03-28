@@ -44,61 +44,13 @@
 
                     @foreach ( $month->weeks as $week )
                         <div class="columns">
-                            <div class="column is-paddingless">
-                                <div class="box is-radiusless" style="padding: 1em; height: 6em;">
-                                    <p class="title is-6 has-text-weight-bold {{ ! $week->isIncluded('mon') ? 'has-text-grey-light': ''}}">
-                                        {{ $week->getDay('mon') }}
-                                    </p>
-                                </div>
-                            </div><!-- column -->
-
-                            <div class="column is-paddingless">
-                                <div class="box is-radiusless" style="padding: 1em; height: 6em;">
-                                    <p class="title is-6 has-text-weight-bold {{ ! $week->isIncluded('tue') ? 'has-text-grey-light': ''}}">
-                                        {{ $week->getDay('tue') }}
-                                    </p>
-                                </div>
-                            </div><!-- column -->
-
-                            <div class="column is-paddingless">
-                                <div class="box is-radiusless" style="padding: 1em; height: 6em;">
-                                    <p class="title is-6 has-text-weight-bold {{ ! $week->isIncluded('wed') ? 'has-text-grey-light': ''}}">
-                                        {{ $week->getDay('wed') }}
-                                    </p>
-                                </div>
-                            </div><!-- column -->
-
-                            <div class="column is-paddingless">
-                                <div class="box is-radiusless" style="padding: 1em; height: 6em;">
-                                    <p class="title is-6 has-text-weight-bold {{ ! $week->isIncluded('thu') ? 'has-text-grey-light': ''}}">
-                                        {{ $week->getDay('thu') }}
-                                    </p>
-                                </div>
-                            </div><!-- column -->
-
-                            <div class="column is-paddingless">
-                                <div class="box is-radiusless" style="padding: 1em; height: 6em;">
-                                    <p class="title is-6 has-text-weight-bold {{ ! $week->isIncluded('fri') ? 'has-text-grey-light': ''}}">
-                                        {{ $week->getDay('fri') }}
-                                    </p>
-                                </div>
-                            </div><!-- column -->
-
-                            <div class="column is-paddingless">
-                                <div class="box is-radiusless" style="padding: 1em; height: 6em;">
-                                    <p class="title is-6 has-text-weight-bold {{ ! $week->isIncluded('sat') ? 'has-text-grey-light': ''}}">
-                                        {{ $week->getDay('sat') }}
-                                    </p>
-                                </div>
-                            </div><!-- column -->
-
-                            <div class="column is-paddingless">
-                                <div class="box is-radiusless has-background-white-ter" style="padding: 1em; height: 6em;">
-                                    <p class="title is-6 has-text-weight-bold {{ ! $week->isIncluded('sun') ? 'has-text-grey-light': 'has-text-danger'}}">
-                                        {{ $week->getDay('sun') }}
-                                    </p>
-                                </div>
-                            </div><!-- column -->
+                            @component ('calendar.components.day', ['day' => $week->get('mon')]) @endcomponent
+                            @component ('calendar.components.day', ['day' => $week->get('tue')]) @endcomponent
+                            @component ('calendar.components.day', ['day' => $week->get('wed')]) @endcomponent
+                            @component ('calendar.components.day', ['day' => $week->get('thu')]) @endcomponent
+                            @component ('calendar.components.day', ['day' => $week->get('fri')]) @endcomponent
+                            @component ('calendar.components.day', ['day' => $week->get('sat')]) @endcomponent
+                            @component ('calendar.components.day', ['day' => $week->get('sun')]) @endcomponent
                         </div><!-- columns -->
                     @endforeach
                 </div><!-- message-body -->
