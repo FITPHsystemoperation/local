@@ -2,13 +2,33 @@
     @if ($day->active)
         <div class="box is-radiusless is-clipped {{ $day->sunday ? 'has-background-white-ter': '' }}" style="padding: 1em; height: 6em;">
                 <ul class="has-text-right is-pulled-right" style="margin-top: -5px;">
-                    @foreach ( $day->tasks->take(3) as $task)
+                    @if ( $day->tasks->count() <= 3 )
+                        @foreach ( $day->tasks as $task)
+                            <li>
+                                <a href="{{ route('tasks.show', [$task->date, $task->id]) }}">
+                                    <span class="tag is-info has-text-white" title="{{ $task->description }}">
+                                        {{ ucwords($task->subject) }}
+                                    </span>
+                                </a>
+                            </li>
+                        @endforeach
+                    @else
+                        @foreach ( $day->tasks->take(2) as $task)
+                            <li>
+                                <a href="{{ route('tasks.show', [$task->date, $task->id]) }}">
+                                    <span class="tag is-info has-text-white" title="{{ $task->description }}">
+                                        {{ ucwords($task->subject) }}
+                                    </span>
+                                </a>
+                            </li>
+                        @endforeach
+
                         <li>
-                            <span class="tag is-warning" title="{{ $task->description }}">
-                                <a href="{{ route('tasks.show', [$task->date, $task->id]) }}">{{ ucwords($task->subject) }}</a>
-                            </span>
+                            <a href="{{ route('tasks.index', $day->date) }}">
+                                <span class="help">see more...</span>
+                            </a>
                         </li>
-                    @endforeach
+                    @endif
                 </ul>
 
                 <p class="title is-6 has-text-weight-bold">

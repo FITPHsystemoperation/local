@@ -36,7 +36,7 @@
                                 </thead>
                             
                                 <tbody>
-                                    @foreach ( $day->tasks->take(3) as $task)
+                                    @foreach ( $day->tasks as $task)
                                         <tr>
                                             <td class="has-text-centered">{{ ucwords($task->subject) }}</td>
                                             <td class="has-text-centered">{{ $task->description }}</td>
