@@ -13,7 +13,10 @@
             <info attr="Employment Status">{{ optional($staff->employmentStat)->statDesc }}</info>
             <info attr="Job Title">{{ optional($staff->jobTitle)->titleName }}</info>
             <info attr="Department">{{ optional($staff->department)->departmentName }}</info>
-            <info attr="Daily Rate">{{ $staff->dailyRate }}</info>
+
+            @can ('view', $staff)
+                <info attr="Daily Rate">{{ $staff->dailyRate }}</info>
+            @endcan
         </div>{{-- content --}}
     </div><!-- message-body -->
 </article><!-- message -->

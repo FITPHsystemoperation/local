@@ -12,16 +12,16 @@ class StaffPolicy
 
     public function view(User $user, Staff $staff)
     {
-        return $user->role_id === 2 || $user->staff->id === $staff->id ;
+        return $user->staff->department_id === 1;
     }
 
     public function create(User $user)
     {
-        return $user->role_id === 2 ;
+        return $user->staff->department_id === 1;
     }
 
     public function update(User $user, Staff $staff)
     {
-        return $user->role_id === 2 ;
+        return $user->staff->department_id === 1;
     }
 }

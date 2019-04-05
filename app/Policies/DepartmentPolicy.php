@@ -17,12 +17,12 @@ class DepartmentPolicy
 
     public function create(User $user)
     {
-        return $user->role_id === 2;
+        return $user->staff->department_id === 1;
     }
 
     public function update(User $user, Department $department)
     {
-        return $user->role_id === 2;
+        return $user->staff->department_id === 1;
     }
 
     public function delete(User $user, Department $department)
